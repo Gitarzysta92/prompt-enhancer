@@ -21,3 +21,4 @@
 !deploy/coolify/
 !deploy/coolify/Caddyfile
 !deploy/coolify/entrypoint.py
+!deploy/coolify/healthcheck.py

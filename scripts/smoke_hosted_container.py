@@ -139,6 +139,7 @@ def main() -> int:
             "from pathlib import Path; print(Path('/data/prompt-enhancer/api.token').read_text().strip())",
         )
         probe_gateway(base_url, revision, synthetic_api_token=synthetic_api_token)
+        docker("exec", container, "python", "/app/deploy/healthcheck.py")
         print("Hosted image passed synthetic authentication, origin, CSRF, prompt-check and dashboard checks.")
         return 0
     except SmokeCheckError as error:

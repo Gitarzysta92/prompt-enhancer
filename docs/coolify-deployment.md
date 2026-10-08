@@ -34,8 +34,11 @@ Infrastructure addresses, identities and tokens belong in private configuration.
    replica and enable **Consistent Container Name** in the application's advanced
    settings. This makes Coolify stop the old container before starting its
    replacement, preventing overlapping processes on the shared SQLite volume.
-5. Use `GET /health` on port 8080 for health checks. The image also defines its own
-   Docker health check. Leave the image entrypoint/start command unchanged.
+5. Set Healthcheck type to **CMD**, with command
+   `python /app/deploy/healthcheck.py`. Keep health checks enabled and use a
+   60-second start period. The image defines the same Python readiness probe;
+   dashboard HTTP checks require curl or wget, which this image does not include.
+   Leave the image entrypoint/start command unchanged.
 6. If the GHCR package is private, configure registry pull authentication on the
    deployment server as the user Coolify uses. Do not make the package public as
    a workaround. Do not mount provider homes, personal repositories or the Docker
@@ -114,8 +117,8 @@ Coolify → Run workflow**, selecting `main`. Publication is manual. The workflo
    inputs. It checks login, host/origin restrictions, CSRF, cookie flags, prompt
    checks, the dashboard, and the exclusion of local integration endpoints.
 3. Pushes that tested image to GHCR as `sha-<commit>` and `production`.
-4. Calls the webhook once, then waits up to ten minutes for two consecutive
-   healthy responses bearing the expected commit revision. Redirects are refused
+4. Sends one POST to the deployment endpoint, then waits up to ten minutes for
+   two consecutive healthy responses bearing the expected commit revision. Redirects are refused
    and controller credentials are never sent to the application health endpoint.
 
 Runs are serialized. `production` is a moving tag, so a manual restart can pick
