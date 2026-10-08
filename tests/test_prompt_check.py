@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 import json
+import pytest
 from pathlib import Path
 import sqlite3
 
@@ -291,3 +292,80 @@ def test_claude_prompt_check_hook_is_opt_in_silent_on_failure_and_hands_back_adv
     assert run_prompt_check_hook(settings, stdin=io.StringIO(payload), stdout=out, env={}, opener=failing) == 0
     assert out.getvalue() == ""
     assert len(additional_context_from_result({"summary": "x" * 5000})) <= 3_000
+
+
+def test_remote_commentary_requires_matching_reviewed_redacted_preview():
+    from prompt_enhancer.application.prompt_check import PromptCheckError
+    calls = []
+    repo = _Repo()
+
+    def chat(alias, body):
+        calls.append(json.loads(body))
+        return 200, json.dumps({"choices": [{"finish_reason": "stop", "message": {
+            "role": "assistant", "content": json.dumps({"reformulated_prompt": "Add a synthetic calculator test; verify that two plus two equals four."})
+        }}]}).encode(), "application/json"
+
+    service = PromptCheckService(repo, pseudonymize=Pseudonymizer(bytes(range(32))).pseudonymize, chat=chat,
+        active_model=lambda: "example-qwen", remote_model="example-qwen")
+    request = PromptCheckRequest(prompt="Add tests. Contact person@example.test; password=example-invalid-secret",
+        prior_messages=(PromptCheckMessage(role="user", content="Use /example/private/file.py and 192.0.2.10"),))
+    with pytest.raises(PromptCheckError, match="remote_preview_required"):
+        service.check(request)
+    preview = service.preview(request)
+    assert not calls and not repo.rows
+    preview_text = json.dumps(preview.messages)
+    for canary in ("person@example.test", "example-invalid-secret", "/example/private/file.py", "192.0.2.10"):
+        assert canary not in preview_text
+    assert "[EMAIL]" in preview_text and "[SECRET]" in preview_text
+    with pytest.raises(PromptCheckError, match="remote_preview_required"):
+        service.check(request.model_copy(update={"prompt": "Delete the calculator instead.", "remote_approval": preview.approval}))
+    result = service.check(request.model_copy(update={"remote_approval": preview.approval}))
+    assert result.commentary.state == "ok"
+    assert result.commentary.inference_provider == "litellm"
+    assert calls[0]["messages"] == list(preview.messages)
+    stored = json.dumps([row.model_dump(mode="json") for row in repo.rows])
+    assert "example-invalid-secret" not in stored and "reformulated_prompt" not in stored
+
+
+def test_remote_preview_expires_and_never_reads_provider_sessions():
+    from datetime import timedelta
+    from prompt_enhancer.application.prompt_check import PromptCheckError
+    now = [datetime(2026, 1, 1, tzinfo=UTC)]
+    reads, calls = [], []
+    service = PromptCheckService(_Repo(), pseudonymize=Pseudonymizer(bytes(range(32))).pseudonymize,
+        remote_model="example-qwen", active_model=lambda: "example-qwen",
+        chat=lambda *args: calls.append(args), session_context=lambda *args: reads.append(args),
+        clock=lambda: now[0])
+    request = PromptCheckRequest(prompt=STRONG)
+    preview = service.preview(request)
+    now[0] += timedelta(seconds=601)
+    with pytest.raises(PromptCheckError, match="remote_preview_required"):
+        service.check(request.model_copy(update={"remote_approval": preview.approval}))
+    for method in (service.preview, service.check):
+        with pytest.raises(PromptCheckError, match="remote_session_context_forbidden"):
+            method(request.model_copy(update={"session_id": "a" * 64}))
+    result = service.check(request.model_copy(update={"want_commentary": False}))
+    assert result.commentary.state == "skipped"
+    assert not reads and not calls
+
+
+def test_remote_http_routes_authenticate_preview_and_require_approval(tmp_path):
+    from prompt_enhancer.config import LiteLLMSettings
+    settings = AppSettings(home=tmp_path / "home", prompt_check_litellm=LiteLLMSettings(
+        base_url="https://gateway.example.test/v1", credential="example-invalid-key", model="example-qwen"))
+    application = bootstrap_local_application(settings)
+    application.database.initialize()
+    client = TestClient(application.create_http_app(), base_url="http://127.0.0.1")
+    headers = {API_TOKEN_HEADER: settings.api_token_path.read_text().strip()}
+    caps = client.get("/v1/capabilities", headers=headers).json()
+    assert caps["network_inference"] and caps["prompt_check_network_inference"]
+    assert caps["session_text_network_inference"] is False
+    assert client.get("/v1/prompt-checks/configuration", headers=headers).json()["model"] == "example-qwen"
+    payload = {"prompt": "Add a synthetic calculator test. Contact person@example.test."}
+    assert client.post("/v1/prompt-checks/preview", json=payload).status_code == 401
+    assert client.post("/v1/prompt-checks", json=payload, headers=headers).status_code == 428
+    preview = client.post("/v1/prompt-checks/preview", json=payload, headers=headers)
+    assert preview.status_code == 200
+    assert "no-store" in preview.headers["Cache-Control"]
+    assert "person@example.test" not in preview.text
+    assert client.get("/v1/prompt-checks", headers=headers).json()["checks"] == []

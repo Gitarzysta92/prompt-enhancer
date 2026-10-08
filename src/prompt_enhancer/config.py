@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import base64
 import ipaddress
 import os
 from pathlib import Path
 import sys
-from typing import Mapping
+from typing import Literal, Mapping
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, SecretStr, field_validator, model_validator
 
 from .domain import CostMode, DataTier
 
@@ -65,6 +66,44 @@ def is_loopback_host(host: str) -> bool:
         return False
 
 
+class LiteLLMSettings(BaseModel):
+    """Explicit opt-in for manually submitted Prompt Check text only."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True, hide_input_in_errors=True)
+    base_url: str = Field(repr=False)
+    credential: SecretStr = Field(repr=False, min_length=1, max_length=4096)
+    model: str = Field(min_length=1, max_length=120, pattern=r"^[A-Za-z0-9][A-Za-z0-9._:/+-]*$")
+    connect_address: str | None = Field(default=None, repr=False)
+    tls_cert_pem: SecretStr | None = Field(default=None, repr=False)
+    reasoning_effort: Literal["none", "low", "medium", "high"] | None = None
+    model_revision: str | None = Field(default=None, max_length=160)
+    model_license: str | None = Field(default=None, max_length=120)
+
+    @model_validator(mode="after")
+    def validate_endpoint(self) -> LiteLLMSettings:
+        from urllib.parse import urlsplit
+        import ssl
+        try:
+            url = urlsplit(self.base_url)
+            if (url.scheme != "https" or not url.hostname or url.username or url.password
+                    or url.query or url.fragment or url.path not in {"", "/", "/v1", "/v1/"}
+                    or any(c.isspace() for c in self.base_url)):
+                raise ValueError
+            if url.port == 0:
+                raise ValueError
+            if self.connect_address is not None:
+                ipaddress.ip_address(self.connect_address)
+            if any(c.isspace() for c in self.credential.get_secret_value()):
+                raise ValueError
+            if self.tls_cert_pem is not None:
+                # A pinned private-origin leaf is trusted only for this client.
+                ssl.PEM_cert_to_DER_cert(self.tls_cert_pem.get_secret_value())
+                ssl.create_default_context(cadata=self.tls_cert_pem.get_secret_value())
+        except (ValueError, OSError):
+            raise ValueError("litellm_configuration_invalid") from None
+        return self
+
+
 class AppSettings(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -72,6 +111,7 @@ class AppSettings(BaseModel):
         hide_input_in_errors=True,
     )
 
+    prompt_check_litellm: LiteLLMSettings | None = Field(default=None, repr=False)
     home: Path = Field(default_factory=default_app_home)
     host: str = "127.0.0.1"
     port: int = Field(default=8765, ge=1024, le=65535)
@@ -242,7 +282,22 @@ class AppSettings(BaseModel):
         )
         social = env.get("PROMPT_ENHANCER_SOCIAL_DEV_API", "") == "enabled"
         session_reader = env.get("PROMPT_ENHANCER_SESSION_READER", "enabled") != "disabled"
+        names = {
+            "base_url": "BASE_URL", "credential": "API_KEY", "model": "MODEL",
+            "tls_cert_pem": "TLS_CERT_BASE64", "connect_address": "CONNECT_ADDRESS",
+            "model_revision": "MODEL_REVISION", "model_license": "MODEL_LICENSE",
+            "reasoning_effort": "REASONING_EFFORT",
+        }
+        remote = {key: env["PROMPT_ENHANCER_LITELLM_" + suffix] for key, suffix in names.items()
+                  if env.get("PROMPT_ENHANCER_LITELLM_" + suffix)}
+        try:
+            if "tls_cert_pem" in remote:
+                remote["tls_cert_pem"] = base64.b64decode(remote["tls_cert_pem"], validate=True).decode("ascii")
+            litellm = LiteLLMSettings(**remote) if remote else None
+        except ValueError:
+            raise ConfigurationError("litellm_configuration_invalid") from None
         return cls(
+            prompt_check_litellm=litellm,
             home=default_app_home(env),
             host=host,
             port=port,

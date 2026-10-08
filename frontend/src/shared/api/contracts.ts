@@ -143,6 +143,8 @@ export type RemoteAnnotationDisclosure = Schemas["RemoteAnnotationDisclosure"];
 export type RemoteAnnotationResult = Schemas["RemoteSubmitResult"];
 export type SessionJudgments = Schemas["SessionJudgments"];
 export type SessionInterpretation = Schemas["SessionInterpretation"];
+export type PromptCheckConfiguration = Schemas["PromptCheckConfiguration"];
+export type PromptCheckPreview = Schemas["PromptCheckPreview"];
 export type PromptCheckRequest = Schemas["PromptCheckRequest"];
 export type PromptCheckResult = Schemas["PromptCheckResult"];
 export type PromptCheckRecord = Schemas["PromptCheckRecord"];
@@ -2737,6 +2739,8 @@ export interface PromptEnhancerTransport {
   /** Plain-language reading of a session's metrics by the local model (commentary, not a metric). */
   interpretSessionWithModel(sessionId: string, signal?: AbortSignal): Promise<SessionInterpretation>;
   /** Prompt check (ADR 0015): validate a prompt in context; only metrics are stored. */
+  getPromptCheckConfiguration?(signal?: AbortSignal): Promise<PromptCheckConfiguration>;
+  previewPrompt?(request: PromptCheckRequest, signal?: AbortSignal): Promise<PromptCheckPreview>;
   checkPrompt(request: PromptCheckRequest, signal?: AbortSignal): Promise<PromptCheckResult>;
   getPromptCheckHistory(limit: number, offset: number, signal?: AbortSignal): Promise<PromptCheckHistory>;
   getPromptCheck(checkId: string, signal?: AbortSignal): Promise<PromptCheckRecord>;

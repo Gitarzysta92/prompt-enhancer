@@ -345,6 +345,20 @@ class LocalApplication:
         from .application.local_models import RuntimeState
         from .application.prompt_check import PromptCheckService
 
+        remote = self.settings.prompt_check_litellm
+        if remote is not None:
+            from .infrastructure.litellm import LiteLLMChat
+
+            return PromptCheckService(
+                self.database.prompt_check_repository(),
+                pseudonymize=self.pseudonymizer.pseudonymize,
+                chat=LiteLLMChat(remote),
+                active_model=lambda: remote.model,
+                remote_model=remote.model,
+                remote_model_revision=remote.model_revision,
+                remote_model_license=remote.model_license,
+            )
+
         models = local_model_service or self.create_local_model_service()
 
         def active_model() -> str | None:

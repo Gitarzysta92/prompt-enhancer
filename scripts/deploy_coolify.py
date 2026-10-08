@@ -92,7 +92,7 @@ def deploy(env: Mapping[str, str], *, opener=None, monotonic=time.monotonic, sle
         "Cache-Control": "no-cache",
         **access_headers(env, "PROMPT_ENHANCER", required=True),
     }
-    request = urllib.request.Request(webhook, headers=headers, method="GET")
+    request = urllib.request.Request(webhook, headers=headers, method="POST")
     # Exactly one trigger: retrying a timed-out trigger could deploy twice.
     with opener.open(request, timeout=30) as response:
         if response.status not in {200, 201, 202}:

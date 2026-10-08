@@ -920,12 +920,12 @@ def test_every_network_capable_source_module_is_egress_classified() -> None:
                     "prompt_enhancer."
                     + source_path.relative_to(_SOURCE_ROOT).with_suffix("").as_posix().replace("/", ".")
                 )
-    # Exactly eight modules may touch network primitives directly. Four are
+    # This fixed inventory covers every direct network boundary. Four are
     # owned-loopback services: the desktop overlay (probe + open), the local
     # model runtime manager (free-port bind, health, chat proxy to its child),
     # the Claude Code prompt-check hook (posts to this app's loopback API), and
     # the no-proxy/no-redirect local Agent controller bridge.
-    # Three are explicit external requests: the shared-folder client (ADR 0018)
+    # Explicit external requests include the reviewed Prompt Check gateway and the shared-folder client (ADR 0018)
     # dials exactly the URL the person typed when joining a teammate's folder;
     # MCP Store discovery uses the documented Official Registry; a guarded
     # compatibility check dials only the exact reviewed HTTPS origin after
@@ -938,6 +938,7 @@ def test_every_network_capable_source_module_is_egress_classified() -> None:
         "prompt_enhancer.infrastructure.agent_controller_http",
     }
     allowed_approved = {
+        "prompt_enhancer.infrastructure.litellm",
         "prompt_enhancer.application.shared_folders",
         "prompt_enhancer.infrastructure.mcp_registry",
         "prompt_enhancer.infrastructure.mcp_guarded_host",

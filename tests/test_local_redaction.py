@@ -23,7 +23,7 @@ def test_local_redactor_masks_structured_identifiers_without_exposing_repr() -> 
     result = DeterministicLocalRedactor().redact(SecretStr(private))
     value = result.text.get_secret_value()
 
-    assert DETERMINISTIC_REDACTOR_VERSION == "deterministic-local-redactor-v1"
+    assert DETERMINISTIC_REDACTOR_VERSION == "deterministic-local-redactor-v2"
     assert "[EMAIL]" in value
     assert "[IP_ADDRESS]" in value
     assert "[PHONE]" in value
@@ -72,3 +72,9 @@ def test_local_redactor_rejects_nul_and_over_bound_input_safely() -> None:
 def test_local_redactor_requires_repr_safe_secret_input() -> None:
     with pytest.raises(TypeError, match="SecretStr"):
         DeterministicLocalRedactor().redact("plain text")  # type: ignore[arg-type]
+
+
+@pytest.mark.parametrize("suffix", [".", ",", ";", ")", "!", "?", "..."])
+def test_email_at_sentence_boundary_is_redacted(suffix):
+    value = DeterministicLocalRedactor().redact(SecretStr("Contact person@example.test" + suffix))
+    assert value.text.get_secret_value() == "Contact [EMAIL]" + suffix

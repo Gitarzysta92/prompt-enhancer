@@ -1014,7 +1014,8 @@ def create_app(
         return CapabilitiesDto(
             cost_mode="offline_only",
             data_tier="metadata",
-            network_inference=False,
+            network_inference=resolved_settings.prompt_check_litellm is not None,
+            prompt_check_network_inference=resolved_settings.prompt_check_litellm is not None,
             raw_transcripts=(
                 session_reader_service is not None and session_reader_service.enabled
             ),

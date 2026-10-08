@@ -43,7 +43,7 @@ function result(overrides: Partial<PromptCheckResult> = {}): PromptCheckResult {
       file_references: 1, code_identifiers: 2, urls: 0, prior_context_supplied: 1, depends_on_prior_context: true, verification_requested: false,
       missing_elements: ["how the result should be verified (tests, build, inspection)"],
     },
-    commentary: {
+    commentary: { inference_provider: "local",
       state: "ok",
       model_alias: "orca27b-iq3m",
       prompt_version: "prompt-check-commentary-v1",
@@ -249,7 +249,7 @@ describe("PromptCheckPage", () => {
 
   it("explains a missing model and hides itself when the feature is unavailable", async () => {
     const transport = {
-      checkPrompt: vi.fn(async () => result({ commentary: { state: "no_active_model", model_alias: null, prompt_version: "v", findings: [], reformulated_prompt: null, reformulated_elements: [], notes: null, caveat: "c" } })),
+      checkPrompt: vi.fn(async () => result({ commentary: { inference_provider: "local", state: "no_active_model", model_alias: null, prompt_version: "v", findings: [], reformulated_prompt: null, reformulated_elements: [], notes: null, caveat: "c" } })),
       getPromptCheckHistory: vi.fn(async () => ({ contract_version: "prompt-check.v1" as const, checks: [], limit: 60, offset: 0 })),
       getPromptCheck: vi.fn(),
     };
@@ -267,4 +267,28 @@ describe("PromptCheckPage", () => {
     render(<PromptCheckPage navigate={vi.fn()} transport={unavailable} />);
     await screen.findByText(/not available in this runtime/);
   });
+});
+
+it("previews remote text without inference and invalidates approval when the draft changes", async () => {
+  const checkPrompt = vi.fn(async () => result());
+  const previewPrompt = vi.fn(async () => ({ model: "example-qwen", provider: "litellm" as const,
+    messages: [{ role: "user", content: "Add a synthetic test. Email [EMAIL]." }], approval: "example-approval",
+    expires_in_seconds: 600, redactor_version: "example-v1", prompt_version: "example-v1" }));
+  const transport = { checkPrompt, previewPrompt,
+    getPromptCheckConfiguration: vi.fn(async () => ({ remote: true, provider: "litellm" as const, model: "example-qwen" })),
+    getPromptCheckHistory: vi.fn(async () => ({ contract_version: "prompt-check.v1" as const, checks: [], limit: 60, offset: 0 })),
+    getPromptCheck: vi.fn() };
+  render(<PromptCheckPage navigate={vi.fn()} transport={transport} />);
+  await screen.findByText("Ask example-qwen via LiteLLM for commentary and a reformulation");
+  fireEvent.change(screen.getByLabelText("Prompt to check"), { target: { value: "Add a synthetic test. Email person@example.test." } });
+  fireEvent.click(screen.getByRole("button", { name: "Check prompt" }));
+  const send = await screen.findByRole("button", { name: "Send reviewed text to LiteLLM" });
+  expect(checkPrompt).not.toHaveBeenCalled();
+  expect(screen.getByText("Add a synthetic test. Email [EMAIL].")).toBeInTheDocument();
+  fireEvent.change(screen.getByLabelText("Prompt to check"), { target: { value: "Add a different synthetic test." } });
+  expect(send).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button", { name: "Check prompt" }));
+  fireEvent.click(await screen.findByRole("button", { name: "Send reviewed text to LiteLLM" }));
+  await waitFor(() => expect(checkPrompt).toHaveBeenCalledTimes(1));
+  expect(checkPrompt).toHaveBeenCalledWith(expect.objectContaining({ remote_approval: "example-approval", prompt: "Add a different synthetic test." }), expect.any(AbortSignal));
 });

@@ -9,6 +9,8 @@ from fastapi import APIRouter, Depends, HTTPException, Path, Query
 
 from ...application.prompt_check import (
     PromptCheckError,
+    PromptCheckConfiguration,
+    PromptCheckPreview,
     PromptCheckHistory,
     PromptCheckRecord,
     PromptCheckRequest,
@@ -18,7 +20,8 @@ from ...application.prompt_check import (
 from ...domain import PSEUDONYM_PATTERN
 
 
-_STATUS = {"check_not_found": 404}
+_STATUS = {"check_not_found": 404, "remote_preview_required": 428,
+           "remote_redaction_failed": 422, "remote_session_context_forbidden": 422, "remote_model_not_configured": 409}
 
 
 def create_prompt_check_router(require_local_auth: Callable[..., None], service: PromptCheckService) -> APIRouter:
@@ -39,6 +42,18 @@ def create_prompt_check_router(require_local_auth: Callable[..., None], service:
         offset: Annotated[int, Query(ge=0, le=100_000)] = 0,
     ) -> PromptCheckHistory:
         return service.history(limit=limit, offset=offset)
+
+    @router.get("/configuration", response_model=PromptCheckConfiguration)
+    def configuration() -> PromptCheckConfiguration:
+        return service.configuration()
+
+    @router.post("/preview", response_model=PromptCheckPreview)
+    def preview(payload: PromptCheckRequest) -> PromptCheckPreview:
+        """Ephemeral exact redacted model messages; makes no model call."""
+        try:
+            return service.preview(payload)
+        except PromptCheckError as error:
+            raise HTTPException(status_code=_STATUS.get(error.code, 500), detail={"code": error.code}) from None
 
     @router.get("/{check_id}", response_model=PromptCheckRecord)
     def stored(check_id: Annotated[str, Path(pattern=PSEUDONYM_PATTERN.pattern)]) -> PromptCheckRecord:

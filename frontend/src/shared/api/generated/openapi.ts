@@ -3326,6 +3326,43 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/prompt-checks/configuration": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Configuration */
+        get: operations["configuration_v1_prompt_checks_configuration_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/prompt-checks/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Preview
+         * @description Ephemeral exact redacted model messages; makes no model call.
+         */
+        post: operations["preview_v1_prompt_checks_preview_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/prompt-checks/{check_id}": {
         parameters: {
             query?: never;
@@ -8981,16 +9018,18 @@ export interface components {
             local_models: boolean;
             /** Manual Display Labels */
             manual_display_labels: boolean;
-            /**
-             * Network Inference
-             * @constant
-             */
-            network_inference: false;
+            /** Network Inference */
+            network_inference: boolean;
             /**
              * Prompt Check
              * @default false
              */
             prompt_check: boolean;
+            /**
+             * Prompt Check Network Inference
+             * @default false
+             */
+            prompt_check_network_inference: boolean;
             /**
              * Raw Transcripts
              * @default false
@@ -9007,6 +9046,12 @@ export interface components {
              * @constant
              */
             session_text_content_persistence: false;
+            /**
+             * Session Text Network Inference
+             * @default false
+             * @constant
+             */
+            session_text_network_inference: false;
             /**
              * Shared Folders
              * @default false
@@ -13818,6 +13863,8 @@ export interface components {
         };
         /** ModelCommentary */
         ModelCommentary: {
+            /** Adapter Version */
+            adapter_version?: string | null;
             /**
              * Caveat
              * @default Commentary and rewrites come from a local model; they are suggestions, not metrics, and may be wrong. The deterministic cues above are what was actually detected.
@@ -13828,8 +13875,18 @@ export interface components {
              * @default []
              */
             findings: components["schemas"]["CommentaryFinding"][];
+            /**
+             * Inference Provider
+             * @default local
+             * @enum {string}
+             */
+            inference_provider: "local" | "litellm";
             /** Model Alias */
             model_alias?: string | null;
+            /** Model License */
+            model_license?: string | null;
+            /** Model Revision */
+            model_revision?: string | null;
             /** Notes */
             notes?: string | null;
             /**
@@ -13837,6 +13894,8 @@ export interface components {
              * @default prompt-check-commentary-v2-complete-json
              */
             prompt_version: string;
+            /** Redactor Version */
+            redactor_version?: string | null;
             /**
              * Reformulated Elements
              * @default []
@@ -15850,6 +15909,22 @@ export interface components {
              */
             truncated: boolean;
         };
+        /** PromptCheckConfiguration */
+        PromptCheckConfiguration: {
+            /** Model */
+            model?: string | null;
+            /**
+             * Provider
+             * @default local
+             * @enum {string}
+             */
+            provider: "local" | "litellm";
+            /**
+             * Remote
+             * @default false
+             */
+            remote: boolean;
+        };
         /** PromptCheckHistory */
         PromptCheckHistory: {
             /** Checks */
@@ -15874,6 +15949,39 @@ export interface components {
              * @enum {string}
              */
             role: "user" | "assistant";
+        };
+        /** PromptCheckPreview */
+        PromptCheckPreview: {
+            /** Approval */
+            approval: string;
+            /**
+             * Expires In Seconds
+             * @default 600
+             */
+            expires_in_seconds: number;
+            /** Messages */
+            messages: {
+                [key: string]: string;
+            }[];
+            /** Model */
+            model: string;
+            /** Model License */
+            model_license?: string | null;
+            /** Model Revision */
+            model_revision?: string | null;
+            /**
+             * Prompt Version
+             * @default prompt-check-commentary-v2-complete-json
+             */
+            prompt_version: string;
+            /**
+             * Provider
+             * @default litellm
+             * @constant
+             */
+            provider: "litellm";
+            /** Redactor Version */
+            redactor_version: string;
         };
         /**
          * PromptCheckRecord
@@ -15935,6 +16043,8 @@ export interface components {
              * @enum {string}
              */
             provider: "codex" | "claude_code" | "other";
+            /** Remote Approval */
+            remote_approval?: string | null;
             /** Session Id */
             session_id?: string | null;
             /**
@@ -27475,7 +27585,7 @@ export interface operations {
                     "application/json": unknown;
                 };
             };
-            /** @description Request Entity Too Large */
+            /** @description Content Too Large */
             413: {
                 headers: {
                     [name: string]: unknown;
@@ -27981,7 +28091,7 @@ export interface operations {
                     "application/json": unknown;
                 };
             };
-            /** @description Request Entity Too Large */
+            /** @description Content Too Large */
             413: {
                 headers: {
                     [name: string]: unknown;
@@ -28155,7 +28265,7 @@ export interface operations {
                     "application/json": unknown;
                 };
             };
-            /** @description Request Entity Too Large */
+            /** @description Content Too Large */
             413: {
                 headers: {
                     [name: string]: unknown;
@@ -29320,7 +29430,7 @@ export interface operations {
                     "application/json": components["schemas"]["ModelLinkFailureResponse"];
                 };
             };
-            /** @description Unprocessable Entity */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -29628,6 +29738,74 @@ export interface operations {
             };
         };
     };
+    configuration_v1_prompt_checks_configuration_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PromptCheckConfiguration"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    preview_v1_prompt_checks_preview_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PromptCheckRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PromptCheckPreview"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     stored_v1_prompt_checks__check_id__get: {
         parameters: {
             query?: never;
@@ -29828,7 +30006,7 @@ export interface operations {
                     "application/json": components["schemas"]["SessionTextAnalysisFailureResponse"];
                 };
             };
-            /** @description Unprocessable Entity */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -30969,7 +31147,7 @@ export interface operations {
                     "application/json": components["schemas"]["ModelLinkFailureResponse"];
                 };
             };
-            /** @description Request Entity Too Large */
+            /** @description Content Too Large */
             413: {
                 headers: {
                     [name: string]: unknown;
@@ -30978,7 +31156,7 @@ export interface operations {
                     "application/json": components["schemas"]["ModelLinkFailureResponse"];
                 };
             };
-            /** @description Unprocessable Entity */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -31039,7 +31217,7 @@ export interface operations {
                     "application/json": components["schemas"]["ModelLinkFailureResponse"];
                 };
             };
-            /** @description Unprocessable Entity */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -31113,7 +31291,7 @@ export interface operations {
                     "application/json": components["schemas"]["SessionTextAnalysisFailureResponse"];
                 };
             };
-            /** @description Request Entity Too Large */
+            /** @description Content Too Large */
             413: {
                 headers: {
                     [name: string]: unknown;
@@ -31122,7 +31300,7 @@ export interface operations {
                     "application/json": components["schemas"]["SessionTextAnalysisFailureResponse"];
                 };
             };
-            /** @description Unprocessable Entity */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -31243,7 +31421,7 @@ export interface operations {
                     "application/json": components["schemas"]["SessionTextAnalysisFailureResponse"];
                 };
             };
-            /** @description Request Entity Too Large */
+            /** @description Content Too Large */
             413: {
                 headers: {
                     [name: string]: unknown;
@@ -31252,7 +31430,7 @@ export interface operations {
                     "application/json": components["schemas"]["SessionTextAnalysisFailureResponse"];
                 };
             };
-            /** @description Unprocessable Entity */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;

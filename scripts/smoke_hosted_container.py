@@ -139,6 +139,47 @@ def main() -> int:
             "from pathlib import Path; print(Path('/data/prompt-enhancer/api.token').read_text().strip())",
         )
         probe_gateway(base_url, revision, synthetic_api_token=synthetic_api_token)
+        docker("exec", container, "python", "/app/deploy/healthcheck.py")
+        docker("rm", "--force", container)
+        container = "prompt-enhancer-smoke-" + uuid.uuid4().hex
+        docker(
+            "run", "--detach", "--rm", "--name", container,
+            "--cap-drop", "ALL", "--security-opt", "no-new-privileges",
+            "--publish", "127.0.0.1::8080",
+            "--tmpfs", "/data:uid=10001,gid=10001,mode=0700",
+            "--env", f"PROMPT_ENHANCER_PUBLIC_HOST={EXAMPLE_HOST}",
+            "--env", "PROMPT_ENHANCER_AUTH_MODE=cloudflare",
+            "--env", "PROMPT_ENHANCER_ACCESS_ISSUER=https://example.cloudflareaccess.com",
+            "--env", "PROMPT_ENHANCER_ACCESS_AUDIENCE=" + "a" * 64, image,
+        )
+        binding = docker("port", container, "8080/tcp")
+        if re.fullmatch(r"127\.0\.0\.1:[0-9]+", binding) is None:
+            raise SmokeCheckError("unexpected_port_binding")
+        deadline = time.monotonic() + 90
+        while True:
+            try:
+                with opener.open("http://" + binding + "/health", timeout=3) as response:
+                    if response.status == 200:
+                        break
+            except (OSError, urllib.error.URLError):
+                pass
+            if time.monotonic() >= deadline:
+                raise SmokeCheckError("cloudflare_startup_timeout")
+            time.sleep(1)
+        for extra in ({}, {"Cf-Access-Jwt-Assertion": "example-invalid-jwt"}, {
+            "Authorization": "Basic " + base64.b64encode(f"{EXAMPLE_USER}:{EXAMPLE_PASSWORD}".encode()).decode(),
+        }):
+            request = urllib.request.Request("http://" + binding + "/", headers={
+                "Host": EXAMPLE_HOST, "X-Forwarded-Proto": "https", **extra,
+            })
+            try:
+                response = opener.open(request, timeout=10)
+            except urllib.error.HTTPError as error:
+                response = error
+            with response:
+                if response.status != 403 or response.headers.get("WWW-Authenticate") is not None:
+                    raise SmokeCheckError("cloudflare_requires_assertion_without_password_popup")
+        docker("exec", container, "python", "/app/deploy/healthcheck.py")
         print("Hosted image passed synthetic authentication, origin, CSRF, prompt-check and dashboard checks.")
         return 0
     except SmokeCheckError as error:

@@ -108,6 +108,8 @@ import type {
   SessionJudgments,
   SessionInterpretation,
   PromptCheckRequest,
+  PromptCheckConfiguration,
+  PromptCheckPreview,
   PromptCheckResult,
   PromptCheckRecord,
   PromptCheckHistory,
@@ -1562,7 +1564,8 @@ export function parseSessionTextAnalysisCapability(
     ) ||
     value.session_text_content_persistence !== false ||
     typeof value.codex_local_source !== "boolean" ||
-    value.network_inference !== false ||
+    !(value.network_inference === false || (value.network_inference === true &&
+      value.prompt_check_network_inference === true && value.session_text_network_inference === false)) ||
     typeof value.raw_transcripts !== "boolean"
   ) {
     throw new TransportError("Local analysis capability response was invalid", 200);
@@ -4055,6 +4058,13 @@ export function createHttpTransport(options: {
     },
     getModelJudgeSweep(signal) {
       return request<JudgeSweepStatus>("/v1/model-judge/sweep", { method: "GET" }, signal);
+    },
+    getPromptCheckConfiguration(signal) {
+      return request<PromptCheckConfiguration>("/v1/prompt-checks/configuration", { method: "GET" }, signal);
+    },
+    previewPrompt(payload, signal) {
+      return request<PromptCheckPreview>("/v1/prompt-checks/preview",
+        { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }, signal);
     },
     checkPrompt(payload, signal) {
       return request<PromptCheckResult>(

@@ -23,7 +23,7 @@ from ...application.analysis.text_contracts import (
 from ...domain import StrictModel
 
 
-DETERMINISTIC_REDACTOR_VERSION = "deterministic-local-redactor-v1"
+DETERMINISTIC_REDACTOR_VERSION = "deterministic-local-redactor-v2"
 
 
 class LocalRedactionError(RuntimeError):
@@ -110,7 +110,7 @@ _RULES: tuple[_Rule, ...] = (
         RedactionCategory.EMAIL,
         re.compile(
             r"(?i)(?<![A-Z0-9._%+-])[A-Z0-9._%+-]+@"
-            r"[A-Z0-9.-]+\.[A-Z]{2,}(?![A-Z0-9._%+-])"
+            r"[A-Z0-9.-]+\.[A-Z]{2,}(?![A-Z0-9_%+-])"
         ),
         "[EMAIL]",
     ),

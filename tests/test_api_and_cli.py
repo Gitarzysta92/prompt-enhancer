@@ -70,6 +70,8 @@ def test_health_is_minimal_and_only_v1_routes_require_authentication(tmp_path) -
         "cost_mode": "offline_only",
         "data_tier": "metadata",
         "network_inference": False,
+        "session_text_network_inference": False,
+        "prompt_check_network_inference": False,
         "raw_transcripts": False,
         "arbitrary_sql": False,
         "write_api": False,

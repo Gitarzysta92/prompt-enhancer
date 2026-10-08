@@ -20,13 +20,25 @@ _REVISION = re.compile(r"(?:[a-f0-9]{40}|development)\Z")
 
 
 def gateway_environment(environment: Mapping[str, str]) -> dict[str, str]:
+    mode = environment.get("PROMPT_ENHANCER_AUTH_MODE", "basic")
+    if mode not in {"basic", "cloudflare"}:
+        raise ValueError("hosted_configuration_invalid")
     values = {
         "PROMPT_ENHANCER_PUBLIC_HOST": environment.get("PROMPT_ENHANCER_PUBLIC_HOST", ""),
-        "PROMPT_ENHANCER_WEB_USER": environment.get("PROMPT_ENHANCER_WEB_USER", ""),
-        "PROMPT_ENHANCER_WEB_PASSWORD_HASH": environment.get("PROMPT_ENHANCER_WEB_PASSWORD_HASH", ""),
         "PROMPT_ENHANCER_REVISION": environment.get("PROMPT_ENHANCER_REVISION", "development"),
     }
-    for name, pattern in zip(values, (_HOST, _USER, _HASH, _REVISION), strict=True):
+    patterns = [_HOST, _REVISION]
+    if mode == "basic":
+        values.update({
+            "PROMPT_ENHANCER_WEB_USER": environment.get("PROMPT_ENHANCER_WEB_USER", ""),
+            "PROMPT_ENHANCER_WEB_PASSWORD_HASH": environment.get("PROMPT_ENHANCER_WEB_PASSWORD_HASH", ""),
+        })
+        patterns.extend([_USER, _HASH])
+    else:
+        # Keep standalone configuration validation importable in synthetic tests.
+        from cloudflare_auth import configuration
+        configuration(environment)
+    for name, pattern in zip(values, patterns, strict=True):
         if pattern.fullmatch(values[name]) is None:
             # Never echo configuration or a credential on validation failure.
             raise ValueError("hosted_configuration_invalid")
@@ -34,11 +46,13 @@ def gateway_environment(environment: Mapping[str, str]) -> dict[str, str]:
         "PATH": os.defpath,
         "XDG_CONFIG_HOME": "/tmp/prompt-enhancer-gateway/config",
         "XDG_DATA_HOME": "/tmp/prompt-enhancer-gateway/data",
+        "PROMPT_ENHANCER_AUTH_CONFIG": f"auth-{mode}.caddy",
         **values,
     }
 
 
-def backend_environment() -> dict[str, str]:
+def backend_environment(environment: Mapping[str, str] | None = None) -> dict[str, str]:
+    environment = os.environ if environment is None else environment
     return {
         "PATH": "/app/.venv/bin:/usr/local/bin:/usr/bin:/bin",
         "PYTHONDONTWRITEBYTECODE": "1",
@@ -49,6 +63,10 @@ def backend_environment() -> dict[str, str]:
         "PROMPT_ENHANCER_CLAUDE_HOME": "/tmp/disabled-provider",
         "PROMPT_ENHANCER_SESSION_READER": "disabled",
         "HF_HUB_OFFLINE": "1",
+        **{name: environment[name] for suffix in (
+            "BASE_URL", "API_KEY", "MODEL", "TLS_CERT_BASE64", "CONNECT_ADDRESS",
+            "MODEL_REVISION", "MODEL_LICENSE", "REASONING_EFFORT",
+        ) if (name := "PROMPT_ENHANCER_LITELLM_" + suffix) in environment},
     }
 
 
@@ -80,10 +98,18 @@ def main() -> int:
             env=gateway_env, check=True, timeout=15,
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
         )
-        for command, environment in (
+        commands = [
             ([sys.executable, "-m", "prompt_enhancer", "serve"], backend_environment()),
             (["/usr/local/bin/caddy", "run", "--config", str(config), "--adapter", "caddyfile"], gateway_env),
-        ):
+        ]
+        if os.environ.get("PROMPT_ENHANCER_AUTH_MODE") == "cloudflare":
+            commands.insert(1, (
+                [sys.executable, str(config.with_name("cloudflare_auth.py"))],
+                {"PATH": os.defpath, **{name: os.environ[name] for name in (
+                    "PROMPT_ENHANCER_ACCESS_ISSUER", "PROMPT_ENHANCER_ACCESS_AUDIENCE",
+                )}},
+            ))
+        for command, environment in commands:
             children.append(subprocess.Popen(
                 command, env=environment,
                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,

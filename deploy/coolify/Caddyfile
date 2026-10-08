@@ -44,9 +44,7 @@
 			not header Origin https://{$PROMPT_ENHANCER_PUBLIC_HOST}
 		}
 		respond @mutation_without_origin "Origin required" 403
-		basic_auth {
-			{$PROMPT_ENHANCER_WEB_USER} {$PROMPT_ENHANCER_WEB_PASSWORD_HASH}
-		}
+		import {$PROMPT_ENHANCER_AUTH_CONFIG}
 		# External controller, provider telemetry and native approval bridges
 		# are not remote interfaces in the hosted browser profile.
 		@local_integrations path /mcp /mcp/* /v1/integrations/* /v1/telemetry/* /otlp/*
@@ -62,6 +60,8 @@
 			header_up Host 127.0.0.1:8765
 			header_up Origin http://127.0.0.1:8765
 			header_up -Authorization
+			header_up -Cf-Access-Jwt-Assertion
+			header_up -Cf-Access-Authenticated-User-Email
 			header_up -X-Prompt-Enhancer-Token
 			header_up -X-Prompt-Enhancer-User-Presence
 			header_up -Forwarded

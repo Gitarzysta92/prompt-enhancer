@@ -30,12 +30,12 @@ COPY --from=python-build /app/.venv /app/.venv
 COPY --from=gateway /usr/bin/caddy /usr/local/bin/caddy
 # Port 8080 needs no file capability; retaining it prevents cap-drop execution.
 RUN python -c "import os; p='/usr/local/bin/caddy'; os.removexattr(p, 'security.capability') if 'security.capability' in os.listxattr(p) else None"
-COPY --chmod=0444 deploy/coolify/Caddyfile deploy/coolify/entrypoint.py /app/deploy/
+COPY --chmod=0444 deploy/coolify/Caddyfile deploy/coolify/*.caddy deploy/coolify/entrypoint.py deploy/coolify/healthcheck.py deploy/coolify/cloudflare_auth.py /app/deploy/
 RUN chmod 0755 /app/deploy
 WORKDIR /app
 USER 10001:10001
 # Only the authenticated gateway is reachable on the container network.
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.build_opener(urllib.request.ProxyHandler({})).open('http://127.0.0.1:8080/health', timeout=3).close()"
+    CMD ["python", "/app/deploy/healthcheck.py"]
 ENTRYPOINT ["python", "/app/deploy/entrypoint.py"]

@@ -72,6 +72,8 @@ def test_release_waits_for_two_consecutive_expected_revisions_without_sending_to
     ])
     release.deploy(environment(), opener=opener, sleep=lambda _: None)
     assert len(opener.requests) == 6
+    assert opener.requests[0].get_method() == "POST"
+    assert all(request.get_method() == "GET" for request in opener.requests[1:])
     assert opener.requests[0].get_header("Authorization") == "Bearer example-invalid-deploy-token"
     assert all(request.get_header("Authorization") is None for request in opener.requests[1:])
     assert all(request.full_url == "https://prompt.example.test/health" for request in opener.requests[1:])
@@ -177,8 +179,8 @@ def test_loopback_tunnel_only_allowed_for_controller():
 def test_redirects_do_not_forward_deployment_credentials():
     received = []
     class Handler(BaseHTTPRequestHandler):
-        def do_GET(self):
-            received.append(self.path)
+        def do_POST(self):
+            received.append((self.command, self.path))
             self.send_response(302)
             self.send_header("Location", f"http://127.0.0.1:{self.server.server_port}/unexpected-redirect")
             self.end_headers()
@@ -193,7 +195,7 @@ def test_redirects_do_not_forward_deployment_credentials():
         with pytest.raises(urllib.error.HTTPError) as error:
             release.deploy(env)
         assert error.value.code == 302
-        assert received == ["/api/v1/deploy?uuid=example"]
+        assert received == [("POST", "/api/v1/deploy?uuid=example")]
     finally:
         server.shutdown()
         server.server_close()
@@ -244,7 +246,7 @@ def test_server_environments_do_not_inherit_provider_or_controller_credentials(m
     assert "COOLIFY_TOKEN" not in backend
     config = gateway_configuration()
     gateway = hosted.gateway_environment({**config, "COOLIFY_TOKEN": "example-invalid-token"})
-    assert set(gateway) == {*config, "PATH", "XDG_CONFIG_HOME", "XDG_DATA_HOME"}
+    assert set(gateway) == {*config, "PATH", "XDG_CONFIG_HOME", "XDG_DATA_HOME", "PROMPT_ENHANCER_AUTH_CONFIG"}
 
 
 def test_malformed_gateway_never_starts_backend(monkeypatch):
@@ -277,3 +279,43 @@ def test_failed_child_stops_sibling_and_redacts_output(monkeypatch, capsys):
     assert hosted.main() == 1
     assert children[1].terminated
     assert "example" not in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("status,payload,revision,expected", [
+    (200, {"status": "ok"}, "a" * 40, 0),
+    (503, {"status": "ok"}, "a" * 40, 1),
+    (200, {"status": "starting"}, "a" * 40, 1),
+    (200, {"status": "ok"}, "b" * 40, 1),
+    (200, {"status": "ok", "extra": "x" * 4096}, "a" * 40, 1),
+])
+def test_container_readiness_requires_bounded_healthy_matching_revision(monkeypatch, status, payload, revision, expected):
+    probe = load("coolify_healthcheck", "deploy/coolify/healthcheck.py")
+    monkeypatch.setenv("PROMPT_ENHANCER_REVISION", "a" * 40)
+    opener = Opener([Response(payload, status=status, revision=revision)])
+    monkeypatch.setattr(probe.urllib.request, "build_opener", lambda *handlers: opener)
+    assert probe.main() == expected
+    assert opener.requests == ["http://127.0.0.1:8080/health"]
+
+
+def test_container_readiness_failure_is_quiet(monkeypatch, capsys):
+    probe = load("coolify_healthcheck", "deploy/coolify/healthcheck.py")
+    monkeypatch.setenv("PROMPT_ENHANCER_REVISION", "a" * 40)
+    opener = Opener([OSError("example-private-diagnostic")])
+    monkeypatch.setattr(probe.urllib.request, "build_opener", lambda *handlers: opener)
+    assert probe.main() == 1
+    assert capsys.readouterr() == ("", "")
+
+
+def test_hosted_backend_receives_only_explicit_litellm_configuration():
+    env = hosted.backend_environment({
+        "PROMPT_ENHANCER_LITELLM_BASE_URL": "https://gateway.example.test/v1",
+        "PROMPT_ENHANCER_LITELLM_API_KEY": "example-invalid-key",
+        "PROMPT_ENHANCER_LITELLM_MODEL": "example-qwen",
+        "PROMPT_ENHANCER_ACCESS_CLIENT_SECRET": "example-invalid-access-secret",
+        "LITELLM_MASTER_KEY": "example-invalid-master-key",
+    })
+    assert env["PROMPT_ENHANCER_LITELLM_MODEL"] == "example-qwen"
+    assert env["PROMPT_ENHANCER_LITELLM_API_KEY"] == "example-invalid-key"
+    assert "PROMPT_ENHANCER_ACCESS_CLIENT_SECRET" not in env
+    assert "LITELLM_MASTER_KEY" not in env
+    assert env["PROMPT_ENHANCER_SESSION_READER"] == "disabled"
