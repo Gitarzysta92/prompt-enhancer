@@ -55,7 +55,8 @@ def handler_for(verifier):
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self):
             tokens = self.headers.get_all("Cf-Access-Jwt-Assertion", [])
-            accepted = self.path == "/verify" and len(tokens) == 1 and verifier.allows(tokens[0])
+            # Caddy preserves the original request query when rewriting the path.
+            accepted = self.path.partition("?")[0] == "/verify" and len(tokens) == 1 and verifier.allows(tokens[0])
             self.send_response(204 if accepted else 403)
             self.send_header("Cache-Control", "no-store")
             self.send_header("Content-Length", "0")

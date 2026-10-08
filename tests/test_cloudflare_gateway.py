@@ -85,9 +85,16 @@ def test_forward_auth_http_rejects_missing_and_duplicate_assertions_without_logi
     worker = threading.Thread(target=server.serve_forever, daemon=True)
     worker.start()
     try:
-        for assertions, expected in [([], 403), ([token(key)], 204), ([token(key), token(key)], 403)]:
+        for path, assertions, expected in [
+            ("/verify", [], 403),
+            ("/verify", [token(key)], 204),
+            ("/verify?limit=100&offset=0", [token(key)], 204),
+            ("/verify?limit=100", [], 403),
+            ("/other?limit=100", [token(key)], 403),
+            ("/verify", [token(key), token(key)], 403),
+        ]:
             connection = HTTPConnection("127.0.0.1", server.server_port, timeout=5)
-            connection.putrequest("GET", "/verify")
+            connection.putrequest("GET", path)
             for assertion in assertions:
                 connection.putheader("Cf-Access-Jwt-Assertion", assertion)
             connection.endheaders()
