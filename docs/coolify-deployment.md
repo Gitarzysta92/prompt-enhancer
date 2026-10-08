@@ -6,8 +6,8 @@ in GitHub/Coolify secret storage. This deployment requires Cloudflare Access on
 both the controller and the application, including its health endpoint. Use
 existing Service Auth tokens where their policies authorize these destinations.
 
-The optional hosted profile serves one owner's workspace behind HTTPS and a
-password. Everyone with that password shares the same data and authority. It is
+The optional hosted profile serves one owner's workspace behind HTTPS and
+Cloudflare Access. Everyone authorized for it shares the same data and authority. It is
 not a public multi-user service. Normal CLI/desktop operation remains loopback-only.
 
 The infrastructure repository manages the VM underlay. Application deployment
@@ -47,8 +47,19 @@ Infrastructure addresses, identities and tokens belong in private configuration.
 | Runtime variable | Value |
 | --- | --- |
 | `PROMPT_ENHANCER_PUBLIC_HOST` | DNS name only, such as `prompt.example.test`; no scheme, path or port |
-| `PROMPT_ENHANCER_WEB_USER` | A dedicated login name using letters, digits, `_` or `-` |
-| `PROMPT_ENHANCER_WEB_PASSWORD_HASH` | Bcrypt hash from interactive `caddy hash-password` (cost 10–16); never a plaintext password |
+| `PROMPT_ENHANCER_AUTH_MODE` | `cloudflare` to use Access without a second password dialog; `basic` is the compatibility default |
+| `PROMPT_ENHANCER_ACCESS_ISSUER` | In Cloudflare mode, the HTTPS team domain ending in `.cloudflareaccess.com`, without a trailing slash |
+| `PROMPT_ENHANCER_ACCESS_AUDIENCE` | In Cloudflare mode, the application's 64-character hexadecimal AUD tag |
+| `PROMPT_ENHANCER_WEB_USER` | Basic mode only: a dedicated login name using letters, digits, `_` or `-` |
+| `PROMPT_ENHANCER_WEB_PASSWORD_HASH` | Basic mode only: bcrypt hash from interactive `caddy hash-password` (cost 10–16); never a plaintext password |
+
+Cloudflare mode verifies the Access JWT's RS256 signature, exact issuer,
+application audience and validity period at the origin. It fetches only the
+configured issuer's public signing keys over verified HTTPS and fails closed
+when validation is unavailable. No Access client secret is needed by the app.
+The verifier binds to loopback inside the container and emits no identity or
+request logs. A missing or invalid assertion returns 403 without a password
+challenge. Basic credentials are neither required nor forwarded in this mode.
 
 Do not override `PROMPT_ENHANCER_REVISION`; the workflow bakes it into the image.
 The container refuses to start with missing or malformed gateway settings.
@@ -132,7 +143,8 @@ The build context admits only application/build inputs. The image contains no
 provider sessions, models, credentials or seeded demo data. Runtime logs suppress
 request-bearing diagnostics. The `/health` endpoint returns only fixed runtime
 status fields and the image revision. Cloudflare authenticates external health
-requests; other routes also require the hosted gateway login.
+requests; other routes also require a verified Access assertion at the origin
+in Cloudflare mode, or the gateway login in Basic mode.
 
 ## Hosted capabilities and limits
 

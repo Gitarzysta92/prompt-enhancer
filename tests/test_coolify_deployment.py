@@ -246,7 +246,7 @@ def test_server_environments_do_not_inherit_provider_or_controller_credentials(m
     assert "COOLIFY_TOKEN" not in backend
     config = gateway_configuration()
     gateway = hosted.gateway_environment({**config, "COOLIFY_TOKEN": "example-invalid-token"})
-    assert set(gateway) == {*config, "PATH", "XDG_CONFIG_HOME", "XDG_DATA_HOME"}
+    assert set(gateway) == {*config, "PATH", "XDG_CONFIG_HOME", "XDG_DATA_HOME", "PROMPT_ENHANCER_AUTH_CONFIG"}
 
 
 def test_malformed_gateway_never_starts_backend(monkeypatch):

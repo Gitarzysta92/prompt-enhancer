@@ -10,6 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
   "cryptography>=46,<51",
+  "PyJWT[crypto]==2.13.0",
   "fastapi>=0.116.1,<1",
   "httpx>=0.28.1,<1",
   # MIT-licensed official MCP SDK. Keep the protocol/runtime revision exact;

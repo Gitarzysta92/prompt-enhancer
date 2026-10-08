@@ -30,7 +30,7 @@ COPY --from=python-build /app/.venv /app/.venv
 COPY --from=gateway /usr/bin/caddy /usr/local/bin/caddy
 # Port 8080 needs no file capability; retaining it prevents cap-drop execution.
 RUN python -c "import os; p='/usr/local/bin/caddy'; os.removexattr(p, 'security.capability') if 'security.capability' in os.listxattr(p) else None"
-COPY --chmod=0444 deploy/coolify/Caddyfile deploy/coolify/entrypoint.py deploy/coolify/healthcheck.py /app/deploy/
+COPY --chmod=0444 deploy/coolify/Caddyfile deploy/coolify/*.caddy deploy/coolify/entrypoint.py deploy/coolify/healthcheck.py deploy/coolify/cloudflare_auth.py /app/deploy/
 RUN chmod 0755 /app/deploy
 WORKDIR /app
 USER 10001:10001

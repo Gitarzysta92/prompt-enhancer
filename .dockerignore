@@ -22,3 +22,5 @@
 !deploy/coolify/Caddyfile
 !deploy/coolify/entrypoint.py
 !deploy/coolify/healthcheck.py
+!deploy/coolify/*.caddy
+!deploy/coolify/cloudflare_auth.py

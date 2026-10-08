@@ -1103,6 +1103,7 @@ dependencies = [
     { name = "mcp" },
     { name = "packaging" },
     { name = "pydantic" },
+    { name = "pyjwt", extra = ["crypto"] },
     { name = "regex" },
     { name = "uvicorn" },
 ]
@@ -1138,6 +1139,7 @@ requires-dist = [
     { name = "mcp", specifier = "==2.1.1" },
     { name = "packaging", specifier = "==26.3" },
     { name = "pydantic", specifier = ">=2.11.7,<3" },
+    { name = "pyjwt", extras = ["crypto"], specifier = "==2.13.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.4.1,<9" },
     { name = "pywebview", marker = "extra == 'desktop'", specifier = ">=6.2.1,<7" },
     { name = "regex", specifier = "==2026.7.19" },
