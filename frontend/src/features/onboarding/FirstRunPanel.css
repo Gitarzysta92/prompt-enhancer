@@ -1,0 +1,18 @@
+.first-run { margin: 0 0 22px; padding: 20px 22px 18px; border: 1px solid var(--line); border-left: 4px solid var(--accent-primary); border-radius: var(--radius-lg, 14px); background: var(--surface); box-shadow: var(--shadow-md, 0 8px 22px var(--pa-12-31-37-80)); }
+.first-run__head { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; }
+.first-run__mark { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; background: var(--teal-50, var(--p-eaf6f4)); color: var(--teal-700, var(--accent-primary)); }
+.first-run__mark svg { width: 20px; height: 20px; }
+.first-run__head h2 { margin: 2px 0 6px; font-size: 1.15rem; }
+.first-run__lede { margin: 0; color: var(--ink-650); font-size: 0.86rem; line-height: 1.5; max-width: 64ch; }
+.first-run__providers { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 8px; }
+.first-run__providers li { display: grid; grid-template-columns: auto 1fr 18px; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); font-size: 0.82rem; color: var(--ink-650); }
+.first-run__providers li.is-found svg { color: var(--teal-700, var(--accent-primary)); }
+.first-run__providers li.is-missing { opacity: 0.75; }
+.first-run__providers li.is-missing svg { color: var(--ink-500); }
+.first-run__path { display: grid; gap: 6px; margin-top: 14px; font-size: 0.78rem; color: var(--ink-650); }
+.first-run__path input { height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font: inherit; font-size: 0.84rem; }
+.first-run__path code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+.first-run__error { margin: 12px 0 0; padding: 10px 12px; border-radius: 10px; background: var(--red-50, var(--p-fdf0ee)); color: var(--red-700, var(--p-9e3a31)); font-size: 0.8rem; }
+.first-run__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.first-run__note { margin: 12px 0 0; color: var(--ink-500); font-size: 0.72rem; }
+@media (max-width: 640px) { .first-run { padding: 16px 14px; } .first-run__head { grid-template-columns: 1fr; } .first-run__mark { display: none; } }

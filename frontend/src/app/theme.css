@@ -1,0 +1,298 @@
+/* Prompt Enhancer theme: the core shell tokens for light and dark.
+   Light keeps the original palette (styles.css :root). Dark is the default and is
+   hand-tuned here; the long tail of colours lives in palette.generated.css. */
+
+:root {
+  color-scheme: light;
+  --chart-1: #14796e;
+  --chart-2: #4267a9;
+  --chart-3: #b9770f;
+  --chart-4: #a33d43;
+  --chart-5: #7555a8;
+  --chart-6: #197b92;
+  --glow-accent: rgba(20, 121, 110, 0.18);
+  --surface-glass: rgba(255, 255, 255, 0.72);
+  --surface-raised: #ffffff;
+  --ink-on-accent: #ffffff;
+  --scrollbar-thumb: #b9c7ca;
+  --scrollbar-track: transparent;
+  --theme-transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* inks (text) */
+  --ink-950: #f3f7f9;
+  --ink-900: #e4ecf0;
+  --ink-800: #c7d3da;
+  --ink-650: #98a8b3;
+  --ink-500: #7f8f9a;
+
+  /* lines and surfaces: a deep blue-graphite, never pure black; elevation goes lighter */
+  --line: #222d37;
+  --line-strong: #31404c;
+  --canvas: #0a0f14;
+  --shell-surface: #0d131a;
+  --shell-panel: rgba(16, 22, 29, 0.86);
+  --surface: #131a22;
+  --surface-soft: #18212a;
+  --surface-warm: #161e27;
+  --surface-raised: #1b2530;
+  --surface-glass: rgba(19, 26, 34, 0.72);
+  --sidebar: #0b171c;
+  --sidebar-soft: #10222a;
+
+  /* the signature accent: luminous teal, with an ember for caution */
+  --teal-700: #9fe8da;
+  --teal-600: #5ed7c4;
+  --teal-500: #3ccbb5;
+  --teal-100: #113631;
+  --teal-50: #0f2a27;
+  --amber-700: #f1c97b;
+  --amber-100: #3a2f12;
+  --amber-50: #2b2410;
+  --red-700: #f4959a;
+  --red-100: #41232a;
+  --red-50: #2f1b1f;
+  --blue-700: #a4c8f2;
+  --blue-100: #1b2e44;
+  --blue-50: #15263a;
+  --accent-primary: #3ccbb5;
+  --accent-primary-strong: #6fe2d0;
+  --accent-secondary: #84adf3;
+  --accent-violet: #b197e6;
+  --accent-cyan: #5fc8df;
+  --ink-on-accent: #07201c;
+  --status-positive: #55d4ab;
+  --status-caution: #f0c25f;
+  --status-negative: #f18a90;
+  --status-informative: #93bbee;
+  --provenance-ink: #c9b8f4;
+  --provenance-surface: #27203c;
+  --unknown-ink: #9eabb3;
+  --unknown-surface: #1c262c;
+  --focus-ring: #5ee1c4;
+  --focus-halo: rgba(94, 225, 196, 0.32);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5), 0 6px 18px rgba(0, 0, 0, 0.38);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.55);
+  --glow-accent: rgba(60, 203, 181, 0.22);
+  --chart-1: #5ee1c4;
+  --chart-2: #84adf3;
+  --chart-3: #f0c25f;
+  --chart-4: #f18a90;
+  --chart-5: #b197e6;
+  --chart-6: #5fc8df;
+  --scrollbar-thumb: #2c3a46;
+  --scrollbar-track: transparent;
+
+  /* the sidebar family is already a dark design; nudge it to sit on the dark canvas */
+  --p-17323a: #0e2a30;
+  --p-0d1c22: #07141a;
+
+  /* component-scoped accents that must stay readable on dark */
+  --p-69d2c5: #5ee1c4;
+  --p-55cbbd: #5ee1c4;
+}
+
+/* The canvas: dark gets a quiet aurora - one teal bloom top-left, one blue bloom bottom-right -
+   so large empty areas read as depth rather than a flat void. */
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(1100px 640px at -10% -10%, rgba(60, 203, 181, 0.11), transparent 60%),
+    radial-gradient(900px 560px at 110% 110%, rgba(132, 173, 243, 0.09), transparent 60%),
+    var(--canvas);
+  background-attachment: fixed;
+}
+
+:root[data-theme="dark"] ::selection {
+  background: rgba(60, 203, 181, 0.35);
+  color: var(--ink-950);
+}
+
+/* scrollbars that match either theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box; }
+*::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+
+/* dark-mode specifics for things the palette inversion cannot know about */
+:root[data-theme="dark"] img,
+:root[data-theme="dark"] video { filter: brightness(0.92); }
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] textarea,
+:root[data-theme="dark"] select {
+  color: var(--ink-900);
+  background: var(--surface-soft);
+  border-color: var(--line-strong);
+}
+:root[data-theme="dark"] input::placeholder,
+:root[data-theme="dark"] textarea::placeholder { color: var(--ink-500); }
+:root[data-theme="dark"] input:focus-visible,
+:root[data-theme="dark"] textarea:focus-visible,
+:root[data-theme="dark"] select:focus-visible,
+:root[data-theme="dark"] button:focus-visible,
+:root[data-theme="dark"] a:focus-visible {
+  /* Keep the shell rule at the same accessible width as feature-specific
+     forced-colors focus rules.  This selector has higher specificity than
+     many component rules, so a 2px ring here would otherwise win. */
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--focus-halo);
+}
+:root[data-theme="dark"] code,
+:root[data-theme="dark"] pre { background: var(--surface-soft); }
+:root[data-theme="dark"] hr { border-color: var(--line); }
+:root[data-theme="dark"] table thead th { background: var(--surface-soft); }
+
+/* cards get a hairline top highlight in dark, the cheapest way to read "glass" */
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] article[class*="card"],
+:root[data-theme="dark"] section[class*="panel"],
+:root[data-theme="dark"] .local-models__card,
+:root[data-theme="dark"] .prompt-check__card,
+:root[data-theme="dark"] .prompt-check__form,
+:root[data-theme="dark"] .model-judge-pane {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), var(--shadow-sm);
+}
+
+/* charts: luminous strokes on dark */
+:root[data-theme="dark"] svg .prompt-plot__area { filter: drop-shadow(0 0 6px rgba(94, 225, 196, 0.45)); }
+:root[data-theme="dark"] svg polyline,
+:root[data-theme="dark"] svg path[class*="line"],
+:root[data-theme="dark"] svg path[class*="series"] { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.12)); }
+
+/* primary actions: the accent carries dark ink in dark mode (white-on-light-teal would fail contrast) */
+:root[data-theme="dark"] .button--primary {
+  color: var(--ink-on-accent);
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 1px rgba(94, 225, 196, 0.25), 0 6px 18px var(--glow-accent);
+}
+:root[data-theme="dark"] .button--primary:hover:not(:disabled) {
+  background: var(--accent-primary-strong);
+  border-color: var(--accent-primary-strong);
+}
+:root[data-theme="dark"] .button--ghost { color: var(--ink-800); border-color: var(--line-strong); background: transparent; }
+:root[data-theme="dark"] .button--ghost:hover:not(:disabled) { background: var(--surface-soft); }
+
+/* theme toggle */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: var(--touch-target);
+  height: var(--touch-target);
+  padding: 0 12px 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-800);
+  background: var(--surface-glass);
+  font-size: var(--type-caption);
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: var(--theme-transition), transform 120ms ease;
+}
+.theme-toggle:hover { transform: translateY(-1px); border-color: var(--line-strong); }
+.theme-toggle__orb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--accent-primary-strong), var(--accent-primary) 55%, transparent 56%), var(--surface-soft);
+  box-shadow: 0 0 0 2px var(--glow-accent), 0 0 12px var(--glow-accent);
+}
+:root[data-theme="light"] .theme-toggle__orb {
+  background: radial-gradient(circle at 35% 35%, #ffd27a, #f2a93b 55%, transparent 56%), var(--surface-soft);
+  box-shadow: 0 0 0 2px rgba(242, 169, 59, 0.25), 0 0 10px rgba(242, 169, 59, 0.35);
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle, .theme-toggle:hover { transition: none; transform: none; }
+}
+
+/* ghost buttons exist in both themes (pages use them for secondary actions) */
+.button--ghost { color: var(--ink-800); border-color: var(--line-strong); background: var(--surface); }
+.button--ghost:hover:not(:disabled) { background: var(--surface-soft); transform: translateY(-1px); }
+
+/* tables: quiet zebra + hover so long lists stay scannable (both themes, tuned per theme) */
+main table tbody tr:nth-child(even) > td { background: rgba(0, 0, 0, 0.018); }
+main table tbody tr:hover > td { background: rgba(20, 121, 110, 0.06); }
+:root[data-theme="dark"] main table tbody tr:nth-child(even) > td { background: rgba(255, 255, 255, 0.022); }
+:root[data-theme="dark"] main table tbody tr:hover > td { background: rgba(94, 225, 196, 0.07); }
+main table thead th { position: sticky; top: 0; z-index: 1; }
+
+/* the top bar border follows the line token in dark (the generated tint is too light there) */
+:root[data-theme="dark"] .topbar { border-bottom-color: var(--line); }
+:root[data-theme="dark"] .mode-chip { background: var(--surface-soft); color: var(--ink-800); }
+
+/* numbers line up everywhere */
+main td, main .metric-value, main [class*="__value"], main [class*="-value"] { font-variant-numeric: tabular-nums; }
+
+/* Theme application is an atomic accessibility boundary: a foreground from
+   one palette must never render over a background from the other palette. */
+:root[data-theme-applying],
+:root[data-theme-applying] *,
+:root[data-theme-applying] *::before,
+:root[data-theme-applying] *::after {
+  transition: none !important;
+}
+
+/* Keep restrained shell motion available for non-theme state changes. */
+@media (prefers-reduced-motion: no-preference) {
+  body, .sidebar, .topbar, main {
+    transition: background-color 220ms ease, border-color 220ms ease;
+  }
+}
+
+/* charts in dark: bars and areas get enough luminance to read against the deep surface */
+:root[data-theme="dark"] .session-timeline__turn { fill: rgba(94, 225, 196, 0.12); stroke: var(--accent-primary); }
+:root[data-theme="dark"] .session-timeline__tool,
+:root[data-theme="dark"] .session-timeline__tool--file_read,
+:root[data-theme="dark"] .session-timeline__tool--search { fill: #7d8f9d; }
+:root[data-theme="dark"] .session-timeline__tool--command { fill: #a6b5c0; }
+:root[data-theme="dark"] .session-timeline__tool--file_write { fill: var(--status-caution); }
+:root[data-theme="dark"] .session-timeline__tool--version_control { fill: var(--accent-violet); }
+:root[data-theme="dark"] .session-timeline__tool--network,
+:root[data-theme="dark"] .session-timeline__tool--mcp { fill: var(--accent-secondary); }
+:root[data-theme="dark"] .session-timeline__tool--subagent { fill: var(--accent-cyan); }
+:root[data-theme="dark"] .session-timeline__tool--passed { fill: var(--status-positive); filter: drop-shadow(0 0 4px rgba(85, 212, 171, 0.55)); }
+:root[data-theme="dark"] .session-timeline__tool--failed { fill: var(--status-negative); filter: drop-shadow(0 0 4px rgba(241, 138, 144, 0.55)); }
+:root[data-theme="dark"] .session-timeline__marker line { stroke: var(--ink-650); }
+:root[data-theme="dark"] .project-timeline__task rect { fill: rgba(94, 225, 196, 0.14); stroke: var(--accent-primary); }
+:root[data-theme="dark"] .project-timeline__task--closed rect,
+:root[data-theme="dark"] .project-timeline__task--done rect,
+:root[data-theme="dark"] .project-timeline__task--completed rect { fill: rgba(85, 212, 171, 0.16); stroke: var(--status-positive); }
+:root[data-theme="dark"] .project-timeline__session rect { fill: #7d8f9d; }
+:root[data-theme="dark"] .project-timeline__session--codex rect { fill: var(--accent-violet); }
+:root[data-theme="dark"] .project-timeline__session--claude_code rect { fill: var(--status-caution); }
+:root[data-theme="dark"] .project-timeline__session.is-clickable:hover rect,
+:root[data-theme="dark"] .project-timeline__session.is-clickable:focus-visible rect { stroke: var(--ink-950); }
+:root[data-theme="dark"] .project-timeline__activity { fill: #3a4854; }
+:root[data-theme="dark"] .prompt-plot__area { fill: rgba(94, 225, 196, 0.22); stroke: var(--accent-primary); }
+:root[data-theme="dark"] .prompt-plot__dot { fill: var(--accent-primary-strong); }
+:root[data-theme="dark"] .prompt-plot__series--0 polyline, :root[data-theme="dark"] .prompt-plot__series--0 circle, :root[data-theme="dark"] .prompt-plot__series--0 i { stroke: var(--chart-1); fill: var(--chart-1); background: var(--chart-1); }
+:root[data-theme="dark"] .prompt-plot__series--1 polyline, :root[data-theme="dark"] .prompt-plot__series--1 circle, :root[data-theme="dark"] .prompt-plot__series--1 i { stroke: var(--chart-2); fill: var(--chart-2); background: var(--chart-2); }
+:root[data-theme="dark"] .prompt-plot__series--2 polyline, :root[data-theme="dark"] .prompt-plot__series--2 circle, :root[data-theme="dark"] .prompt-plot__series--2 i { stroke: var(--chart-3); fill: var(--chart-3); background: var(--chart-3); }
+:root[data-theme="dark"] .prompt-plot__series--3 polyline, :root[data-theme="dark"] .prompt-plot__series--3 circle, :root[data-theme="dark"] .prompt-plot__series--3 i { stroke: var(--chart-4); fill: var(--chart-4); background: var(--chart-4); }
+:root[data-theme="dark"] .prompt-plot__series--4 polyline, :root[data-theme="dark"] .prompt-plot__series--4 circle, :root[data-theme="dark"] .prompt-plot__series--4 i { stroke: var(--chart-5); fill: var(--chart-5); background: var(--chart-5); }
+:root[data-theme="dark"] .prompt-plot__series--5 polyline, :root[data-theme="dark"] .prompt-plot__series--5 circle, :root[data-theme="dark"] .prompt-plot__series--5 i { stroke: var(--chart-6); fill: var(--chart-6); background: var(--chart-6); }
+:root[data-theme="dark"] .prompt-plot__series polyline { fill: none !important; }
+:root[data-theme="dark"] .quality-radar__ring { fill: rgba(255, 255, 255, 0.02); stroke: var(--line-strong); }
+:root[data-theme="dark"] .quality-radar__point { fill: var(--accent-primary-strong); stroke: var(--surface); }
+
+/* inline text-style buttons used by several pages (lives here so every page has it) */
+.link-button { background: none; border: none; padding: 0; color: var(--accent-primary); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; font: inherit; text-align: left; }
+.link-button:hover { color: var(--accent-primary-strong); }
+
+/* brand glyph: a prompt caret, its baseline underline, and the spark that "enhances" it */
+.brand__mark--glyph { display: grid; place-items: center; transform: rotate(0deg); }
+.brand__mark--glyph svg { width: 28px; height: 28px; overflow: visible; }
+.brand__caret { fill: none; stroke: var(--p-69d2c5); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.brand__caret--lift { stroke-width: 2.4; opacity: 0.85; }
+.brand__spark { fill: var(--p-69d2c5); filter: drop-shadow(0 0 4px rgba(94, 225, 196, 0.75)); transform-origin: 26.5px 12.1px; animation: brand-spark 6s ease-in-out infinite; }
+@keyframes brand-spark { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.22); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .brand__spark { animation: none; } }

@@ -1,0 +1,24 @@
+.local-source-project-search { max-width: 420px; margin: 18px 0; }
+.project-group__sessions { border-top: 1px solid var(--line); }
+.project-group__sessions > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 11px 15px;
+  color: var(--ink-650);
+  cursor: pointer;
+  font-size: max(12px, 0.8rem);
+}
+.project-group__sessions > summary span:last-child { color: var(--ink-500); }
+.project-group__sessions[open] > summary { background: var(--surface-soft); }
+.project-group__sessions > summary:focus-visible { outline: 2px solid var(--teal-600); outline-offset: -2px; }
+.project-group__sessions .bounded-list-pager { margin-inline: 15px; }
+.project-group__sessions .bounded-list-pager .button,
+.source-selection > .bounded-list-pager .button { min-height: 44px; }
+
+@media (max-width: 600px) {
+  .local-source-project-search { max-width: none; }
+  .project-group__sessions > summary { align-items: flex-start; flex-direction: column; }
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "specialist_scoped_nli_screen_v1",
+  "synthetic_only": true,
+  "cases": [
+    {
+      "language": "en",
+      "task_stratum": "feature",
+      "premise": "The metric export requires an in-memory privacy preview before the file is created.",
+      "hypothesis": "A privacy preview must occur before creating the metric export.",
+      "compatibility": "compatible",
+      "expected_outcome": "entailment",
+      "critical_claim": true
+    },
+    {
+      "language": "en",
+      "task_stratum": "bug_fix",
+      "premise": "Missing token usage remains a typed unknown value.",
+      "hypothesis": "Missing token usage is stored as zero.",
+      "compatibility": "compatible",
+      "expected_outcome": "contradiction",
+      "critical_claim": true
+    },
+    {
+      "language": "en",
+      "task_stratum": "code_review",
+      "premise": "The review confirmed that project cursor pagination preserves the selected session.",
+      "hypothesis": "The review measured cursor-pagination latency under sustained load.",
+      "compatibility": "compatible",
+      "expected_outcome": "neutral",
+      "critical_claim": false
+    },
+    {
+      "language": "en",
+      "task_stratum": "research_design",
+      "premise": "The holdout is separated by project and by observation time.",
+      "hypothesis": "Projects and time periods do not overlap between training and holdout cases.",
+      "compatibility": "compatible",
+      "expected_outcome": "entailment",
+      "critical_claim": true
+    },
+    {
+      "language": "en",
+      "task_stratum": "feature",
+      "premise": "Remote model analysis waits for a fresh one-shot approval.",
+      "hypothesis": "The background grant approves remote model analysis without user review.",
+      "compatibility": "compatible",
+      "expected_outcome": "contradiction",
+      "critical_claim": true
+    },
+    {
+      "language": "en",
+      "task_stratum": "bug_fix",
+      "premise": "The corrected parser accepts an explicit UTC offset in the event timestamp.",
+      "hypothesis": "The corrected parser also clears expired preview records.",
+      "compatibility": "compatible",
+      "expected_outcome": "neutral",
+      "critical_claim": false
+    },
+    {
+      "language": "en",
+      "task_stratum": "code_review",
+      "premise": "The review requires every known metric value to cite an opaque evidence reference.",
+      "hypothesis": "A known metric value without an evidence reference fails review.",
+      "compatibility": "compatible",
+      "expected_outcome": "entailment",
+      "critical_claim": true
+    },
+    {
+      "language": "en",
+      "task_stratum": "research_design",
+      "premise": "Model consensus is exploratory evidence and never supplies the gold label.",
+      "hypothesis": "Agreement between two models is accepted as ground truth.",
+      "compatibility": "compatible",
+      "expected_outcome": "contradiction",
+      "critical_claim": true
+    },
+    {
+      "language": "en",
+      "task_stratum": "feature",
+      "premise": "The export control creates a local PNG from the selected metrics.",
+      "hypothesis": "The exported PNG uses a color-blind-safe palette.",
+      "compatibility": "compatible",
+      "expected_outcome": "neutral",
+      "critical_claim": false
+    },
+    {
+      "language": "en",
+      "task_stratum": "bug_fix",
+      "premise": "The queue lease is recovered after the local worker restarts.",
+      "hypothesis": "The radar chart uses five bounded axes.",
+      "compatibility": "different_scope",
+      "expected_outcome": "abstain",
+      "critical_claim": false
+    },
+    {
+      "language": "en",
+      "task_stratum": "code_review",
+      "premise": "Revision one allowed a missing denominator to default to one.",
+      "hypothesis": "Revision two rejects an observation with a missing denominator.",
+      "compatibility": "superseded",
+      "expected_outcome": "abstain",
+      "critical_claim": true
+    },
+    {
+      "language": "en",
+      "task_stratum": "research_design",
+      "premise": "A synthetic note says that a reliability check was planned.",
+      "hypothesis": "The reliability check passed on the untouched holdout.",
+      "compatibility": "insufficient_evidence",
+      "expected_outcome": "abstain",
+      "critical_claim": true
+    },
+    {
+      "language": "pl",
+      "task_stratum": "feature",
+      "premise": "Eksport metryk wymaga podglądu prywatności w pamięci przed utworzeniem pliku.",
+      "hypothesis": "Podgląd prywatności musi nastąpić przed utworzeniem eksportu metryk.",
+      "compatibility": "compatible",
+      "expected_outcome": "entailment",
+      "critical_claim": true
+    },
+    {
+      "language": "pl",
+      "task_stratum": "bug_fix",
+      "premise": "Brakujące zużycie tokenów pozostaje jawną wartością nieznaną.",
+      "hypothesis": "Brakujące zużycie tokenów jest zapisywane jako zero.",
+      "compatibility": "compatible",
+      "expected_outcome": "contradiction",
+      "critical_claim": true
+    },
+    {
+      "language": "pl",
+      "task_stratum": "code_review",
+      "premise": "Przegląd potwierdził, że stronicowanie kursorem zachowuje wybraną sesję projektu.",
+      "hypothesis": "Przegląd zmierzył opóźnienie stronicowania przy długotrwałym obciążeniu.",
+      "compatibility": "compatible",
+      "expected_outcome": "neutral",
+      "critical_claim": false
+    },
+    {
+      "language": "pl",
+      "task_stratum": "research_design",
+      "premise": "Zbiór testowy jest rozdzielony według projektu i czasu obserwacji.",
+      "hypothesis": "Projekty i okresy nie nakładają się między zbiorem treningowym i testowym.",
+      "compatibility": "compatible",
+      "expected_outcome": "entailment",
+      "critical_claim": true
+    },
+    {
+      "language": "pl",
+      "task_stratum": "feature",
+      "premise": "Zdalna analiza modelu czeka na świeżą jednorazową zgodę.",
+      "hypothesis": "Uprawnienie działające w tle zatwierdza zdalną analizę bez przeglądu użytkownika.",
+      "compatibility": "compatible",
+      "expected_outcome": "contradiction",
+      "critical_claim": true
+    },
+    {
+      "language": "pl",
+      "task_stratum": "bug_fix",
+      "premise": "Poprawiony parser przyjmuje jawne przesunięcie UTC w znaczniku czasu zdarzenia.",
+      "hypothesis": "Poprawiony parser usuwa także wygasłe rekordy podglądu.",
+      "compatibility": "compatible",
+      "expected_outcome": "neutral",
+      "critical_claim": false
+    },
+    {
+      "language": "pl",
+      "task_stratum": "code_review",
+      "premise": "Przegląd wymaga, aby każda znana wartość metryki wskazywała niejawny odnośnik dowodowy.",
+      "hypothesis": "Znana wartość metryki bez odnośnika dowodowego nie przechodzi przeglądu.",
+      "compatibility": "compatible",
+      "expected_outcome": "entailment",
+      "critical_claim": true
+    },
+    {
+      "language": "pl",
+      "task_stratum": "research_design",
+      "premise": "Zgodność modeli jest dowodem eksploracyjnym i nigdy nie tworzy etykiety wzorcowej.",
+      "hypothesis": "Zgodność dwóch modeli jest uznawana za prawdę wzorcową.",
+      "compatibility": "compatible",
+      "expected_outcome": "contradiction",
+      "critical_claim": true
+    },
+    {
+      "language": "pl",
+      "task_stratum": "feature",
+      "premise": "Element eksportu tworzy lokalny plik PNG z wybranych metryk.",
+      "hypothesis": "Wyeksportowany PNG używa palety bezpiecznej dla daltonistów.",
+      "compatibility": "compatible",
+      "expected_outcome": "neutral",
+      "critical_claim": false
+    },
+    {
+      "language": "pl",
+      "task_stratum": "bug_fix",
+      "premise": "Dzierżawa kolejki jest odzyskiwana po ponownym uruchomieniu lokalnego procesu.",
+      "hypothesis": "Wykres radarowy używa pięciu ograniczonych osi.",
+      "compatibility": "different_scope",
+      "expected_outcome": "abstain",
+      "critical_claim": false
+    },
+    {
+      "language": "pl",
+      "task_stratum": "code_review",
+      "premise": "Wersja pierwsza pozwalała zastąpić brakujący mianownik wartością jeden.",
+      "hypothesis": "Wersja druga odrzuca obserwację z brakującym mianownikiem.",
+      "compatibility": "superseded",
+      "expected_outcome": "abstain",
+      "critical_claim": true
+    },
+    {
+      "language": "pl",
+      "task_stratum": "research_design",
+      "premise": "Syntetyczna notatka mówi, że zaplanowano kontrolę wiarygodności.",
+      "hypothesis": "Kontrola wiarygodności przeszła na nietkniętym zbiorze testowym.",
+      "compatibility": "insufficient_evidence",
+      "expected_outcome": "abstain",
+      "critical_claim": true
+    }
+  ]
+}

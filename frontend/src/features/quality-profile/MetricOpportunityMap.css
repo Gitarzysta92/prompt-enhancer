@@ -1,0 +1,300 @@
+.metric-opportunity-map {
+  min-width: 0;
+  margin: 1.1rem 0 1.25rem;
+  overflow: clip;
+  border: 1px solid var(--line, var(--line));
+  border-radius: 1.2rem;
+  color: var(--ink-950, var(--ink-950));
+  background: var(--surface, var(--surface));
+  box-shadow: var(--shadow-sm, 0 5px 16px rgb(16 28 35 / 4%));
+}
+.metric-opportunity-map > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1rem 1.15rem;
+  cursor: pointer;
+  list-style: none;
+  background:
+    radial-gradient(circle at 92% 0%, rgb(64 132 154 / 11%), transparent 23rem),
+    var(--surface, var(--surface));
+}
+
+.metric-opportunity-map > summary::-webkit-details-marker {
+  display: none;
+}
+
+.metric-opportunity-map > summary:focus-visible {
+  outline: 3px solid var(--focus-ring, var(--p-146c94));
+  outline-offset: -3px;
+}
+
+.metric-opportunity-map > summary > span:first-child {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.metric-opportunity-map > summary strong {
+  color: var(--ink-900, var(--ink-900));
+  font-size: clamp(1.02rem, 1.7vw, 1.28rem);
+  letter-spacing: -0.02em;
+}
+
+.metric-opportunity-map > summary small {
+  color: var(--ink-650, var(--ink-650));
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.metric-opportunity-map__kicker {
+  color: var(--teal-700, var(--teal-700));
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.metric-opportunity-map__count {
+  flex: 0 0 auto;
+  padding: 0.48rem 0.7rem;
+  border-radius: 999px;
+  color: var(--ink-650, var(--ink-650));
+  background: var(--surface-soft, var(--surface-soft));
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.metric-opportunity-map__content {
+  display: grid;
+  gap: 1.2rem;
+  padding: clamp(0.9rem, 2vw, 1.25rem);
+  border-top: 1px solid var(--line, var(--line));
+  background: var(--surface-soft, var(--surface-soft));
+}
+
+.metric-opportunity-map__boundary {
+  margin: 0;
+  padding: 0.75rem 0.85rem;
+  border-left: 3px solid var(--teal-500, var(--p-2b9487));
+  color: var(--ink-650, var(--ink-650));
+  background: var(--surface, var(--surface));
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.metric-opportunity-map__priority {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.metric-opportunity-map__priority > header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.metric-opportunity-map__priority > header > div {
+  min-width: 0;
+}
+
+.metric-opportunity-map__priority > header span {
+  color: var(--teal-700, var(--teal-700));
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.metric-opportunity-map__priority h3 {
+  margin: 0.18rem 0 0;
+  color: var(--ink-900, var(--ink-900));
+  font-size: 1rem;
+}
+
+.metric-opportunity-map__priority > header p {
+  max-width: 32rem;
+  margin: 0;
+  color: var(--ink-650, var(--ink-650));
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.metric-opportunity-map__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.metric-opportunity-map__grid > article {
+  display: grid;
+  align-content: start;
+  gap: 0.72rem;
+  min-width: 0;
+  padding: 0.9rem;
+  border: 1px solid var(--line, var(--line));
+  border-radius: 0.95rem;
+  background: var(--surface, var(--surface));
+}
+
+.metric-opportunity-map__grid article > header {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.metric-opportunity-map__grid h4 {
+  margin: 0;
+  color: var(--ink-900, var(--ink-900));
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.metric-opportunity-map__grid article > header p,
+.metric-opportunity-map__why,
+.metric-opportunity-map__guardrail {
+  margin: 0;
+  color: var(--ink-650, var(--ink-650));
+  font-size: 0.72rem;
+  line-height: 1.48;
+}
+
+.metric-opportunity-map__status {
+  width: max-content;
+  max-width: 100%;
+  padding: 0.25rem 0.46rem;
+  border-radius: 999px;
+  color: var(--p-315b56);
+  background: var(--p-e8f3f0);
+  font-size: 0.62rem;
+  font-weight: 820;
+}
+
+.metric-opportunity-map__status--not-measured {
+  color: var(--p-6f4c16);
+  background: var(--p-fff2cf);
+}
+
+.metric-opportunity-map__status--private-opt-in {
+  color: var(--p-5d4b75);
+  background: var(--p-f0eafb);
+}
+
+.metric-opportunity-map__why {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.metric-opportunity-map__why strong,
+.metric-opportunity-map__guardrail strong {
+  color: var(--ink-800, var(--ink-800));
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.metric-opportunity-map__grid ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.metric-opportunity-map__grid li {
+  display: grid;
+  gap: 0.08rem;
+  padding: 0.46rem 0.52rem;
+  border-radius: 0.58rem;
+  background: var(--surface-soft, var(--surface-soft));
+}
+
+.metric-opportunity-map__grid li span {
+  color: var(--ink-800, var(--ink-800));
+  font-size: 0.7rem;
+  font-weight: 760;
+}
+
+.metric-opportunity-map__grid li small {
+  color: var(--ink-500, var(--ink-500));
+  font-size: 0.61rem;
+  line-height: 1.35;
+}
+
+.metric-opportunity-map__grid dl {
+  display: grid;
+  gap: 0.42rem;
+  margin: 0;
+}
+
+.metric-opportunity-map__grid dl > div {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.metric-opportunity-map__grid dt {
+  color: var(--ink-500, var(--ink-500));
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.metric-opportunity-map__grid dd {
+  margin: 0;
+  color: var(--ink-650, var(--ink-650));
+  font-size: 0.68rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.metric-opportunity-map__guardrail {
+  display: grid;
+  gap: 0.2rem;
+  padding-top: 0.62rem;
+  border-top: 1px solid var(--line, var(--line));
+}
+
+@media (max-width: 700px) {
+  .metric-opportunity-map > summary {
+    display: grid;
+  }
+
+  .metric-opportunity-map__count {
+    justify-self: start;
+  }
+
+  .metric-opportunity-map > summary,
+  .metric-opportunity-map__priority > header {
+    align-items: flex-start;
+  }
+
+  .metric-opportunity-map__priority > header {
+    display: grid;
+  }
+
+  .metric-opportunity-map__priority > header p {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric-opportunity-map,
+  .metric-opportunity-map * {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .metric-opportunity-map,
+  .metric-opportunity-map__grid > article,
+  .metric-opportunity-map__status {
+    border: 1px solid CanvasText;
+  }
+}

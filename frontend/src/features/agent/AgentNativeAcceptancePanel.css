@@ -1,0 +1,108 @@
+.agent-acceptance {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.agent-acceptance > header {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.agent-acceptance > header > span:first-child {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.agent-acceptance > header small,
+.agent-acceptance__memory {
+  color: var(--text-muted);
+}
+
+.agent-acceptance > p {
+  margin: 0;
+}
+
+.agent-acceptance__state {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  flex: none;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.55rem;
+}
+
+.agent-acceptance__state[data-state="passed"],
+.agent-acceptance__phases li[data-state="passed"] strong {
+  color: var(--success, var(--teal-700));
+}
+
+.agent-acceptance > .button,
+.agent-acceptance__actions .button {
+  min-height: 2.75rem;
+}
+
+.agent-acceptance__phases {
+  display: grid;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.agent-acceptance__phases li {
+  align-items: start;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.agent-acceptance__phases strong {
+  font-size: 0.78rem;
+  text-align: right;
+}
+
+.agent-acceptance__phases li[data-state="waiting"] strong {
+  color: var(--text-muted);
+}
+
+.agent-acceptance__announcement {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  padding: 0.7rem;
+}
+
+.agent-acceptance__actions {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.agent-acceptance__error {
+  color: var(--danger, var(--red-700));
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .agent-acceptance__actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .agent-acceptance__phases li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .agent-acceptance__phases strong {
+    text-align: left;
+  }
+}
+
+@media (forced-colors: active) {
+  .agent-acceptance__state,
+  .agent-acceptance__announcement {
+    border-color: CanvasText;
+  }
+}

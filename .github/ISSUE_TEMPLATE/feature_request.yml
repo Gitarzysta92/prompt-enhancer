@@ -1,0 +1,35 @@
+name: Feature request
+description: Propose a capability, metric, model, or workflow
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use synthetic examples only. Do not paste real conversations or source
+        material. A metric proposal must explain validation, uncertainty,
+        privacy, and what the metric must not be used to infer.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and user value
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and alternatives
+      description: Link primary sources and describe deterministic baselines where relevant.
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy, misuse, and uncertainty considerations
+    validations:
+      required: true

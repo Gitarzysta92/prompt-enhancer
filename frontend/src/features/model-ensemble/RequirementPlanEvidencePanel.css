@@ -1,0 +1,211 @@
+.requirement-plan-evidence {
+  container-name: requirement-plan-evidence;
+  container-type: inline-size;
+  min-inline-size: 0;
+  padding: clamp(0.7rem, 2vw, 1rem);
+  color: var(--text-primary, CanvasText);
+  background: var(--surface-raised, Canvas);
+}
+
+.requirement-plan-evidence[data-state="stale"],
+.requirement-plan-evidence[data-state="error"] {
+  border-color: var(--danger, var(--p-c73a45, currentColor));
+}
+
+.requirement-plan-evidence[data-state="confirmed"] {
+  border-color: var(--accent, var(--teal-700, currentColor));
+}
+
+.requirement-plan-evidence__authority,
+.requirement-plan-evidence__decisions,
+.requirement-plan-evidence__preview > div,
+.requirement-plan-evidence__basis,
+.requirement-plan-evidence__coordinate-list {
+  display: grid;
+  min-inline-size: 0;
+  gap: 0.35rem;
+}
+
+.requirement-plan-evidence__authority {
+  padding: 0.75rem;
+  border: 1px solid var(--border-subtle, var(--pa-127-127-127-280, currentColor));
+  border-radius: 0.7rem;
+  background: var(--surface, Canvas);
+}
+
+.requirement-plan-evidence__authority > p,
+.requirement-plan-evidence__review h4,
+.requirement-plan-evidence__review header,
+.requirement-plan-evidence__proposal > span > :where(strong, code, small) {
+  margin: 0;
+}
+
+.requirement-plan-evidence :where(
+  p,
+  span,
+  small,
+  strong,
+  code,
+  blockquote,
+  dt,
+  dd,
+  button,
+  label
+) {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.requirement-plan-evidence .metric-evidence-file__opaque-id,
+.requirement-plan-evidence__coordinate {
+  word-break: break-word;
+  font-variant-numeric: tabular-nums;
+}
+
+.requirement-plan-evidence__proposal > .metric-evidence-file__proposal-actions {
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.requirement-plan-evidence__review > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.requirement-plan-evidence__review > header > div {
+  display: grid;
+  min-inline-size: 0;
+  gap: 0.25rem;
+}
+
+.requirement-plan-evidence__review .metric-evidence-file__exact-review-text {
+  unicode-bidi: plaintext;
+  white-space: pre-wrap;
+}
+
+.requirement-plan-evidence__coordinate-list > span {
+  padding-inline-start: 0.65rem;
+  border-inline-start: 2px solid var(--border-subtle, var(--pa-127-127-127-280, currentColor));
+}
+
+.requirement-plan-evidence__basis {
+  padding: 0.45rem 0.55rem;
+  border-inline-start: 3px solid var(--accent, var(--teal-700, currentColor));
+  background: var(--surface-raised, Canvas);
+}
+
+.requirement-plan-evidence__acknowledgement {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.7rem;
+  border: 1px solid var(--accent, var(--teal-700, currentColor));
+  border-radius: 0.6rem;
+  background: var(--surface-raised, Canvas);
+}
+
+.requirement-plan-evidence__acknowledgement input {
+  flex: 0 0 auto;
+  min-inline-size: 44px;
+  margin: 0;
+}
+
+.requirement-plan-evidence__decision {
+  grid-column: 1 / -1;
+  inline-size: min(100%, 42rem);
+}
+
+.requirement-plan-evidence__decisions {
+  padding-block-start: 0.25rem;
+}
+
+.requirement-plan-evidence__decisions li[data-decision="confirmed"] {
+  border-inline-start: 4px solid var(--accent, var(--teal-700, currentColor));
+}
+
+.requirement-plan-evidence__decisions li[data-decision="rejected"] {
+  border-inline-start: 4px solid var(--text-muted, var(--pa-127-127-127-600, currentColor));
+}
+
+.requirement-plan-evidence :where(button, input, [tabindex="-1"]):focus-visible {
+  outline: 3px solid var(--focus-ring, Highlight);
+  outline-offset: 3px;
+}
+
+@container requirement-plan-evidence (max-width: 65rem) {
+  .requirement-plan-evidence__review > header {
+    flex-wrap: wrap;
+  }
+
+  .requirement-plan-evidence__review > header > button {
+    margin-inline-start: auto;
+  }
+}
+
+@container requirement-plan-evidence (max-width: 42rem) {
+  .requirement-plan-evidence .requirement-plan-evidence__proposal {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .requirement-plan-evidence__proposal > .metric-evidence-file__proposal-actions,
+  .requirement-plan-evidence__preview,
+  .requirement-plan-evidence__decision > div {
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: stretch;
+  }
+
+  .requirement-plan-evidence__proposal > .metric-evidence-file__proposal-actions > button,
+  .requirement-plan-evidence__preview > button,
+  .requirement-plan-evidence__decision > div > button {
+    inline-size: 100%;
+  }
+
+  .requirement-plan-evidence__review dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.15rem;
+  }
+}
+
+@container requirement-plan-evidence (max-width: 22.5rem) {
+  .requirement-plan-evidence {
+    gap: 0.65rem;
+    padding: 0.7rem;
+  }
+
+  .requirement-plan-evidence__authority,
+  .requirement-plan-evidence__review,
+  .requirement-plan-evidence .metric-evidence-file__picker {
+    padding: 0.6rem;
+  }
+
+  .requirement-plan-evidence__review ol {
+    padding-inline-start: 1.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .requirement-plan-evidence,
+  .requirement-plan-evidence * {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .requirement-plan-evidence,
+  .requirement-plan-evidence__authority,
+  .requirement-plan-evidence__basis,
+  .requirement-plan-evidence__acknowledgement,
+  .requirement-plan-evidence__coordinate-list > span,
+  .requirement-plan-evidence__decisions li {
+    border-color: CanvasText;
+  }
+
+  .requirement-plan-evidence :where(button, input, [tabindex="-1"]):focus-visible {
+    outline-color: Highlight;
+  }
+}

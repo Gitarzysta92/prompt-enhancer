@@ -1,0 +1,30 @@
+{
+  "manifest_version": "provider-compatibility-manifest-v1",
+  "entries": [
+    {
+      "provider": "example_agent",
+      "surface": "catalog",
+      "schema_family": "example.catalog.v1",
+      "adapter_version": "example-adapter-1",
+      "decoder_version": "1",
+      "canonical_schema_version": "canonical.session.v1",
+      "schema_source": "official_sdk",
+      "schema_artifact_version": "example-sdk-1.0",
+      "fixture_corpus_version": "example-corpus-1",
+      "tested_provider_versions": [
+        "example-1.0"
+      ],
+      "release_state": "verified",
+      "release_evidence": [
+        "local_smoke_attestation",
+        "official_contract",
+        "privacy_review",
+        "synthetic_contract"
+      ],
+      "capabilities": {
+        "session_list": "supported",
+        "text_window": "unsupported"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+.agent-conversation-navigation { display: grid; min-width: 0; gap: 0.7rem; overflow-anchor: none; }
+.agent__timeline > .agent-conversation-navigation::before { content: none; }
+.agent-conversation-navigation > * { position: relative; min-width: 0; scroll-margin-block: 1rem 3.5rem; }
+.agent-conversation-navigation > *::before { position: absolute; top: 0.52rem; left: -0.89rem; width: 0.42rem; height: 0.42rem; border: 2px solid var(--surface-soft); border-radius: 999px; background: var(--ink-500); box-shadow: 0 0 0 1px var(--line-strong); content: ""; }
+.agent-conversation-find { position: sticky; z-index: 4; top: 0.2rem; min-width: 0; max-height: min(20rem, 48dvh); overflow-y: auto; border: 1px solid var(--line); border-radius: 0.55rem; background: var(--surface-soft); box-shadow: 0 0 0 0.2rem var(--surface-soft); }
+.agent__conversation-stage > .agent__log .agent-conversation-find { max-height: min(20rem, calc(100cqh - 1.2rem)); }
+.agent-conversation-find > summary { min-height: 2.4rem; box-sizing: border-box; padding: 0.55rem 0.65rem; cursor: pointer; color: var(--ink-650); font-size: var(--type-caption); font-weight: 750; }
+.agent-conversation-find__body { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.45rem; align-items: end; padding: 0 0.65rem 0.65rem; }
+.agent-conversation-find__body > label { display: grid; gap: 0.25rem; min-width: 0; color: var(--ink-650); font-size: var(--type-caption); font-weight: 700; }
+.agent-conversation-find__body input[type="search"] { width: 100%; min-height: 2.4rem; box-sizing: border-box; padding: 0.45rem 0.55rem; border: 1px solid var(--line-strong); border-radius: 0.45rem; background: var(--surface); color: inherit; font: inherit; }
+.agent-conversation-find__actions { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+.agent-conversation-find__case { grid-column: 1 / -1; display: inline-flex !important; grid-template-columns: auto 1fr; align-items: center; justify-self: start; gap: 0.4rem !important; font-weight: 600 !important; }
+.agent-conversation-find__case input { margin: 0; }
+.agent-conversation-find__hint, .agent-conversation-find__status { grid-column: 1 / -1; margin: 0; color: var(--ink-650); font-size: var(--type-caption); line-height: 1.4; }
+.agent-conversation-find__status { min-height: 1.2rem; }
+@media (max-width: 620px) {
+  .agent-conversation-find__body { grid-template-columns: minmax(0, 1fr); }
+  .agent-conversation-find__case { grid-column: auto; }
+}
+@media (forced-colors: active) {
+  .agent-conversation-find, .agent-conversation-find__body input[type="search"] { border-color: CanvasText; }
+}

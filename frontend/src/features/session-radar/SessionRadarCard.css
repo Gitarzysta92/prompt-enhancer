@@ -1,0 +1,13 @@
+.session-radar { display: grid; gap: 0.4rem; margin-top: 1rem; padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: var(--radius-lg, 14px); background: var(--surface); }
+.session-radar header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0.4rem 1rem; }
+.session-radar h3 { margin: 0.1rem 0 0; font-size: 1rem; }
+.session-radar__count { font-size: 0.76rem; color: var(--ink-500); }
+.session-radar .prompt-plot--radar svg { max-width: 30rem; }
+
+.session-radar__empty {
+  margin: 0;
+  padding: var(--space-3, 0.75rem) 0;
+  color: var(--text-muted, inherit);
+  font-size: 0.9rem;
+  max-width: 52ch;
+}

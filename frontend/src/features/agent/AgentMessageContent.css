@@ -1,0 +1,71 @@
+.agent-markdown {
+  min-width: 0;
+  color: inherit;
+  font-size: 0.88rem;
+  line-height: 1.58;
+  overflow-wrap: anywhere;
+}
+
+.agent-markdown > :first-child { margin-top: 0; }
+.agent-markdown > :last-child { margin-bottom: 0; }
+.agent-markdown p { margin: 0.55rem 0; }
+.agent-markdown h1,
+.agent-markdown h2,
+.agent-markdown h3,
+.agent-markdown h4,
+.agent-markdown h5,
+.agent-markdown h6 { margin: 1rem 0 0.45rem; color: var(--ink-800); line-height: 1.25; }
+.agent-markdown h1 { font-size: 1.3rem; }
+.agent-markdown h2 { font-size: 1.15rem; }
+.agent-markdown h3 { font-size: 1.02rem; }
+.agent-markdown h4,
+.agent-markdown h5,
+.agent-markdown h6 { font-size: 0.92rem; }
+.agent-markdown ul,
+.agent-markdown ol { display: grid; gap: 0.25rem; margin: 0.55rem 0; padding-left: 1.45rem; }
+.agent-markdown li > p { margin: 0; }
+.agent-markdown blockquote { margin: 0.65rem 0; padding: 0.2rem 0 0.2rem 0.75rem; border-left: 3px solid var(--accent-secondary); color: var(--ink-650); }
+.agent-markdown hr { margin: 1rem 0; border: 0; border-top: 1px solid var(--line); }
+.agent-markdown a { color: var(--accent-secondary); text-decoration-thickness: 0.08em; text-underline-offset: 0.14em; }
+.agent-markdown__workspace-link {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent-secondary);
+  font: inherit;
+  text-align: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+  cursor: pointer;
+}
+.agent-markdown__workspace-link:hover { color: var(--accent); }
+.agent-markdown__workspace-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 0.15rem; }
+.agent-markdown code { padding: 0.08rem 0.28rem; border: 1px solid var(--line); border-radius: 0.3rem; background: var(--surface-soft); color: var(--ink-800); font-family: var(--font-mono, ui-monospace, SFMono-Regular, Consolas, monospace); font-size: max(0.82em, var(--type-caption)); }
+.agent-markdown__code { min-width: 0; margin: 0.7rem 0; overflow: hidden; border: 1px solid var(--line-strong); border-radius: 0.65rem; background: color-mix(in srgb, var(--surface-soft) 72%, black); }
+.agent-markdown__code-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.36rem 0.55rem; border-bottom: 1px solid var(--line); color: var(--ink-500); font-size: var(--type-caption); font-weight: 750; letter-spacing: 0.04em; text-transform: uppercase; }
+.agent-markdown__code-head .agent-copy-button { min-height: var(--touch-target); font-size: inherit; }
+.agent-markdown__code pre { max-width: 100%; margin: 0; padding: 0.75rem; overflow: auto; border: 0; border-radius: 0; background: transparent; white-space: pre; }
+.agent-markdown__code pre code { display: block; width: max-content; min-width: 100%; box-sizing: border-box; padding: 0; border: 0; background: transparent; font-size: 0.78rem; line-height: 1.55; }
+.agent-markdown__table { max-width: 100%; margin: 0.7rem 0; overflow-x: auto; border: 1px solid var(--line); border-radius: 0.55rem; }
+.agent-markdown table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+.agent-markdown th,
+.agent-markdown td { padding: 0.42rem 0.55rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.agent-markdown th { background: var(--surface-soft); color: var(--ink-800); font-weight: 750; }
+.agent-markdown tr:last-child td { border-bottom: 0; }
+.agent-markdown input[type="checkbox"] { margin-right: 0.35rem; }
+.agent-markdown__blocked-image { display: block; margin: 0.55rem 0; padding: 0.5rem 0.6rem; border: 1px dashed var(--line-strong); border-radius: 0.5rem; color: var(--ink-500); font-size: var(--type-caption); }
+.agent-markdown__blocked-link { color: var(--ink-500); text-decoration: line-through; }
+.agent-markdown__inert-link {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.14em;
+  cursor: help;
+}
+
+@media (max-width: 480px) {
+  .agent-markdown { font-size: 0.84rem; }
+  .agent-markdown__code pre { padding: 0.62rem; }
+}

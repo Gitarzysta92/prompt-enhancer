@@ -1,0 +1,92 @@
+.agent-rail { display: grid; grid-template-rows: auto auto auto auto minmax(5rem, auto) minmax(8rem, 1fr) auto auto; gap: 0.65rem; min-height: 0; padding: 0.8rem; border: 1px solid var(--line); border-radius: var(--radius-lg, 14px); background: var(--surface); }
+.agent-rail__header, .agent-rail__section-head { display: flex; align-items: center; justify-content: space-between; gap: 0.65rem; }
+.agent-rail__header > div { display: grid; gap: 0.06rem; }
+.agent-rail__header-actions { display: flex !important; grid-auto-flow: column; gap: 0.35rem !important; }
+.agent-rail__header small { color: var(--ink-500); font-size: var(--type-caption); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.agent-rail__header strong { font-size: 0.96rem; }
+.agent-rail__icon-button { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid var(--line-strong); border-radius: 0.55rem; background: var(--surface-soft); color: inherit; font: inherit; font-size: 1.15rem; cursor: pointer; }
+.agent-rail--collapsed { grid-template-rows: repeat(4, auto); place-items: center; align-content: start; min-height: 18rem; padding: 0.65rem 0.4rem; }
+.agent-rail--collapsed .agent-rail__icon-button, .agent-rail__collapsed-new { width: 2.75rem; height: 2.75rem; }
+.agent-rail__collapsed-new { display: grid; place-items: center; border: 1px solid var(--accent-primary); border-radius: 0.65rem; background: var(--accent-primary); color: var(--surface); font: inherit; font-size: 1.25rem; font-weight: 800; cursor: pointer; }
+.agent-rail__project-mark { display: grid; place-items: center; width: 2.35rem; height: 2.35rem; margin-top: 0.2rem; border: 1px solid var(--line-strong); border-radius: 0.65rem; background: var(--surface-soft); color: var(--ink-650); font-size: 0.78rem; font-weight: 850; }
+.agent-rail__collapsed-count { min-width: 1.35rem; padding: 0.14rem 0.28rem; border-radius: 999px; background: var(--surface-soft); color: var(--ink-500); font-size: var(--type-caption); font-weight: 750; text-align: center; }
+.agent-rail__new-chat { width: 100%; min-height: 2.75rem; }
+.agent-rail__saved-message-search { width: 100%; min-height: 2.75rem; }
+.agent-rail__search input { width: 100%; min-height: 2.75rem; box-sizing: border-box; padding: 0.48rem 0.62rem; border: 1px solid var(--line); border-radius: 0.55rem; background: var(--surface-soft); color: inherit; font: inherit; font-size: 0.78rem; }
+.agent-rail__error { display: grid; gap: 0.35rem; padding: 0.55rem; border: 1px solid var(--status-negative); border-radius: 0.55rem; background: color-mix(in srgb, var(--status-negative) 7%, var(--surface)); color: var(--ink-650); font-size: var(--type-caption); }
+.agent-rail__error button { justify-self: start; border: 0; background: transparent; color: var(--accent-primary); font: inherit; font-weight: 750; cursor: pointer; }
+.agent-rail__project-list { display: grid; align-content: start; gap: 0.22rem; max-height: 12rem; overflow: auto; }
+.agent-rail__project-list > p, .agent-rail__chat-section > p { margin: 0; padding: 0.45rem; color: var(--ink-500); font-size: var(--type-caption); line-height: 1.45; }
+.agent-rail__project, .agent-rail__sessions li { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; border-radius: 0.52rem; }
+.agent-rail__project[data-current="true"], .agent-rail__sessions li[data-current="true"] { background: var(--surface-soft); box-shadow: inset 3px 0 var(--accent-primary); }
+.agent-rail__project[data-archived="true"], .agent-rail__sessions li[data-archived="true"] { opacity: 0.7; }
+.agent-rail__project-pick, .agent-rail__session-pick, .agent-rail__sessions > li > button:first-child { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.42rem; min-width: 0; min-height: 3rem; width: 100%; padding: 0.46rem 0.52rem; border: 0; border-radius: 0.52rem; background: transparent; color: inherit; text-align: left; font: inherit; cursor: pointer; }
+.agent-rail__session-pick, .agent-rail__sessions > li > button:first-child { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+.agent-rail__project-pick:hover, .agent-rail__session-pick:hover, .agent-rail__project-pick:focus-visible, .agent-rail__session-pick:focus-visible { background: color-mix(in srgb, var(--accent-primary) 8%, transparent); }
+.agent-rail__project-pick > span:nth-child(2), .agent-rail__session-pick { min-width: 0; }
+.agent-rail__project-pick strong, .agent-rail__session-pick strong, .agent-rail__project-pick small, .agent-rail__session-pick small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.agent-rail__project-pick strong, .agent-rail__session-pick strong { font-size: 0.76rem; }
+.agent-rail__project-pick small, .agent-rail__session-pick small { margin-top: 0.08rem; color: var(--ink-500); font-size: var(--type-caption); }
+.agent-rail__disclosure { color: var(--ink-500); font-size: 0.9rem; }
+.agent-rail__pin { padding: 0.12rem 0.32rem; border-radius: 999px; background: color-mix(in srgb, var(--accent-primary) 12%, var(--surface)); color: var(--accent-primary); font-size: var(--type-caption); font-weight: 800; }
+.agent-rail__menu-trigger { display: grid; place-items: center; width: var(--touch-target); min-height: var(--touch-target); margin-right: 0.2rem; border: 0; border-radius: 0.45rem; background: transparent; color: var(--ink-500); cursor: pointer; font: inherit; font-size: var(--type-caption); }
+.agent-rail__menu-trigger:hover, .agent-rail__menu-trigger:focus-visible, .agent-rail__menu-trigger[aria-expanded="true"] { background: var(--surface-soft); color: inherit; }
+.agent-rail__action-backdrop { position: fixed; z-index: 110; inset: 0; display: grid; place-items: center; padding: 1rem; background: rgb(0 0 0 / 48%); }
+.agent-rail__action-dialog { display: grid; gap: 0.85rem; width: min(28rem, 100%); max-height: min(80dvh, 36rem); box-sizing: border-box; overflow: auto; padding: 1rem; border: 1px solid var(--line-strong); border-radius: 0.8rem; background: var(--surface); box-shadow: 0 18px 50px rgb(0 0 0 / 30%); }
+.agent-rail__action-dialog > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.8rem; }
+.agent-rail__action-dialog h2 { margin: 0.1rem 0 0; font-size: 1rem; overflow-wrap: anywhere; }
+.agent-rail__action-dialog small { color: var(--ink-500); font-size: var(--type-caption); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.agent-rail__action-dialog .button { min-height: 2.75rem; }
+.agent-rail__action-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem; }
+.agent-rail__action-grid > button { min-height: 2.75rem; padding: 0.6rem; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--surface-soft); color: inherit; text-align: left; font: inherit; font-size: 0.76rem; cursor: pointer; }
+.agent-rail__action-grid > button:hover, .agent-rail__action-grid > button:focus-visible { border-color: var(--accent-primary); background: color-mix(in srgb, var(--accent-primary) 9%, var(--surface)); }
+.agent-rail__action-grid > button:disabled { cursor: not-allowed; opacity: 0.52; }
+.agent-rail__danger { color: var(--status-negative) !important; }
+.agent-rail__chat-section { display: grid; grid-template-rows: auto minmax(0, 1fr); min-height: 0; padding-top: 0.15rem; border-top: 1px solid var(--line); }
+.agent-rail__section-head { padding: 0.5rem 0.35rem 0.3rem; }
+.agent-rail__section-head h2 { margin: 0; font-size: var(--type-caption); letter-spacing: 0.08em; text-transform: uppercase; }
+.agent-rail__section-head span { color: var(--ink-500); font-size: var(--type-caption); }
+.agent-rail__sessions { display: grid; align-content: start; gap: 0.2rem; min-height: 0; max-height: 18rem; margin: 0; padding: 0; overflow: auto; list-style: none; }
+.agent-rail__sessions > li > button[aria-label^="Close session "] { min-width: 2.75rem; min-height: 2.75rem; margin-right: 0.25rem; border: 0; background: transparent; color: var(--ink-500); cursor: pointer; }
+.agent-rail__close-failure { grid-column: 1 / -1; margin: 0.1rem 0.45rem 0.4rem; color: var(--status-negative); font-size: var(--type-caption); line-height: 1.35; }
+.agent-rail__server-page { display: grid; gap: 0.35rem; padding: 0.35rem; color: var(--ink-500); font-size: var(--type-caption); line-height: 1.4; }
+.agent-rail__server-page button { justify-self: stretch; min-height: var(--touch-target); padding: 0.45rem 0.6rem; border: 1px solid var(--line-strong); border-radius: 0.5rem; background: var(--surface-soft); color: inherit; font: inherit; font-weight: 750; cursor: pointer; }
+.agent-rail__server-page button:disabled { cursor: wait; opacity: 0.62; }
+.agent-rail__server-page-error { color: var(--status-negative); }
+.agent-rail__archived { min-height: var(--touch-target); display: flex; align-items: center; gap: 0.42rem; color: var(--ink-650); font-size: var(--type-caption); }
+.agent-rail__truth { margin: 0; padding-top: 0.55rem; border-top: 1px solid var(--line); color: var(--ink-500); font-size: var(--type-caption); line-height: 1.45; }
+.agent-rail__dialog-backdrop { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 1rem; background: rgb(0 0 0 / 52%); }
+.agent-rail__dialog { display: grid; gap: 0.8rem; width: min(25rem, 100%); padding: 1rem; border: 1px solid var(--line-strong); border-radius: 0.8rem; background: var(--surface); box-shadow: 0 18px 50px rgb(0 0 0 / 30%); }
+/* Dialogs without an autofocused field receive focus on their container, so the
+   container itself needs a visible focus ring. */
+.agent-rail__dialog:focus, .agent-rail__action-dialog:focus { outline: 2px solid var(--accent-primary); outline-offset: 2px; }
+.agent-rail__dialog h2, .agent-rail__dialog p { margin: 0; }
+.agent-rail__dialog p { color: var(--ink-650); font-size: 0.78rem; line-height: 1.5; }
+.agent-rail__dialog label { display: grid; gap: 0.35rem; font-size: var(--type-caption); font-weight: 750; }
+.agent-rail__dialog input, .agent-rail__dialog select { width: 100%; min-height: 2.75rem; box-sizing: border-box; padding: 0.55rem 0.65rem; border: 1px solid var(--line-strong); border-radius: 0.5rem; background: var(--surface-soft); color: inherit; font: inherit; }
+.agent-rail__dialog-actions { display: flex; justify-content: flex-end; gap: 0.5rem; }
+.agent-rail__danger-button { border-color: var(--status-negative); background: var(--status-negative); color: white; }
+
+/* The surrounding Agent rail is the single desktop scroll owner. Project and
+   chat lists expand into it instead of creating nested wheel/keyboard traps. */
+@media (min-width: 901px) {
+  .agent__side-scroll .agent-rail { grid-template-rows: repeat(4, auto) auto auto auto auto; }
+  .agent__side-scroll .agent-rail__project-list,
+  .agent__side-scroll .agent-rail__sessions { max-height: none; overflow: visible; }
+  .agent__side-scroll .agent-rail__chat-section { grid-template-rows: auto auto; }
+}
+
+@media (max-width: 760px) {
+  .agent-rail { max-height: min(70dvh, 38rem); }
+  .agent-rail__project-list { max-height: 9rem; }
+  .agent-rail__sessions { max-height: 13rem; }
+}
+
+@media (max-width: 480px) {
+  .agent-rail__action-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (forced-colors: active) {
+  .agent-rail__project[data-current="true"], .agent-rail__sessions li[data-current="true"] { outline: 2px solid Highlight; }
+  .agent-rail__dialog, .agent-rail__action-dialog { border: 2px solid CanvasText; }
+}

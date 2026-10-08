@@ -1,0 +1,29 @@
+.agent-artifact-capture { display: grid; gap: 0.8rem; }
+.agent-artifact-capture > label { display: grid; gap: 0.35rem; color: var(--ink-650); font-size: 0.76rem; font-weight: 750; }
+.agent-artifact-capture > label > span { color: var(--ink-500); font-size: var(--type-caption); font-weight: 600; }
+.agent-artifact-capture input { width: 100%; min-height: 2.75rem; box-sizing: border-box; padding: 0.6rem 0.7rem; border: 1px solid var(--line-strong); border-radius: 0.55rem; background: var(--surface); color: inherit; font: inherit; }
+.agent-artifact-capture input[aria-invalid="true"] { border-color: var(--status-negative); }
+.agent-artifact-capture__hint,
+.agent-artifact-capture__error { margin: 0; font-size: 0.76rem; line-height: 1.45; }
+.agent-artifact-capture__hint { color: var(--ink-650); }
+.agent-artifact-capture__error { color: var(--status-negative); }
+.agent-artifact-capture__review { display: grid; gap: 0.65rem; padding: 0.75rem; border: 1px solid var(--status-caution); border-radius: 0.65rem; background: var(--amber-50); }
+.agent-artifact-capture__review > header { display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
+.agent-artifact-capture__review > header > span { flex: 0 0 auto; padding: 0.14rem 0.38rem; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink-650); background: var(--surface); font-size: var(--type-caption); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; }
+.agent-artifact-capture__review > header > strong { min-width: 0; overflow-wrap: anywhere; font-size: 0.86rem; }
+.agent-artifact-capture__review dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem; margin: 0; }
+.agent-artifact-capture__review dl > div { min-width: 0; display: grid; gap: 0.15rem; padding: 0.45rem 0.5rem; border: 1px solid var(--line); border-radius: 0.45rem; background: var(--surface); }
+.agent-artifact-capture__review dt { color: var(--ink-500); font-size: var(--type-caption); font-weight: 750; }
+.agent-artifact-capture__review dd { min-width: 0; margin: 0; overflow-wrap: anywhere; font-size: var(--type-caption); }
+.agent-artifact-capture__review code { font-size: var(--type-caption); }
+.agent-artifact-capture__review > p { margin: 0; color: var(--ink-650); font-size: var(--type-caption); line-height: 1.45; }
+
+@media (max-width: 560px) {
+  .agent-artifact-capture__review dl { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (forced-colors: active) {
+  .agent-artifact-capture input,
+  .agent-artifact-capture__review,
+  .agent-artifact-capture__review dl > div { border-color: CanvasText; }
+}

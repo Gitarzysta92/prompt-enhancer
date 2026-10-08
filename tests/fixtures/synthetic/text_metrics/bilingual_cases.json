@@ -1,0 +1,253 @@
+{
+  "corpus_schema_version": 1,
+  "cases": [
+    {
+      "case_id": "en_complete_trace",
+      "analysis_input": {
+        "provider": "synthetic",
+        "session_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "provider_version": "synthetic-1",
+        "adapter_version": "synthetic-adapter-1",
+        "source_schema_version": "synthetic-schema-1",
+        "content_schema_version": "redacted-message-1",
+        "redactor_version": "synthetic-redactor-1",
+        "text_extraction_complete": true,
+        "available_message_kinds": ["request", "response", "plan", "action", "verification", "decision", "feedback", "summary"],
+        "analysis_window_fingerprint": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "focus_message_id": "1111111111111111111111111111111111111111111111111111111111111111",
+        "observed_message_count": 9,
+        "eligible_message_count": 9,
+        "messages": [
+          {
+            "message_id": "1111111111111111111111111111111111111111111111111111111111111111",
+            "sequence": 0,
+            "role": "user",
+            "kind": "request",
+            "language": "en",
+            "scope_key": "task.current",
+            "text": "Build a dashboard PNG report with an Export button for engineering users so that they can review results.\nProcessing must stay local only and free.\nThe PNG export must exist and tests must pass.\nYou can choose the best chart library.\nWhich theme should be used?",
+            "supersedes_message_ids": []
+          },
+          {
+            "message_id": "2222222222222222222222222222222222222222222222222222222222222222",
+            "sequence": 1,
+            "role": "agent",
+            "kind": "plan",
+            "language": "en",
+            "scope_key": "task.current",
+            "text": "Build dashboard export\nRun tests [x] done",
+            "supersedes_message_ids": []
+          },
+          {
+            "message_id": "3333333333333333333333333333333333333333333333333333333333333333",
+            "sequence": 2,
+            "role": "agent",
+            "kind": "response",
+            "language": "en",
+            "scope_key": "task.current",
+            "text": "The theme will use navy.",
+            "supersedes_message_ids": []
+          },
+          {
+            "message_id": "4444444444444444444444444444444444444444444444444444444444444444",
+            "sequence": 3,
+            "role": "agent",
+            "kind": "action",
+            "language": "en",
+            "scope_key": "task.current",
+            "text": "Built dashboard PNG report and Export button for engineering users.",
+            "supersedes_message_ids": []
+          },
+          {
+            "message_id": "5555555555555555555555555555555555555555555555555555555555555555",
+            "sequence": 4,
+            "role": "agent",
+            "kind": "action",
+            "language": "en",
+            "scope_key": "task.current",
+            "text": "Kept processing local and free.",
+            "supersedes_message_ids": []
+          },
+          {
+            "message_id": "6666666666666666666666666666666666666666666666666666666666666666",
+            "sequence": 5,
+            "role": "agent",
+            "kind": "action",
+            "language": "en",
+            "scope_key": "task.current",
+            "text": "Verified PNG export exists and tests pass.",
+            "supersedes_message_ids": []
+          },
+          {
+            "message_id": "7777777777777777777777777777777777777777777777777777777777777777",
+            "sequence": 6,
+            "role": "agent",
+            "kind": "decision",
+            "language": "en",
+            "scope_key": "task.current",
+            "text": "Selected SVG rendering because it keeps export deterministic.",
+            "supersedes_message_ids": []
+          },
+          {
+            "message_id": "8888888888888888888888888888888888888888888888888888888888888888",
+            "sequence": 7,
+            "role": "agent",
+            "kind": "response",
+            "language": "en",
+            "scope_key": "task.current",
+            "text": "Storage is sqlite.",
+            "supersedes_message_ids": []
+          },
+          {
+            "message_id": "9999999999999999999999999999999999999999999999999999999999999999",
+            "sequence": 8,
+            "role": "agent",
+            "kind": "response",
+            "language": "en",
+            "scope_key": "task.current",
+            "text": "Storage is postgres.",
+            "supersedes_message_ids": []
+          }
+        ],
+        "task_profile": {
+          "applicability": [
+            {"metric_key": "prompt.goal_definition", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "prompt.constraint_resolution", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "prompt.completion_evaluability", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "prompt.deliverable_contract", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "prompt.open_decision_load", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "logic.requirement_action_traceability", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "logic.plan_state_accounting", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "logic.decision_rationale_coverage", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "logic.scoped_consistency_candidate_rate", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "logic.conversation_loop_closure", "applicability": "applicable", "basis": "task_profile"}
+          ],
+          "expected_goal_slots": ["action", "target", "outcome"],
+          "expected_constraint_kinds": ["privacy", "cost"],
+          "expected_deliverable_slots": ["artifact", "format", "audience", "interface"],
+          "expected_outcome_count": 1
+        }
+      },
+      "expectations": [
+        {"metric_key": "prompt.goal_definition", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.constraint_resolution", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.completion_evaluability", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.deliverable_contract", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.open_decision_load", "value_state": "known", "numeric_value": 0.2},
+        {"metric_key": "logic.requirement_action_traceability", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "logic.plan_state_accounting", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "logic.decision_rationale_coverage", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "logic.scoped_consistency_candidate_rate", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "logic.conversation_loop_closure", "value_state": "known", "numeric_value": 1.0}
+      ]
+    },
+    {
+      "case_id": "pl_deliberated_no_plan",
+      "analysis_input": {
+        "provider": "synthetic",
+        "session_id": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "provider_version": "synthetic-1",
+        "adapter_version": "synthetic-adapter-1",
+        "source_schema_version": "synthetic-schema-1",
+        "content_schema_version": "redacted-message-1",
+        "redactor_version": "synthetic-redactor-1",
+        "text_extraction_complete": true,
+        "available_message_kinds": ["request", "response", "plan", "action", "verification", "decision", "feedback", "summary"],
+        "analysis_window_fingerprint": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "focus_message_id": "1111111111111111111111111111111111111111111111111111111111111111",
+        "observed_message_count": 5,
+        "eligible_message_count": 5,
+        "messages": [
+          {"message_id": "1111111111111111111111111111111111111111111111111111111111111111", "sequence": 0, "role": "user", "kind": "request", "language": "pl", "scope_key": "task.current", "text": "Stwórz panel PNG dla użytkowników, aby mogli sprawdzić wynik.\nDane muszą zostać tylko lokalnie i bez opłat.\nEksport PNG musi istnieć, a test musi przejść.\nWybierz najlepszą bibliotekę według twojej oceny.", "supersedes_message_ids": []},
+          {"message_id": "2222222222222222222222222222222222222222222222222222222222222222", "sequence": 1, "role": "agent", "kind": "action", "language": "pl", "scope_key": "task.current", "text": "Stworzono panel PNG dla użytkowników.", "supersedes_message_ids": []},
+          {"message_id": "3333333333333333333333333333333333333333333333333333333333333333", "sequence": 2, "role": "agent", "kind": "action", "language": "pl", "scope_key": "task.current", "text": "Dane pozostają tylko lokalnie i bez opłat.", "supersedes_message_ids": []},
+          {"message_id": "4444444444444444444444444444444444444444444444444444444444444444", "sequence": 3, "role": "agent", "kind": "action", "language": "pl", "scope_key": "task.current", "text": "Eksport PNG istnieje, a test przechodzi.", "supersedes_message_ids": []},
+          {"message_id": "5555555555555555555555555555555555555555555555555555555555555555", "sequence": 4, "role": "agent", "kind": "decision", "language": "pl", "scope_key": "task.current", "text": "Wybrano SVG, ponieważ format jest deterministyczny.", "supersedes_message_ids": []}
+        ],
+        "task_profile": {
+          "applicability": [
+            {"metric_key": "prompt.goal_definition", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "prompt.constraint_resolution", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "prompt.completion_evaluability", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "prompt.deliverable_contract", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "prompt.open_decision_load", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "logic.requirement_action_traceability", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "logic.plan_state_accounting", "applicability": "not_applicable", "basis": "task_profile"},
+            {"metric_key": "logic.decision_rationale_coverage", "applicability": "applicable", "basis": "task_profile"},
+            {"metric_key": "logic.scoped_consistency_candidate_rate", "applicability": "not_applicable", "basis": "task_profile"},
+            {"metric_key": "logic.conversation_loop_closure", "applicability": "not_applicable", "basis": "task_profile"}
+          ],
+          "expected_goal_slots": ["action", "target", "outcome"],
+          "expected_constraint_kinds": ["privacy", "cost"],
+          "expected_deliverable_slots": ["artifact", "format", "audience"],
+          "expected_outcome_count": 1
+        }
+      },
+      "expectations": [
+        {"metric_key": "prompt.goal_definition", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.constraint_resolution", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.completion_evaluability", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.deliverable_contract", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.open_decision_load", "value_state": "known", "numeric_value": 0.0},
+        {"metric_key": "logic.requirement_action_traceability", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "logic.plan_state_accounting", "value_state": "not_applicable", "numeric_value": null},
+        {"metric_key": "logic.decision_rationale_coverage", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "logic.scoped_consistency_candidate_rate", "value_state": "not_applicable", "numeric_value": null},
+        {"metric_key": "logic.conversation_loop_closure", "value_state": "not_applicable", "numeric_value": null}
+      ]
+    },
+    {
+      "case_id": "en_superseded_partial_window",
+      "analysis_input": {
+        "provider": "synthetic",
+        "session_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "provider_version": "synthetic-1",
+        "adapter_version": "synthetic-adapter-1",
+        "source_schema_version": "synthetic-schema-1",
+        "content_schema_version": "redacted-message-1",
+        "redactor_version": "synthetic-redactor-1",
+        "text_extraction_complete": true,
+        "available_message_kinds": ["request", "response", "plan", "action", "verification", "decision", "feedback", "summary"],
+        "analysis_window_fingerprint": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "focus_message_id": "2222222222222222222222222222222222222222222222222222222222222222",
+        "observed_message_count": 3,
+        "eligible_message_count": 5,
+        "messages": [
+          {"message_id": "1111111111111111111111111111111111111111111111111111111111111111", "sequence": 0, "role": "user", "kind": "request", "language": "en", "scope_key": "task.current", "text": "Create a CSV report.", "supersedes_message_ids": []},
+          {"message_id": "2222222222222222222222222222222222222222222222222222222222222222", "sequence": 1, "role": "user", "kind": "feedback", "language": "en", "scope_key": "task.current", "text": "Create a PNG report so that reviewers can verify delivery.", "supersedes_message_ids": ["1111111111111111111111111111111111111111111111111111111111111111"]},
+          {"message_id": "3333333333333333333333333333333333333333333333333333333333333333", "sequence": 2, "role": "agent", "kind": "action", "language": "en", "scope_key": "task.current", "text": "Created PNG report for reviewers.", "supersedes_message_ids": []}
+        ],
+        "task_profile": {
+          "applicability": [
+            {"metric_key": "prompt.goal_definition", "applicability": "applicable", "basis": "user_selected"},
+            {"metric_key": "prompt.constraint_resolution", "applicability": "applicable", "basis": "user_selected"},
+            {"metric_key": "prompt.completion_evaluability", "applicability": "not_applicable", "basis": "user_selected"},
+            {"metric_key": "prompt.deliverable_contract", "applicability": "applicable", "basis": "user_selected"},
+            {"metric_key": "prompt.open_decision_load", "applicability": "applicable", "basis": "user_selected"},
+            {"metric_key": "logic.requirement_action_traceability", "applicability": "applicable", "basis": "user_selected"},
+            {"metric_key": "logic.plan_state_accounting", "applicability": "not_applicable", "basis": "user_selected"},
+            {"metric_key": "logic.decision_rationale_coverage", "applicability": "not_applicable", "basis": "user_selected"},
+            {"metric_key": "logic.scoped_consistency_candidate_rate", "applicability": "not_applicable", "basis": "user_selected"},
+            {"metric_key": "logic.conversation_loop_closure", "applicability": "not_applicable", "basis": "user_selected"}
+          ],
+          "expected_goal_slots": ["action", "target", "outcome"],
+          "expected_constraint_kinds": [],
+          "expected_deliverable_slots": ["artifact", "format"],
+          "expected_outcome_count": 1
+        }
+      },
+      "expectations": [
+        {"metric_key": "prompt.goal_definition", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.constraint_resolution", "value_state": "abstained", "numeric_value": null},
+        {"metric_key": "prompt.completion_evaluability", "value_state": "not_applicable", "numeric_value": null},
+        {"metric_key": "prompt.deliverable_contract", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "prompt.open_decision_load", "value_state": "known", "numeric_value": 0.0},
+        {"metric_key": "logic.requirement_action_traceability", "value_state": "known", "numeric_value": 1.0},
+        {"metric_key": "logic.plan_state_accounting", "value_state": "not_applicable", "numeric_value": null},
+        {"metric_key": "logic.decision_rationale_coverage", "value_state": "not_applicable", "numeric_value": null},
+        {"metric_key": "logic.scoped_consistency_candidate_rate", "value_state": "not_applicable", "numeric_value": null},
+        {"metric_key": "logic.conversation_loop_closure", "value_state": "not_applicable", "numeric_value": null}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+# Prompt Enhancer is intended to be public. Real conversations and provider state
+# must never enter the repository, even temporarily.
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+.secrets/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+auth.json
+credentials.json
+
+# Personal Codex / Claude state and project-local overrides
+/.codex/
+/.claude/
+CLAUDE.local.md
+*.local.md
+
+# Raw, imported, exported, or private conversation data
+/data/
+/runtime/
+/var/
+/logs/
+/exports/
+/artifacts/private/
+history.jsonl
+sessions/
+archived_sessions/
+*.transcript.json
+*.transcript.jsonl
+*.ndjson
+
+# Local metric stores, content vaults, and indexes
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.duckdb
+*.duckdb.wal
+*.parquet
+*.arrow
+*.feather
+*.vault
+*.index
+
+# Downloaded models and inference caches
+/models/
+/.cache/
+.cache/
+*.onnx
+*.safetensors
+*.gguf
+*.bin
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+!/frontend/src/build/
+/frontend/src/build/*
+!/frontend/src/build/viteModuleInputInventory.ts
+!/frontend/src/build/viteModuleInputInventory.test.ts
+*.egg-info/
+
+# JavaScript / frontend
+node_modules/
+.next/
+.svelte-kit/
+coverage/
+test-results/
+playwright-report/
+blob-report/
+*.tsbuildinfo
+/src/prompt_enhancer/_resources/dashboard/
+
+# IDE and OS metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and crash artifacts
+*.log
+*.dmp
+*.crash

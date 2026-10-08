@@ -1,0 +1,24 @@
+.bounded-list-pager {
+  display: grid;
+  grid-template-columns: minmax(44px, auto) minmax(0, 1fr) minmax(44px, auto);
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.bounded-list-pager > span {
+  color: var(--ink-500);
+  font-size: var(--type-caption);
+  text-align: center;
+}
+
+@media (max-width: 420px) {
+  .bounded-list-pager {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bounded-list-pager > span {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}

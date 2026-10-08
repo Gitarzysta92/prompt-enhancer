@@ -1,0 +1,83 @@
+.agent-review {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 32rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg, 14px);
+  background: var(--surface);
+}
+
+.agent-review__head {
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(7rem, 1fr) auto auto;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.55rem 0.65rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.agent-review__head > span { display: grid; gap: 0.02rem; min-width: 0; }
+.agent-review__head > span small { color: var(--ink-500); font-size: var(--type-caption); font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; }
+.agent-review__head > span strong { color: var(--ink-800); font-size: 0.86rem; }
+.agent-review__head > .button { min-height: 2.75rem; }
+
+.agent-review__tabs {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(4.75rem, 1fr));
+  gap: 0.2rem;
+  padding: 0.18rem;
+  border: 1px solid var(--line);
+  border-radius: 0.58rem;
+  background: var(--surface-soft);
+}
+
+.agent-review__tabs button {
+  min-height: var(--touch-target);
+  padding: 0.38rem 0.58rem;
+  border: 0;
+  border-radius: 0.42rem;
+  background: transparent;
+  color: var(--ink-500);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--type-caption);
+  font-weight: 750;
+}
+
+.agent-review__tabs button[aria-selected="true"] {
+  background: var(--surface);
+  color: var(--ink-800);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 16%);
+}
+
+.agent-review__tabs button:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 1px; }
+
+.agent-review__panel {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.agent-review__panel[hidden] { display: none; }
+.agent-review__panel > .agent-workspace { min-height: 0; border: 0; border-radius: 0; }
+.agent-review__panel--changes { padding: 0.75rem; }
+
+@media (max-width: 620px) {
+  .agent-review__head { grid-template-columns: minmax(0, 1fr) auto; }
+  .agent-review__head > span { display: none; }
+  .agent-review__tabs { justify-self: stretch; }
+  .agent-review__head > .button { min-width: 4.5rem; }
+}
+
+@media (forced-colors: active) {
+  .agent-review,
+  .agent-review__tabs,
+  .agent-review__tabs button[aria-selected="true"] { border-color: CanvasText; }
+}

@@ -1,0 +1,81 @@
+.agent-change-set {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--surface) 92%, var(--accent) 8%);
+}
+
+.agent-change-set p { margin: 0; color: var(--ink-650); font-size: 0.78rem; }
+.agent-change-set__header,
+.agent-change-set__diff > header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.agent-change-set__header > span,
+.agent-change-set__diff > header > span { display: grid; gap: 0.1rem; min-width: 0; }
+.agent-change-set__header small,
+.agent-change-set__diff header small { color: var(--ink-500); font-size: var(--type-caption); font-weight: 750; letter-spacing: 0.08em; }
+.agent-change-set__header strong { font-size: 0.94rem; }
+.agent-change-set__summary { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+.agent-change-set__summary > span { border-radius: 999px; padding: 0.2rem 0.5rem; background: var(--surface-raised); color: var(--ink-650); font-size: var(--type-caption); font-weight: 700; }
+.agent-change-set__summary > span[data-coverage="complete"] { color: var(--status-positive); }
+.agent-change-set__warnings,
+.agent-change-set__error { display: grid; gap: 0.3rem; border-left: 3px solid var(--status-caution); padding: 0.45rem 0.55rem; background: var(--amber-50); color: var(--ink-750); font-size: var(--type-caption); }
+.agent-change-set__error { grid-template-columns: minmax(0, 1fr) auto; align-items: center; border-left-color: var(--status-negative); }
+.agent-change-set__action-error {
+  padding: 0.45rem 0.55rem;
+  border-left: 3px solid var(--status-negative);
+  background: color-mix(in srgb, var(--status-negative) 9%, var(--surface));
+  color: var(--ink-750) !important;
+}
+.agent-change-set__files { display: grid; gap: 0.45rem; margin: 0; padding: 0; list-style: none; }
+.agent-change-set__files > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.65rem; align-items: center; padding: 0.55rem; border: 1px solid var(--line); border-radius: 0.55rem; background: var(--surface-raised); }
+.agent-change-set__files > li[data-verification="partial"],
+.agent-change-set__files > li[data-verification="unverified"],
+.agent-change-set__files > li[data-verification="unavailable"] { border-color: var(--status-caution); }
+.agent-change-set__file-main { display: grid; gap: 0.12rem; min-width: 0; }
+.agent-change-set__file-main code { overflow: hidden; color: var(--ink-900); font-size: 0.77rem; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.agent-change-set__file-main > span { color: var(--ink-750); font-size: 0.75rem; }
+.agent-change-set__file-main small { color: var(--ink-500); font-size: var(--type-caption); }
+.agent-change-set__reason { color: var(--status-caution) !important; }
+.agent-change-set__recovery { justify-self: start; padding: 0.12rem 0.36rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+.agent-change-set__recovery[data-available="true"] { border-color: color-mix(in srgb, var(--status-positive) 48%, var(--line)); color: var(--status-positive); }
+.agent-change-set__actions { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; }
+.agent-change-set__scope { padding-top: 0.1rem; border-top: 1px solid var(--line); font-size: var(--type-caption) !important; }
+.agent-change-set__diff { display: grid; gap: 0.5rem; padding-top: 0.6rem; border-top: 1px solid var(--line-strong); }
+.agent-change-set__diff strong { overflow-wrap: anywhere; font-size: 0.8rem; }
+.agent-change-set__inspect { justify-self: start; }
+.agent-change-set__restore {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--status-caution) 58%, var(--line));
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--amber-50) 52%, var(--surface));
+}
+.agent-change-set__restore > header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.agent-change-set__restore > header > span { display: grid; gap: 0.1rem; min-width: 0; }
+.agent-change-set__restore > header small { color: var(--ink-500); font-size: var(--type-caption); font-weight: 750; letter-spacing: 0.08em; }
+.agent-change-set__restore > header strong { overflow-wrap: anywhere; font-size: 0.82rem; }
+.agent-change-set__restore-summary,
+.agent-change-set__restore-success { display: grid; gap: 0.2rem; }
+.agent-change-set__restore-summary strong,
+.agent-change-set__restore-success strong { color: var(--ink-900); font-size: 0.8rem; }
+.agent-change-set__restore-summary span,
+.agent-change-set__restore-success span,
+.agent-change-set__restore-success small { color: var(--ink-650); font-size: var(--type-caption); }
+.agent-change-set__restore-warning { padding: 0.5rem; border-left: 3px solid var(--status-caution); background: var(--surface-raised); color: var(--ink-750) !important; }
+.agent-change-set__restore-error { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem; align-items: center; padding: 0.5rem; border-left: 3px solid var(--status-negative); background: color-mix(in srgb, var(--status-negative) 9%, var(--surface)); color: var(--ink-750); font-size: var(--type-caption); }
+.agent-change-set__restore-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.45rem; }
+.agent-change-set__restore-success { padding: 0.55rem; border-left: 3px solid var(--status-positive); background: color-mix(in srgb, var(--status-positive) 9%, var(--surface)); }
+.agent-change-set__restore-success .button { justify-self: start; margin-top: 0.25rem; }
+
+@media (max-width: 680px) {
+  .agent-change-set { padding: 0.62rem; }
+  .agent-change-set__files > li { grid-template-columns: minmax(0, 1fr); }
+  .agent-change-set__actions { justify-content: stretch; }
+  .agent-change-set__actions .button { flex: 1 1 auto; }
+  .agent-change-set__summary { display: grid; }
+  .agent-change-set__restore > header,
+  .agent-change-set__restore-error { grid-template-columns: minmax(0, 1fr); display: grid; }
+  .agent-change-set__restore-actions .button { flex: 1 1 auto; }
+}

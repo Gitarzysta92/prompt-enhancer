@@ -1,0 +1,3 @@
+export const MODEL_ENSEMBLE_DEFAULT_MAX_MESSAGES = 100;
+
+export const MODEL_ENSEMBLE_MESSAGE_WINDOWS = [10, 25, 50, 100] as const;

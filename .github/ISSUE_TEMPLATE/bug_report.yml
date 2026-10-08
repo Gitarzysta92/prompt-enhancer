@@ -1,0 +1,49 @@
+name: Bug report
+description: Report a reproducible problem using synthetic data only
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is a public repository. Do not include real prompts, transcripts,
+        source code, tool output, paths, identities, account IDs, databases,
+        screenshots, telemetry, credentials, or tokens. Create a minimal
+        synthetic reproduction. For a security issue, follow SECURITY.md and
+        do not disclose vulnerability details publicly.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Synthetic problem description
+      description: Explain the observed problem without private data.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Synthetic reproduction
+      description: Use reserved example identities, paths, repositories, and invalid canary tokens.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Prompt Enhancer version or commit
+  - type: input
+    id: providers
+    attributes:
+      label: Provider and version (no account identifiers)
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy confirmation
+      options:
+        - label: I verified that this report contains only synthetic, non-personal, non-secret data.
+          required: true

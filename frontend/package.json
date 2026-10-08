@@ -1,0 +1,46 @@
+{
+  "name": "prompt-enhancer-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=11.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "vite --mode real",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:intercepted": "playwright test --config=playwright.intercepted.config.ts",
+    "test:e2e:loopback": "python ../tests/support/convergence_loopback_runner.py",
+    "test:e2e:loopback:browser": "playwright test --config=playwright.loopback.config.ts",
+    "generate:api": "openapi-typescript ../docs/openapi.json -o src/shared/api/generated/openapi.ts",
+    "check:api": "openapi-typescript ../docs/openapi.json -o src/shared/api/generated/openapi.ts --check"
+  },
+  "dependencies": {
+    "pdfjs-dist": "6.2.108",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-markdown": "10.1.0",
+    "remark-gfm": "4.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/jest-dom": "7.0.0",
+    "@testing-library/react": "16.3.2",
+    "@types/node": "24.13.2",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.4",
+    "jsdom": "29.0.0",
+    "openapi-typescript": "7.10.1",
+    "typescript": "5.9.3",
+    "vite": "8.1.5",
+    "vitest": "4.1.10"
+  }
+}

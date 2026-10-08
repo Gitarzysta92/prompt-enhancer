@@ -1,0 +1,302 @@
+/* UI-06 is scoped to the history and model-stage disclosures. Core colors are
+   semantic theme tokens so the same rules remain legible in light and dark. */
+
+details.metric-workspace__drawer.metric-history > summary,
+details.metric-workspace__drawer.model-constellation > summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  min-height: 44px;
+}
+
+details.metric-workspace__drawer.metric-history > summary::after,
+details.metric-workspace__drawer.model-constellation > summary::after {
+  content: "\203A";
+  align-self: center;
+  color: var(--ink-650);
+  font-size: 1.15rem;
+  line-height: 1;
+  transform: rotate(90deg);
+  transition: transform 120ms ease;
+}
+
+details.metric-workspace__drawer.metric-history[open] > summary::after,
+details.metric-workspace__drawer.model-constellation[open] > summary::after { transform: rotate(-90deg); }
+
+details.metric-workspace__drawer.metric-history > summary span,
+details.metric-workspace__drawer.model-constellation > summary span,
+details.metric-workspace__drawer.metric-history > summary small,
+details.metric-workspace__drawer.model-constellation > summary small { font-size: max(12px, .75rem); }
+
+details.metric-workspace__drawer.metric-history > summary small,
+details.metric-workspace__drawer.model-constellation > summary small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+details.metric-workspace__drawer.metric-history .metric-history__body,
+details.metric-workspace__drawer.model-constellation .model-constellation__body {
+  min-height: 0;
+  gap: 10px;
+  padding: 10px;
+  border-top: 1px solid var(--line);
+}
+
+details.metric-workspace__drawer.metric-history .metric-history__body > p,
+details.metric-workspace__drawer.model-constellation .model-constellation__body > p,
+details.metric-workspace__drawer.metric-history .metric-history__chart-note,
+details.metric-workspace__drawer.metric-history .metric-history__receipt,
+details.metric-workspace__drawer.metric-history .metric-history__comparability,
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector p {
+  min-height: 0;
+  color: var(--ink-650);
+  font-size: max(12px, .75rem);
+  line-height: 1.5;
+}
+
+.metric-history__notice {
+  padding: 8px 9px;
+  border-inline-start: 3px solid var(--status-caution);
+  border-radius: 6px;
+  color: var(--status-caution) !important;
+  background: var(--amber-50);
+}
+
+.metric-history__empty,
+.model-constellation__empty,
+.metric-history__chart-empty {
+  padding: 10px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px;
+  background: var(--unknown-surface);
+}
+
+.metric-history__chart-note { margin: 0; }
+
+details.metric-workspace__drawer.metric-history svg {
+  min-width: 0;
+  height: 88px;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.metric-history svg .metric-history__baseline { stroke: var(--line-strong); }
+.metric-history svg .metric-history__segment { stroke: var(--accent-primary); stroke-width: 2; }
+.metric-history svg circle { fill: var(--surface); stroke: var(--accent-primary); stroke-width: 2; }
+.metric-history svg circle.is-selected { fill: var(--accent-primary); stroke: var(--accent-primary-strong); stroke-width: 2.5; }
+
+details.metric-workspace__drawer.metric-history .metric-history__snapshots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 154px), 1fr));
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  list-style: none;
+}
+
+details.metric-workspace__drawer.metric-history .metric-history__snapshots li { min-width: 0; }
+
+details.metric-workspace__drawer.metric-history .metric-history__snapshots button {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  display: grid;
+  gap: 4px;
+  padding: 9px;
+  border-color: var(--line-strong);
+  color: var(--ink-800);
+  background: var(--surface);
+  text-align: left;
+}
+
+details.metric-workspace__drawer.metric-history .metric-history__snapshots button[aria-pressed="true"] {
+  border: 2px solid var(--accent-primary);
+  color: var(--ink-800);
+  background: var(--teal-50);
+  box-shadow: inset 3px 0 var(--accent-primary);
+}
+
+.metric-history__snapshot-heading {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+details.metric-workspace__drawer.metric-history .metric-history__snapshot-heading strong,
+details.metric-workspace__drawer.metric-history .metric-history__snapshot-heading em,
+details.metric-workspace__drawer.metric-history .metric-history__snapshots code,
+details.metric-workspace__drawer.metric-history .metric-history__snapshots small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: max(12px, .75rem);
+}
+
+details.metric-workspace__drawer.metric-history .metric-history__snapshot-heading strong { color: var(--ink-900); line-height: 1.35; }
+details.metric-workspace__drawer.metric-history .metric-history__snapshot-heading em {
+  flex: 0 0 auto;
+  padding: 1px 5px;
+  border-radius: 999px;
+  color: var(--ink-on-accent);
+  background: var(--accent-primary);
+  font-style: normal;
+  font-weight: 780;
+}
+
+details.metric-workspace__drawer.metric-history .metric-history__snapshots code {
+  color: var(--provenance-ink);
+  background: transparent;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+details.metric-workspace__drawer.metric-history .metric-history__receipt { color: var(--ink-800) !important; font-weight: 720; }
+details.metric-workspace__drawer.metric-history .metric-history__snapshots button[data-receipt-kind="state"] .metric-history__receipt { color: var(--unknown-ink) !important; }
+details.metric-workspace__drawer.metric-history .metric-history__comparability { color: var(--ink-500) !important; }
+
+.model-constellation__authority { margin: 0; }
+
+.model-constellation__source {
+  min-height: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--provenance-surface);
+}
+
+.model-constellation__source strong,
+.model-constellation__source span { color: var(--provenance-ink); font-size: max(12px, .75rem); }
+
+details.metric-workspace__drawer.model-constellation .model-constellation__body > section { gap: 7px; }
+details.metric-workspace__drawer.model-constellation .model-constellation__body > section > h4 {
+  margin: 0;
+  color: var(--ink-650);
+  font-size: max(12px, .75rem);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+  gap: 7px;
+}
+
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes button {
+  min-width: 0;
+  min-height: 44px;
+  padding: 9px;
+  border-color: var(--line-strong);
+  color: var(--ink-800);
+  background: var(--surface);
+}
+
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes button[aria-pressed="true"] {
+  border: 2px solid var(--accent-primary);
+  color: var(--ink-800);
+  background: var(--teal-50);
+  box-shadow: inset 3px 0 var(--accent-primary);
+}
+
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes i { background: var(--status-positive); }
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes button[data-status="failed"] i,
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes button[data-status="resource_exhausted"] i { background: var(--status-negative); }
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes button[data-status="cancelled"] i,
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes button[data-status="unavailable"] i { background: var(--unknown-ink); }
+
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes span,
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: max(12px, .75rem);
+  line-height: 1.35;
+}
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes span { overflow: visible; color: var(--ink-900); text-overflow: clip; white-space: normal; }
+details.metric-workspace__drawer.model-constellation .model-constellation__nodes small { color: var(--ink-650); }
+
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector {
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector header { gap: 3px; }
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector header h4 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--ink-900);
+  font-size: max(12px, .82rem);
+}
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector header span { color: var(--ink-650); font-size: max(12px, .75rem); }
+
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector dl {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 138px), 1fr));
+  gap: 7px;
+}
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector dl > div { padding: 8px; border: 1px solid var(--line); background: var(--surface); }
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector dt,
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector dd,
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector code { font-size: max(12px, .75rem); line-height: 1.4; }
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector dt { color: var(--ink-650); }
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector dd { color: var(--ink-900); }
+details.metric-workspace__drawer.model-constellation .model-constellation__inspector code {
+  overflow-wrap: anywhere;
+  color: var(--provenance-ink);
+  background: transparent;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
+.model-constellation__error {
+  display: grid;
+  gap: 2px;
+  padding: 8px 9px;
+  border-inline-start: 3px solid var(--status-negative);
+  border-radius: 6px;
+  color: var(--status-negative) !important;
+  background: var(--red-50);
+}
+.model-constellation__error :is(strong, span) { font-size: max(12px, .75rem); }
+.model-constellation__unknown { margin: 0; }
+
+@container (max-width: 520px) {
+  details.metric-workspace__drawer.metric-history .metric-history__snapshots,
+  details.metric-workspace__drawer.model-constellation .model-constellation__nodes,
+  details.metric-workspace__drawer.model-constellation .model-constellation__inspector dl { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric-history > summary::after,
+  .model-constellation > summary::after { transition: none; }
+}
+
+@media (forced-colors: active) {
+  .metric-history__notice,
+  .metric-history__empty,
+  .metric-history__chart-empty,
+  .model-constellation__source,
+  .model-constellation__empty,
+  .model-constellation__inspector,
+  .model-constellation__inspector dl > div,
+  .model-constellation__error { border: 1px solid CanvasText; color: CanvasText !important; background: Canvas; }
+  .metric-history__snapshots button,
+  .model-constellation__nodes button { border: 2px solid ButtonText; color: ButtonText; background: ButtonFace; }
+  .metric-history__snapshots button[aria-pressed="true"],
+  .model-constellation__nodes button[aria-pressed="true"] { border-color: Highlight; color: HighlightText; background: Highlight; }
+  .metric-history__snapshots button[aria-pressed="true"] :is(strong, small, code, span),
+  .model-constellation__nodes button[aria-pressed="true"] :is(span, small) { color: inherit !important; }
+  .metric-history__snapshot-heading em { color: HighlightText; background: Highlight; }
+  .metric-history svg { border-color: CanvasText; background: Canvas; }
+  .metric-history svg .metric-history__baseline { stroke: GrayText; }
+  .metric-history svg .metric-history__segment,
+  .metric-history svg circle { fill: Canvas; stroke: CanvasText; }
+  .metric-history svg circle.is-selected { fill: Highlight; stroke: Highlight; }
+  .model-constellation__nodes i { border: 3px solid CanvasText; background: Canvas; }
+}

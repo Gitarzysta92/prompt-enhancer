@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "scope_router_metadata_screen_v1",
+  "synthetic_only": true,
+  "expansion_strata": ["bug_fix", "code_review", "feature", "research_design"],
+  "defaults": {
+    "metric_applicability": "applicable",
+    "target_revision_ordinal": 3,
+    "requirement_observed_sequence": 30,
+    "comparison_project_relation": "target",
+    "comparison_session_relation": "target",
+    "comparison_revision_identity": "target",
+    "comparison_revision_offset": 0,
+    "evidence_sequence_offset": 10,
+    "requirement_link_relation": "target",
+    "requirement_version_relation": "target",
+    "extraction_state": "complete",
+    "required_evidence_kinds": ["verification"],
+    "evidence_availability": [
+      {"kind": "verification", "availability": "available"}
+    ],
+    "superseding_revision_offset": null
+  },
+  "templates": [
+    {
+      "template_id": "compatible_exact_verification",
+      "expected_state": "compatible",
+      "expected_reason": "exact_scope_evidence_ready",
+      "overrides": {}
+    },
+    {
+      "template_id": "compatible_prior_action_verification",
+      "expected_state": "compatible",
+      "expected_reason": "exact_scope_evidence_ready",
+      "overrides": {
+        "comparison_revision_identity": "distinct",
+        "comparison_revision_offset": -1,
+        "required_evidence_kinds": ["action", "verification"],
+        "evidence_availability": [
+          {"kind": "action", "availability": "available"},
+          {"kind": "verification", "availability": "available"}
+        ]
+      }
+    },
+    {
+      "template_id": "compatible_exact_decision",
+      "expected_state": "compatible",
+      "expected_reason": "exact_scope_evidence_ready",
+      "overrides": {
+        "required_evidence_kinds": ["decision"],
+        "evidence_availability": [
+          {"kind": "decision", "availability": "available"}
+        ]
+      }
+    },
+    {
+      "template_id": "compatible_multiple_requirement_links",
+      "expected_state": "compatible",
+      "expected_reason": "exact_scope_evidence_ready",
+      "overrides": {
+        "requirement_link_relation": "target_and_other",
+        "required_evidence_kinds": ["action", "decision"],
+        "evidence_availability": [
+          {"kind": "action", "availability": "available"},
+          {"kind": "decision", "availability": "available"}
+        ]
+      }
+    },
+    {
+      "template_id": "compatible_prior_feedback",
+      "expected_state": "compatible",
+      "expected_reason": "exact_scope_evidence_ready",
+      "overrides": {
+        "comparison_revision_identity": "distinct",
+        "comparison_revision_offset": -2,
+        "required_evidence_kinds": ["feedback"],
+        "evidence_availability": [
+          {"kind": "feedback", "availability": "available"}
+        ]
+      }
+    },
+    {
+      "template_id": "compatible_all_evidence_kinds",
+      "expected_state": "compatible",
+      "expected_reason": "exact_scope_evidence_ready",
+      "overrides": {
+        "required_evidence_kinds": ["action", "decision", "feedback", "verification"],
+        "evidence_availability": [
+          {"kind": "action", "availability": "available"},
+          {"kind": "decision", "availability": "available"},
+          {"kind": "feedback", "availability": "available"},
+          {"kind": "verification", "availability": "available"}
+        ]
+      }
+    },
+    {
+      "template_id": "different_project",
+      "expected_state": "different_scope",
+      "expected_reason": "project_mismatch",
+      "overrides": {"comparison_project_relation": "distinct"}
+    },
+    {
+      "template_id": "different_session",
+      "expected_state": "different_scope",
+      "expected_reason": "session_mismatch",
+      "overrides": {"comparison_session_relation": "distinct"}
+    },
+    {
+      "template_id": "future_revision_evidence",
+      "expected_state": "different_scope",
+      "expected_reason": "future_revision_evidence",
+      "overrides": {
+        "comparison_revision_identity": "distinct",
+        "comparison_revision_offset": 1
+      }
+    },
+    {
+      "template_id": "same_ordinal_other_revision",
+      "expected_state": "different_scope",
+      "expected_reason": "revision_identity_mismatch",
+      "overrides": {"comparison_revision_identity": "distinct"}
+    },
+    {
+      "template_id": "different_requirement",
+      "expected_state": "different_scope",
+      "expected_reason": "requirement_mismatch",
+      "overrides": {"requirement_link_relation": "different"}
+    },
+    {
+      "template_id": "different_requirement_version",
+      "expected_state": "different_scope",
+      "expected_reason": "requirement_version_mismatch",
+      "overrides": {"requirement_version_relation": "distinct"}
+    },
+    {
+      "template_id": "superseded_exact_scope",
+      "expected_state": "superseded",
+      "expected_reason": "target_revision_superseded",
+      "overrides": {"superseding_revision_offset": 1}
+    },
+    {
+      "template_id": "superseded_missing_comparison",
+      "expected_state": "superseded",
+      "expected_reason": "target_revision_superseded",
+      "overrides": {
+        "comparison_revision_identity": "missing",
+        "comparison_revision_offset": null,
+        "superseding_revision_offset": 2
+      }
+    },
+    {
+      "template_id": "superseded_different_project",
+      "expected_state": "superseded",
+      "expected_reason": "target_revision_superseded",
+      "overrides": {
+        "comparison_project_relation": "distinct",
+        "superseding_revision_offset": 1
+      }
+    },
+    {
+      "template_id": "superseded_partial_extraction",
+      "expected_state": "superseded",
+      "expected_reason": "target_revision_superseded",
+      "overrides": {
+        "extraction_state": "partial",
+        "superseding_revision_offset": 1
+      }
+    },
+    {
+      "template_id": "superseded_unknown_applicability",
+      "expected_state": "superseded",
+      "expected_reason": "target_revision_superseded",
+      "overrides": {
+        "metric_applicability": "unknown",
+        "superseding_revision_offset": 1
+      }
+    },
+    {
+      "template_id": "superseded_from_initial_revision",
+      "expected_state": "superseded",
+      "expected_reason": "target_revision_superseded",
+      "overrides": {
+        "target_revision_ordinal": 0,
+        "comparison_revision_offset": 0,
+        "superseding_revision_offset": 2
+      }
+    },
+    {
+      "template_id": "insufficient_unknown_applicability",
+      "expected_state": "insufficient_evidence",
+      "expected_reason": "applicability_unknown",
+      "overrides": {"metric_applicability": "unknown"}
+    },
+    {
+      "template_id": "insufficient_missing_scope",
+      "expected_state": "insufficient_evidence",
+      "expected_reason": "comparison_scope_missing",
+      "overrides": {"comparison_project_relation": "missing"}
+    },
+    {
+      "template_id": "insufficient_missing_requirement_link",
+      "expected_state": "insufficient_evidence",
+      "expected_reason": "requirement_link_missing",
+      "overrides": {"requirement_link_relation": "missing"}
+    },
+    {
+      "template_id": "insufficient_partial_extraction",
+      "expected_state": "insufficient_evidence",
+      "expected_reason": "extraction_incomplete",
+      "overrides": {"extraction_state": "partial"}
+    },
+    {
+      "template_id": "insufficient_known_absence",
+      "expected_state": "insufficient_evidence",
+      "expected_reason": "required_evidence_absent",
+      "overrides": {
+        "evidence_availability": [
+          {"kind": "verification", "availability": "absent"}
+        ]
+      }
+    },
+    {
+      "template_id": "insufficient_missing_requirement_version",
+      "expected_state": "insufficient_evidence",
+      "expected_reason": "requirement_version_link_missing",
+      "overrides": {"requirement_version_relation": "missing"}
+    },
+    {
+      "template_id": "not_applicable_exact_scope",
+      "expected_state": "not_applicable",
+      "expected_reason": "metric_not_applicable",
+      "overrides": {"metric_applicability": "not_applicable"}
+    },
+    {
+      "template_id": "not_applicable_superseded",
+      "expected_state": "not_applicable",
+      "expected_reason": "metric_not_applicable",
+      "overrides": {
+        "metric_applicability": "not_applicable",
+        "superseding_revision_offset": 1
+      }
+    },
+    {
+      "template_id": "not_applicable_different_project",
+      "expected_state": "not_applicable",
+      "expected_reason": "metric_not_applicable",
+      "overrides": {
+        "metric_applicability": "not_applicable",
+        "comparison_project_relation": "distinct"
+      }
+    },
+    {
+      "template_id": "not_applicable_missing_comparison",
+      "expected_state": "not_applicable",
+      "expected_reason": "metric_not_applicable",
+      "overrides": {
+        "metric_applicability": "not_applicable",
+        "comparison_session_relation": "missing"
+      }
+    },
+    {
+      "template_id": "not_applicable_failed_extraction",
+      "expected_state": "not_applicable",
+      "expected_reason": "metric_not_applicable",
+      "overrides": {
+        "metric_applicability": "not_applicable",
+        "evidence_availability": [
+          {"kind": "verification", "availability": "failed"}
+        ]
+      }
+    },
+    {
+      "template_id": "not_applicable_initial_revision",
+      "expected_state": "not_applicable",
+      "expected_reason": "metric_not_applicable",
+      "overrides": {
+        "metric_applicability": "not_applicable",
+        "target_revision_ordinal": 0,
+        "comparison_revision_offset": 0
+      }
+    }
+  ]
+}

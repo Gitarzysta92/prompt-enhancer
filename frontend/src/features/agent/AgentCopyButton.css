@@ -1,0 +1,24 @@
+.agent-copy-button {
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
+  padding: 0.2rem 0.46rem;
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  background: var(--surface);
+  color: var(--ink-650);
+  font: inherit;
+  font-size: var(--type-caption);
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.agent-copy-button:hover { border-color: var(--line-strong); color: var(--ink-800); }
+.agent-copy-button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.agent-copy-button[data-copy-state="copied"] { border-color: var(--status-positive, var(--accent-primary)); color: var(--status-positive, var(--accent-primary)); }
+.agent-copy-button[data-copy-state="failed"] { border-color: var(--status-negative); color: var(--status-negative); }
+.agent-copy-button[data-copy-state="unavailable"] { border-color: var(--status-caution); color: var(--status-caution); }
+
+@media (forced-colors: active) {
+  .agent-copy-button { border-color: ButtonText; }
+}

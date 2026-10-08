@@ -1,0 +1,74 @@
+{
+	admin off
+	auto_https off
+	persist_config off
+	# No access logs or request-bearing diagnostic logs in this profile.
+	log {
+		output discard
+	}
+}
+
+:8080 {
+	route {
+		# Content-free liveness only. The revision is baked into the image.
+		@health {
+			method GET HEAD
+			path /health
+		}
+		handle @health {
+			header Cache-Control "no-store"
+			header X-Prompt-Enhancer-Revision {$PROMPT_ENHANCER_REVISION}
+			reverse_proxy 127.0.0.1:8765 {
+				header_up Host 127.0.0.1:8765
+				header_up -Origin
+				header_up -Authorization
+				header_up -Cookie
+				header_up X-Forwarded-Proto http
+			}
+		}
+
+		@wrong_host not host {$PROMPT_ENHANCER_PUBLIC_HOST}
+		respond @wrong_host "Invalid host" 400
+		# Coolify terminates TLS. Do not publish this container port directly.
+		@insecure not header X-Forwarded-Proto https
+		respond @insecure "HTTPS required" 403
+		@foreign_origin {
+			header Origin *
+			not header Origin https://{$PROMPT_ENHANCER_PUBLIC_HOST}
+		}
+		respond @foreign_origin "Origin not allowed" 403
+		@foreign_fetch header_regexp Sec-Fetch-Site "^(cross-site|same-site)$"
+		respond @foreign_fetch "Same-origin request required" 403
+		@mutation_without_origin {
+			not method GET HEAD OPTIONS
+			not header Origin https://{$PROMPT_ENHANCER_PUBLIC_HOST}
+		}
+		respond @mutation_without_origin "Origin required" 403
+		basic_auth {
+			{$PROMPT_ENHANCER_WEB_USER} {$PROMPT_ENHANCER_WEB_PASSWORD_HASH}
+		}
+		# External controller, provider telemetry and native approval bridges
+		# are not remote interfaces in the hosted browser profile.
+		@local_integrations path /mcp /mcp/* /v1/integrations/* /v1/telemetry/* /otlp/*
+		respond @local_integrations "Local integration unavailable" 403
+		request_body {
+			max_size 2MB
+		}
+		header Strict-Transport-Security "max-age=31536000"
+		reverse_proxy 127.0.0.1:8765 {
+			# Translate only AFTER validating the real public origin and login.
+			# Backend cookie and CSRF checks still run. Never translate credentials
+			# into the app's privileged API token or native approval capability.
+			header_up Host 127.0.0.1:8765
+			header_up Origin http://127.0.0.1:8765
+			header_up -Authorization
+			header_up -X-Prompt-Enhancer-Token
+			header_up -X-Prompt-Enhancer-User-Presence
+			header_up -Forwarded
+			header_up X-Forwarded-Proto http
+			header_up X-Forwarded-Host 127.0.0.1:8765
+			header_down Set-Cookie "^(.*)$" "$1; Secure"
+			flush_interval -1
+		}
+	}
+}

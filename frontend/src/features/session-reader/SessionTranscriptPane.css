@@ -1,0 +1,21 @@
+.session-reader { margin-top: 18px; padding: 18px 20px 20px; border: 1px solid var(--line); border-radius: var(--radius-lg, 14px); background: var(--surface); }
+.session-reader__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.session-reader__head h2 { margin: 2px 0 0; font-size: 1.05rem; }
+.session-reader__note { margin: 8px 0 0; color: var(--ink-500); font-size: 0.78rem; }
+.session-reader__state { margin: 12px 0 0; padding: 10px 12px; border-radius: 10px; background: var(--surface-soft); color: var(--ink-650); font-size: 0.8rem; }
+.session-reader__state code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.74rem; }
+.session-reader__meta { margin: 14px 0 8px; color: var(--ink-500); font-size: 0.74rem; }
+.session-reader__turns { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 8px; max-height: 70vh; overflow: auto; }
+.session-turn { padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.session-turn--user { background: var(--teal-50, var(--p-eaf6f4)); border-color: var(--p-bfdfd8); }
+.session-turn--assistant { background: var(--surface-soft); }
+.session-turn--plan { border-style: dashed; }
+.session-turn--tool_call, .session-turn--tool_result { background: var(--p-f4f0fb); border-color: var(--p-d9cdf0); }
+.session-turn__head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 4px; font-size: 0.72rem; }
+.session-turn__head strong { color: var(--ink-800); }
+.session-turn__head small { color: var(--ink-500); white-space: nowrap; }
+.session-turn__text { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 0.84rem; line-height: 1.5; color: var(--ink-800); }
+.session-turn--tool_call .session-turn__text, .session-turn--tool_result .session-turn__text { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.74rem; }
+.session-turn__toggle { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink-650); font-size: 0.72rem; }
+.session-turn__toggle svg { width: 12px; height: 12px; }
+@media (max-width: 640px) { .session-reader { padding: 14px 12px 16px; } .session-turn__head { flex-direction: column; gap: 2px; } .session-turn__head small { white-space: normal; } }

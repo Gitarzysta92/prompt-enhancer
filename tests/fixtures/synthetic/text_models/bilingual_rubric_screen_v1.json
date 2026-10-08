@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "bilingual_rubric_screen_v1",
+  "synthetic_only": true,
+  "cases": [
+    {"case_id":"en_task_present","language":"en","rubric_key":"task_definition","text":"Implement a loopback-only metrics export that produces a PNG without conversation text, and verify the exported image dimensions.","expected_label":"present"},
+    {"case_id":"en_task_absent","language":"en","rubric_key":"task_definition","text":"The dashboard feels odd. Do something about it.","expected_label":"absent"},
+    {"case_id":"en_task_abstain","language":"en","rubric_key":"task_definition","text":"Continue with the thing we discussed elsewhere.","expected_label":"abstain"},
+    {"case_id":"pl_task_present","language":"pl","rubric_key":"task_definition","text":"Dodaj lokalny eksport profilu metryk do PNG bez treści rozmowy i sprawdź wymiary wygenerowanego obrazu.","expected_label":"present"},
+    {"case_id":"pl_task_absent","language":"pl","rubric_key":"task_definition","text":"Ten panel jest dziwny. Zrób coś z nim.","expected_label":"absent"},
+    {"case_id":"pl_task_abstain","language":"pl","rubric_key":"task_definition","text":"Kontynuuj rzecz omówioną w innej rozmowie.","expected_label":"abstain"},
+
+    {"case_id":"en_constraint_present","language":"en","rubric_key":"constraint_precision","text":"Keep processing local, bind only to 127.0.0.1, persist no excerpts, and limit each run to 100 messages.","expected_label":"present"},
+    {"case_id":"en_constraint_absent","language":"en","rubric_key":"constraint_precision","text":"Make it secure, quick, and compatible with everything.","expected_label":"absent"},
+    {"case_id":"en_constraint_abstain","language":"en","rubric_key":"constraint_precision","text":"Use the usual constraints from the missing specification.","expected_label":"abstain"},
+    {"case_id":"pl_constraint_present","language":"pl","rubric_key":"constraint_precision","text":"Przetwarzaj wyłącznie lokalnie, nasłuchuj na 127.0.0.1, nie zapisuj fragmentów i ogranicz analizę do 100 wiadomości.","expected_label":"present"},
+    {"case_id":"pl_constraint_absent","language":"pl","rubric_key":"constraint_precision","text":"Zrób to bezpiecznie, szybko i zgodnie ze wszystkim.","expected_label":"absent"},
+    {"case_id":"pl_constraint_abstain","language":"pl","rubric_key":"constraint_precision","text":"Zastosuj ograniczenia z brakującej specyfikacji.","expected_label":"abstain"},
+
+    {"case_id":"en_acceptance_present","language":"en","rubric_key":"acceptance_testability","text":"The change passes when a missing token value renders Unknown, the API returns null, and the regression test succeeds.","expected_label":"present"},
+    {"case_id":"en_acceptance_absent","language":"en","rubric_key":"acceptance_testability","text":"Finish the feature properly and make the result excellent.","expected_label":"absent"},
+    {"case_id":"en_acceptance_abstain","language":"en","rubric_key":"acceptance_testability","text":"Use the acceptance rules in the unavailable attachment.","expected_label":"abstain"},
+    {"case_id":"pl_acceptance_present","language":"pl","rubric_key":"acceptance_testability","text":"Zmiana przechodzi, gdy brak tokenów jest pokazany jako Nieznane, API zwraca null, a test regresji przechodzi.","expected_label":"present"},
+    {"case_id":"pl_acceptance_absent","language":"pl","rubric_key":"acceptance_testability","text":"Dokończ funkcję poprawnie i uzyskaj świetny wynik.","expected_label":"absent"},
+    {"case_id":"pl_acceptance_abstain","language":"pl","rubric_key":"acceptance_testability","text":"Użyj kryteriów odbioru z niedostępnego załącznika.","expected_label":"abstain"},
+
+    {"case_id":"en_deliverable_present","language":"en","rubric_key":"deliverable_contract","text":"Deliver a versioned JSON API response and a responsive dashboard card; document both in the metrics catalog.","expected_label":"present"},
+    {"case_id":"en_deliverable_absent","language":"en","rubric_key":"deliverable_contract","text":"Give me the result in a useful form somewhere in the app.","expected_label":"absent"},
+    {"case_id":"en_deliverable_abstain","language":"en","rubric_key":"deliverable_contract","text":"Produce the artifact defined in a document that is not available here.","expected_label":"abstain"},
+    {"case_id":"pl_deliverable_present","language":"pl","rubric_key":"deliverable_contract","text":"Dostarcz wersjonowaną odpowiedź JSON API i responsywną kartę panelu; opisz oba elementy w katalogu metryk.","expected_label":"present"},
+    {"case_id":"pl_deliverable_absent","language":"pl","rubric_key":"deliverable_contract","text":"Pokaż wynik w przydatnej formie gdzieś w aplikacji.","expected_label":"absent"},
+    {"case_id":"pl_deliverable_abstain","language":"pl","rubric_key":"deliverable_contract","text":"Przygotuj artefakt zdefiniowany w dokumencie, którego tutaj nie ma.","expected_label":"abstain"}
+  ]
+}

@@ -1,0 +1,162 @@
+.requirement-action-evidence {
+  container-name: requirement-action-evidence;
+  container-type: inline-size;
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.requirement-action-evidence :where(code, span, strong, small, p, dd, dt, blockquote, textarea, button) {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.requirement-action-evidence code {
+  word-break: break-all;
+}
+
+.requirement-action-evidence > details,
+.requirement-action-evidence__receipts {
+  min-width: 0;
+  padding: 0.7rem;
+  border: 1px solid var(--border-subtle, var(--pa-127-127-127-350));
+  border-radius: 0.65rem;
+  background: var(--surface, Canvas);
+}
+
+.requirement-action-evidence summary {
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.requirement-action-evidence textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  resize: vertical;
+  color: inherit;
+  background: var(--surface, Canvas);
+}
+
+.requirement-action-evidence__public-state {
+  padding: 0.65rem 0.75rem;
+  border-inline-start: 3px solid var(--accent, LinkText);
+  background: var(--surface, Canvas);
+}
+
+.requirement-action-evidence__status {
+  justify-self: start;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.requirement-action-evidence__status--proposed {
+  color: var(--warning, var(--p-8a5a1c, currentColor));
+}
+
+.requirement-action-evidence__status--confirmed {
+  color: var(--success, var(--teal-700, currentColor));
+}
+
+.requirement-action-evidence__status--rejected {
+  color: var(--danger, var(--p-c73a45, currentColor));
+}
+
+.requirement-action-evidence__receipts dl,
+.requirement-action-evidence__proposal-metadata dl,
+.requirement-action-evidence__review-receipts {
+  display: grid;
+  min-width: 0;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.requirement-action-evidence__receipts dl > div,
+.requirement-action-evidence__proposal-metadata dl > div,
+.requirement-action-evidence__review-receipts > div {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.32fr) minmax(0, 1fr);
+  min-width: 0;
+  gap: 0.55rem;
+}
+
+.requirement-action-evidence__receipts dt,
+.requirement-action-evidence__proposal-metadata dt,
+.requirement-action-evidence__review-receipts dt {
+  font-weight: 650;
+}
+
+.requirement-action-evidence__receipts dd,
+.requirement-action-evidence__proposal-metadata dd,
+.requirement-action-evidence__review-receipts dd {
+  min-width: 0;
+  margin: 0;
+}
+
+.requirement-action-evidence .metric-evidence-file__review-proposal > div:first-child {
+  display: grid;
+  align-items: start;
+}
+
+.requirement-action-evidence .metric-evidence-file__clause-review:focus-visible {
+  outline: 3px solid var(--focus-ring, Highlight);
+  outline-offset: 3px;
+}
+
+@container requirement-action-evidence (max-width: 65rem) {
+  .requirement-action-evidence .metric-evidence-file__review-proposal {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .requirement-action-evidence .metric-evidence-file__proposal-actions {
+    justify-content: flex-start;
+  }
+}
+
+@container requirement-action-evidence (max-width: 32rem) {
+  .requirement-action-evidence__receipts dl > div,
+  .requirement-action-evidence__proposal-metadata dl > div,
+  .requirement-action-evidence__review-receipts > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.1rem;
+  }
+
+  .requirement-action-evidence .metric-evidence-file__proposal-actions,
+  .requirement-action-evidence .metric-evidence-file__decision-confirmation > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .requirement-action-evidence .metric-evidence-file__proposal-actions > button,
+  .requirement-action-evidence .metric-evidence-file__decision-confirmation button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .requirement-action-evidence,
+  .requirement-action-evidence * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .requirement-action-evidence,
+  .requirement-action-evidence > details,
+  .requirement-action-evidence__receipts,
+  .requirement-action-evidence__public-state,
+  .requirement-action-evidence__status,
+  .requirement-action-evidence .metric-evidence-file__clause-review {
+    border-color: CanvasText;
+    forced-color-adjust: auto;
+  }
+}

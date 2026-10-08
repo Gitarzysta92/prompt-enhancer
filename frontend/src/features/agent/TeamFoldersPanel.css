@@ -1,0 +1,133 @@
+.team-folders {
+  border: 1px solid var(--border-subtle, color-mix(in oklab, currentColor 14%, transparent));
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-3, 0.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 0.5rem);
+}
+
+.team-folders h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.team-folders h3 {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.team-folders h4 {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.team-folders__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2, 0.5rem);
+}
+
+.team-folders__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 0.25rem);
+}
+
+.team-folders__note,
+.team-folders__message {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted, inherit);
+}
+
+.team-folders__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 0.25rem);
+}
+
+.team-folders__form input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: var(--touch-target);
+  padding: 0.5rem 0.65rem;
+  font: inherit;
+}
+
+.team-folders .button {
+  min-height: var(--touch-target);
+}
+
+.team-folders__token {
+  font-size: 0.8rem;
+  word-break: break-all;
+  border: 1px dashed var(--border-subtle, currentColor);
+  border-radius: var(--radius-md, 8px);
+  padding: var(--space-2, 0.5rem);
+}
+
+.team-folders__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 0.25rem);
+}
+
+.team-folders__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.8rem;
+}
+
+.team-folders__list code {
+  word-break: break-all;
+  font-size: var(--type-caption);
+}
+
+.team-folders__actions {
+  display: flex;
+  gap: var(--space-1, 0.25rem);
+  flex-wrap: wrap;
+}
+
+.team-folders__boundary,
+.team-folders__empty,
+.team-folders__pending,
+.team-folders__stale,
+.team-folders__unavailable {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted, inherit);
+}
+
+.team-folders__stale {
+  font-style: italic;
+}
+
+.team-folders__error {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-danger, inherit);
+}
+
+.team-folders__form label {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.team-folders__form input:disabled,
+.team-folders__list button:disabled,
+.team-folders__toolbar button:disabled {
+  opacity: 0.6;
+}
+
+.team-folders__token p {
+  margin: 0 0 var(--space-1, 0.25rem);
+}

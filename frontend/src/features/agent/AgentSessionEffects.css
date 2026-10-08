@@ -1,0 +1,38 @@
+.agent-session-effects { border: 1px solid var(--line); border-radius: 0.65rem; background: var(--surface-soft); }
+.agent-session-effects[data-coverage="partial"],
+.agent-session-effects[data-coverage="incomplete"],
+.agent-session-effects[data-coverage="running"] { border-color: var(--status-caution); }
+.agent-session-effects > summary { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem 1rem; min-height: var(--touch-target); padding: 0.55rem 0.65rem; cursor: pointer; }
+.agent-session-effects > summary > span:first-child { display: grid; min-width: 0; }
+.agent-session-effects > summary strong { color: var(--ink-800); font-size: 0.8rem; }
+.agent-session-effects > summary small { color: var(--ink-500); font-size: var(--type-caption); }
+.agent-session-effects__compact { color: var(--ink-650); font-size: var(--type-caption); text-align: right; }
+.agent-session-effects__body { display: grid; gap: 0.55rem; padding: 0 0.65rem 0.65rem; border-top: 1px solid var(--line); }
+.agent-session-effects__body > p { margin: 0; font-size: 0.76rem; }
+.agent-session-effects__coverage { display: grid; gap: 0.1rem; padding-top: 0.55rem; color: var(--ink-650); font-size: var(--type-caption); }
+.agent-session-effects__coverage[data-coverage="partial"] strong,
+.agent-session-effects__coverage[data-coverage="incomplete"] strong,
+.agent-session-effects__coverage[data-coverage="running"] strong { color: var(--status-caution); }
+.agent-session-effects__files { display: grid; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+.agent-session-effects__files li { display: flex; align-items: center; justify-content: space-between; gap: 0.45rem 0.75rem; min-width: 0; padding: 0.45rem 0.5rem; border: 1px solid var(--line); border-left: 3px solid var(--status-positive, var(--accent-primary)); border-radius: 0.5rem; background: var(--surface); }
+.agent-session-effects__files li[data-write-state="unverified"] { border-left-color: var(--status-caution); }
+.agent-session-effects__files li > div { display: grid; min-width: 0; }
+.agent-session-effects__files button { min-height: var(--touch-target); overflow: hidden; padding: 0; border: 0; background: transparent; color: var(--accent-primary); text-align: left; text-decoration: underline; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; font: inherit; font-weight: 700; }
+.agent-session-effects__files button:disabled { color: var(--ink-500); cursor: not-allowed; }
+.agent-session-effects__files span,
+.agent-session-effects__files small { color: var(--ink-500); font-size: var(--type-caption); }
+.agent-session-effects__files small { flex: 0 0 auto; text-align: right; }
+.agent-session-effects__warning { padding-left: 0.55rem; border-left: 3px solid var(--status-caution); color: var(--ink-800); }
+.agent-session-effects__note { color: var(--ink-500); line-height: 1.4; }
+@media (max-width: 600px) {
+  .agent-session-effects > summary,
+  .agent-session-effects__files li { align-items: flex-start; flex-direction: column; }
+  .agent-session-effects__compact,
+  .agent-session-effects__files small { text-align: left; }
+  .agent-session-effects__files button { max-width: 100%; }
+}
+@media (forced-colors: active) {
+  .agent-session-effects,
+  .agent-session-effects__body,
+  .agent-session-effects__files li { border-color: CanvasText; }
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "bilingual_model_screen_v1",
+  "synthetic_only": true,
+  "retrieval_cases": [
+    {
+      "language": "en",
+      "query": "Export the selected metric profile as a PNG only after a privacy review.",
+      "positive_candidate_id": "en_export_png",
+      "candidates": [
+        {"candidate_id": "en_export_csv", "text": "Added a privacy review before exporting selected metrics as a CSV table."},
+        {"candidate_id": "en_export_png", "text": "Added a privacy review dialog and a local canvas PNG export for the selected metric profile."},
+        {"candidate_id": "en_export_raw", "text": "Added an automatic screenshot that includes the raw conversation and project title."},
+        {"candidate_id": "en_export_radar", "text": "Added an interactive radar view for selected metrics without any export action."}
+      ]
+    },
+    {
+      "language": "en",
+      "query": "Keep absent token usage unknown and never display it as zero.",
+      "positive_candidate_id": "en_unknown_preserved",
+      "candidates": [
+        {"candidate_id": "en_zero_default", "text": "Defaulted missing token fields to zero so every chart has a value."},
+        {"candidate_id": "en_unknown_cost", "text": "Marked missing cost values as unknown while token counts still default to zero."},
+        {"candidate_id": "en_unknown_preserved", "text": "Preserved absent token counts as typed unknown values in storage, API, and charts."},
+        {"candidate_id": "en_token_estimate", "text": "Estimated missing token usage from message length and presented the estimate as reported usage."}
+      ]
+    },
+    {
+      "language": "en",
+      "query": "Bind the local dashboard to loopback and require authenticated API access.",
+      "positive_candidate_id": "en_loopback_auth",
+      "candidates": [
+        {"candidate_id": "en_public_auth", "text": "Required an API token but listened on every network interface."},
+        {"candidate_id": "en_loopback_open", "text": "Bound to loopback but exposed metric APIs without a browser session or token."},
+        {"candidate_id": "en_loopback_auth", "text": "Bound the server to loopback and protected private API routes with authenticated local sessions."},
+        {"candidate_id": "en_static_only", "text": "Served static dashboard assets on loopback without implementing metric API authorization."}
+      ]
+    },
+    {
+      "language": "en",
+      "query": "Paginate sessions by project without losing the current selection.",
+      "positive_candidate_id": "en_project_paging",
+      "candidates": [
+        {"candidate_id": "en_global_limit", "text": "Loaded the first one hundred global sessions and filtered that page in the browser."},
+        {"candidate_id": "en_project_paging", "text": "Added project-scoped cursor pagination and retained selected session identifiers across pages."},
+        {"candidate_id": "en_project_filter", "text": "Filtered all sessions by project after loading the complete unbounded history."},
+        {"candidate_id": "en_selection_reset", "text": "Added project pagination but cleared the selected sessions whenever a new page loaded."}
+      ]
+    },
+    {
+      "language": "en",
+      "query": "Use objective test evidence instead of an assistant completion claim to validate success.",
+      "positive_candidate_id": "en_objective_evidence",
+      "candidates": [
+        {"candidate_id": "en_completion_claim", "text": "Marked the task successful when the assistant said the implementation was complete."},
+        {"candidate_id": "en_objective_evidence", "text": "Classified task success from passing test and build evidence, keeping assistant claims as non-verifying context."},
+        {"candidate_id": "en_sentiment_signal", "text": "Used positive assistant sentiment as the primary completion signal."},
+        {"candidate_id": "en_manual_only", "text": "Removed automatic verification and required a manual success label for every task."}
+      ]
+    },
+    {
+      "language": "en",
+      "query": "Add another provider through a read-only adapter without changing metric domain logic.",
+      "positive_candidate_id": "en_hex_adapter",
+      "candidates": [
+        {"candidate_id": "en_domain_provider", "text": "Added provider-specific event fields directly to every metric formula."},
+        {"candidate_id": "en_hex_adapter", "text": "Implemented a read-only provider adapter that maps events into the existing domain contracts."},
+        {"candidate_id": "en_shared_parser", "text": "Extended one internal cache parser with branches for every provider format."},
+        {"candidate_id": "en_mutating_adapter", "text": "Added an adapter that reads sessions and renames them to keep labels synchronized."}
+      ]
+    },
+    {
+      "language": "pl",
+      "query": "Wyeksportuj profil metryk do PNG dopiero po sprawdzeniu prywatności.",
+      "positive_candidate_id": "pl_export_png",
+      "candidates": [
+        {"candidate_id": "pl_export_raw", "text": "Dodano automatyczny zrzut zawierający pełną rozmowę i nazwę projektu."},
+        {"candidate_id": "pl_export_png", "text": "Dodano okno przeglądu prywatności oraz lokalny eksport profilu metryk do pliku PNG."},
+        {"candidate_id": "pl_export_csv", "text": "Dodano kontrolę prywatności przed eksportem wybranych metryk do tabeli CSV."},
+        {"candidate_id": "pl_export_chart", "text": "Dodano interaktywny wykres metryk bez możliwości eksportu obrazu."}
+      ]
+    },
+    {
+      "language": "pl",
+      "query": "Brakujące zużycie tokenów ma pozostać nieznane, a nie zmieniać się w zero.",
+      "positive_candidate_id": "pl_unknown_preserved",
+      "candidates": [
+        {"candidate_id": "pl_zero_default", "text": "Brakujące pola tokenów ustawiono na zero, aby każdy wykres miał wartość."},
+        {"candidate_id": "pl_token_estimate", "text": "Brakujące tokeny oszacowano z długości wiadomości i pokazano jako raportowane."},
+        {"candidate_id": "pl_unknown_cost", "text": "Brakujący koszt oznaczono jako nieznany, lecz tokeny nadal ustawiono na zero."},
+        {"candidate_id": "pl_unknown_preserved", "text": "Nieobecne liczby tokenów zachowano jako jawny stan nieznany w bazie, API i wykresach."}
+      ]
+    },
+    {
+      "language": "pl",
+      "query": "Uruchom lokalny panel tylko na pętli zwrotnej i zabezpiecz dostęp do API.",
+      "positive_candidate_id": "pl_loopback_auth",
+      "candidates": [
+        {"candidate_id": "pl_loopback_open", "text": "Serwer działa na pętli zwrotnej, ale prywatne trasy API nie wymagają uwierzytelnienia."},
+        {"candidate_id": "pl_public_auth", "text": "API wymaga tokenu, lecz serwer nasłuchuje na wszystkich interfejsach sieciowych."},
+        {"candidate_id": "pl_loopback_auth", "text": "Serwer związano z pętlą zwrotną, a prywatne trasy API chroni lokalna sesja."},
+        {"candidate_id": "pl_static_only", "text": "Na pętli zwrotnej udostępniono wyłącznie statyczne pliki panelu bez metryk."}
+      ]
+    },
+    {
+      "language": "pl",
+      "query": "Stronicuj sesje w obrębie projektu i zachowaj aktualny wybór.",
+      "positive_candidate_id": "pl_project_paging",
+      "candidates": [
+        {"candidate_id": "pl_selection_reset", "text": "Dodano stronicowanie projektu, ale wybór sesji jest czyszczony przy każdej stronie."},
+        {"candidate_id": "pl_project_filter", "text": "Wszystkie sesje wczytano bez limitu, a potem przefiltrowano według projektu."},
+        {"candidate_id": "pl_project_paging", "text": "Dodano stronicowanie kursorem dla projektu i zachowano identyfikatory wybranych sesji między stronami."},
+        {"candidate_id": "pl_global_limit", "text": "Wczytano pierwsze sto globalnych sesji i filtrowano tę stronę w przeglądarce."}
+      ]
+    },
+    {
+      "language": "pl",
+      "query": "Potwierdź wynik obiektywnymi testami zamiast deklaracją asystenta o zakończeniu.",
+      "positive_candidate_id": "pl_objective_evidence",
+      "candidates": [
+        {"candidate_id": "pl_sentiment_signal", "text": "Pozytywny ton odpowiedzi asystenta uznano za główny dowód sukcesu."},
+        {"candidate_id": "pl_objective_evidence", "text": "Sukces sklasyfikowano na podstawie testów i kompilacji, a deklarację asystenta zachowano tylko jako kontekst."},
+        {"candidate_id": "pl_completion_claim", "text": "Zadanie uznano za udane, gdy asystent napisał, że implementacja jest gotowa."},
+        {"candidate_id": "pl_manual_only", "text": "Wyłączono automatyczną weryfikację i zażądano ręcznej etykiety dla każdego zadania."}
+      ]
+    },
+    {
+      "language": "pl",
+      "query": "Dodaj kolejnego dostawcę przez adapter tylko do odczytu bez zmiany logiki metryk.",
+      "positive_candidate_id": "pl_hex_adapter",
+      "candidates": [
+        {"candidate_id": "pl_mutating_adapter", "text": "Adapter czyta sesje i zmienia ich nazwy, aby synchronizować etykiety."},
+        {"candidate_id": "pl_domain_provider", "text": "Pola konkretnego dostawcy dodano bezpośrednio do wszystkich formuł metryk."},
+        {"candidate_id": "pl_hex_adapter", "text": "Zaimplementowano adapter dostawcy tylko do odczytu, mapujący zdarzenia do istniejących kontraktów domeny."},
+        {"candidate_id": "pl_shared_parser", "text": "Jeden parser pamięci podręcznej rozszerzono o rozgałęzienia dla każdego formatu."}
+      ]
+    }
+  ],
+  "nli_cases": [
+    {"language": "en", "premise": "The PNG export excludes project and session labels.", "hypothesis": "The PNG export includes project and session labels.", "expected_label": "contradiction", "scope_relation": "same_scope"},
+    {"language": "en", "premise": "Missing token usage remains a typed unknown value.", "hypothesis": "Absent token counts are not converted to zero.", "expected_label": "entailment", "scope_relation": "same_scope"},
+    {"language": "en", "premise": "The API server binds only to loopback.", "hypothesis": "The synthetic benchmark can use a local GPU.", "expected_label": "neutral", "scope_relation": "different_scope"},
+    {"language": "en", "premise": "The provider adapter only reads stored sessions.", "hypothesis": "The provider adapter renames stored sessions.", "expected_label": "contradiction", "scope_relation": "same_scope"},
+    {"language": "en", "premise": "Analysis runs only after an explicit selection and confirmation.", "hypothesis": "Analysis does not start as an unattended background scan.", "expected_label": "entailment", "scope_relation": "same_scope"},
+    {"language": "en", "premise": "The dashboard contains an interactive radar chart.", "hypothesis": "The dashboard exports a PDF report.", "expected_label": "neutral", "scope_relation": "same_scope"},
+    {"language": "en", "premise": "Objective test evidence outranks assistant completion claims.", "hypothesis": "An assistant completion claim is definitive proof of success.", "expected_label": "contradiction", "scope_relation": "same_scope"},
+    {"language": "en", "premise": "The checked-in corpus contains only fictional examples.", "hypothesis": "The provider session index stores derived local metrics.", "expected_label": "neutral", "scope_relation": "different_scope"},
+    {"language": "en", "premise": "The results preserve the pinned model revision and weight digest.", "hypothesis": "Model provenance includes an immutable revision and a weight checksum.", "expected_label": "entailment", "scope_relation": "same_scope"},
+    {"language": "pl", "premise": "Eksport PNG pomija nazwy projektu i sesji.", "hypothesis": "Eksport PNG zawiera nazwy projektu i sesji.", "expected_label": "contradiction", "scope_relation": "same_scope"},
+    {"language": "pl", "premise": "Brakujące zużycie tokenów pozostaje jawną wartością nieznaną.", "hypothesis": "Nieobecne liczby tokenów nie są zamieniane na zero.", "expected_label": "entailment", "scope_relation": "same_scope"},
+    {"language": "pl", "premise": "Serwer API działa wyłącznie na pętli zwrotnej.", "hypothesis": "Syntetyczny benchmark może używać lokalnej karty graficznej.", "expected_label": "neutral", "scope_relation": "different_scope"},
+    {"language": "pl", "premise": "Adapter dostawcy wyłącznie odczytuje zapisane sesje.", "hypothesis": "Adapter dostawcy zmienia nazwy zapisanych sesji.", "expected_label": "contradiction", "scope_relation": "same_scope"},
+    {"language": "pl", "premise": "Analiza rusza dopiero po jawnym wyborze i potwierdzeniu.", "hypothesis": "Analiza nie uruchamia się jako automatyczne skanowanie w tle.", "expected_label": "entailment", "scope_relation": "same_scope"},
+    {"language": "pl", "premise": "Panel zawiera interaktywny wykres radarowy.", "hypothesis": "Panel eksportuje raport PDF.", "expected_label": "neutral", "scope_relation": "same_scope"},
+    {"language": "pl", "premise": "Obiektywne wyniki testów mają pierwszeństwo przed deklaracją asystenta.", "hypothesis": "Deklaracja asystenta jest ostatecznym dowodem sukcesu.", "expected_label": "contradiction", "scope_relation": "same_scope"},
+    {"language": "pl", "premise": "Repozytorium zawiera wyłącznie fikcyjne przykłady.", "hypothesis": "Indeks sesji dostawcy przechowuje lokalne metryki pochodne.", "expected_label": "neutral", "scope_relation": "different_scope"},
+    {"language": "pl", "premise": "Wyniki zachowują przypiętą rewizję modelu i skrót wag.", "hypothesis": "Pochodzenie modelu obejmuje niezmienną rewizję oraz sumę kontrolną wag.", "expected_label": "entailment", "scope_relation": "same_scope"}
+  ]
+}

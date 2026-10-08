@@ -1,0 +1,13 @@
+.live-window { display: grid; gap: 12px; padding: 14px 16px 12px; min-height: 100vh; background: var(--surface-soft, var(--surface)); }
+.live-window__head { display: grid; gap: 10px; }
+.live-window__title h1 { margin: 2px 0 4px; font-size: 1.15rem; line-height: 1.3; }
+.live-window__sub { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--ink-650); }
+.live-window__controls { display: flex; flex-wrap: wrap; gap: 6px; }
+.live-window__controls .button { min-height: var(--touch-target); padding: 4px 10px; font-size: var(--type-label); }
+.live-window__facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin: 0; }
+.live-window__facts div { display: grid; gap: 2px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.live-window__facts dt { font-size: var(--type-caption); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-500); }
+.live-window__facts dd { margin: 0; font-size: 0.86rem; font-weight: 600; }
+.live-window__body { min-width: 0; }
+.live-window__body .session-timeline, .live-window__body .project-timeline { margin: 0; }
+.live-window__foot { display: flex; justify-content: space-between; font-size: var(--type-caption); color: var(--ink-500); }

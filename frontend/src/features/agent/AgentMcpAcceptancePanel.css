@@ -1,0 +1,110 @@
+.agent-mcp-acceptance {
+  background: color-mix(in srgb, var(--surface-raised) 82%, transparent);
+  border: 1px solid var(--line-strong);
+  border-radius: 0.85rem;
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.9rem;
+}
+
+.agent-mcp-acceptance > header {
+  align-items: center;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: space-between;
+}
+
+.agent-mcp-acceptance > header > span {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.agent-mcp-acceptance h4,
+.agent-mcp-acceptance p {
+  margin: 0;
+}
+
+.agent-mcp-acceptance > header > strong {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  flex: none;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.55rem;
+  text-transform: uppercase;
+}
+
+.agent-mcp-acceptance > header > strong[data-state="passed"],
+.agent-mcp-acceptance__steps li[data-state="passed"] strong {
+  color: var(--success, var(--teal-700));
+}
+
+.agent-mcp-acceptance > header > strong[data-state="blocked"] {
+  color: var(--danger, var(--red-700));
+}
+
+.agent-mcp-acceptance__memory,
+.agent-mcp-acceptance__begin small,
+.agent-mcp-acceptance__steps li[data-state="waiting"] strong {
+  color: var(--text-muted);
+}
+
+.agent-mcp-acceptance__begin {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.agent-mcp-acceptance__steps {
+  display: grid;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.agent-mcp-acceptance__steps li {
+  align-items: start;
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.agent-mcp-acceptance__steps strong {
+  font-size: 0.78rem;
+}
+
+.agent-mcp-acceptance__notice {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.7rem;
+}
+
+.agent-mcp-acceptance > .button,
+.agent-mcp-acceptance__begin .button,
+.agent-mcp-acceptance__notice .button {
+  min-height: 2.65rem;
+}
+
+@media (max-width: 480px) {
+  .agent-mcp-acceptance > header,
+  .agent-mcp-acceptance__steps li {
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .agent-mcp-acceptance > header {
+    display: grid;
+  }
+}
+
+@media (forced-colors: active) {
+  .agent-mcp-acceptance,
+  .agent-mcp-acceptance__notice,
+  .agent-mcp-acceptance > header > strong {
+    border-color: CanvasText;
+  }
+}

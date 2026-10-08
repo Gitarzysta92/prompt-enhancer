@@ -1,0 +1,3 @@
+tests/fixtures/synthetic/specialists/*.json text eol=lf
+docs/openapi.json text eol=lf
+frontend/src/shared/api/generated/openapi.ts text eol=lf

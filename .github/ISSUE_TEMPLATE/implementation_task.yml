@@ -1,0 +1,75 @@
+name: Implementation task
+description: Owner-managed task card for a small, bounded change
+title: "[Task]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One bounded result per card. Use synthetic examples only; do not paste
+        real conversations, source material, paths, or identities. The owner
+        assigns people, milestone, and labels in GitHub metadata, not in this
+        text. Assignment, status, and approval are owner decisions.
+  - type: textarea
+    id: result
+    attributes:
+      label: Result
+      description: The observable outcome when this task is done, in one or two sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Current behavior and reproduction
+      description: How to see the problem or gap today, using synthetic data only. Write "new capability" if nothing exists yet.
+    validations:
+      required: true
+  - type: textarea
+    id: allowed-files
+    attributes:
+      label: Allowed files
+      description: Files or directories this task may change. Anything else needs a new task decision.
+    validations:
+      required: true
+  - type: textarea
+    id: unchanged
+    attributes:
+      label: Behaviors that must stay unchanged
+      description: Include tests, golden files, unknown/missing-value handling, approvals, and model budgets unless this task explicitly changes them.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria and tests
+      description: Checkable criteria, each with the synthetic test or command that proves it.
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence-level
+    attributes:
+      label: Required evidence level
+      description: Highest level required, all with synthetic data. Native/real-model and clean-machine are owner-run only; contributors never need private provider sessions.
+      options:
+        - Static review only
+        - Unit (synthetic)
+        - Integration (synthetic)
+        - Browser (synthetic)
+        - Packaged (synthetic)
+        - Native/real-model (owner-run)
+        - Clean-machine (owner-run)
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and stop conditions
+      description: Prerequisite tasks or baselines, and the situations where the contributor must stop and ask the owner instead of continuing.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: This card contains no real transcripts, source snippets, personal identifiers, absolute paths, or credentials.
+          required: true
