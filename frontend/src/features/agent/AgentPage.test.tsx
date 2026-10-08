@@ -304,7 +304,7 @@ function promptCheckResult(overrides: Partial<PromptCheckResult> = {}): PromptCh
       verification_requested: false,
       missing_elements: ["a checkable pass condition"],
     },
-    commentary: {
+    commentary: { inference_provider: "local",
       state: "ok",
       model_alias: "orca27b-iq3m",
       prompt_version: "prompt-check-commentary-v1",

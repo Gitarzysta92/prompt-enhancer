@@ -304,3 +304,18 @@ def test_container_readiness_failure_is_quiet(monkeypatch, capsys):
     monkeypatch.setattr(probe.urllib.request, "build_opener", lambda *handlers: opener)
     assert probe.main() == 1
     assert capsys.readouterr() == ("", "")
+
+
+def test_hosted_backend_receives_only_explicit_litellm_configuration():
+    env = hosted.backend_environment({
+        "PROMPT_ENHANCER_LITELLM_BASE_URL": "https://gateway.example.test/v1",
+        "PROMPT_ENHANCER_LITELLM_API_KEY": "example-invalid-key",
+        "PROMPT_ENHANCER_LITELLM_MODEL": "example-qwen",
+        "PROMPT_ENHANCER_ACCESS_CLIENT_SECRET": "example-invalid-access-secret",
+        "LITELLM_MASTER_KEY": "example-invalid-master-key",
+    })
+    assert env["PROMPT_ENHANCER_LITELLM_MODEL"] == "example-qwen"
+    assert env["PROMPT_ENHANCER_LITELLM_API_KEY"] == "example-invalid-key"
+    assert "PROMPT_ENHANCER_ACCESS_CLIENT_SECRET" not in env
+    assert "LITELLM_MASTER_KEY" not in env
+    assert env["PROMPT_ENHANCER_SESSION_READER"] == "disabled"

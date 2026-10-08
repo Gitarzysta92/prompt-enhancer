@@ -51,7 +51,8 @@ def gateway_environment(environment: Mapping[str, str]) -> dict[str, str]:
     }
 
 
-def backend_environment() -> dict[str, str]:
+def backend_environment(environment: Mapping[str, str] | None = None) -> dict[str, str]:
+    environment = os.environ if environment is None else environment
     return {
         "PATH": "/app/.venv/bin:/usr/local/bin:/usr/bin:/bin",
         "PYTHONDONTWRITEBYTECODE": "1",
@@ -62,6 +63,10 @@ def backend_environment() -> dict[str, str]:
         "PROMPT_ENHANCER_CLAUDE_HOME": "/tmp/disabled-provider",
         "PROMPT_ENHANCER_SESSION_READER": "disabled",
         "HF_HUB_OFFLINE": "1",
+        **{name: environment[name] for suffix in (
+            "BASE_URL", "API_KEY", "MODEL", "TLS_CERT_BASE64",
+            "MODEL_REVISION", "MODEL_LICENSE", "REASONING_EFFORT",
+        ) if (name := "PROMPT_ENHANCER_LITELLM_" + suffix) in environment},
     }
 
 

@@ -22,6 +22,8 @@ from __future__ import annotations
 from collections.abc import Callable, Mapping
 from datetime import UTC, datetime
 import hashlib
+import hmac
+import secrets
 import json
 import re
 from typing import Any, Literal, Protocol
@@ -156,6 +158,7 @@ class PromptCheckRequest(StrictModel):
     provider: Literal["codex", "claude_code", "other"] = "other"
     agent_model: str | None = Field(default=None, max_length=120, pattern=r"^[A-Za-z0-9][A-Za-z0-9 ._:/+-]*$")
     want_commentary: bool = True
+    remote_approval: str | None = Field(default=None, max_length=100, repr=False)
 
     @field_validator("prompt")
     @classmethod
@@ -256,6 +259,11 @@ class ModelCommentary(StrictModel):
     state: Literal["ok", "no_active_model", "model_error", "reply_invalid", "skipped"]
     model_alias: str | None = None
     prompt_version: str = PROMPT_CHECK_PROMPT_VERSION
+    inference_provider: Literal["local", "litellm"] = "local"
+    model_revision: str | None = None
+    model_license: str | None = None
+    redactor_version: str | None = None
+    adapter_version: str | None = None
     findings: tuple[CommentaryFinding, ...] = ()
     reformulated_prompt: str | None = Field(default=None, max_length=MAX_PROMPT_CHARS * 2 + 2_000)
     reformulated_elements: tuple[ReformulatedElement, ...] = ()
@@ -264,6 +272,24 @@ class ModelCommentary(StrictModel):
         "Commentary and rewrites come from a local model; they are suggestions, not metrics, and may be wrong. "
         "The deterministic cues above are what was actually detected."
     )
+
+
+class PromptCheckConfiguration(StrictModel):
+    remote: bool = False
+    model: str | None = None
+    provider: Literal["local", "litellm"] = "local"
+
+
+class PromptCheckPreview(StrictModel):
+    model: str
+    provider: Literal["litellm"] = "litellm"
+    messages: tuple[dict[str, str], ...] = Field(repr=False)
+    approval: str = Field(repr=False)
+    expires_in_seconds: int = 600
+    redactor_version: str
+    prompt_version: str = PROMPT_CHECK_PROMPT_VERSION
+    model_revision: str | None = None
+    model_license: str | None = None
 
 
 class PromptCheckResult(StrictModel):
@@ -361,6 +387,9 @@ class PromptCheckService:
         session_context: Callable[[str], tuple[PromptCheckMessage, ...]] | None = None,
         clock: Callable[[], datetime] | None = None,
         dashboard_path: str = "/prompt-checks",
+        remote_model: str | None = None,
+        remote_model_revision: str | None = None,
+        remote_model_license: str | None = None,
     ) -> None:
         self._repository = repository
         self._pseudonymize = pseudonymize
@@ -380,10 +409,60 @@ class PromptCheckService:
         self._session_context = session_context
         self._clock = clock or (lambda: datetime.now(UTC))
         self._dashboard_path = dashboard_path
+        self._remote_model = remote_model
+        self._remote_revision = remote_model_revision
+        self._remote_license = remote_model_license
+        self._preview_key = secrets.token_bytes(32)
 
     # -- public --
 
+    def configuration(self) -> PromptCheckConfiguration:
+        return PromptCheckConfiguration(
+            remote=self._remote_model is not None,
+            model=self._remote_model,
+            provider="litellm" if self._remote_model else "local",
+        )
+
+    def _remote_body(self, request: PromptCheckRequest) -> bytes:
+        if request.session_id is not None:
+            raise PromptCheckError("remote_session_context_forbidden")
+        text = request.prompt.strip()
+        readings = self._deterministic_readings("0" * 64, text, request.prior_messages)
+        context = self._infer_context(text, request.prior_messages, readings)
+        return self._commentary_body(request, text, readings, context)
+
+    def _approval(self, body: bytes, issued: int) -> str:
+        payload = str(issued).encode() + b"\0" + (self._remote_model or "").encode() + b"\0" + body
+        return f"{issued}." + hmac.new(self._preview_key, payload, hashlib.sha256).hexdigest()
+
+    def preview(self, request: PromptCheckRequest) -> PromptCheckPreview:
+        if self._remote_model is None:
+            raise PromptCheckError("remote_model_not_configured")
+        body = self._remote_body(request)
+        issued = int(self._clock().timestamp())
+        return PromptCheckPreview(
+            model=self._remote_model,
+            messages=tuple(json.loads(body)["messages"]),
+            approval=self._approval(body, issued),
+            redactor_version=self._redactor.version,
+            model_revision=self._remote_revision,
+            model_license=self._remote_license,
+        )
+
+    def _require_remote_approval(self, request: PromptCheckRequest) -> None:
+        body = self._remote_body(request)
+        token = request.remote_approval or ""
+        try:
+            issued = int(token.split(".", 1)[0])
+        except ValueError:
+            raise PromptCheckError("remote_preview_required") from None
+        age = int(self._clock().timestamp()) - issued
+        if not 0 <= age <= 600 or not hmac.compare_digest(token, self._approval(body, issued)):
+            raise PromptCheckError("remote_preview_required")
+
     def check(self, request: PromptCheckRequest) -> PromptCheckResult:
+        if self._remote_model is not None and request.want_commentary:
+            self._require_remote_approval(request)
         created_at = self._clock()
         if request.session_id and not request.prior_messages and self._session_context is not None:
             try:
@@ -399,6 +478,16 @@ class PromptCheckService:
         readings = self._deterministic_readings(check_id, prompt_text, request.prior_messages)
         context = self._infer_context(prompt_text, request.prior_messages, readings)
         commentary = self._commentary(request, prompt_text, readings, context)
+        if self._remote_model is not None:
+            commentary = commentary.model_copy(update={
+                "caveat": "Commentary and rewrites come from the configured LiteLLM model; "
+                "they are suggestions, not metrics, and may be wrong.",
+                "inference_provider": "litellm",
+                "model_revision": self._remote_revision,
+                "model_license": self._remote_license,
+                "redactor_version": self._redactor.version,
+                "adapter_version": "litellm-chat-v1",
+            })
         summary = _summary(readings, context, commentary)
         result = PromptCheckResult(
             check_id=check_id,
@@ -604,18 +693,7 @@ class PromptCheckService:
         alias = self._active_model()
         if alias is None or self._chat is None:
             return ModelCommentary(state="no_active_model")
-        user_message = _commentary_input(request, prompt_text, readings, context)
-        body = json.dumps(
-            {
-                "messages": [
-                    {"role": "system", "content": _SYSTEM_PROMPT},
-                    {"role": "user", "content": user_message},
-                ],
-                "temperature": 0.2,
-                "max_tokens": 1_100,
-                "chat_template_kwargs": {"enable_thinking": False},
-            }
-        ).encode("utf-8")
+        body = self._commentary_body(request, prompt_text, readings, context)
         try:
             status, payload, _ = self._chat(alias, body)
         except Exception:
@@ -627,6 +705,33 @@ class PromptCheckService:
         if parsed is None:
             return ModelCommentary(state="reply_invalid", model_alias=alias)
         return parsed.model_copy(update={"model_alias": alias})
+
+    def _commentary_body(
+        self, request: PromptCheckRequest, prompt_text: str,
+        readings: tuple[PromptMetricReading, ...], context: ContextInference,
+    ) -> bytes:
+        user_message = _commentary_input(request, prompt_text, readings, context)
+        if self._remote_model is not None:
+            from ..infrastructure.redaction import LocalRedactionError
+            try:
+                user_message = self._redactor.redact(SecretStr(user_message)).text.get_secret_value()
+            except LocalRedactionError:
+                raise PromptCheckError("remote_redaction_failed") from None
+        payload = {
+            "messages": [
+                {"role": "system", "content": _SYSTEM_PROMPT},
+                {"role": "user", "content": user_message},
+            ],
+            "temperature": 0.2,
+            "max_tokens": 1_100,
+            "chat_template_kwargs": {"enable_thinking": False},
+        }
+        if self._remote_model is not None:
+            payload["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {"name": "prompt_commentary", "schema": _CommentaryReply.model_json_schema()},
+            }
+        return json.dumps(payload).encode("utf-8")
 
 
 # ----- helpers -----

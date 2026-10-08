@@ -10070,13 +10070,17 @@
             "type": "boolean"
           },
           "network_inference": {
-            "const": false,
             "title": "Network Inference",
             "type": "boolean"
           },
           "prompt_check": {
             "default": false,
             "title": "Prompt Check",
+            "type": "boolean"
+          },
+          "prompt_check_network_inference": {
+            "default": false,
+            "title": "Prompt Check Network Inference",
             "type": "boolean"
           },
           "raw_transcripts": {
@@ -10107,6 +10111,12 @@
           "session_text_content_persistence": {
             "const": false,
             "title": "Session Text Content Persistence",
+            "type": "boolean"
+          },
+          "session_text_network_inference": {
+            "const": false,
+            "default": false,
+            "title": "Session Text Network Inference",
             "type": "boolean"
           },
           "shared_folders": {
@@ -21505,6 +21515,17 @@
       "ModelCommentary": {
         "additionalProperties": false,
         "properties": {
+          "adapter_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Adapter Version"
+          },
           "caveat": {
             "default": "Commentary and rewrites come from a local model; they are suggestions, not metrics, and may be wrong. The deterministic cues above are what was actually detected.",
             "title": "Caveat",
@@ -21518,6 +21539,15 @@
             "title": "Findings",
             "type": "array"
           },
+          "inference_provider": {
+            "default": "local",
+            "enum": [
+              "local",
+              "litellm"
+            ],
+            "title": "Inference Provider",
+            "type": "string"
+          },
           "model_alias": {
             "anyOf": [
               {
@@ -21528,6 +21558,28 @@
               }
             ],
             "title": "Model Alias"
+          },
+          "model_license": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model License"
+          },
+          "model_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Revision"
           },
           "notes": {
             "anyOf": [
@@ -21545,6 +21597,17 @@
             "default": "prompt-check-commentary-v2-complete-json",
             "title": "Prompt Version",
             "type": "string"
+          },
+          "redactor_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Redactor Version"
           },
           "reformulated_elements": {
             "default": [],
@@ -27070,6 +27133,38 @@
         "title": "ProjectTimeline",
         "type": "object"
       },
+      "PromptCheckConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "provider": {
+            "default": "local",
+            "enum": [
+              "local",
+              "litellm"
+            ],
+            "title": "Provider",
+            "type": "string"
+          },
+          "remote": {
+            "default": false,
+            "title": "Remote",
+            "type": "boolean"
+          }
+        },
+        "title": "PromptCheckConfiguration",
+        "type": "object"
+      },
       "PromptCheckHistory": {
         "additionalProperties": false,
         "properties": {
@@ -27126,6 +27221,79 @@
           "content"
         ],
         "title": "PromptCheckMessage",
+        "type": "object"
+      },
+      "PromptCheckPreview": {
+        "additionalProperties": false,
+        "properties": {
+          "approval": {
+            "title": "Approval",
+            "type": "string"
+          },
+          "expires_in_seconds": {
+            "default": 600,
+            "title": "Expires In Seconds",
+            "type": "integer"
+          },
+          "messages": {
+            "items": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "title": "Messages",
+            "type": "array"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "model_license": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model License"
+          },
+          "model_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Revision"
+          },
+          "prompt_version": {
+            "default": "prompt-check-commentary-v2-complete-json",
+            "title": "Prompt Version",
+            "type": "string"
+          },
+          "provider": {
+            "const": "litellm",
+            "default": "litellm",
+            "title": "Provider",
+            "type": "string"
+          },
+          "redactor_version": {
+            "title": "Redactor Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "model",
+          "messages",
+          "approval",
+          "redactor_version"
+        ],
+        "title": "PromptCheckPreview",
         "type": "object"
       },
       "PromptCheckRecord": {
@@ -27272,6 +27440,18 @@
             ],
             "title": "Provider",
             "type": "string"
+          },
+          "remote_approval": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Remote Approval"
           },
           "session_id": {
             "anyOf": [
@@ -54571,7 +54751,7 @@
                 }
               }
             },
-            "description": "Request Entity Too Large"
+            "description": "Content Too Large"
           },
           "422": {
             "content": {
@@ -55530,7 +55710,7 @@
                 }
               }
             },
-            "description": "Request Entity Too Large"
+            "description": "Content Too Large"
           },
           "422": {
             "content": {
@@ -55888,7 +56068,7 @@
                 }
               }
             },
-            "description": "Request Entity Too Large"
+            "description": "Content Too Large"
           },
           "422": {
             "content": {
@@ -58221,7 +58401,7 @@
                 }
               }
             },
-            "description": "Unprocessable Entity"
+            "description": "Unprocessable Content"
           },
           "503": {
             "content": {
@@ -58893,6 +59073,147 @@
         ]
       }
     },
+    "/v1/prompt-checks/configuration": {
+      "get": {
+        "operationId": "configuration_v1_prompt_checks_configuration_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Prompt-Enhancer-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Prompt-Enhancer-Token"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Prompt-Enhancer-CSRF",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Prompt-Enhancer-Csrf"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PromptCheckConfiguration"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Configuration",
+        "tags": [
+          "prompt-checks"
+        ]
+      }
+    },
+    "/v1/prompt-checks/preview": {
+      "post": {
+        "description": "Ephemeral exact redacted model messages; makes no model call.",
+        "operationId": "preview_v1_prompt_checks_preview_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Prompt-Enhancer-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Prompt-Enhancer-Token"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Prompt-Enhancer-CSRF",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Prompt-Enhancer-Csrf"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PromptCheckRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PromptCheckPreview"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Preview",
+        "tags": [
+          "prompt-checks"
+        ]
+      }
+    },
     "/v1/prompt-checks/{check_id}": {
       "get": {
         "operationId": "stored_v1_prompt_checks__check_id__get",
@@ -59325,7 +59646,7 @@
                 }
               }
             },
-            "description": "Unprocessable Entity"
+            "description": "Unprocessable Content"
           },
           "503": {
             "content": {
@@ -61841,7 +62162,7 @@
                 }
               }
             },
-            "description": "Request Entity Too Large"
+            "description": "Content Too Large"
           },
           "422": {
             "content": {
@@ -61859,7 +62180,7 @@
                 }
               }
             },
-            "description": "Unprocessable Entity"
+            "description": "Unprocessable Content"
           },
           "503": {
             "content": {
@@ -61972,7 +62293,7 @@
                 }
               }
             },
-            "description": "Unprocessable Entity"
+            "description": "Unprocessable Content"
           },
           "503": {
             "content": {
@@ -62105,7 +62426,7 @@
                 }
               }
             },
-            "description": "Request Entity Too Large"
+            "description": "Content Too Large"
           },
           "422": {
             "content": {
@@ -62123,7 +62444,7 @@
                 }
               }
             },
-            "description": "Unprocessable Entity"
+            "description": "Unprocessable Content"
           },
           "503": {
             "content": {
@@ -62380,7 +62701,7 @@
                 }
               }
             },
-            "description": "Request Entity Too Large"
+            "description": "Content Too Large"
           },
           "422": {
             "content": {
@@ -62398,7 +62719,7 @@
                 }
               }
             },
-            "description": "Unprocessable Entity"
+            "description": "Unprocessable Content"
           },
           "503": {
             "content": {
