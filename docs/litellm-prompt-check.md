@@ -11,6 +11,7 @@ Set runtime variables in the deployment controller, never in source control:
 | Variable | Meaning |
 | --- | --- |
 | `PROMPT_ENHANCER_LITELLM_BASE_URL` | HTTPS gateway URL, optionally ending in `/v1` |
+| `PROMPT_ENHANCER_LITELLM_CONNECT_ADDRESS` | Optional private IP to dial while retaining the URL hostname for TLS verification and routing |
 | `PROMPT_ENHANCER_LITELLM_API_KEY` | Dedicated virtual key restricted to the chosen model |
 | `PROMPT_ENHANCER_LITELLM_MODEL` | Exact model alias registered in LiteLLM |
 | `PROMPT_ENHANCER_LITELLM_REASONING_EFFORT` | Optional gateway reasoning control; `none` disables thinking for Qwen through Ollama’s chat API |
@@ -24,8 +25,8 @@ backend, not the browser or authentication gateway. Keep the upstream model
 revision pinned in the gateway/model server; a declared revision is provenance,
 not independent verification of a remote server's weights.
 
-For a private cluster route, configure deployment DNS/host mapping to the
-private gateway address and restrict the ingress to the application node.
+For a private cluster route, set `CONNECT_ADDRESS` to the private gateway address
+(or configure private DNS) and restrict the ingress to the application node.
 The optional certificate setting verifies the chain, expiry, DNS hostname and
 exact leaf fingerprint before sending authorization. Certificate replacement
 requires updating the configured public certificate. Never disable TLS checks.

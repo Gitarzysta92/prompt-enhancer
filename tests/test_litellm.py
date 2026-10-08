@@ -105,4 +105,20 @@ def test_partial_or_unsafe_remote_configuration_fails_closed():
         with pytest.raises(ConfigurationError, match="litellm_configuration_invalid"):
             AppSettings.from_env({"PROMPT_ENHANCER_LITELLM_" + k: v for k, v in env.items()})
     assert "example-invalid-key" not in repr(settings())
-    with pytest.raises(ValueError): settings(connect_address="192.0.2.10")
+    with pytest.raises(ValueError): settings(connect_address="invalid-address.example.test")
+
+
+def test_private_address_retains_url_hostname_for_verified_tls(monkeypatch):
+    from unittest.mock import Mock
+    from prompt_enhancer.infrastructure.litellm import _PrivateHTTPSConnection
+    raw = Mock()
+    context = Mock(wraps=ssl.create_default_context())
+    context.wrap_socket = Mock(return_value=Mock())
+    dial = Mock(return_value=raw)
+    monkeypatch.setattr("prompt_enhancer.infrastructure.litellm.socket.create_connection", dial)
+    connection = _PrivateHTTPSConnection("gateway.example.test", 443, address="192.0.2.10",
+        context=context, timeout=90)
+    connection.connect()
+    dial.assert_called_once_with(("192.0.2.10", 443), 90)
+    context.wrap_socket.assert_called_once_with(raw, server_hostname="gateway.example.test")
+    assert context._mock_wraps.check_hostname and context._mock_wraps.verify_mode == ssl.CERT_REQUIRED

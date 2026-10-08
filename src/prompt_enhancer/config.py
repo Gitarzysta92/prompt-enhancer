@@ -73,6 +73,7 @@ class LiteLLMSettings(BaseModel):
     base_url: str = Field(repr=False)
     credential: SecretStr = Field(repr=False, min_length=1, max_length=4096)
     model: str = Field(min_length=1, max_length=120, pattern=r"^[A-Za-z0-9][A-Za-z0-9._:/+-]*$")
+    connect_address: str | None = Field(default=None, repr=False)
     tls_cert_pem: SecretStr | None = Field(default=None, repr=False)
     reasoning_effort: Literal["none", "low", "medium", "high"] | None = None
     model_revision: str | None = Field(default=None, max_length=160)
@@ -88,7 +89,10 @@ class LiteLLMSettings(BaseModel):
                     or url.query or url.fragment or url.path not in {"", "/", "/v1", "/v1/"}
                     or any(c.isspace() for c in self.base_url)):
                 raise ValueError
-            _ = url.port
+            if url.port == 0:
+                raise ValueError
+            if self.connect_address is not None:
+                ipaddress.ip_address(self.connect_address)
             if any(c.isspace() for c in self.credential.get_secret_value()):
                 raise ValueError
             if self.tls_cert_pem is not None:
@@ -280,7 +284,7 @@ class AppSettings(BaseModel):
         session_reader = env.get("PROMPT_ENHANCER_SESSION_READER", "enabled") != "disabled"
         names = {
             "base_url": "BASE_URL", "credential": "API_KEY", "model": "MODEL",
-            "tls_cert_pem": "TLS_CERT_BASE64",
+            "tls_cert_pem": "TLS_CERT_BASE64", "connect_address": "CONNECT_ADDRESS",
             "model_revision": "MODEL_REVISION", "model_license": "MODEL_LICENSE",
             "reasoning_effort": "REASONING_EFFORT",
         }

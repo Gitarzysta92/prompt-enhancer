@@ -64,7 +64,7 @@ def backend_environment(environment: Mapping[str, str] | None = None) -> dict[st
         "PROMPT_ENHANCER_SESSION_READER": "disabled",
         "HF_HUB_OFFLINE": "1",
         **{name: environment[name] for suffix in (
-            "BASE_URL", "API_KEY", "MODEL", "TLS_CERT_BASE64",
+            "BASE_URL", "API_KEY", "MODEL", "TLS_CERT_BASE64", "CONNECT_ADDRESS",
             "MODEL_REVISION", "MODEL_LICENSE", "REASONING_EFFORT",
         ) if (name := "PROMPT_ENHANCER_LITELLM_" + suffix) in environment},
     }

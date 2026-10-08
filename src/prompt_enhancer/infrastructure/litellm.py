@@ -6,12 +6,30 @@ import hmac
 import http.client
 import json
 import ssl
+import socket
 from urllib.parse import urlsplit
 
 from ..config import LiteLLMSettings
 
 LITELLM_ADAPTER_VERSION = "litellm-chat-v1"
 MAX_RESPONSE_BYTES = 256_000
+
+
+class _PrivateHTTPSConnection(http.client.HTTPSConnection):
+    """Dial a configured cluster address while verifying the URL's TLS name."""
+
+    def __init__(self, host, port, *, address, context, timeout):
+        super().__init__(host, port, context=context, timeout=timeout)
+        self._address = address
+        self._verified_context = context
+
+    def connect(self):
+        raw = socket.create_connection((self._address, self.port), self.timeout)
+        try:
+            self.sock = self._verified_context.wrap_socket(raw, server_hostname=self.host)
+        except BaseException:
+            raw.close()
+            raise
 
 
 class LiteLLMChat:
@@ -30,10 +48,15 @@ class LiteLLMChat:
             context = ssl.create_default_context(cadata=pem)
             # Validate the chain, expiry, hostname AND exact leaf before auth.
             pin = hashlib.sha256(ssl.PEM_cert_to_DER_cert(pem)).digest()
-        connection = http.client.HTTPSConnection(
-            url.hostname, url.port or 443,
-            context=context, timeout=90,
-        )
+        if config.connect_address is not None:
+            connection = _PrivateHTTPSConnection(
+                url.hostname, url.port or 443, address=config.connect_address,
+                context=context, timeout=90,
+            )
+        else:
+            connection = http.client.HTTPSConnection(
+                url.hostname, url.port or 443, context=context, timeout=90,
+            )
         try:
             connection.connect()
             assert connection.sock is not None
