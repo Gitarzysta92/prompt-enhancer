@@ -5,6 +5,7 @@ import "./AgentTurnDetails.css";
 export type AgentTurnRevisionMode = "edit" | "regenerate" | "retry";
 
 const REASONS: Record<AgentTurnSummary["reason"], string> = {
+  inference_not_authorized: "The external model request was not approved or its review expired. No unapproved request was sent.",
   answer_complete: "The model completed its response. This is not verification that the task succeeded.",
   stop_requested: "Stopped at your request. Review any file or tool effects already recorded below.",
   step_limit: "The turn reached its model-step limit. Send another message to continue.",

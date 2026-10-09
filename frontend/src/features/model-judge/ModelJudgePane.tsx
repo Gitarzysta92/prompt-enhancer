@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { PromptEnhancerTransport, SessionInterpretation, SessionJudgments } from "../../shared/api/contracts";
 import { TransportError } from "../../shared/api/httpTransport";
 import "./ModelJudgePane.css";
+import { SessionInferenceControl } from "../inference/SessionInferenceControl";
 
 const LABEL_TEXT: Record<string, string> = {
   low: "low",
@@ -27,7 +28,7 @@ export function ModelJudgePane({
   transport,
 }: {
   sessionId: string;
-  transport: Pick<PromptEnhancerTransport, "getModelJudgments"> & Partial<Pick<PromptEnhancerTransport, "judgeSessionWithModel" | "interpretSessionWithModel">>;
+  transport: Pick<PromptEnhancerTransport, "getModelJudgments"> & Partial<Pick<PromptEnhancerTransport, "judgeSessionWithModel" | "interpretSessionWithModel" | "getInferenceModels" | "previewSessionInference" | "runSessionInference">>;
 }) {
   const [data, setData] = useState<SessionJudgments | null>(null);
   const [reading, setReading] = useState<SessionInterpretation | null>(null);
@@ -169,6 +170,9 @@ export function ModelJudgePane({
           )}
         </div>
       </header>
+      <SessionInferenceControl key={sessionId} sessionId={sessionId} transport={transport} onJudged={() => {
+        const context = contextRef.current; if (context) void load(context);
+      }} />
       {byModel.size === 0 ? (
         <p className="model-judge-pane__note">
           {data.active_model_alias

@@ -1,0 +1,2857 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-08",
+  "nodes": [
+    {
+      "id": "MA01",
+      "label": "Consent, source onboarding and privacy tier boundary",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/onboarding.py",
+        "src/prompt_enhancer/ingestion.py",
+        "frontend/src/features/onboarding/FirstRunPanel.tsx"
+      ],
+      "tests": [
+        "tests/test_onboarding.py",
+        "tests/test_consent_adapter_access.py",
+        "tests/test_ingestion_and_database.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Ledger October 7: 52 backend onboarding/schema/privacy and six synthetic App browser cases passed on a separate five-file clean cohort.",
+      "gap": "Native first-run/provider ingestion and clean installation remain open. Onboarding source differs from origin/main.",
+      "next": "Admit the reviewed setup cohort; run an isolated installed first-run journey.",
+      "gate": "B01/B03/B07 V02/V12",
+      "depends_on": [],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA02",
+      "label": "Codex documented App Server reader and compatibility probe",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/providers/codex_app_server/adapter.py",
+        "src/prompt_enhancer/infrastructure/providers/codex_app_server/schema_preflight.py",
+        "src/prompt_enhancer/infrastructure/providers/codex_app_server/content_source.py"
+      ],
+      "tests": [
+        "tests/test_codex_ingestion_privacy.py",
+        "tests/test_provider_compatibility_service.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Adapter unchanged against origin/main; read-only construction and consent-tier declarations inspected.",
+      "gap": "Supported installed-provider versions and complete source coverage require explicit acceptance; raw provider data was not accessed.",
+      "next": "Qualify a documented version using synthetic schema/transport fixtures, then separately authorized real-provider acceptance.",
+      "gate": "B07 V12/V17",
+      "depends_on": [
+        "MA01"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA03",
+      "label": "Claude opt-in hooks and content-free telemetry ledger",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/providers/claude_code_hooks/receiver.py",
+        "src/prompt_enhancer/infrastructure/providers/claude_code_hooks/adapter.py",
+        "src/prompt_enhancer/infrastructure/providers/claude_code_hooks/telemetry.py",
+        "src/prompt_enhancer/interfaces/http/otlp_ingest_routes.py"
+      ],
+      "tests": [
+        "tests/test_claude_code_hooks_adapter.py",
+        "tests/test_claude_code_hooks_receiver.py",
+        "tests/test_claude_code_telemetry.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Adapter and OTLP route unchanged against origin/main; synthetic end-to-end ingestion test exists.",
+      "gap": "Hooks do not enumerate requirement/hypothesis/verification opportunity sets and cannot make those metric denominators complete.",
+      "next": "Test installation opt-in, revocation, version changes and duplicate delivery against the declared synthetic source matrix.",
+      "gate": "B07 V12/V17",
+      "depends_on": [
+        "MA01"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA04",
+      "label": "Versioned Claude transcript compatibility reader",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/providers/claude_code_hooks/transcript_adapter.py",
+        "src/prompt_enhancer/infrastructure/providers/claude_code_hooks/transcript_reader.py",
+        "src/prompt_enhancer/infrastructure/providers/claude_code_hooks/text_source.py"
+      ],
+      "tests": [
+        "tests/test_session_provider_resolution.py",
+        "tests/test_session_model_ensemble.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Transcript adapter unchanged against origin/main.",
+      "gap": "Compatibility adapter is implemented; complete-history assumptions, truncation/rotation and actual provider acceptance remain separately gated.",
+      "next": "Preserve explicit completeness/version evidence and qualify supported source versions.",
+      "gate": "B07 V12/V17",
+      "depends_on": [
+        "MA01"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA05",
+      "label": "Minimization, pseudonymous ingest and ephemeral redaction preview",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/privacy.py",
+        "src/prompt_enhancer/ingestion.py",
+        "src/prompt_enhancer/application/analysis/redaction_preview.py",
+        "src/prompt_enhancer/application/analysis/text_contracts.py"
+      ],
+      "tests": [
+        "tests/test_ingestion_and_database.py::test_raw_source_identifiers_never_cross_sqlite_boundary",
+        "tests/test_redaction_preview.py",
+        "tests/test_local_redaction.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Ingestion/privacy unchanged against origin/main. Bounded preview store has explicit TTL, exact approval and no persistence port.",
+      "gap": "Current full pipeline/privacy and native review acceptance still needed; pseudonymous derived metrics remain sensitive.",
+      "next": "Carry canaries through ingress, persistence, API and UI/export in one current-build test.",
+      "gate": "B07/B11 V17",
+      "depends_on": [
+        "MA02",
+        "MA03",
+        "MA04"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA06",
+      "label": "Explicit trusted metric dependency graph",
+      "status": "ready",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/registry.py",
+        "src/prompt_enhancer/application/analysis/contracts.py",
+        "src/prompt_enhancer/application/analysis/deterministic.py"
+      ],
+      "tests": [
+        "tests/test_metric_engine_composition.py::test_registry_rejects_feature_dependency_cycles",
+        "tests/test_metric_engine_composition.py::test_unknown_values_survive_composed_calculation",
+        "tests/test_metric_engine_contracts.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Bounded readiness is the pure trusted-registry/component contract only: unchanged against origin/main; historical metric synthetic selections passed (ledger 306 metric-named tests). Fresh October 8 synthetic selection: 122 tests passed across metric contracts/composition, session/project aggregation and Agent contract/parameter modules; owned cleanup confirmed. This count covers the whole selection, not each node.",
+      "gap": "This green node does not qualify inference, provider coverage or release behavior.",
+      "next": "Retain duplicate/missing/cycle/tier/unknown contract tests and run them on the selected documentation commit if needed.",
+      "gate": "B07 component contract",
+      "depends_on": [
+        "MA05"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA07",
+      "label": "Canonical twenty-metric schema and operability catalog",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_evidence_readiness_v2.py",
+        "docs/metric-operability.md"
+      ],
+      "tests": [
+        "tests/test_metric_contract_v2.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Source confirms 20 contracts, 18 evidence-conditional paths, two adapter gaps, eight experimental estimate paths and zero model-authoritative measured metrics.",
+      "gap": "Contract file unchanged but operability differs from origin/main. Catalog existence is not twenty numeric metrics per session.",
+      "next": "Keep per-contract readiness and unavailable reasons visible; close the two provider adapter gaps without substituting estimates.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA06"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA08",
+      "label": "Reviewed lifecycle, task profile and requirement evidence",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_lifecycle_evidence.py",
+        "src/prompt_enhancer/application/analysis/declared_task_profiles.py",
+        "src/prompt_enhancer/application/analysis/requirement_plan_evidence.py",
+        "src/prompt_enhancer/application/analysis/requirement_action_evidence.py",
+        "src/prompt_enhancer/application/analysis/requirement_verification_evidence.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v4.py",
+        "tests/test_metric_projection_v5.py",
+        "tests/test_metric_projection_v6.py",
+        "tests/test_metric_projection_v7.py",
+        "tests/test_metric_projection_v8.py",
+        "tests/test_requirement_verification_live_e2e.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Historical source/integration evidence exists; plan/action files differ from origin/main; verification file unchanged.",
+      "gap": "Source/browser/API mocks cannot establish actual native review authority or complete provider enumeration.",
+      "next": "Use one synthetic project to exercise actual native review, stale rejection, current sealed publication and rendered values.",
+      "gate": "B05/B07 V08/V12",
+      "depends_on": [
+        "MA05",
+        "MA07"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA09",
+      "label": "Claim census and observed-check link proposals",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/claim_grounding_census.py",
+        "src/prompt_enhancer/application/analysis/claim_grounding_links.py",
+        "src/prompt_enhancer/application/analysis/claim_grounding_link_review.py",
+        "frontend/src/features/model-ensemble/ClaimGroundingLinkReviewPanel.tsx"
+      ],
+      "tests": [
+        "tests/test_metric_operability.py",
+        "frontend/src/features/model-ensemble/ClaimGroundingLinkReviewPanel.adversarial.test.tsx"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. claim_grounding_links.py absent from origin/main. Contracts explicitly set proposal_only true, measured false and metric_authority_established false.",
+      "gap": "UI/review proposal work exists but does not close the claim-grounding measured adapter.",
+      "next": "Complete exact outcome-authority design and tests before changing metric operability; preserve proposal labeling.",
+      "gate": "B07 V12/V17",
+      "depends_on": [
+        "MA08"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA10",
+      "label": "Experimental factor model adapters and bounded serial workers",
+      "status": "partial",
+      "scope": "experimental",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/text_models/model_ensemble.py",
+        "src/prompt_enhancer/application/analysis/model_ensemble.py",
+        "src/prompt_enhancer/application/analysis/probabilistic_metrics.py"
+      ],
+      "tests": [
+        "tests/test_local_model_ensemble_expert_contract.py",
+        "tests/test_chunked_model_ensemble.py",
+        "tests/test_probabilistic_metric_contracts_v2.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Actual development-model pilots in the ledger failed semantic/structural comparison gates; adapters are real implementations, not mocks. Runtime file unchanged; probabilistic contracts differ from origin/main.",
+      "gap": "NLI/rubric interpretation remains unqualified. Exact quote and valid JSON do not establish semantic correctness. Single expert cannot meet minimum-two contributor pooling.",
+      "next": "Freeze references; qualify each approved contributor on development then holdout; retain rejected/incomplete cases and actual resource cleanup evidence.",
+      "gate": "B04/B07 model interpretation gate",
+      "depends_on": [
+        "MA05",
+        "MA07"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA11",
+      "label": "Experimental probability pooling and calibration gates",
+      "status": "partial",
+      "scope": "experimental",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/probabilistic_metrics.py",
+        "src/prompt_enhancer/infrastructure/text_models/probabilistic_metrics.py"
+      ],
+      "tests": [
+        "tests/test_probabilistic_metric_contracts_v2.py",
+        "tests/test_probabilistic_metric_persistence.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Source pins not-calibrated-v1, minimum two experts and explicit unresolved-mass/retained-sample gates.",
+      "gap": "Calibration/domain validity and actual multi-expert pooling remain open; estimates must stay separate from measurements.",
+      "next": "Validate actual contributor outputs through pooling, then domain calibration and unknown/OOD withholding.",
+      "gate": "B07 model aggregation gate",
+      "depends_on": [
+        "MA10"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA12",
+      "label": "Sealed session analysis and publication",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/session_model_ensemble.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v8.py",
+        "src/prompt_enhancer/application/analysis/metric_publication_v2.py",
+        "src/prompt_enhancer/infrastructure/sqlite/model_ensemble.py"
+      ],
+      "tests": [
+        "tests/test_session_model_ensemble.py",
+        "tests/test_model_ensemble_r8_persistence.py",
+        "tests/test_model_ensemble_r8_api.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Session service and SQLite ensemble file differ from origin/main; current projection_v8 unchanged.",
+      "gap": "One current source-to-model-to-store-to-API-to-radar acceptance is open. Large service and repository mix many evidence versions and authorities.",
+      "next": "Qualify current end-to-end publication; only then extract cohesive orchestration/review/persistence pieces behind unchanged contracts.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08",
+        "MA11"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA13",
+      "label": "Durable live watch, attempts, retry/backoff and last valid head",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/model_ensemble_watch.py",
+        "src/prompt_enhancer/infrastructure/sqlite/model_ensemble_watch.py",
+        "src/prompt_enhancer/interfaces/http/model_ensemble_watch_routes.py"
+      ],
+      "tests": [
+        "tests/test_session_model_ensemble.py",
+        "tests/test_model_ensemble_persistence.py",
+        "tests/test_analysis_job_cancel_publication_races.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. State/lease/attempt contracts and bounded failure policy inspected; watch source differs from origin/main.",
+      "gap": "Real runtime failure/recovery, cancellation and restart plus last-valid-head display need exact current native/model acceptance.",
+      "next": "Exercise one successful refresh, provider/runtime failure, explicit retry, cancel and process cleanup without touching personal sessions.",
+      "gate": "B02/B07 V07/V13",
+      "depends_on": [
+        "MA12"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA14",
+      "label": "Engineering V1 session/project ratio aggregation",
+      "status": "ready",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/session_quality_aggregation.py",
+        "src/prompt_enhancer/application/analysis/project_quality_aggregation.py"
+      ],
+      "tests": [
+        "tests/test_session_quality_aggregation.py::test_known_metrics_use_ratio_of_sums_and_summed_coverage",
+        "tests/test_session_quality_aggregation.py::test_every_compatibility_dimension_blocks_mixed_provenance_without_a_winner",
+        "tests/test_project_quality_aggregation.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Green is bounded pure read-only aggregation readiness only: both files unchanged against origin/main; historical ledger covers synthetic storage/API aggregation and one packaged dashboard path. Input is SessionAnalysisRunRepository / STANDARD_ENGINEERING_V1, not canonical model-ensemble sealed receipts. Green does not certify all-twenty ensemble pooling. Fresh October 8 synthetic selection: 122 tests passed across metric contracts/composition, session/project aggregation and Agent contract/parameter modules; owned cleanup confirmed. This count covers the whole selection, not each node.",
+      "gap": "No claim of universal cross-provider/model comparability or all-state rendered acceptance.",
+      "next": "Keep ratio-of-sums within exact provenance cohorts; add current measured/Pending UI cases to narrow packaged coverage.",
+      "gate": "B07 component aggregation / V12",
+      "depends_on": [
+        "MA06"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA15",
+      "label": "Metric storage, coverage/provenance and read-only API",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/sqlite/metric_coverage.py",
+        "src/prompt_enhancer/infrastructure/sqlite/session_analysis_runs.py",
+        "src/prompt_enhancer/interfaces/http/metric_coverage_routes.py",
+        "src/prompt_enhancer/interfaces/mcp/server.py"
+      ],
+      "tests": [
+        "tests/test_metric_coverage_sqlite.py",
+        "tests/test_metric_coverage_api.py",
+        "tests/test_session_metric_pack_provenance.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Ledger packaged synthetic analytics pass b0e075 carried one fictional source through API/browser: Unknown tokens, observed 0/eligible 1/coverage 0, verification count 0 without completion-prose success.",
+      "gap": "One synthetic source is not all metrics/states, native or live-provider acceptance.",
+      "next": "Extend exact hand-computed fixtures across state and provenance matrix; retain read-only allowlisted exports.",
+      "gate": "B07 V12/V17",
+      "depends_on": [
+        "MA12",
+        "MA14"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA16",
+      "label": "Live radar, metric workspace and session selection UI",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "frontend/src/features/model-ensemble/ModelEnsembleOverlay.tsx",
+        "frontend/src/features/model-ensemble/ModelEnsembleRadar.tsx",
+        "frontend/src/features/model-ensemble/MetricWorkspace.tsx",
+        "frontend/src/features/session-radar/SessionRadarCard.tsx",
+        "frontend/src/features/live-window/LiveMiniWindow.tsx"
+      ],
+      "tests": [
+        "frontend/src/features/model-ensemble/ModelEnsembleOverlay.test.tsx",
+        "frontend/src/features/model-ensemble/ModelEnsembleRadar.test.ts",
+        "frontend/src/features/session-radar/SessionRadarCard.test.tsx",
+        "frontend/src/features/live-window/LiveMiniWindow.test.tsx"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Radar/overlay/SessionRadar sources differ from origin/main; synthetic UI regressions and historical packaged slice exist.",
+      "gap": "Two different live surfaces (legacy timeline mini-window and canonical ensemble overlay) need clear navigation/naming. Complete runtime-to-radar and native viewport acceptance open.",
+      "next": "Test selection/change, stale head, missing axes, retry, scroll/viewport and reconnect with the actual canonical service.",
+      "gate": "B07/B10 V12/V13",
+      "depends_on": [
+        "MA13",
+        "MA15"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA17",
+      "label": "Calibration review, saved ratings and reports",
+      "status": "partial",
+      "scope": "experimental",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/calibration_cases.py",
+        "src/prompt_enhancer/application/analysis/calibration_ratings.py",
+        "src/prompt_enhancer/application/estimators/calibration_reporting.py",
+        "frontend/src/features/calibration/CalibrationPage.tsx"
+      ],
+      "tests": [
+        "tests/test_calibration_cases.py",
+        "tests/test_calibration_ratings.py",
+        "tests/test_calibration_report_persistence.py",
+        "tests/test_packaged_calibration_receipt.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Historical packaged synthetic passes d9ff5a/73227d saved three ratings including cannot-judge across reload/export. Ratings source unchanged against origin/main. Later proposal (2026-10-09): ADR 0022 adds reviewed inference-provider selection on main 6fa1100; see the journal for synthetic evidence. This does not rebind the frozen October 8 source observation or qualify an external model.",
+      "gap": "Saved ratings/UI do not establish model calibration; full module batch, expiry and real-model quality acceptance open.",
+      "next": "Add current review expiry/restart cases and a separately governed calibration dataset/quality gate. Review ADR 0022 and its gateway validation before accepting the inference boundary extension.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA15"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA18",
+      "label": "Prompt check, optional rewrite and Claude submit hook",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/prompt_check.py",
+        "src/prompt_enhancer/interfaces/hooks/prompt_check_hook.py",
+        "src/prompt_enhancer/interfaces/http/prompt_check_routes.py",
+        "frontend/src/features/prompt-check/PromptCheckPage.tsx"
+      ],
+      "tests": [
+        "tests/test_prompt_check.py",
+        "frontend/src/features/prompt-check/PromptCheckPage.test.tsx"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Core/hook unchanged against origin/main. Six deterministic cue metrics plus optional labeled local-model commentary; source comments/tests prohibit prompt/commentary persistence. Deterministic preflight works without a loaded model; optional commentary/rewrite uses the active A08 runtime. Later proposal (2026-10-09): ADR 0022 adds reviewed inference-provider selection on main 6fa1100; see the journal for synthetic evidence. This does not rebind the frozen October 8 source observation or qualify an external model.",
+      "gap": "Current full model/hook installed experience and workflow-backed enhancement integration remain unqualified; deterministic cues are limited language/task heuristics.",
+      "next": "Validate user draft retention, explicit apply, local-model unavailable fallback and opt-in hook failure behavior; route future workflow enhancement through same reviewed boundary. Review ADR 0022 and its gateway validation before accepting the inference boundary extension.",
+      "gate": "B03/B07 V12",
+      "depends_on": [
+        "MA06"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA19",
+      "label": "Synthetic demonstration transport and provider fixtures",
+      "status": "mock",
+      "scope": "experimental",
+      "sources": [
+        "src/prompt_enhancer/adapters/synthetic.py",
+        "frontend/src/shared/api/syntheticTransport.ts",
+        "frontend/src/shared/platform/runtimeMode.ts"
+      ],
+      "tests": [
+        "frontend/src/shared/api/syntheticTransport.test.ts",
+        "frontend/src/shared/platform/runtimeMode.test.ts"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Explicit synthetic_demo/local_real discriminated transport composition inspected.",
+      "gap": "Demo numbers and fake transports cannot certify live metrics; this grey node is intentional test/demo infrastructure.",
+      "next": "Keep preview badge and reject transport/runtime mismatch; never silently fallback from real service to synthetic data.",
+      "gate": "B01/B07 V17",
+      "depends_on": [],
+      "domain": "metrics"
+    },
+    {
+      "id": "MA20",
+      "label": "Historical V1 publication compatibility preview",
+      "status": "partial",
+      "scope": "experimental",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/session_metric_publication_service.py"
+      ],
+      "tests": [
+        "tests/test_metric_publication_api.py",
+        "tests/test_metric_publication_v2.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Service explicitly documents read-only preview, not canonical live head, with withholding tags.",
+      "gap": "Architecture/UI must not treat this preview as current all-twenty publication or a fallback success.",
+      "next": "Retain compatibility identity and visible limits; keep it out of the canonical watch head path.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA15"
+      ],
+      "domain": "metrics"
+    },
+    {
+      "id": "MC01",
+      "label": "prompt.task_definition_coverage",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v2.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v2.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Focus-owned fixed-factor rubric.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA06"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC02",
+      "label": "prompt.problem_evidence_quality",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v2.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v2.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Focus-owned diagnostic-task rubric.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA06"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC03",
+      "label": "prompt.context_sufficiency",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v2.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v2.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Focus-owned fixed-factor context rubric.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA06"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC04",
+      "label": "prompt.constraint_precision",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v5.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v5.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Reviewed declared task-profile slots.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC05",
+      "label": "prompt.acceptance_testability",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v5.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v5.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Reviewed outcomes and distinct checkable active clauses.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC06",
+      "label": "prompt.deliverable_contract",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v5.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v5.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Reviewed deliverable slots.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC07",
+      "label": "collaboration.ambiguity_resolution",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v4.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v4.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Confirmed complete lifecycle enumeration.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC08",
+      "label": "collaboration.clarification_yield",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v4.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v4.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Confirmed complete lifecycle enumeration.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC09",
+      "label": "collaboration.exploration_conversion",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v4.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v4.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Confirmed complete lifecycle enumeration.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC10",
+      "label": "collaboration.scope_change_discipline",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v4.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v4.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Confirmed complete lifecycle enumeration.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC11",
+      "label": "collaboration.rework_candidate_rate",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v4.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v4.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Confirmed rework lifecycle, lower-is-better numerator.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC12",
+      "label": "logic.decomposition_coverage",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v6.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v6.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Native-reviewed clause classification and plan links.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC13",
+      "label": "logic.hypothesis_test_linkage",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/provider_evidence.py"
+      ],
+      "tests": [
+        "tests/test_metric_operability.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Missing typed hypothesis opportunity/link/outcome adapter.",
+      "gap": "Metric contract and withholding exist; the required measured adapter is absent. Proposals/model output are not outcome authority.",
+      "next": "Implement a versioned authoritative opportunity/link/outcome adapter with negative and provenance tests before enabling numeric publication.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07"
+      ],
+      "status_label": "MEASURED ADAPTER ABSENT",
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC14",
+      "label": "logic.decision_rationale_coverage",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/semantic_units.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v2.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Documented decision semantic units.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA06"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC15",
+      "label": "logic.requirement_action_traceability",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v7.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v7.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Native-reviewed requirement-to-action graph.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC16",
+      "label": "logic.open_loop_closure",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v3.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v3.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Explicit plan-to-superseding-action link.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC17",
+      "label": "outcome.agent_claim_grounding",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/provider_evidence.py"
+      ],
+      "tests": [
+        "tests/test_metric_operability.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Missing measured claim opportunity/link/outcome adapter.",
+      "gap": "Metric contract and withholding exist; the required measured adapter is absent. Proposals/model output are not outcome authority.",
+      "next": "Implement a versioned authoritative opportunity/link/outcome adapter with negative and provenance tests before enabling numeric publication.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA09"
+      ],
+      "status_label": "MEASURED ADAPTER ABSENT",
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC18",
+      "label": "outcome.verification_strategy_adequacy",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/semantic_units.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v2.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Documented verification-strategy semantic units.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA06"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC19",
+      "label": "outcome.first_pass_verification",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/objective_metric_projection.py"
+      ],
+      "tests": [
+        "tests/test_objective_metric_projection.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Reviewed task and task-scoped verification receipt.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "MC20",
+      "label": "outcome.verified_requirement_coverage",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/analysis/metric_contract_v2.py",
+        "src/prompt_enhancer/application/analysis/metric_operability.py",
+        "src/prompt_enhancer/application/analysis/metric_projection_v8.py"
+      ],
+      "tests": [
+        "tests/test_metric_projection_v8.py",
+        "tests/test_metric_operability.py"
+      ],
+      "evidence": "Read-only source/test inspection 2026-10-08. No tests or native/provider/model execution rerun by this audit. Historical ledger evidence must be rebound to a current commit/package. Canonical operability-v6 contract: Reviewed compatible Codex source, plan, observed check and fresh seal.",
+      "gap": "Measured implementation exists conditionally. Exact reviewed evidence, complete denominator and current storage/API/rendered/native acceptance remain required; missing evidence is not zero.",
+      "next": "Exercise hand-computable known/zero/unknown/pending/not-applicable cases end to end, including required review and provenance.",
+      "gate": "B07 V12",
+      "depends_on": [
+        "MA07",
+        "MA08"
+      ],
+      "domain": "metric-contracts"
+    },
+    {
+      "id": "A01",
+      "label": "Agent wire contracts",
+      "status": "ready",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/local_agent_contracts.py",
+        "src/prompt_enhancer/application/local_agent_limits.py",
+        "src/prompt_enhancer/application/local_agent_receipts.py"
+      ],
+      "tests": [
+        "tests/test_local_agent_contracts.py",
+        "tests/test_agent_parameters_contract.py"
+      ],
+      "evidence": "Bounded source contract extraction: ledger September 27 records 398 distinct passing cases, identical 43 AST definitions and 17 public schemas. Inspected October 8; this is historical source evidence, not installed-app acceptance. Fresh October 8 synthetic selection: 122 tests passed across metric contracts/composition, session/project aggregation and Agent contract/parameter modules; owned cleanup confirmed. This count covers the whole selection, not each node.",
+      "gap": "Extracted contract module is absent from origin/main; retain identity and import-side-effect guarantees during integration.",
+      "next": "Admit this reviewed dependency-complete extraction through owner-reviewed PR and run its focused regression selection at the candidate commit.",
+      "gate": "B00; supports B03/B05",
+      "depends_on": [],
+      "domain": "agent"
+    },
+    {
+      "id": "A02",
+      "label": "Persistent Agent projects and chat catalog",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/agent_catalog.py",
+        "src/prompt_enhancer/infrastructure/sqlite/agent_catalog.py",
+        "frontend/src/features/agent/AgentCatalogRail.tsx"
+      ],
+      "tests": [
+        "tests/test_agent_catalog.py",
+        "frontend/src/features/agent/AgentCatalogRail.test.tsx"
+      ],
+      "evidence": "Inspected source October 8: project/chat creation, revision checks, search, pin/archive/restore/delete and repository Protocol exist; tests present. Historical B03 synthetic results remain bounded.",
+      "gap": "Actual installed restart and whole lifecycle acceptance are open. Catalog metadata persistence does not imply opted-in message retention.",
+      "next": "Exercise all catalog actions and workspace-preserving deletion after native restart on the frozen candidate.",
+      "gate": "B03/V02/V04/V07",
+      "depends_on": [
+        "A01"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A03",
+      "label": "Conversation retention and restart recovery",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/agent_catalog.py",
+        "src/prompt_enhancer/application/local_agent.py",
+        "src/prompt_enhancer/infrastructure/sqlite/agent_catalog.py"
+      ],
+      "tests": [
+        "tests/test_agent_history.py",
+        "frontend/src/features/agent/AgentPage.resumeOwnership.test.tsx"
+      ],
+      "evidence": "Append-only event journal and deterministic projection inspected October 8. Historical packaged synthetic probe retained complete and stopped replies across forced server restart.",
+      "gap": "History is explicit local-history opt-in; recovered authority is off. Graceful native restart and real inference interruption remain unqualified.",
+      "next": "Prove graceful close/reopen, interrupted truth, storage failure and read-only recovery without copying approval authority.",
+      "gate": "B03/V07",
+      "depends_on": [
+        "A02"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A04",
+      "label": "Saved-message search, fork and export",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/agent_catalog.py",
+        "frontend/src/features/agent/AgentMessageSearchDialog.tsx",
+        "frontend/src/features/agent/AgentCatalogRail.tsx"
+      ],
+      "tests": [
+        "tests/test_agent_message_search.py",
+        "tests/test_agent_message_search_storage.py",
+        "tests/test_agent_session_forking.py"
+      ],
+      "evidence": "Source exposes snapshot-bound paging, settled-history fork, explicit export. Tests cover atomic cross-repository fork and unsupported metadata-only source.",
+      "gap": "Feature-complete native journey and export review remain open; external controller manifest intentionally excludes saved-message search.",
+      "next": "Validate selected-data export, fork lineage, duplicate request handling and search across restart.",
+      "gate": "B03/V04/V17",
+      "depends_on": [
+        "A02",
+        "A03"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A05",
+      "label": "Chat composer, drafts and runtime picker",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "frontend/src/features/agent/AgentPage.tsx",
+        "frontend/src/features/agent/AgentRuntimeControl.tsx",
+        "frontend/src/features/agent/AgentGenerationSettings.tsx"
+      ],
+      "tests": [
+        "frontend/src/features/agent/AgentPage.test.tsx",
+        "frontend/src/features/agent/AgentPage.closeDraft.test.tsx",
+        "frontend/src/features/agent/AgentRuntimeControl.test.tsx"
+      ],
+      "evidence": "Source allows model-free chat/drafting, separates runtime selection, capability states and draft retention; inspected October 8. Later proposal (2026-10-09): ADR 0022 adds reviewed inference-provider selection on main 6fa1100; see the journal for synthetic evidence. This does not rebind the frozen October 8 source observation or qualify an external model.",
+      "gap": "AgentPage remains a large stateful orchestration component; supported native scaling and all keyboard/focus/viewport paths not accepted. Dirty tree differs substantially from main.",
+      "next": "Finish bounded native composer/picker acceptance; extract controllers only when changing a demonstrated defect. Review ADR 0022 and its gateway validation before accepting the inference boundary extension.",
+      "gate": "B03/B10/V02/V13",
+      "depends_on": [
+        "A02",
+        "A08",
+        "A09"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A06",
+      "label": "Conversation streaming, Stop and activity",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/local_agent.py",
+        "frontend/src/features/agent/AgentConversationTimeline.tsx",
+        "frontend/src/features/agent/AgentTurnDetails.tsx"
+      ],
+      "tests": [
+        "tests/test_local_agent_completion.py",
+        "tests/test_local_agent_turn_details.py",
+        "tests/test_local_agent_usage_transport.py",
+        "frontend/src/features/agent/AgentConversationTimeline.test.tsx"
+      ],
+      "evidence": "Monotonic event sequence, stream phase and terminal receipts exist. Historical packaged fixture proves streaming/Stop/recovery without real inference. Later proposal (2026-10-09): ADR 0022 adds reviewed inference-provider selection on main 6fa1100; see the journal for synthetic evidence. This does not rebind the frozen October 8 source observation or qualify an external model.",
+      "gap": "Exact qualified model streaming, crash and cancellation cleanup remain unaccepted; model-provided reasoning is conditional and cannot be manufactured.",
+      "next": "Run response/Stop/crash/restart with the approved CPU and NVIDIA profiles, retaining truthful finish reasons. Review ADR 0022 and its gateway validation before accepting the inference boundary extension.",
+      "gate": "B03/B04/V05/V06/V07",
+      "depends_on": [
+        "A01",
+        "A03",
+        "A08"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A07",
+      "label": "Safe Markdown, code and workspace links",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "frontend/src/features/agent/AgentMessageContent.tsx",
+        "frontend/src/features/agent/AgentCopyButton.tsx"
+      ],
+      "tests": [
+        "frontend/src/features/agent/AgentMessageContent.test.tsx",
+        "frontend/src/features/agent/AgentCopyButton.test.tsx"
+      ],
+      "evidence": "October 8 inspection confirms react-markdown/GFM, protocol allowlist, remote image suppression and bounded relative workspace-link validation.",
+      "gap": "This audit did not execute renderer tests; complete browser/native content accessibility remains open.",
+      "next": "Include hostile HTML/link/media and copy/focus fixtures in the frozen UI acceptance run.",
+      "gate": "B05/B10/V09/V17",
+      "depends_on": [
+        "A06"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A08",
+      "label": "Owned GGUF runtime and model switching",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/local_models.py",
+        "src/prompt_enhancer/interfaces/http/local_model_routes.py",
+        "src/prompt_enhancer/application/owned_process.py"
+      ],
+      "tests": [
+        "tests/test_local_models.py"
+      ],
+      "evidence": "One-runtime coordinator, CPU/GPU/split modes, revision-bound switch, health/capability probing and blocked unknown cleanup are implemented. Synthetic and subprocess-boundary tests exist. Later proposal (2026-10-09): ADR 0022 adds reviewed inference-provider selection on main 6fa1100; see the journal for synthetic evidence. This does not rebind the frozen October 8 source observation or qualify an external model.",
+      "gap": "Real CPU/NVIDIA model profiles, measured VRAM release and installed-runtime acceptance remain open. Generic compatibility must not imply any HF model works.",
+      "next": "Freeze exact profiles and qualify inference, switch during generation, crash and owned unload on supported hardware. Review ADR 0022 and its gateway validation before accepting the inference boundary extension.",
+      "gate": "B04/V05/V06/V07",
+      "depends_on": [],
+      "domain": "agent"
+    },
+    {
+      "id": "A09",
+      "label": "Exact chat context evidence",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/agent_session_context.py",
+        "src/prompt_enhancer/application/local_models.py",
+        "frontend/src/features/agent/AgentRuntimeControl.tsx"
+      ],
+      "tests": [
+        "tests/test_local_models.py::test_exact_chat_context_preflight_refuses_before_inference",
+        "tests/test_local_models.py::test_missing_or_malformed_exact_counter_remains_unknown",
+        "frontend/src/shared/api/agentSessionContextContract.test.ts"
+      ],
+      "evidence": "Context binds exact turn/model/request preflight. Recovered chats and unsupported counters explicitly remain unmeasured; inspected October 8. Later proposal (2026-10-09): ADR 0022 adds reviewed inference-provider selection on main 6fa1100; see the journal for synthetic evidence. This does not rebind the frozen October 8 source observation or qualify an external model.",
+      "gap": "Actual runtime template/token count behavior on the qualified profiles is not established by contracts alone.",
+      "next": "Verify context number and capacity against exact served runtime, then change model and restart to confirm invalidation. Review ADR 0022 and its gateway validation before accepting the inference boundary extension.",
+      "gate": "B04/V05/V06",
+      "depends_on": [
+        "A08"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A10",
+      "label": "Model catalog, download and placement advice",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/local_models.py",
+        "src/prompt_enhancer/interfaces/http/local_model_routes.py"
+      ],
+      "tests": [
+        "tests/test_local_models.py::test_download_verifies_the_pinned_artifact_and_records_its_provenance",
+        "tests/test_local_models.py::test_placement_admission_fails_closed_without_accelerator_evidence",
+        "tests/test_local_models.py::test_read_only_model_discovery_never_spawns_a_runtime"
+      ],
+      "evidence": "Verified provenance, size/hash download, hardware observation, compatibility and placement contracts exist. Public-only acquisition explicitly avoids cached HF credentials.",
+      "gap": "Automatic task-specific qualified-model recommendations across eight families are absent; existing hardware fit is not benchmarked best-model evidence.",
+      "next": "Qualify the bounded catalog and show estimated versus measured memory and evidence-backed task suitability.",
+      "gate": "B04; W00/W05",
+      "depends_on": [
+        "A08"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A11",
+      "label": "Native workspace folder selection",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/workspace_folder_picker.py",
+        "frontend/src/features/agent/AgentPage.tsx",
+        "src/prompt_enhancer/interfaces/http/local_agent_routes.py"
+      ],
+      "tests": [
+        "tests/test_workspace_folder_picker.py",
+        "frontend/src/features/agent/AgentPage.test.tsx"
+      ],
+      "evidence": "Capability/select/cancel/busy/unavailable states and model-independent creation flow exist.",
+      "gap": "Supported native select/cancel acceptance remains open; browser-only composition cannot imply native chooser availability.",
+      "next": "Verify chooser select/cancel before any model loads in the installed app.",
+      "gate": "B03/V03",
+      "depends_on": [
+        "A02"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A12",
+      "label": "Workspace discovery, reads and search",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/local_agent_workspace.py",
+        "src/prompt_enhancer/application/local_agent_discovery.py",
+        "frontend/src/features/agent/AgentWorkspaceDiscoveryPanel.tsx"
+      ],
+      "tests": [
+        "tests/test_workspace_read_boundaries.py",
+        "tests/test_workspace_discovery.py",
+        "tests/test_workspace_stat_semantics.py"
+      ],
+      "evidence": "Workspace tools isolated from session orchestration; bounded list/read/search/discovery and path checks have source tests.",
+      "gap": "Broader adversarial and installed native acceptance remains open; maps are bounded, not proof every workspace file was understood.",
+      "next": "Validate traversal/reparse/race refusal and supported large/missing-file fallback with synthetic workspaces.",
+      "gate": "B05/V08/V17",
+      "depends_on": [
+        "A11"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A13",
+      "label": "Native one-shot approval authority",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/interfaces/http/user_presence.py",
+        "src/prompt_enhancer/application/local_agent.py",
+        "frontend/src/features/agent/AgentReviewDrawer.tsx"
+      ],
+      "tests": [
+        "tests/test_user_presence.py",
+        "tests/test_agent_write_proposals.py"
+      ],
+      "evidence": "Keyed exact-request fingerprint, monotonic expiry and separate native capability exist; browser same-origin is only CSRF. Tests exercise refusal paths. Later proposal (2026-10-09): ADR 0022 adds reviewed inference-provider selection on main 6fa1100; see the journal for synthetic evidence. This does not rebind the frozen October 8 source observation or qualify an external model.",
+      "gap": "Actual native confirmation authorizing exactly the reviewed effect remains a release acceptance requirement.",
+      "next": "Prove approve/reject/cancel/stale review/project-switch paths through the actual installed native host. Review ADR 0022 and its gateway validation before accepting the inference boundary extension.",
+      "gate": "B05/V08/V17",
+      "depends_on": [
+        "A01",
+        "A11"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A14",
+      "label": "Diffs, writes, change sets and lifecycle",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/local_agent_transactions.py",
+        "src/prompt_enhancer/application/local_agent_file_lifecycle.py",
+        "src/prompt_enhancer/application/local_agent_changes.py",
+        "frontend/src/features/agent/AgentChangeSetPanel.tsx"
+      ],
+      "tests": [
+        "tests/test_workspace_write_boundaries.py",
+        "tests/test_workspace_transactions.py",
+        "tests/test_workspace_lifecycle.py",
+        "tests/test_agent_change_set.py"
+      ],
+      "evidence": "Create/edit/move/trash, previews and revision-bound transactions exist; historical packaged fixture proved refusal, discard and stale review with unchanged files.",
+      "gap": "Successful native-approved end-to-end write and recovery are still unaccepted; file lifecycle must not inherit chat deletion authority.",
+      "next": "Validate exact approve/reject writes, stale snapshots, multi-file partial failure and artifact reconciliation.",
+      "gate": "B05/V08/V09",
+      "depends_on": [
+        "A12",
+        "A13"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A15",
+      "label": "Owned command execution",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/local_command_process.py",
+        "src/prompt_enhancer/application/local_agent_workspace.py",
+        "src/prompt_enhancer/application/owned_process.py"
+      ],
+      "tests": [
+        "tests/test_agent_command_control.py",
+        "tests/test_agent_command_process.py",
+        "tests/test_agent_command_windows.py",
+        "tests/test_agent_command_api.py"
+      ],
+      "evidence": "Bounded owned process, command control and Windows policy tests exist; native authority and cleanup truth integrate with Agent state. Later proposal (2026-10-09): ADR 0022 adds reviewed inference-provider selection on main 6fa1100; see the journal for synthetic evidence. This does not rebind the frozen October 8 source observation or qualify an external model.",
+      "gap": "Signed native acceptance, repeated lifecycle cycles and all cleanup failure UX not qualified.",
+      "next": "Verify approved synthetic commands, timeout/cancel, descendant cleanup and unresolved cleanup blocking further work. Review ADR 0022 and its gateway validation before accepting the inference boundary extension.",
+      "gate": "B02/B05/V08/V17",
+      "depends_on": [
+        "A13"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A16",
+      "label": "Governed web fetch capability",
+      "status": "partial",
+      "scope": "experimental",
+      "sources": [
+        "src/prompt_enhancer/application/governed_web_fetch.py",
+        "src/prompt_enhancer/application/local_agent_workspace.py",
+        "frontend/src/features/agent/AgentPage.tsx"
+      ],
+      "tests": [
+        "tests/test_governed_web_fetch.py",
+        "tests/test_governed_web_fetch_policy.py"
+      ],
+      "evidence": "Governed-fetch boundary and explicit capability states exist. UI reports unavailable when no governed fetcher is installed.",
+      "gap": "Capability depends on composition; absence must not become an enabled placeholder. No native release fetch qualification claimed.",
+      "next": "Keep unavailable compositions disabled and qualify only the explicitly supported protected fetch profile.",
+      "gate": "B01/B05/V17",
+      "depends_on": [
+        "A13"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A17",
+      "label": "Verified artifact cards and lineage",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/agent_artifacts.py",
+        "src/prompt_enhancer/infrastructure/sqlite/agent_artifacts.py",
+        "frontend/src/features/agent/AgentArtifactsPanel.tsx",
+        "frontend/src/features/agent/AgentArtifactCaptureDialog.tsx"
+      ],
+      "tests": [
+        "tests/test_agent_artifacts.py",
+        "tests/test_agent_directory_move_artifacts.py",
+        "frontend/src/features/agent/AgentArtifactCaptureDialog.test.tsx"
+      ],
+      "evidence": "Artifacts synchronize verified writes or explicit capture of validated existing files, with versions, export lineage and directory-move reconciliation.",
+      "gap": "Native successful write-to-artifact journey and final package preview acceptance remain open; assistant prose alone is not artifact evidence.",
+      "next": "Verify real approved write/capture, renamed/missing/corrupt files and no false card after unsuccessful proposal.",
+      "gate": "B05/V09",
+      "depends_on": [
+        "A14"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A18",
+      "label": "Bounded document and PDF handling",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/agent_document_previews.py",
+        "frontend/src/features/agent/AgentDocumentPreview.tsx",
+        "frontend/src/features/agent/AgentPdfPreviewUnavailable.tsx",
+        "frontend/src/build/betaPdfPolicy.ts"
+      ],
+      "tests": [
+        "tests/test_agent_document_previews.py",
+        "frontend/src/features/agent/AgentPdfPreviewUnavailable.test.tsx"
+      ],
+      "evidence": "Bounded DOCX/PPTX/XLSX/ODT text projections and archive/XML constraints exist. Beta PDF substitution reports unavailable; parser/worker exclusion is deliberate.",
+      "gap": "Inline PDF viewer is intentionally omitted from beta until dependency provenance closes. External/download fallback is not inline rendering. Fallback module is absent on main.",
+      "next": "Verify beta archive excludes the PDF worker and safe user-initiated file fallback works.",
+      "gate": "B05/B08/V09/V18",
+      "depends_on": [
+        "A17"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A19",
+      "label": "Image, WAV and document attachments",
+      "status": "partial",
+      "scope": "experimental",
+      "sources": [
+        "src/prompt_enhancer/application/agent_attachments.py",
+        "src/prompt_enhancer/application/agent_attachment_documents.py",
+        "frontend/src/features/agent/AgentComposerAttachments.tsx",
+        "frontend/src/features/agent/pcmWavRecorder.ts"
+      ],
+      "tests": [
+        "tests/test_agent_attachments.py",
+        "frontend/src/features/agent/AgentComposerAttachments.test.tsx",
+        "frontend/src/features/agent/pcmWavRecorder.test.ts"
+      ],
+      "evidence": "Structural PNG/JPEG/WAV validation, model capability probes, bounded document projection, staged lifecycle and fork remapping exist.",
+      "gap": "Model input and recording remain separately capability-gated; no universal multimodal support or qualified audio/vision profile follows from an enabled file picker.",
+      "next": "Keep unsupported modes hidden; qualify exact approved vision/audio model inputs and measure resource cleanup.",
+      "gate": "B04/B05; supports W03",
+      "depends_on": [
+        "A08",
+        "A03"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A20",
+      "label": "Optional prompt check beside composer",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/prompt_check.py",
+        "frontend/src/features/agent/AgentPromptCheck.tsx"
+      ],
+      "tests": [
+        "tests/test_prompt_check.py",
+        "frontend/src/features/agent/AgentPromptCheck.test.tsx"
+      ],
+      "evidence": "Bounded text-only prior conversation, deterministic cues, visibly model-derived commentary and explicit Use suggested prompt action exist. Deterministic preflight works without a loaded model; optional commentary/rewrite uses the active A08 runtime.",
+      "gap": "This is a fixed preflight, not the approved reusable multimodel workflow hook. Application-to-infrastructure construction is a documented layering exception.",
+      "next": "Qualify current optional rewrite flow, then reuse W engine for WP01-WP08 without silent replace/send.",
+      "gate": "B01/B03; W05/WP01-WP08",
+      "depends_on": [
+        "A05"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A21",
+      "label": "External Agent controller and CLI",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/agent_orchestration.py",
+        "src/prompt_enhancer/application/agent_controller_client.py",
+        "src/prompt_enhancer/interfaces/agent_controller_cli.py",
+        "src/prompt_enhancer/infrastructure/agent_controller_http.py"
+      ],
+      "tests": [
+        "tests/test_agent_orchestration.py",
+        "tests/test_agent_controller_cli.py",
+        "tests/test_agent_controller_http.py",
+        "tests/test_agent_controller_ownership.py"
+      ],
+      "evidence": "Provider-neutral loopback manifest, monotonic cursor, explicit request admission and controller ownership exist; message submission is explicitly not idempotent.",
+      "gap": "CLI is Agent control, not workflow headless runner. Remote clients may not approve native effects; ambiguous message submission must never be blindly retried.",
+      "next": "Validate exact installed controller endpoint and cursor recovery, retaining consent and non-idempotent submission semantics.",
+      "gate": "B03/B05/V17",
+      "depends_on": [
+        "A01",
+        "A06",
+        "A13"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A22",
+      "label": "Agent MCP server surface",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/interfaces/agent_mcp.py",
+        "src/prompt_enhancer/application/agent_mcp_surface.py",
+        "src/prompt_enhancer/application/agent_mcp_connections.py"
+      ],
+      "tests": [
+        "tests/test_agent_mcp.py",
+        "tests/test_agent_mcp_integration.py",
+        "tests/test_agent_mcp_http.py",
+        "tests/test_agent_mcp_connections.py"
+      ],
+      "evidence": "Agent-specific MCP surface and connection contracts exist; historical owned loopback integration covers authentication, revocation and synthetic transactions.",
+      "gap": "This export/control surface must remain distinct from registry discovery and hosting third-party MCP servers. Native and signed-package acceptance still open.",
+      "next": "Qualify supported clients and immediate revocation without exposing raw transcripts or native approval authority.",
+      "gate": "B06/V10/V17",
+      "depends_on": [
+        "A21"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A23",
+      "label": "MCP registry search and cache",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/mcp_registry_catalog.py",
+        "src/prompt_enhancer/infrastructure/mcp_registry.py",
+        "frontend/src/features/agent/AgentMcpStorePanel.tsx"
+      ],
+      "tests": [
+        "tests/test_mcp_registry_catalog.py",
+        "tests/test_packaged_mcp_store_receipt.py",
+        "frontend/src/features/agent/AgentMcpStorePanel.test.tsx"
+      ],
+      "evidence": "Version/provenance/icon and exact-cache search/review contracts exist. Current ledger B06 records a packaged restart/outage development journey passing; older canceled run remains historical.",
+      "gap": "Needs exact signed RC replay; discovery is not trust or universal compatibility. Live exact review can legitimately fail during outage.",
+      "next": "Repeat cached/uncached query and live-review outage behavior on frozen package.",
+      "gate": "B06/V11",
+      "depends_on": [],
+      "domain": "agent"
+    },
+    {
+      "id": "A24",
+      "label": "MCP reviewed setup and local package installation",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/mcp_server_management.py",
+        "src/prompt_enhancer/application/mcp_local_packages.py",
+        "src/prompt_enhancer/infrastructure/mcp_package_installer.py",
+        "src/prompt_enhancer/infrastructure/sqlite/mcp_server_management.py"
+      ],
+      "tests": [
+        "tests/test_mcp_server_management.py",
+        "tests/test_mcp_package_installer.py",
+        "tests/test_mcp_package_installer_runtime_dependency.py"
+      ],
+      "evidence": "Review/configuration persistence, local package provenance and runtime dependency checks exist with synthetic tests.",
+      "gap": "Checksum-pinned supported package actual native install/connect/remove and clean-machine prerequisites remain unaccepted.",
+      "next": "Qualify one local package and one loopback remote profile with owner-reviewed bindings.",
+      "gate": "B06/V10/V17",
+      "depends_on": [
+        "A13",
+        "A23"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A25",
+      "label": "MCP host and one-shot tool invocation",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/mcp_managed_runtime.py",
+        "src/prompt_enhancer/application/mcp_managed_host.py",
+        "src/prompt_enhancer/infrastructure/mcp_managed_host_supervisor.py",
+        "src/prompt_enhancer/infrastructure/mcp_guarded_host.py",
+        "frontend/src/features/agent/AgentMcpManagedRuntimePanel.tsx"
+      ],
+      "tests": [
+        "tests/test_mcp_managed_runtime.py",
+        "tests/test_mcp_managed_host_contracts.py",
+        "tests/test_mcp_guarded_host.py"
+      ],
+      "evidence": "App-run host ownership, project tool snapshot, prepare/native approve/revision recheck, bounded result and content-free durable receipt exist.",
+      "gap": "Curated native host lifecycle/restart/removal acceptance is open; durable configuration cannot silently restore authority.",
+      "next": "Run setup/use/revoke/remove, failed setup retry and restart with no orphan hosts or remembered approval.",
+      "gate": "B06/V10",
+      "depends_on": [
+        "A13",
+        "A24"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A26",
+      "label": "MCP cleanup evidence and recovery",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/mcp_managed_cleanup_proof.py",
+        "src/prompt_enhancer/application/mcp_managed_runtime.py",
+        "src/prompt_enhancer/application/updates/mcp_readiness.py"
+      ],
+      "tests": [
+        "tests/test_mcp_managed_cleanup_proof.py",
+        "tests/test_mcp_managed_host_cleanup.py",
+        "tests/test_update_mcp_readiness.py"
+      ],
+      "evidence": "October 8 inspection: retained exact-host binding and owned-task/context/process settlement observation. It explicitly cannot clear quarantine or shutdown uncertainty. Module absent on main.",
+      "gap": "Read-only cleanup observation is not durable recovery authority. Actual supported recovery and update prerequisite acceptance remain open.",
+      "next": "Finish verified cleanup recovery without equating process absence or terminal receipt to ownership-complete cleanup.",
+      "gate": "B02/B06/B09/V10/V14",
+      "depends_on": [
+        "A25"
+      ],
+      "domain": "agent"
+    },
+    {
+      "id": "A27",
+      "label": "Synthetic preview transport",
+      "status": "mock",
+      "scope": "experimental",
+      "sources": [
+        "frontend/src/shared/api/syntheticTransport.ts",
+        "frontend/src/shared/api/syntheticFixtures.ts",
+        "frontend/src/shared/api/syntheticModelLabFixture.ts",
+        "frontend/src/shared/api/syntheticResearchFixture.ts"
+      ],
+      "tests": [
+        "frontend/src/shared/api/syntheticTransport.test.ts"
+      ],
+      "evidence": "Explicit runtimeKind synthetic_fixture; predefined fictional results, status and research/model lab fixtures. Onboarding intentionally unavailable in synthetic mode.",
+      "gap": "Demo visuals prove neither local inference nor real provider metrics, tool authority or runtime lifecycle.",
+      "next": "Keep demo visibly identified and prevent placeholder actions from presenting themselves as real service capabilities.",
+      "gate": "B01/V17",
+      "depends_on": [],
+      "domain": "agent"
+    },
+    {
+      "id": "W00",
+      "label": "Approved workflow profiles and package feasibility",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/product-readiness-matrix-2026-09-12.md",
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Ledger W00-W08 explicitly required/not started. October 8 source inventory found no production workflow modules; current model/research adapters are prerequisites only.",
+      "gap": "Eight family profiles plus second LLM, approved revisions/hashes/licenses/preprocessing, hardware and compiled text/image/audio worker proof missing.",
+      "next": "Close baseline custody, freeze approved profiles and prove representative compiled workers before editor construction.",
+      "gate": "W00/B00/B08",
+      "depends_on": [
+        "A08",
+        "A10"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "W01",
+      "label": "Typed workflow graph and plan preview",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "No workflow contracts/API/type graph source found; research workflow taxonomy is unrelated.",
+      "gap": "Versioned ports, explicit converters, cycle/limit validation and exhaustive supported/rejected edge matrix absent.",
+      "next": "Implement finite typed contracts and validation for one run, 32 nodes, 16 model nodes and acyclic edges.",
+      "gate": "W01",
+      "depends_on": [
+        "W00"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "W02",
+      "label": "Durable workflow revisions and sequential engine",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "No production workflow store, run journal or scheduler found. Agent history and analysis jobs are different bounded contexts.",
+      "gap": "Immutable revisions, input snapshots, node attempts, stable-port joins, duplicate Run admission and interrupted recovery missing.",
+      "next": "Add dedicated private workflow persistence and deterministic sequential chain/branch/join execution.",
+      "gate": "W02",
+      "depends_on": [
+        "W01"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "W03",
+      "label": "Qualified production multimodal workflow adapters",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md",
+        "src/prompt_enhancer/infrastructure/text_models/transformers_backends.py",
+        "src/prompt_enhancer/application/local_models.py"
+      ],
+      "tests": [],
+      "evidence": "Existing GGUF chat and research text model backends are present; no qualified production workflow adapter family set exists.",
+      "gap": "Text/vision-language/classifiers/embeddings/detection/ASR/audio adapters with typed validated outputs and real-profile qualification missing.",
+      "next": "Implement approved profiles in reviewed family slices with explicit preprocessing and genuine inference evidence.",
+      "gate": "W03",
+      "depends_on": [
+        "W00",
+        "W01",
+        "W02",
+        "A19"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "W04",
+      "label": "Resource leases and actual parallel inference",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md",
+        "src/prompt_enhancer/application/local_models.py"
+      ],
+      "tests": [],
+      "evidence": "Chat coordinator intentionally owns at most one runtime; it is not a workflow two-worker coordinator.",
+      "gap": "CPU/RAM/VRAM admission, loading peaks, max-two overlap, sequential/automatic/require-parallel policy and stable joins absent.",
+      "next": "Create separate owned workflow handles/leases preserving personal chat/research runtimes; prove actual inference overlap and cleanup.",
+      "gate": "W04",
+      "depends_on": [
+        "W02",
+        "W03"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "W05",
+      "label": "Visual workflow builder and device model advisor",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md",
+        "frontend/package.json"
+      ],
+      "tests": [],
+      "evidence": "No Blueprint/React Flow editor route or production builder source found; model hardware catalog is only a prerequisite.",
+      "gap": "Typed canvas, accessible list alternative, Build/Run/Results views, saved templates and task-specific profile recommendations absent.",
+      "next": "Lazy-load editor outside Agent bundle, render backend validation and qualified compatibility/memory evidence.",
+      "gate": "W05/B10",
+      "depends_on": [
+        "W01",
+        "W02",
+        "W03",
+        "W04",
+        "A10"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "W06",
+      "label": "Installed headless workflow export and import",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Existing Agent controller CLI does not implement workflow validate/run/import/export.",
+      "gap": "Portable definition/model lock/input template/launcher, GUI-headless engine parity and review-bound exports missing.",
+      "next": "Reuse the workflow engine from installed runner, exclude weights/secrets/paths/content by default and require explicit input binding.",
+      "gate": "W06/B08",
+      "depends_on": [
+        "W02",
+        "W03",
+        "W04"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "W07",
+      "label": "Workflow matrix and real-model qualification",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md",
+        "docs/product-readiness-matrix-2026-09-12.md"
+      ],
+      "tests": [],
+      "evidence": "Acceptance requirements are documented; executable multimodal topology/placement qualification does not yet exist.",
+      "gap": "Series/parallel/mixed positive and rejection matrix, real CPU/NVIDIA overlap, restart/cancel/failure and ten-cycle cleanup evidence missing.",
+      "next": "Generate contract cases, deterministic engine cases and exact-profile real inference cases, recording package/model/runtime hashes.",
+      "gate": "W07",
+      "depends_on": [
+        "W01",
+        "W02",
+        "W03",
+        "W04",
+        "W05",
+        "W06"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "W08",
+      "label": "Workflow beta and prompt-enhancement integration",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/product-readiness-matrix-2026-09-12.md",
+        "docs/beta-acceptance-gates.md",
+        "frontend/src/features/agent/AgentPromptCheck.tsx"
+      ],
+      "tests": [],
+      "evidence": "Approved amendment includes saved workflow selection beside draft and optional pre-send execution. Present Prompt Check is a separate fixed preflight.",
+      "gap": "WP01-WP08 saved-workflow composer hook plus signed install/update/retention integration missing; no silent draft replacement/send is allowed.",
+      "next": "Connect selected compatible saved workflow to composer with explicit preview/acceptance, then qualify exact signed RC workflows with B00-B11 gates.",
+      "gate": "W08; WP01-WP08; B08-B11",
+      "depends_on": [
+        "W05",
+        "W06",
+        "W07",
+        "A20"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "R01",
+      "label": "Native desktop shell and window ownership",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/desktop_overlay.py"
+      ],
+      "tests": [
+        "tests/test_desktop_lifecycle.py",
+        "tests/test_desktop_overlay.py",
+        "tests/support/desktop_native_probe.py"
+      ],
+      "evidence": "Static review 2026-10-08; ledger records ten synthetic native Agent launch/close cycles on 2026-09-26, not installed-candidate acceptance.",
+      "gap": "Main/child-window interaction, current compiled package and installed lifecycle are not qualified together.",
+      "next": "Run the declared native lifecycle matrix on one frozen candidate, including child/main close and forced termination.",
+      "gate": "B02/V13",
+      "depends_on": [
+        "R02",
+        "R03",
+        "R04"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R02",
+      "label": "Hidden owned process trees and bounded I/O",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/owned_process.py"
+      ],
+      "tests": [
+        "tests/test_owned_process.py",
+        "tests/test_runtime_cancellation_unit.py"
+      ],
+      "evidence": "Static review 2026-10-08; Windows Job Object admission, no-shell spawning and output/time bounds exist. Existing tests cover descendants, overflow and visible windows.",
+      "gap": "Primitive implementation is present; every advertised packaged caller still needs its own cleanup evidence.",
+      "next": "Reuse this boundary for every release worker and retain exit, reader, handle and resource cleanup results.",
+      "gate": "B02/V17",
+      "depends_on": [],
+      "domain": "release"
+    },
+    {
+      "id": "R03",
+      "label": "Runtime cleanup sequencing and restart admission",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/runtime_lifecycle.py",
+        "src/prompt_enhancer/api.py"
+      ],
+      "tests": [
+        "tests/test_runtime_liveness.py",
+        "tests/test_desktop_lifecycle.py",
+        "tests/test_update_cross_service_continuation.py"
+      ],
+      "evidence": "Static review 2026-10-08; one-owner cleanup, reentrant/pending/interrupted states and bounded waits are implemented.",
+      "gap": "Unconfirmed cleanup cannot be treated as a stopped service; full current native lifecycle remains open.",
+      "next": "Exercise overlapping cleanup/update/exit on the frozen native composition and keep unconfirmed state visible.",
+      "gate": "B02/B09",
+      "depends_on": [
+        "R02"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R04",
+      "label": "App-local runtime bootstrap and WebView prerequisites",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/windows_runtime_bootstrap.py",
+        "src/prompt_enhancer/infrastructure/windows_desktop_prerequisites.py",
+        "src/prompt_enhancer/desktop_overlay.py"
+      ],
+      "tests": [
+        "tests/test_windows_runtime_bootstrap.py",
+        "tests/test_windows_runtime_bootstrap_desktop_entrypoints.py",
+        "tests/test_windows_desktop_prerequisites.py"
+      ],
+      "evidence": "Static review 2026-10-08; fixed pywin32 import/DLL paths avoid arbitrary .pth execution. New bootstrap/prerequisite files are absent from origin/main.",
+      "gap": "Dependency-complete source custody and installed no-development-tools validation are outstanding.",
+      "next": "Admit the reviewed bootstrap cohort, compile it, and validate missing-prerequisite recovery in a clean Windows environment.",
+      "gate": "B02/B08/V01",
+      "depends_on": [
+        "R02",
+        "R21"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R05",
+      "label": "Loopback local authentication, origin and CSRF boundary",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/config.py",
+        "src/prompt_enhancer/api.py",
+        "src/prompt_enhancer/interfaces/http/browser_session.py"
+      ],
+      "tests": [
+        "tests/test_browser_session.py",
+        "tests/test_security_hardening.py"
+      ],
+      "evidence": "Static review 2026-10-08; configuration rejects non-loopback hosts, API compares exact loopback origin and validates browser CSRF for mutations.",
+      "gap": "Current signed artifact has no completed native security acceptance.",
+      "next": "Run adversarial browser/API boundary tests against the frozen packaged host.",
+      "gate": "B02/V17",
+      "depends_on": [],
+      "domain": "release"
+    },
+    {
+      "id": "R06",
+      "label": "Native approval authority",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/interfaces/http/user_presence.py",
+        "src/prompt_enhancer/desktop_overlay.py"
+      ],
+      "tests": [
+        "tests/test_user_presence.py",
+        "tests/test_agent_write_proposals.py"
+      ],
+      "evidence": "Static review 2026-10-08; native authority is distinct from same-origin browser authorization, with exact update-binding support.",
+      "gap": "Actual approved/rejected/stale workspace action on the current installed app remains unproven.",
+      "next": "Execute one native approval matrix with synthetic files; preserve exact reviewed operation and state binding.",
+      "gate": "B05/V08",
+      "depends_on": [
+        "R01",
+        "R05"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R07",
+      "label": "Application data path and retention inventory",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/config.py",
+        "src/prompt_enhancer/application/maintenance/inventory.py",
+        "src/prompt_enhancer/application/paths/policy.py"
+      ],
+      "tests": [
+        "tests/test_windows_distribution_hardening.py"
+      ],
+      "evidence": "Static review 2026-10-08; data root and path classifications exist outside the package layout.",
+      "gap": "Installer/uninstaller retention, installed model-cache placement and migration behavior are not accepted.",
+      "next": "Verify package replacement/uninstall/reinstall retains synthetic chats, settings and model references according to policy.",
+      "gate": "B08/B09/V16",
+      "depends_on": [
+        "R08"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R08",
+      "label": "Filesystem reparse and private staging checks",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/paths/local.py",
+        "src/prompt_enhancer/infrastructure/paths/windows_private_directory.py"
+      ],
+      "tests": [
+        "tests/test_windows_distribution_hardening.py",
+        "tests/test_windows_private_update_staging.py"
+      ],
+      "evidence": "Static review 2026-10-08; explicit symlink/reparse rejection and a narrow Windows DACL adapter for update staging exist.",
+      "gap": "DACL protection is deliberately narrow, not proof that all application paths are hardened.",
+      "next": "Qualify actual installed staging permissions and keep unsupported paths explicitly unverified.",
+      "gate": "B08/B09/V17",
+      "depends_on": [],
+      "domain": "release"
+    },
+    {
+      "id": "R09",
+      "label": "SQLite migrations and schema compatibility",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/database.py",
+        "src/prompt_enhancer/infrastructure/sqlite/migrations.py"
+      ],
+      "tests": [
+        "tests/test_database_unknowns.py",
+        "tests/test_auxiliary_sqlite_migrations.py"
+      ],
+      "evidence": "Static review 2026-10-08; migration implementation is substantial and versioned; targeted historical tests do not prove update rollback.",
+      "gap": "Older-binary/newer-schema refusal and package/data recovery need installed transition evidence.",
+      "next": "Freeze supported schema transitions and test forward migration, interruption and safe refusal under signed N-to-N+1 acceptance.",
+      "gate": "B03/B09/V15",
+      "depends_on": [
+        "R07",
+        "R10"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R10",
+      "label": "Consistent backup and restore verification",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/maintenance/backup.py",
+        "src/prompt_enhancer/infrastructure/sqlite/online_backup.py"
+      ],
+      "tests": [
+        "tests/test_windows_distribution_hardening.py"
+      ],
+      "evidence": "Static review 2026-10-08; SQLite Connection.backup plus integrity_check and all-before-mutation restore validation exist.",
+      "gap": "Restore execution, authenticated recovery linkage and update-integrated backup are not delivered by these pure contracts.",
+      "next": "Compose bounded migration backup and explicit recovery without overwriting failed/newer data.",
+      "gate": "B09/V15",
+      "depends_on": [
+        "R07",
+        "R09"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R11",
+      "label": "Signed update discovery and manifest verification",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/updates/configuration.py",
+        "src/prompt_enhancer/infrastructure/updates/https_manifest_source.py",
+        "src/prompt_enhancer/infrastructure/updates/ed25519_verifier.py",
+        "src/prompt_enhancer/application/updates/verification.py"
+      ],
+      "tests": [
+        "tests/test_application_update_configuration.py",
+        "tests/test_https_update_manifest_source.py",
+        "tests/test_application_update_replay.py"
+      ],
+      "evidence": "Static review 2026-10-08; package-owned public trust configuration, HTTPS acquisition, Ed25519 and replay checks exist.",
+      "gap": "Real owner-controlled release endpoint, public trust key and signed metadata are not frozen.",
+      "next": "Supply public release identities and verify a real signed manifest while preserving explicit check consent.",
+      "gate": "B09/V14",
+      "depends_on": [
+        "R22"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R12",
+      "label": "Download, staging and package verification",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/updates/status.py",
+        "src/prompt_enhancer/infrastructure/updates/staging.py",
+        "src/prompt_enhancer/infrastructure/updates/msix_preflight.py",
+        "src/prompt_enhancer/infrastructure/updates/windows_msix_signer.py"
+      ],
+      "tests": [
+        "tests/test_application_update_staging_failures.py",
+        "tests/test_staged_package_review.py",
+        "tests/test_windows_staged_package_lease.py"
+      ],
+      "evidence": "Static review 2026-10-08; bounded staging, archive/identity checks and WinVerifyTrust-backed signer inspection are implemented.",
+      "gap": "Real signed packages and install/update acceptance are unavailable; source validators alone are insufficient.",
+      "next": "Qualify staged N+1 tamper, wrong signer, expiry, replay and downgrade cases on the selected release artifact.",
+      "gate": "B09/V14",
+      "depends_on": [
+        "R08",
+        "R11",
+        "R21"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R13",
+      "label": "Update status and explicit check/stage/retry UI actions",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/interfaces/http/application_update_routes.py",
+        "src/prompt_enhancer/application/updates/status.py"
+      ],
+      "tests": [
+        "tests/test_application_update_api.py",
+        "tests/test_application_update_coordinator.py"
+      ],
+      "evidence": "Static review 2026-10-08; routes expose status/check/stage/cancel/retry/verify with instance/revision binding.",
+      "gap": "A push to main cannot currently activate a usable install-and-relaunch action; Apply route does not exist.",
+      "next": "Keep status truthful and wire apply only after the native transaction prerequisites and release inputs close.",
+      "gate": "B09/V14",
+      "depends_on": [
+        "R05",
+        "R11",
+        "R12",
+        "R17"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R14",
+      "label": "Host quiescence and update admission",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/updates/host_preparation.py",
+        "src/prompt_enhancer/application/updates/worker_readiness.py",
+        "src/prompt_enhancer/interfaces/http/update_admission.py"
+      ],
+      "tests": [
+        "tests/test_update_host_preparation.py",
+        "tests/test_update_cross_service_continuation.py",
+        "tests/test_update_agent_mcp_composition.py"
+      ],
+      "evidence": "Static review 2026-10-08; exact reviewed services close admission jointly and expose cleanup uncertainty. Key files are absent from origin/main.",
+      "gap": "All owned activity and native unsaved-state coverage must agree before installer handoff.",
+      "next": "Complete remaining exact-owner cleanup/recovery bindings and prove no admitted work races installation.",
+      "gate": "B09/V15",
+      "depends_on": [
+        "R03",
+        "R06"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R15",
+      "label": "Durable update operation journal",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/updates/apply_journal.py",
+        "src/prompt_enhancer/infrastructure/updates/apply_journal.py"
+      ],
+      "tests": [
+        "tests/test_update_apply_journal.py"
+      ],
+      "evidence": "Static review 2026-10-08; atomic CAS journal records exact operation/release state. Files are absent from origin/main.",
+      "gap": "Journal exists as an uncomposed primitive; real restart reconciliation is missing.",
+      "next": "Bind journal to the native apply route and validate crash points with retained operation state.",
+      "gate": "B09/V15",
+      "depends_on": [
+        "R08"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R16",
+      "label": "Native MSIX deployment transaction primitive",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/updates/apply_execution.py",
+        "src/prompt_enhancer/infrastructure/updates/windows_msix_executor.py",
+        "src/prompt_enhancer/infrastructure/updates/windows_staged_package_lease.py"
+      ],
+      "tests": [
+        "tests/test_update_apply_execution.py",
+        "tests/test_windows_msix_executor.py",
+        "tests/test_windows_staged_package_lease.py"
+      ],
+      "evidence": "Static review 2026-10-08; explicitly uncomposed controller orders native approval, journal, held package verification and fixed Add-AppxPackage execution.",
+      "gap": "Installer return is explicitly not relaunch success; no product endpoint invokes this controller.",
+      "next": "Compose only after exact native approval, quiescence, verified package and durable recovery prerequisites are accepted.",
+      "gate": "B09/V14/V15",
+      "depends_on": [
+        "R06",
+        "R12",
+        "R14",
+        "R15"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R17",
+      "label": "Product update Apply endpoint and relaunch",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/interfaces/http/application_update_routes.py",
+        "src/prompt_enhancer/application/updates/apply_execution.py"
+      ],
+      "tests": [
+        "tests/test_update_apply_execution.py"
+      ],
+      "evidence": "Static review 2026-10-08 confirms no /apply handler; transaction docstring explicitly says it is not connected to HTTP/status.",
+      "gap": "A real end-to-end update button that installs, relaunches and reports success is missing.",
+      "next": "Implement reviewed-state-only Apply operation, status progress and verified first-launch completion after prerequisite qualification.",
+      "gate": "B09/V14",
+      "depends_on": [
+        "R16",
+        "R18"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R18",
+      "label": "Update rollback and package/data recovery executor",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/updates/recovery_plan.py"
+      ],
+      "tests": [
+        "tests/test_update_recovery_plan.py"
+      ],
+      "evidence": "Static review 2026-10-08; existing module explicitly performs offline evidence reconciliation and never installs, rolls back or relaunches.",
+      "gap": "Recovery planning is implemented; executable restoration of compatible package/data pairs is not.",
+      "next": "Implement bounded recovery authority, preserve failed/newer data, and prove interruption recovery without schema misuse.",
+      "gate": "B09/V15",
+      "depends_on": [
+        "R09",
+        "R10",
+        "R15"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R19",
+      "label": "Windows release assembly and pinned dependency inputs",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/build_staging.py",
+        "scripts/stage_windows_release.py",
+        "scripts/prepare_windows_python_runtime.py",
+        "scripts/prepare_windows_launchers.py",
+        "scripts/prepare_msix_candidate.py"
+      ],
+      "tests": [
+        "tests/test_windows_release_staging.py",
+        "tests/test_windows_launchers.py",
+        "tests/test_msix_candidate.py"
+      ],
+      "evidence": "Static review 2026-10-08; explicit file manifests, hashes and no-clobber staging exist; several preparation scripts are absent from origin/main.",
+      "gap": "A clean private source candidate with complete current dependency custody has not been assembled and qualified.",
+      "next": "Review coherent source groups and build only from the resulting frozen commit.",
+      "gate": "B00/B08/V18",
+      "depends_on": [
+        "R24",
+        "R20"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R20",
+      "label": "Dependency provenance and third-party notices",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/frontend_notice_inventory.py",
+        "src/prompt_enhancer/infrastructure/frontend_notice_renderer.py",
+        "scripts/prepare_compiled_dependency_inventory.py"
+      ],
+      "tests": [
+        "tests/test_frontend_notice_inventory.py",
+        "tests/test_frontend_notice_renderer.py",
+        "tests/test_compiled_dependency_inventory.py"
+      ],
+      "evidence": "Static review 2026-10-08; inventory records opaque assets/workers and compiler-reported modules. Compiler-to-binary binding and license obligations remain explicit gaps.",
+      "gap": "Release-bound notices and opaque PDF worker provenance are not closed; inventory success is not license clearance.",
+      "next": "Bind notices to exact compiled payload; resolve PDF obligations or exclude its worker from the beta artifact.",
+      "gate": "B08/V18",
+      "depends_on": [],
+      "domain": "release"
+    },
+    {
+      "id": "R21",
+      "label": "Compiled source-deterrent MSIX artifact",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "scripts/prepare_compiled_dependency_inventory.py",
+        "scripts/pack_msix_candidate.py",
+        "scripts/verify_msix_package.py",
+        "scripts/verify_msix_sdk_unpack.py"
+      ],
+      "tests": [
+        "tests/test_compiled_dependency_inventory.py",
+        "tests/test_pack_msix_candidate.py",
+        "tests/test_msix_sdk_unpack.py"
+      ],
+      "evidence": "Ledger records historical compiled base-app feasibility and unsigned repeatability. Static review 2026-10-08 does not establish a current compiled text/image/audio candidate.",
+      "gap": "First-party source exclusion, qualified workers, deterministic inputs and exact current payload acceptance remain open.",
+      "next": "Compile representative workers early, then inspect and run the complete payload with no developer tools.",
+      "gate": "B08/W00/V18",
+      "depends_on": [
+        "R04",
+        "R19",
+        "R20"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R22",
+      "label": "Signing identity and binary-only release channel",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/product-readiness-matrix-2026-09-12.md",
+        "src/prompt_enhancer/infrastructure/updates/configuration.py"
+      ],
+      "tests": [],
+      "evidence": "Latest ledger input checklist still lacks verified package identity/publisher, public signer fingerprint, update key and owner-controlled release destination. Gate references (not executable tests): V01, V14, V18.",
+      "gap": "No qualified owner-signed distribution channel or clean-machine release candidate.",
+      "next": "Record public identity/trust metadata and binary release destination; keep secrets under owner control.",
+      "gate": "B09/B11",
+      "depends_on": [
+        "R21"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R23",
+      "label": "Clean-machine install, uninstall and update acceptance",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md",
+        "docs/product-readiness-matrix-2026-09-12.md"
+      ],
+      "tests": [],
+      "evidence": "Ledger explicitly leaves signed clean-machine installation/update/recovery/uninstall unproven. Gate references (not executable tests): V01, V14, V15, V16.",
+      "gap": "Required user journey evidence is absent even though several implementation primitives exist.",
+      "next": "Execute declared standard-user Windows and physical NVIDIA acceptance on the exact signed candidate.",
+      "gate": "B09/B11",
+      "depends_on": [
+        "R17",
+        "R18",
+        "R21",
+        "R22"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R24",
+      "label": "Coherent private source custody and main baseline",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "docs/beta-progress-journal.md",
+        "docs/product-readiness-matrix-2026-09-12.md",
+        "scripts/inspect_beta_worktree.py"
+      ],
+      "tests": [
+        "tests/test_inspect_beta_worktree.py"
+      ],
+      "evidence": "Static review 2026-10-08: current checkout acdf0e5 differs from origin/main bfb67b6; substantial modified/untracked implementation remains unpublished. Gate references (not executable tests): B00-CUSTODY, B00-INVENTORY.",
+      "gap": "Classification is not content approval; full source baseline and portable inventory ancestor-race issue remain open.",
+      "next": "Review dependency-complete cohorts, preserve all work, and stage only explicit reviewed groups.",
+      "gate": "B00",
+      "depends_on": [],
+      "domain": "release"
+    },
+    {
+      "id": "R25",
+      "label": "Owner-review feature-branch collaboration policy",
+      "status": "ready",
+      "scope": "required",
+      "sources": [
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "docs/collaboration-workflow.md",
+        ".github/workflows/collaboration-policy.yml",
+        "scripts/check_collaboration_policy.py"
+      ],
+      "tests": [
+        "tests/test_collaboration_policy.py"
+      ],
+      "evidence": "Bounded policy/metadata-validator readiness: origin/main contains collaboration guide, task/PR templates and base-commit metadata validator; the documentation branch states owner final review/merge in AGENTS. Fresh October 8 collaboration/privacy selection passed 144 tests with owned cleanup confirmed. This is not platform permission enforcement.",
+      "gap": "Written policy and metadata CI do not enforce owner-only merge; remote protection must be checked separately. Current campaign checkout lacks several main-branch additions.",
+      "next": "Use task-specific feature branches and PRs with owner acceptance; do not claim platform protection without read-back evidence.",
+      "gate": "B00",
+      "depends_on": [],
+      "domain": "release"
+    },
+    {
+      "id": "R26",
+      "label": "Backend/frontend/privacy quality CI",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        ".github/workflows/quality-gate.yml",
+        "frontend/package.json",
+        "docs/ci-quality-gate.md"
+      ],
+      "tests": [],
+      "evidence": "Static review 2026-10-08; pinned CI actions, Linux/Windows backend and frontend jobs exist. Latest clean-cohort full frontend timed out at 600.11s without final failure census. Gate references (not executable tests): Q-PYTEST, Q-NPM-TEST, Q-E2E, Q-PRIVACY-SCAN, Q-CHECK-API.",
+      "gap": "No complete current clean-candidate quality gate; platform checks and repository plan/billing state are separate evidence.",
+      "next": "Preserve incremental test outcomes, localize bounded failures and run full release gates once on the frozen candidate.",
+      "gate": "B00/B11",
+      "depends_on": [
+        "R24"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R27",
+      "label": "Agent deferred-loading and bundle gate",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "frontend/scripts/check-agent-bundle-budget.mjs",
+        "frontend/agent-bundle-budget.json",
+        "frontend/src/features/agent/AgentPage.tsx"
+      ],
+      "tests": [
+        "frontend/scripts/check-agent-bundle-budget.test.mjs"
+      ],
+      "evidence": "Latest Oct7 clean-main build fails E_BOUNDARY for eight deferred chunk identities; budget tools are absent from origin/main. Older dirty-tree pass is historical. Gate references (not executable tests): Q-BUNDLE-BUDGET.",
+      "gap": "Clean-source lazy graph is not aligned with the reviewed budget; absence of chunks is not absence of eight product features.",
+      "next": "Admit dependency-complete lazy-boundary/tooling changes and verify the same unchanged budgets.",
+      "gate": "B10/B11",
+      "depends_on": [
+        "R24",
+        "R26"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R28",
+      "label": "Release evidence consistency evaluator",
+      "status": "partial",
+      "scope": "required",
+      "sources": [
+        "src/prompt_enhancer/application/build_evidence/beta_release.py",
+        "scripts/check_beta_release.py",
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [
+        "tests/test_beta_release_evidence.py",
+        "tests/test_check_beta_release_cli.py"
+      ],
+      "evidence": "Static review 2026-10-08; fixed B/V/W/WP contracts reject missing or inconsistent records. Historical synthetic test passes only validate evaluator behavior.",
+      "gap": "No accepted exact signed candidate, authentic complete evidence set or owner release review exists.",
+      "next": "Collect actual evidence for required dimensions; evaluator must remain a consistency check rather than release authority.",
+      "gate": "B11",
+      "depends_on": [
+        "R23",
+        "R26",
+        "R27"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "R29",
+      "label": "Development update verifier fake",
+      "status": "mock",
+      "scope": "experimental",
+      "sources": [
+        "src/prompt_enhancer/infrastructure/updates/development_verifier.py"
+      ],
+      "tests": [
+        "tests/test_application_update_configuration.py"
+      ],
+      "evidence": "Static source inventory; development verification adapter is separate from production Ed25519 composition.",
+      "gap": "Mock verification cannot demonstrate an authentic release or signing trust.",
+      "next": "Keep fake restricted to synthetic tests and use the production verifier for release evidence.",
+      "gate": "B09",
+      "depends_on": [],
+      "domain": "release"
+    },
+    {
+      "id": "R30",
+      "label": "Deferred accounts, payments, teams and social foundations",
+      "status": "partial",
+      "scope": "deferred",
+      "sources": [
+        "src/prompt_enhancer/config.py",
+        "src/prompt_enhancer/application/paid_product/services.py",
+        "src/prompt_enhancer/infrastructure/paid_product/stripe_testmode.py",
+        "src/prompt_enhancer/infrastructure/paid_product/stripe_checkout_testmode.py"
+      ],
+      "tests": [
+        "tests/test_paid_product_stripe_testmode.py",
+        "tests/test_paid_product_checkout.py"
+      ],
+      "evidence": "Static review 2026-10-08; development flags default off, team control plane is in-memory/synthetic, payment adapters explicitly target test mode. This aggregate includes more developed local social metadata but no production paid service. Real bounded development foundations exist; production identity/billing/hosting is not qualified. Do not label this entire area a mock.",
+      "gap": "No production account/billing/hosted-team readiness; these features are outside the current beta gate.",
+      "next": "Preserve code/data, hide unavailable controls, and require a separate product/security decision before production activation.",
+      "gate": "B01/deferred",
+      "depends_on": [
+        "R05"
+      ],
+      "domain": "release"
+    },
+    {
+      "id": "WF01",
+      "label": "Workflow text LLM",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved requirement; no qualified production workflow adapter. Existing chat/research adapters do not establish workflow support.",
+      "gap": "Contract: Text -> Text or validated JSON. Approved immutable model/runtime/license/preprocessing/resource profile and genuine inference are missing.",
+      "next": "Freeze an approved profile in W00, implement the W03 adapter, test every declared placement/input/output and cleanup. Text LLM also needs a second profile for switching.",
+      "gate": "W00/W03/W07",
+      "depends_on": [
+        "W00",
+        "W01",
+        "W02"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WF02",
+      "label": "Workflow vision-language model",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved requirement; no qualified production workflow adapter. Existing chat/research adapters do not establish workflow support.",
+      "gap": "Contract: Image and prompt -> Text or validated JSON. Approved immutable model/runtime/license/preprocessing/resource profile and genuine inference are missing.",
+      "next": "Freeze an approved profile in W00, implement the W03 adapter, test every declared placement/input/output and cleanup. Text LLM also needs a second profile for switching.",
+      "gate": "W00/W03/W07",
+      "depends_on": [
+        "W00",
+        "W01",
+        "W02"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WF03",
+      "label": "Workflow text classifier",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved requirement; no qualified production workflow adapter. Existing chat/research adapters do not establish workflow support.",
+      "gap": "Contract: Text -> Labels and model scores. Approved immutable model/runtime/license/preprocessing/resource profile and genuine inference are missing.",
+      "next": "Freeze an approved profile in W00, implement the W03 adapter, test every declared placement/input/output and cleanup. Text LLM also needs a second profile for switching.",
+      "gate": "W00/W03/W07",
+      "depends_on": [
+        "W00",
+        "W01",
+        "W02"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WF04",
+      "label": "Workflow text embedding",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved requirement; no qualified production workflow adapter. Existing chat/research adapters do not establish workflow support.",
+      "gap": "Contract: Text -> Vector with encoder identity and dimensions. Approved immutable model/runtime/license/preprocessing/resource profile and genuine inference are missing.",
+      "next": "Freeze an approved profile in W00, implement the W03 adapter, test every declared placement/input/output and cleanup. Text LLM also needs a second profile for switching.",
+      "gate": "W00/W03/W07",
+      "depends_on": [
+        "W00",
+        "W01",
+        "W02"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WF05",
+      "label": "Workflow image classifier",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved requirement; no qualified production workflow adapter. Existing chat/research adapters do not establish workflow support.",
+      "gap": "Contract: PNG/JPEG -> Labels and model scores. Approved immutable model/runtime/license/preprocessing/resource profile and genuine inference are missing.",
+      "next": "Freeze an approved profile in W00, implement the W03 adapter, test every declared placement/input/output and cleanup. Text LLM also needs a second profile for switching.",
+      "gate": "W00/W03/W07",
+      "depends_on": [
+        "W00",
+        "W01",
+        "W02"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WF06",
+      "label": "Workflow object detector",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved requirement; no qualified production workflow adapter. Existing chat/research adapters do not establish workflow support.",
+      "gap": "Contract: PNG/JPEG -> Boxes, labels and model scores. Approved immutable model/runtime/license/preprocessing/resource profile and genuine inference are missing.",
+      "next": "Freeze an approved profile in W00, implement the W03 adapter, test every declared placement/input/output and cleanup. Text LLM also needs a second profile for switching.",
+      "gate": "W00/W03/W07",
+      "depends_on": [
+        "W00",
+        "W01",
+        "W02"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WF07",
+      "label": "Workflow speech recognition",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved requirement; no qualified production workflow adapter. Existing chat/research adapters do not establish workflow support.",
+      "gap": "Contract: Bounded PCM WAV -> Transcript and supported timestamps. Approved immutable model/runtime/license/preprocessing/resource profile and genuine inference are missing.",
+      "next": "Freeze an approved profile in W00, implement the W03 adapter, test every declared placement/input/output and cleanup. Text LLM also needs a second profile for switching.",
+      "gate": "W00/W03/W07",
+      "depends_on": [
+        "W00",
+        "W01",
+        "W02"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WF08",
+      "label": "Workflow audio classifier",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved requirement; no qualified production workflow adapter. Existing chat/research adapters do not establish workflow support.",
+      "gap": "Contract: Bounded PCM WAV -> Labels and model scores. Approved immutable model/runtime/license/preprocessing/resource profile and genuine inference are missing.",
+      "next": "Freeze an approved profile in W00, implement the W03 adapter, test every declared placement/input/output and cleanup. Text LLM also needs a second profile for switching.",
+      "gate": "W00/W03/W07",
+      "depends_on": [
+        "W00",
+        "W01",
+        "W02"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WP01",
+      "label": "Typed draft input/output",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved WP requirement; existing prompt check is not this saved-workflow feature.",
+      "gap": "Reject missing or incompatible inputs before loading.",
+      "next": "Implement after required W contracts/engine/adapters and test the named WP gate.",
+      "gate": "WP01",
+      "depends_on": [
+        "W01",
+        "W03"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WP02",
+      "label": "Review, apply and undo UI",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved WP requirement; existing prompt check is not this saved-workflow feature.",
+      "gap": "Compare original/suggestion and preserve ordinary Send.",
+      "next": "Implement after required W contracts/engine/adapters and test the named WP gate.",
+      "gate": "WP02",
+      "depends_on": [
+        "W05"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WP03",
+      "label": "Exact draft/run binding",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved WP requirement; existing prompt check is not this saved-workflow feature.",
+      "gap": "Reject late results after draft/chat/workflow changes.",
+      "next": "Implement after required W contracts/engine/adapters and test the named WP gate.",
+      "gate": "WP03",
+      "depends_on": [
+        "W02",
+        "W05"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WP04",
+      "label": "Idempotent enhancement and send",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved WP requirement; existing prompt check is not this saved-workflow feature.",
+      "gap": "One run and at most one explicitly authorized send; no recursion.",
+      "next": "Implement after required W contracts/engine/adapters and test the named WP gate.",
+      "gate": "WP04",
+      "depends_on": [
+        "W02",
+        "W05"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WP05",
+      "label": "Enhancement failure recovery",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved WP requirement; existing prompt check is not this saved-workflow feature.",
+      "gap": "Preserve original draft on cancel, crash, timeout or restart.",
+      "next": "Implement after required W contracts/engine/adapters and test the named WP gate.",
+      "gate": "WP05",
+      "depends_on": [
+        "W02",
+        "W05"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WP06",
+      "label": "Shared runtime resource budget",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved WP requirement; existing prompt check is not this saved-workflow feature.",
+      "gap": "Wait or request explicit stop-and-run without replacing personal runtime.",
+      "next": "Implement after required W contracts/engine/adapters and test the named WP gate.",
+      "gate": "WP06",
+      "depends_on": [
+        "W04",
+        "W05"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WP07",
+      "label": "Private retention and export",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved WP requirement; existing prompt check is not this saved-workflow feature.",
+      "gap": "Keep contents out of analytics/default export and do not restore hook authority.",
+      "next": "Implement after required W contracts/engine/adapters and test the named WP gate.",
+      "gate": "WP07",
+      "depends_on": [
+        "W02",
+        "W06",
+        "W08"
+      ],
+      "domain": "workflows"
+    },
+    {
+      "id": "WP08",
+      "label": "Builder/composer/headless parity",
+      "status": "absent",
+      "scope": "required",
+      "sources": [
+        "docs/beta-acceptance-gates.md"
+      ],
+      "tests": [],
+      "evidence": "Approved WP requirement; existing prompt check is not this saved-workflow feature.",
+      "gap": "Use one qualified engine and prove retention through update.",
+      "next": "Implement after required W contracts/engine/adapters and test the named WP gate.",
+      "gate": "WP08",
+      "depends_on": [
+        "W05",
+        "W06",
+        "W07",
+        "W08"
+      ],
+      "domain": "workflows"
+    }
+  ],
+  "findings": [
+    "Audit scope is analytics/metrics only. No provider history, credentials, environment files, personal runtime, network calls, application windows or models accessed. No tests executed for this read-only inventory.",
+    "Color is component-specific: ready means a bounded source/helper contract with historical passing evidence and reviewed implementation; it never certifies beta/native/installed readiness. partial includes implemented but unqualified features. absent marks the missing measured adapter, not absence of its UI/schema. mock is explicit synthetic preview only.",
+    "docs/architecture.md is still 'discussion draft 0.1' and says product is not a replacement provider client; this conflicts with agreed first-class Agent/workflow scope. Its encrypted content vault, remote judge and DuckDB edges are proposals, not confirmed runtime composition.",
+    "The actual architecture uses an immutable trusted registry/dependency graph, injected ports/adapters, consent at ingress, ephemeral redaction previews, typed evidence authority, immutable versioned sealed receipts, append-only migrations, and exact-cohort ratio-of-sums aggregation.",
+    "Measured and experimental paths must be separate graph lanes. Twenty contract definitions are not twenty measurable values for every session; catalog source says 18 conditional paths plus two adapter gaps, eight experimental estimate paths and zero model-authoritative measured metrics.",
+    "Claim-grounding census/review/link implementation is newer local work and explicitly proposal-only: measured=false, metric_authority_established=false. It does not close outcome.agent_claim_grounding.",
+    "Historical real-model diagnostic pilots fail semantic comparison gates despite structural tests. Quote presence proves location, not entailment. Do not advertise model interpretation/pooling/live radar as ready from source or synthetic test counts.",
+    "Two front-end live surfaces coexist: LiveMiniWindow serves legacy session/project timelines; ModelEnsembleOverlay serves canonical live metric watch. Document route/composition and avoid representing them as one interchangeable component.",
+    "V1 compatibility publication service is explicitly read-only preview with withheld metrics, separate from canonical all-twenty head. Keep separate in diagrams and fallback UX.",
+    "Large-file coupling observed via nonempty line counts: session_model_ensemble.py 3990; sqlite/model_ensemble.py 3589; probabilistic_metrics.py 1388; model_ensemble_watch.py 1117; ModelEnsemblePanel.tsx 1006; ModelEnsembleOverlay.tsx 1253. Extract by authority/use-case after current behavior is characterized; do not rewrite frozen historical projection versions.",
+    "Several key paths differ from origin/main: onboarding, operability, requirement-plan/action evidence, probabilistic contracts, session ensemble orchestration, watch, ensemble persistence and radar/overlay. claim_grounding_links.py is absent from origin/main. Current source diagrams must identify this dirty-tree scope and cannot imply a fresh main checkout contains it.",
+    "Stable inspected paths match origin/main: ingest/privacy, provider adapters, OTLP route, trusted registry/deterministic engine, canonical contract_v2, projection_v8, session/project aggregation, calibration ratings, prompt check/hook and model ensemble runtime.",
+    "Prioritize closure: recoverable source cohort and exact gate diagnostics; data/provider completeness and two authoritative adapters; model semantic qualification and pooling; one complete current store/API/radar/native journey; current all-state aggregation/calibration tests; release artifact acceptance.",
+    "Suggested ADR updates: product boundary amendment; canonical metric publication vs preview ownership; measured/proposal/predictive authority lanes; complete denominator semantics and unknown states; source capability/version qualification; bounded worker ownership and cleanup; aggregate compatibility/estimand policy; demo/live separation; owner-only PR review/merge authority.",
+    "Status scope: this was read-only source and ledger inspection on October 8, 2026. No tests, native app, model, GPU or provider session were run or opened. Historical test counts are scoped evidence, not current native or release qualification.",
+    "Source custody drift: inspected origin/main is bfb67b6. Working-tree AgentPage differs by +881/-176 lines, local_agent by +560/-597 and local_models by +441/-29. local_agent_contracts.py, mcp_managed_cleanup_proof.py and AgentPdfPreviewUnavailable.tsx are absent on main. Contributor docs must name working-tree versus published source scope.",
+    "Existing pattern: strict versioned Pydantic contracts, application services with repository Protocol ports, SQLite adapters, loopback HTTP and matching strict frontend wire contracts. This is a modular monolith with adapter boundaries, not microservices.",
+    "Agent authored projects/history form a different bounded context from imported provider analytics projects/sessions. The UI and documentation must preserve this distinction.",
+    "Agent history uses an append-only journal and deterministic projection; raw tool arguments/results and reusable approval authority are deliberately excluded. Durable metadata alone does not promise readable retained conversation history.",
+    "Native authority is a separate in-process one-shot capability from bearer auth/CSRF; recovered chats and persisted MCP settings do not recover authority. Changes should preserve exact identity, revision, expiry and request binding.",
+    "MCP has three distinct roles: registry discovery/cache, reviewed managed hosting/tool invocation, and exposing the Agent control surface to clients. Combining these in one broad MCP box obscures separate trust and lifecycle boundaries.",
+    "Exact context, execution, artifact and cleanup receipts are evidence, not generalized readiness flags. Missing runtime measurements remain unknown; model prose does not prove successful file creation.",
+    "Workflow feature names are currently only approved plan requirements. Research workflow taxonomy, model ensembles, Agent orchestration and Agent controller CLI must not be relabeled as a production visual multimodel engine or headless runner.",
+    "Hotspot risk: local_agent.py, local_models.py, AgentPage.tsx and local_agent_routes.py remain large, highly coupled orchestration surfaces. Contract extraction is useful, but line count alone is not a correctness gate. Split by lifecycle/controller concern when making a bounded behavior change; preserve schema/import identity and historical migrations.",
+    "Layering exception recorded in the ledger: prompt_check.py constructs infrastructure adapters from the application layer. Move default construction to composition during a bounded refactor; do not use that as an excuse for a framework rewrite.",
+    "Agent message submission explicitly lacks idempotent retry semantics. Documentation and external controllers must reconnect via event cursor and never blindly resubmit an ambiguous message. Future workflow Run idempotency is a separate contract.",
+    "Current beta PDF design intentionally omits inline parser/worker until provenance closure, retaining a safe explicit file fallback. That is an honest supported limitation, not a mock preview or a completed inline PDF feature.",
+    "The latest B06 ledger records a successful packaged restart/outage development journey; older canceled attempts must stay historical. This does not establish native activation/use/revocation/removal or exact signed-RC behavior.",
+    "Main-integration bundle gate remains unresolved: eight required deferred Agent boundary entries were absent or ambiguous in the inspected clean-main manifest. Components existing in source is not proof of a working deferred import graph.",
+    "Suggested ADR additions: exact current/published evidence semantics; authored Agent versus imported analytics boundaries; durable history versus authority; MCP discovery/hosting/controller separation; workflow store and immutable revision/run boundary; separate workflow leases preserving one-runtime chat coordinator; prompt pre-send workflow consent; owner final review/merge as policy distinct from GitHub enforcement. Existing ADR 0013 and 0016 should be linked and superseded only through reviewed decisions.",
+    "The delegated source sub-audits were read-only static inspections dated 2026-10-08. Supervisor validation subsequently passed 122 component and 144 collaboration/privacy synthetic tests. No installer, model, native approval or personal app was launched. Historical ledger receipts remain bounded historical evidence.",
+    "Actual architecture follows a modular monolith with ports/adapters and explicit bootstrap, but boundaries are imperfect: application/updates/evaluation_readiness.py imports a concrete infrastructure service for exact-class safety; application/prompt_check.py constructs concrete redaction/language adapters; application/annotation.py and shared_folders.py import sqlite3. Treat these as reviewed exceptions or move wiring behind ports incrementally, never a blanket rewrite.",
+    "Oversized source files are real: local_agent.py 6535 physical lines, migrations.py 17806, httpTransport.ts 8576, AgentPage.tsx 4901. Split by stable responsibility after regression coverage; do not renumber historical migrations or split mechanically merely to satisfy line counts.",
+    "ADR0001 contains stale public-repository and Tauri assumptions and its original rejection of a general workflow orchestrator predates the approved workflow scope. Add a superseding/amending ADR with current pywebview and required W00-W08/WP01-WP08 boundaries.",
+    "ADR0007 is a historical foundation record and now understates implemented code: it says no manifest fetcher, DACL adapter, Authenticode verification or MSIX preparation, while those foundations exist. Add a dated current-state/supersession reference without rewriting past evidence into release acceptance.",
+    "The latest ledger explicitly keeps B00-B11 open. W00-W08 and WP01-WP08 are required by the expanded beta contract and are unimplemented; do not omit them from the architecture graph or confuse research workflow prototypes with the requested production engine.",
+    "origin/main has collaboration guidance/templates/policy CI that this older campaign checkout lacks. Conversely many current native/update/package features are modified/untracked and absent from origin/main. Architecture docs must identify which source baseline a node describes.",
+    "A source push does not produce an update automatically: production release metadata/trust, signed package publication, native apply composition, verified relaunch and recovery are all distinct required edges.",
+    "No CODEOWNERS file was found in the inspected current checkout or origin/main inventory. Owner-final-review policy exists; file-owner review routing and platform-enforced branch protection must not be claimed.",
+    "Quality CI is validation, not CD. No owner-authorized signing/publishing pipeline was established by this audit. Preserve binary-only release distribution and explicit owner release acceptance."
+  ]
+}

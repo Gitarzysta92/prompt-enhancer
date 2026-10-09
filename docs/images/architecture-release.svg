@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2308" viewBox="0 0 1800 2308">
+<rect width="100%" height="100%" fill="#f7f9fc"/>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#8493a5"/></marker></defs>
+<text x="70" y="48" font-family="Arial,sans-serif" font-size="30" fill="#172b46">Native lifecycle and release</text>
+<text x="70" y="82" font-family="Arial,sans-serif" font-size="18" fill="#42556b">2026-10-08 | Development observation + published baseline comparison | See catalog for evidence</text>
+<rect x="70" y="104" width="20" height="20" fill="#d4efdf" stroke="#748398"/>
+<text x="100" y="120" font-family="Arial,sans-serif" font-size="17">READY (bounded)</text>
+<rect x="480" y="104" width="20" height="20" fill="#fff0b3" stroke="#748398"/>
+<text x="510" y="120" font-family="Arial,sans-serif" font-size="17">PARTIAL</text>
+<rect x="890" y="104" width="20" height="20" fill="#ffd8d8" stroke="#748398"/>
+<text x="920" y="120" font-family="Arial,sans-serif" font-size="17">NOT IMPLEMENTED</text>
+<rect x="1300" y="104" width="20" height="20" fill="#e1e5ea" stroke="#748398"/>
+<text x="1330" y="120" font-family="Arial,sans-serif" font-size="17">MOCK / DEMO</text>
+<polyline points="640,233.0 590,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,316 1470.0,332 29,332 29,134 330.0,134 330.0,150" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,526 330.0,542 34,542 34,134 330.0,134 330.0,150" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,233.0 1210,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,316 900.0,332 44,332 44,344 330.0,344 330.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,1576 1470.0,1592 49,1592 49,344 330.0,344 330.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 54,332 54,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,443.0 1210,443.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="640,653.0 590,653.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,736 330.0,752 34,752 34,554 1470.0,554 1470.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,946 330.0,962 39,962 39,554 1470.0,554 1470.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,736 330.0,752 44,752 44,764 330.0,764 330.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,736 1470.0,752 49,752 49,764 330.0,764 330.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,1786 330.0,1802 54,1802 54,764 900.0,764 900.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,736 900.0,752 24,752 24,764 1470.0,764 1470.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,863.0 1210,863.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,1576 1470.0,1592 34,1592 34,764 1470.0,764 1470.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,526 900.0,542 39,542 39,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,946 900.0,962 44,962 44,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,946 1470.0,962 49,962 49,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,1366 900.0,1382 54,1382 54,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,316 1470.0,332 24,332 24,974 900.0,974 900.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,526 1470.0,542 29,542 29,974 900.0,974 900.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,736 900.0,752 34,752 34,974 1470.0,974 1470.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,526 1470.0,542 39,542 39,1184 330.0,1184 330.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,946 1470.0,962 44,962 44,1184 330.0,1184 330.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,1156 900.0,1172 49,1172 49,1184 330.0,1184 330.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,1156 1470.0,1172 54,1172 54,1184 330.0,1184 330.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="590,1283.0 640,1283.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1210,1283.0 1160,1283.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,736 1470.0,752 34,752 34,1184 1470.0,1184 1470.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,946 330.0,962 39,962 39,1184 1470.0,1184 1470.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,1156 1470.0,1172 44,1172 44,1184 1470.0,1184 1470.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,1786 1470.0,1802 49,1802 49,1394 330.0,1394 330.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="640,1493.0 590,1493.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,526 330.0,542 24,542 24,1394 1470.0,1394 1470.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,1576 330.0,1592 29,1592 29,1394 1470.0,1394 1470.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,1493.0 1210,1493.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,1576 1470.0,1592 39,1592 39,1604 330.0,1604 330.0,1620" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,1366 900.0,1382 44,1382 44,1604 900.0,1604 900.0,1620" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,1366 1470.0,1382 49,1382 49,1604 900.0,1604 900.0,1620" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,1576 1470.0,1592 54,1592 54,1604 900.0,1604 900.0,1620" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="590,1703.0 640,1703.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,1786 1470.0,1802 29,1802 29,1814 900.0,1814 900.0,1830" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,1786 1470.0,1802 34,1802 34,1814 1470.0,1814 1470.0,1830" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,1913.0 1210,1913.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,1786 900.0,1802 44,1802 44,2024 330.0,2024 330.0,2040" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,1996 900.0,2012 49,2012 49,2024 330.0,2024 330.0,2040" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,1996 1470.0,2012 54,2012 54,2024 330.0,2024 330.0,2040" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,526 900.0,542 24,542 24,2024 1470.0,2024 1470.0,2040" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<a href="../architecture/feature-catalog.md#r01"><rect x="70" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R01  |  PARTIAL</text>
+<text x="88" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Native desktop shell and window</text>
+<text x="88" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">ownership</text>
+<text x="88" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R02, R03, R04</text>
+</a>
+<a href="../architecture/feature-catalog.md#r02"><rect x="640" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R02  |  PARTIAL</text>
+<text x="658" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Hidden owned process trees and</text>
+<text x="658" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">bounded I/O</text>
+<text x="658" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#r03"><rect x="1210" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R03  |  PARTIAL</text>
+<text x="1228" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Runtime cleanup sequencing and</text>
+<text x="1228" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">restart admission</text>
+<text x="1228" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R02</text>
+</a>
+<a href="../architecture/feature-catalog.md#r04"><rect x="70" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R04  |  PARTIAL</text>
+<text x="88" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">App-local runtime bootstrap and</text>
+<text x="88" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">WebView prerequisites</text>
+<text x="88" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R02, R21</text>
+</a>
+<a href="../architecture/feature-catalog.md#r05"><rect x="640" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R05  |  PARTIAL</text>
+<text x="658" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Loopback local authentication, origin</text>
+<text x="658" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">and CSRF boundary</text>
+<text x="658" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#r06"><rect x="1210" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R06  |  PARTIAL</text>
+<text x="1228" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Native approval authority</text>
+<text x="1228" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R01, R05</text>
+</a>
+<a href="../architecture/feature-catalog.md#r07"><rect x="70" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R07  |  PARTIAL</text>
+<text x="88" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Application data path and retention</text>
+<text x="88" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">inventory</text>
+<text x="88" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R08</text>
+</a>
+<a href="../architecture/feature-catalog.md#r08"><rect x="640" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R08  |  PARTIAL</text>
+<text x="658" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Filesystem reparse and private</text>
+<text x="658" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">staging checks</text>
+<text x="658" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#r09"><rect x="1210" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R09  |  PARTIAL</text>
+<text x="1228" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">SQLite migrations and schema</text>
+<text x="1228" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">compatibility</text>
+<text x="1228" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R07, R10</text>
+</a>
+<a href="../architecture/feature-catalog.md#r10"><rect x="70" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R10  |  PARTIAL</text>
+<text x="88" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Consistent backup and restore</text>
+<text x="88" y="864" font-family="Arial,sans-serif" font-size="23" fill="#172b46">verification</text>
+<text x="88" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R07, R09</text>
+</a>
+<a href="../architecture/feature-catalog.md#r11"><rect x="640" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R11  |  PARTIAL</text>
+<text x="658" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Signed update discovery and manifest</text>
+<text x="658" y="864" font-family="Arial,sans-serif" font-size="23" fill="#172b46">verification</text>
+<text x="658" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R22</text>
+</a>
+<a href="../architecture/feature-catalog.md#r12"><rect x="1210" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R12  |  PARTIAL</text>
+<text x="1228" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Download, staging and package</text>
+<text x="1228" y="864" font-family="Arial,sans-serif" font-size="23" fill="#172b46">verification</text>
+<text x="1228" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R08, R11, R21</text>
+</a>
+<a href="../architecture/feature-catalog.md#r13"><rect x="70" y="990" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R13  |  PARTIAL</text>
+<text x="88" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Update status and explicit</text>
+<text x="88" y="1074" font-family="Arial,sans-serif" font-size="23" fill="#172b46">check/stage/retry UI actions</text>
+<text x="88" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R05, R11, R12, R17</text>
+</a>
+<a href="../architecture/feature-catalog.md#r14"><rect x="640" y="990" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R14  |  PARTIAL</text>
+<text x="658" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Host quiescence and update admission</text>
+<text x="658" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R03, R06</text>
+</a>
+<a href="../architecture/feature-catalog.md#r15"><rect x="1210" y="990" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R15  |  PARTIAL</text>
+<text x="1228" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Durable update operation journal</text>
+<text x="1228" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R08</text>
+</a>
+<a href="../architecture/feature-catalog.md#r16"><rect x="70" y="1200" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R16  |  PARTIAL</text>
+<text x="88" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Native MSIX deployment transaction</text>
+<text x="88" y="1284" font-family="Arial,sans-serif" font-size="23" fill="#172b46">primitive</text>
+<text x="88" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R06, R12, R14, R15</text>
+</a>
+<a href="../architecture/feature-catalog.md#r17"><rect x="640" y="1200" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R17  |  NOT IMPLEMENTED</text>
+<text x="658" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Product update Apply endpoint and</text>
+<text x="658" y="1284" font-family="Arial,sans-serif" font-size="23" fill="#172b46">relaunch</text>
+<text x="658" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R16, R18</text>
+</a>
+<a href="../architecture/feature-catalog.md#r18"><rect x="1210" y="1200" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R18  |  NOT IMPLEMENTED</text>
+<text x="1228" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Update rollback and package/data</text>
+<text x="1228" y="1284" font-family="Arial,sans-serif" font-size="23" fill="#172b46">recovery executor</text>
+<text x="1228" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R09, R10, R15</text>
+</a>
+<a href="../architecture/feature-catalog.md#r19"><rect x="70" y="1410" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1436" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R19  |  PARTIAL</text>
+<text x="88" y="1465" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Windows release assembly and pinned</text>
+<text x="88" y="1494" font-family="Arial,sans-serif" font-size="23" fill="#172b46">dependency inputs</text>
+<text x="88" y="1555" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R24, R20</text>
+</a>
+<a href="../architecture/feature-catalog.md#r20"><rect x="640" y="1410" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1436" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R20  |  PARTIAL</text>
+<text x="658" y="1465" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Dependency provenance and third-party</text>
+<text x="658" y="1494" font-family="Arial,sans-serif" font-size="23" fill="#172b46">notices</text>
+<text x="658" y="1555" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#r21"><rect x="1210" y="1410" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1436" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R21  |  PARTIAL</text>
+<text x="1228" y="1465" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Compiled source-deterrent MSIX</text>
+<text x="1228" y="1494" font-family="Arial,sans-serif" font-size="23" fill="#172b46">artifact</text>
+<text x="1228" y="1555" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R04, R19, R20</text>
+</a>
+<a href="../architecture/feature-catalog.md#r22"><rect x="70" y="1620" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="1646" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R22  |  NOT IMPLEMENTED</text>
+<text x="88" y="1675" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Signing identity and binary-only</text>
+<text x="88" y="1704" font-family="Arial,sans-serif" font-size="23" fill="#172b46">release channel</text>
+<text x="88" y="1765" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R21</text>
+</a>
+<a href="../architecture/feature-catalog.md#r23"><rect x="640" y="1620" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="1646" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R23  |  NOT IMPLEMENTED</text>
+<text x="658" y="1675" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Clean-machine install, uninstall and</text>
+<text x="658" y="1704" font-family="Arial,sans-serif" font-size="23" fill="#172b46">update acceptance</text>
+<text x="658" y="1765" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R17, R18, R21, R22</text>
+</a>
+<a href="../architecture/feature-catalog.md#r24"><rect x="1210" y="1620" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1646" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R24  |  PARTIAL</text>
+<text x="1228" y="1675" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Coherent private source custody and</text>
+<text x="1228" y="1704" font-family="Arial,sans-serif" font-size="23" fill="#172b46">main baseline</text>
+<text x="1228" y="1765" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#r25"><rect x="70" y="1830" width="520" height="166" rx="12" fill="#d4efdf" stroke="#748398"/>
+<text x="88" y="1856" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R25  |  READY (bounded)</text>
+<text x="88" y="1885" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Owner-review feature-branch</text>
+<text x="88" y="1914" font-family="Arial,sans-serif" font-size="23" fill="#172b46">collaboration policy</text>
+<text x="88" y="1975" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#r26"><rect x="640" y="1830" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1856" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R26  |  PARTIAL</text>
+<text x="658" y="1885" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Backend/frontend/privacy quality CI</text>
+<text x="658" y="1975" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R24</text>
+</a>
+<a href="../architecture/feature-catalog.md#r27"><rect x="1210" y="1830" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1856" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R27  |  PARTIAL</text>
+<text x="1228" y="1885" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Agent deferred-loading and bundle</text>
+<text x="1228" y="1914" font-family="Arial,sans-serif" font-size="23" fill="#172b46">gate</text>
+<text x="1228" y="1975" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R24, R26</text>
+</a>
+<a href="../architecture/feature-catalog.md#r28"><rect x="70" y="2040" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="2066" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R28  |  PARTIAL</text>
+<text x="88" y="2095" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Release evidence consistency</text>
+<text x="88" y="2124" font-family="Arial,sans-serif" font-size="23" fill="#172b46">evaluator</text>
+<text x="88" y="2185" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R23, R26, R27</text>
+</a>
+<a href="../architecture/feature-catalog.md#r29"><rect x="640" y="2040" width="520" height="166" rx="12" fill="#e1e5ea" stroke="#748398"/>
+<text x="658" y="2066" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R29  |  MOCK / DEMO</text>
+<text x="658" y="2095" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Development update verifier fake</text>
+<text x="658" y="2185" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#r30"><rect x="1210" y="2040" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="2066" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R30  |  PARTIAL</text>
+<text x="1228" y="2095" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Deferred accounts, payments, teams</text>
+<text x="1228" y="2124" font-family="Arial,sans-serif" font-size="23" fill="#172b46">and social foundations</text>
+<text x="1228" y="2185" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R05</text>
+</a>
+<text x="70" y="2280" font-family="Arial,sans-serif" font-size="17" fill="#42556b">Arrows = dependencies / data flow. Dashed = planned. Cross-page dependencies use catalog IDs. Colors do not certify beta.</text>
+</svg>

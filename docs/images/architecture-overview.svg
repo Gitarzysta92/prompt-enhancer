@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1468" viewBox="0 0 1800 1468">
+<rect width="100%" height="100%" fill="#f7f9fc"/>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#8493a5"/></marker></defs>
+<text x="70" y="48" font-family="Arial,sans-serif" font-size="30" fill="#172b46">System and delivery map</text>
+<text x="70" y="82" font-family="Arial,sans-serif" font-size="18" fill="#42556b">2026-10-08 | Development observation + published baseline comparison | See catalog for evidence</text>
+<rect x="70" y="104" width="20" height="20" fill="#d4efdf" stroke="#748398"/>
+<text x="100" y="120" font-family="Arial,sans-serif" font-size="17">READY (bounded)</text>
+<rect x="480" y="104" width="20" height="20" fill="#fff0b3" stroke="#748398"/>
+<text x="510" y="120" font-family="Arial,sans-serif" font-size="17">PARTIAL</text>
+<rect x="890" y="104" width="20" height="20" fill="#ffd8d8" stroke="#748398"/>
+<text x="920" y="120" font-family="Arial,sans-serif" font-size="17">NOT IMPLEMENTED</text>
+<rect x="1300" y="104" width="20" height="20" fill="#e1e5ea" stroke="#748398"/>
+<text x="1330" y="120" font-family="Arial,sans-serif" font-size="17">MOCK / DEMO</text>
+<polyline points="590,233.0 640,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,233.0 1210,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,316 1470.0,332 34,332 34,344 330.0,344 330.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="590,443.0 640,443.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,443.0 1210,443.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="590,653.0 640,653.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1210,653.0 1160,653.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="590,863.0 640,863.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,946 1470.0,962 29,962 29,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1160,1073.0 1210,1073.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,1366 330.0,1382 39,1382 39,974 900.0,974 900.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<a href="../architecture/feature-catalog.md#ma01"><rect x="70" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MA01  |  PARTIAL</text>
+<text x="88" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Consent, source onboarding and</text>
+<text x="88" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">privacy tier boundary</text>
+<text x="88" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#ma02"><rect x="640" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MA02  |  PARTIAL</text>
+<text x="658" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Codex documented App Server reader</text>
+<text x="658" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">and compatibility probe</text>
+<text x="658" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA01</text>
+</a>
+<a href="../architecture/feature-catalog.md#ma05"><rect x="1210" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MA05  |  PARTIAL</text>
+<text x="1228" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Minimization, pseudonymous ingest and</text>
+<text x="1228" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">ephemeral redaction preview</text>
+<text x="1228" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA02, MA03, MA04</text>
+</a>
+<a href="../architecture/feature-catalog.md#ma06"><rect x="70" y="360" width="520" height="166" rx="12" fill="#d4efdf" stroke="#748398"/>
+<text x="88" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MA06  |  READY (bounded)</text>
+<text x="88" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Explicit trusted metric dependency</text>
+<text x="88" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">graph</text>
+<text x="88" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA05</text>
+</a>
+<a href="../architecture/feature-catalog.md#ma12"><rect x="640" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MA12  |  PARTIAL</text>
+<text x="658" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Sealed session analysis and</text>
+<text x="658" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">publication</text>
+<text x="658" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08, MA11</text>
+</a>
+<a href="../architecture/feature-catalog.md#ma16"><rect x="1210" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MA16  |  PARTIAL</text>
+<text x="1228" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Live radar, metric workspace and</text>
+<text x="1228" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">session selection UI</text>
+<text x="1228" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA13, MA15</text>
+</a>
+<a href="../architecture/feature-catalog.md#a02"><rect x="70" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A02  |  PARTIAL</text>
+<text x="88" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Persistent Agent projects and chat</text>
+<text x="88" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">catalog</text>
+<text x="88" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A01</text>
+</a>
+<a href="../architecture/feature-catalog.md#a06"><rect x="640" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A06  |  PARTIAL</text>
+<text x="658" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Conversation streaming, Stop and</text>
+<text x="658" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">activity</text>
+<text x="658" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A01, A03, A08</text>
+</a>
+<a href="../architecture/feature-catalog.md#a08"><rect x="1210" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A08  |  PARTIAL</text>
+<text x="1228" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Owned GGUF runtime and model</text>
+<text x="1228" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">switching</text>
+<text x="1228" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#a13"><rect x="70" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A13  |  PARTIAL</text>
+<text x="88" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Native one-shot approval authority</text>
+<text x="88" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A01, A11</text>
+</a>
+<a href="../architecture/feature-catalog.md#a14"><rect x="640" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A14  |  PARTIAL</text>
+<text x="658" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Diffs, writes, change sets and</text>
+<text x="658" y="864" font-family="Arial,sans-serif" font-size="23" fill="#172b46">lifecycle</text>
+<text x="658" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A12, A13</text>
+</a>
+<a href="../architecture/feature-catalog.md#w02"><rect x="1210" y="780" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W02  |  NOT IMPLEMENTED</text>
+<text x="1228" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Durable workflow revisions and</text>
+<text x="1228" y="864" font-family="Arial,sans-serif" font-size="23" fill="#172b46">sequential engine</text>
+<text x="1228" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W01</text>
+</a>
+<a href="../architecture/feature-catalog.md#w05"><rect x="70" y="990" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W05  |  NOT IMPLEMENTED</text>
+<text x="88" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Visual workflow builder and device</text>
+<text x="88" y="1074" font-family="Arial,sans-serif" font-size="23" fill="#172b46">model advisor</text>
+<text x="88" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W01, W02, W03, W04, A10</text>
+</a>
+<a href="../architecture/feature-catalog.md#r21"><rect x="640" y="990" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R21  |  PARTIAL</text>
+<text x="658" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Compiled source-deterrent MSIX</text>
+<text x="658" y="1074" font-family="Arial,sans-serif" font-size="23" fill="#172b46">artifact</text>
+<text x="658" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R04, R19, R20</text>
+</a>
+<a href="../architecture/feature-catalog.md#r17"><rect x="1210" y="990" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R17  |  NOT IMPLEMENTED</text>
+<text x="1228" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Product update Apply endpoint and</text>
+<text x="1228" y="1074" font-family="Arial,sans-serif" font-size="23" fill="#172b46">relaunch</text>
+<text x="1228" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: R16, R18</text>
+</a>
+<a href="../architecture/feature-catalog.md#r25"><rect x="70" y="1200" width="520" height="166" rx="12" fill="#d4efdf" stroke="#748398"/>
+<text x="88" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">R25  |  READY (bounded)</text>
+<text x="88" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Owner-review feature-branch</text>
+<text x="88" y="1284" font-family="Arial,sans-serif" font-size="23" fill="#172b46">collaboration policy</text>
+<text x="88" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#ma19"><rect x="640" y="1200" width="520" height="166" rx="12" fill="#e1e5ea" stroke="#748398"/>
+<text x="658" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MA19  |  MOCK / DEMO</text>
+<text x="658" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Synthetic demonstration transport and</text>
+<text x="658" y="1284" font-family="Arial,sans-serif" font-size="23" fill="#172b46">provider fixtures</text>
+<text x="658" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<text x="70" y="1440" font-family="Arial,sans-serif" font-size="17" fill="#42556b">Arrows = dependencies / data flow. Dashed = planned. Cross-page dependencies use catalog IDs. Colors do not certify beta.</text>
+</svg>

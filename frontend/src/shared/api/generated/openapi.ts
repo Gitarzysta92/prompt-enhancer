@@ -1787,6 +1787,125 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/inference/agent/{session_id}/reviews": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Pending */
+        get: operations["pending_v1_inference_agent__session_id__reviews_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/inference/agent/{session_id}/reviews/{review_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Decide */
+        post: operations["decide_v1_inference_agent__session_id__reviews__review_id__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/inference/analysis": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Analyze */
+        post: operations["analyze_v1_inference_analysis_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/inference/analysis/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Preview Analysis */
+        post: operations["preview_analysis_v1_inference_analysis_preview_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/inference/chat": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Chat */
+        post: operations["chat_v1_inference_chat_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/inference/chat/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Preview */
+        post: operations["preview_v1_inference_chat_preview_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/inference/models": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Models */
+        get: operations["models_v1_inference_models_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/integrations/agent-mcp/connections": {
         parameters: {
             query?: never;
@@ -3159,6 +3278,23 @@ export interface paths {
         put?: never;
         /** Interpret Session */
         post: operations["interpret_session_v1_model_judge_sessions__session_id__interpret_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/model-judge/sessions/{session_id}/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Preview Selected Model */
+        post: operations["preview_selected_model_v1_model_judge_sessions__session_id__preview_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -7670,7 +7806,7 @@ export interface components {
              * Reason
              * @enum {string}
              */
-            reason: "answer_complete" | "stop_requested" | "step_limit" | "model_response_limit" | "model_response_filtered" | "model_completion_unrecognized" | "model_stream_incomplete" | "model_stream_failed" | "model_reply_unusable" | "model_reply_too_large" | "model_answer_missing" | "runtime_unreachable" | "runtime_http_error" | "turn_failed" | "command_cleanup_unconfirmed" | "context_window_exceeded";
+            reason: "answer_complete" | "stop_requested" | "step_limit" | "model_response_limit" | "model_response_filtered" | "model_completion_unrecognized" | "model_stream_incomplete" | "model_stream_failed" | "model_reply_unusable" | "model_reply_too_large" | "model_answer_missing" | "runtime_unreachable" | "runtime_http_error" | "turn_failed" | "command_cleanup_unconfirmed" | "context_window_exceeded" | "inference_not_authorized";
             /**
              * Started At
              * Format: date-time
@@ -8980,6 +9116,12 @@ export interface components {
              */
             arbitrary_sql: false;
             /**
+             * Automatic Session Text Network Inference
+             * @default false
+             * @constant
+             */
+            automatic_session_text_network_inference: false;
+            /**
              * Browser Session
              * @constant
              */
@@ -9035,6 +9177,11 @@ export interface components {
              * @default false
              */
             raw_transcripts: boolean;
+            /**
+             * Reviewed Inference
+             * @default false
+             */
+            reviewed_inference: boolean;
             /** Session Model Link Experiment */
             session_model_link_experiment: boolean;
             /** Session Text Analysis */
@@ -9049,9 +9196,8 @@ export interface components {
             /**
              * Session Text Network Inference
              * @default false
-             * @constant
              */
-            session_text_network_inference: false;
+            session_text_network_inference: boolean;
             /**
              * Shared Folders
              * @default false
@@ -9166,6 +9312,16 @@ export interface components {
              * @constant
              */
             object: "response.input_tokens";
+        };
+        /** ChatMessage */
+        ChatMessage: {
+            /** Content */
+            content: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "system" | "user" | "assistant";
         };
         /**
          * ClaudeCodeLocalSourceStatus
@@ -10208,6 +10364,101 @@ export interface components {
             /** Ram Mb */
             ram_mb?: number | null;
         };
+        /** InferenceCatalog */
+        InferenceCatalog: {
+            /**
+             * Contract Version
+             * @default inference.v1
+             * @constant
+             */
+            contract_version: "inference.v1";
+            /** Models */
+            models: components["schemas"]["InferenceModel"][];
+            /**
+             * Unavailable Providers
+             * @default []
+             */
+            unavailable_providers: string[];
+        };
+        /** InferenceChatRequest */
+        InferenceChatRequest: {
+            /** Approval */
+            approval?: string | null;
+            /**
+             * Max Tokens
+             * @default 1100
+             */
+            max_tokens: number;
+            /** Messages */
+            messages: components["schemas"]["ChatMessage"][];
+            /** Model Id */
+            model_id: string;
+            /**
+             * Temperature
+             * @default 0.2
+             */
+            temperature: number;
+        };
+        /** InferenceModel */
+        InferenceModel: {
+            /** Adapter Version */
+            adapter_version: string;
+            /**
+             * Availability
+             * @enum {string}
+             */
+            availability: "running" | "stopped" | "configured";
+            /** Available */
+            available: boolean;
+            /** Context Tokens */
+            context_tokens?: number | null;
+            /** Id */
+            id: string;
+            /** License */
+            license?: string | null;
+            /** Name */
+            name: string;
+            /**
+             * Provider
+             * @enum {string}
+             */
+            provider: "local" | "litellm";
+            /** Remote */
+            remote: boolean;
+            /** Revision */
+            revision?: string | null;
+            /**
+             * Streaming
+             * @default true
+             */
+            streaming: boolean;
+            /** Tools */
+            tools?: boolean | null;
+        };
+        /** InferencePreview */
+        InferencePreview: {
+            /** Approval */
+            approval: string;
+            /**
+             * Expires In Seconds
+             * @default 600
+             */
+            expires_in_seconds: number;
+            model: components["schemas"]["InferenceModel"];
+            /** Purpose */
+            purpose: string;
+            /** Redactor Version */
+            redactor_version: string;
+            /** Request */
+            request: {
+                [key: string]: components["schemas"]["JsonValue"];
+            };
+        };
+        /** InferenceReviewDecision */
+        InferenceReviewDecision: {
+            /** Accepted */
+            accepted: boolean;
+        };
         /** IngestionReport */
         IngestionReport: {
             /**
@@ -10277,6 +10528,7 @@ export interface components {
             /** Url */
             url: string;
         };
+        JsonValue: unknown;
         /** JudgeAgreementReport */
         JudgeAgreementReport: {
             /**
@@ -10333,6 +10585,18 @@ export interface components {
             raw_valid: boolean;
             /** Session Id */
             session_id: string;
+        };
+        /** JudgePreviewRequest */
+        JudgePreviewRequest: {
+            /** Approval */
+            approval?: string | null;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "judge" | "interpret";
+            /** Model Id */
+            model_id: string;
         };
         /** JudgeSweepStatus */
         JudgeSweepStatus: {
@@ -10826,6 +11090,47 @@ export interface components {
             sha256: string;
             /** Size */
             size: number;
+        };
+        /** ManualAnalysisRequest */
+        ManualAnalysisRequest: {
+            /** Approval */
+            approval?: string | null;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "interpret" | "judge";
+            /** Model Id */
+            model_id: string;
+            /** Text */
+            text: string;
+        };
+        /** ManualAnalysisResult */
+        ManualAnalysisResult: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "interpret" | "judge";
+            model: components["schemas"]["InferenceModel"];
+            /**
+             * Persisted
+             * @default false
+             * @constant
+             */
+            persisted: false;
+            /**
+             * Prompt Version
+             * @default manual-analysis.v1
+             * @constant
+             */
+            prompt_version: "manual-analysis.v1";
+            /** Redactor Version */
+            redactor_version: string;
+            /** Result */
+            result: {
+                [key: string]: unknown;
+            };
         };
         /** ManualDisplayLabelRequest */
         ManualDisplayLabelRequest: {
@@ -15673,6 +15978,12 @@ export interface components {
             /** Links */
             links: components["schemas"]["PeerLink"][];
         };
+        /** PendingInferenceReview */
+        PendingInferenceReview: {
+            /** Id */
+            id: string;
+            preview: components["schemas"]["InferencePreview"];
+        };
         /**
          * PlacementAdmissionReason
          * @description Closed, content-free reasons behind one placement decision.
@@ -18678,6 +18989,13 @@ export interface components {
             /** Skipped Invalid */
             skipped_invalid: number;
         };
+        /** SelectedJudgeModel */
+        SelectedJudgeModel: {
+            /** Approval */
+            approval?: string | null;
+            /** Model Id */
+            model_id: string;
+        };
         /**
          * SemanticUnitKind
          * @description Versioned semantic opportunities used by the 20 metric contracts.
@@ -18943,6 +19261,8 @@ export interface components {
          * @description Plain-language reading of one session's metrics by the local model - commentary, never a metric.
          */
         SessionInterpretation: {
+            /** Adapter Version */
+            adapter_version?: string | null;
             /**
              * Caveat
              * @default Written by a local model from the session's metric states and the redacted window; it is an interpretation, not a measurement, and may be wrong. Unknown metrics were reported to it as unknown.
@@ -18959,15 +19279,21 @@ export interface components {
              * @default []
              */
             improvements: string[];
+            /** Inference Provider */
+            inference_provider?: ("local" | "litellm") | null;
             /** Metrics Seen */
             metrics_seen: number;
             /** Model Alias */
             model_alias: string;
+            /** Model Revision */
+            model_revision?: string | null;
             /**
              * Prompt Version
              * @default interpret-v2-complete-json
              */
             prompt_version: string;
+            /** Redactor Version */
+            redactor_version?: string | null;
             /** Reframed Prompt */
             reframed_prompt?: string | null;
             /** Session Id */
@@ -25819,6 +26145,253 @@ export interface operations {
             };
         };
     };
+    pending_v1_inference_agent__session_id__reviews_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PendingInferenceReview"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    decide_v1_inference_agent__session_id__reviews__review_id__post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path: {
+                session_id: string;
+                review_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InferenceReviewDecision"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    analyze_v1_inference_analysis_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ManualAnalysisRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ManualAnalysisResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    preview_analysis_v1_inference_analysis_preview_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ManualAnalysisRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InferencePreview"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    chat_v1_inference_chat_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InferenceChatRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    preview_v1_inference_chat_preview_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InferenceChatRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InferencePreview"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    models_v1_inference_models_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InferenceCatalog"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_connections_v1_integrations_agent_mcp_connections_get: {
         parameters: {
             query?: never;
@@ -29163,7 +29736,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["SelectedJudgeModel"] | null;
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -29242,7 +29819,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["SelectedJudgeModel"] | null;
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -29305,6 +29886,44 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ModelJudgeFailureResponse"];
+                };
+            };
+        };
+    };
+    preview_selected_model_v1_model_judge_sessions__session_id__preview_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Prompt-Enhancer-Token"?: string | null;
+                "X-Prompt-Enhancer-CSRF"?: string | null;
+            };
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["JudgePreviewRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InferencePreview"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

@@ -28,6 +28,9 @@ jobs:
       - name: Run privacy scan
         run: python scripts/privacy_scan.py
 
+      - name: Check generated architecture catalog and diagrams
+        run: python scripts/render_architecture_atlas.py --check
+
       - name: Check pull request patch whitespace
         if: github.event_name == 'pull_request'
         env:

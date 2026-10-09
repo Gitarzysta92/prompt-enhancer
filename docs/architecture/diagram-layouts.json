@@ -1,0 +1,8598 @@
+[
+  {
+    "slug": "architecture-overview",
+    "title": "System and delivery map",
+    "width": 1800,
+    "height": 1468,
+    "cards": [
+      {
+        "id": "MA01",
+        "x": 70,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA01  |  PARTIAL",
+          "Consent, source onboarding and",
+          "privacy tier boundary"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "MA02",
+        "x": 640,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA02  |  PARTIAL",
+          "Codex documented App Server reader",
+          "and compatibility probe"
+        ],
+        "footer": "Needs: MA01",
+        "scope": "required"
+      },
+      {
+        "id": "MA05",
+        "x": 1210,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA05  |  PARTIAL",
+          "Minimization, pseudonymous ingest and",
+          "ephemeral redaction preview"
+        ],
+        "footer": "Needs: MA02, MA03, MA04",
+        "scope": "required"
+      },
+      {
+        "id": "MA06",
+        "x": 70,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#d4efdf",
+        "lines": [
+          "MA06  |  READY (bounded)",
+          "Explicit trusted metric dependency",
+          "graph"
+        ],
+        "footer": "Needs: MA05",
+        "scope": "required"
+      },
+      {
+        "id": "MA12",
+        "x": 640,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA12  |  PARTIAL",
+          "Sealed session analysis and",
+          "publication"
+        ],
+        "footer": "Needs: MA07, MA08, MA11",
+        "scope": "required"
+      },
+      {
+        "id": "MA16",
+        "x": 1210,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA16  |  PARTIAL",
+          "Live radar, metric workspace and",
+          "session selection UI"
+        ],
+        "footer": "Needs: MA13, MA15",
+        "scope": "required"
+      },
+      {
+        "id": "A02",
+        "x": 70,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A02  |  PARTIAL",
+          "Persistent Agent projects and chat",
+          "catalog"
+        ],
+        "footer": "Needs: A01",
+        "scope": "required"
+      },
+      {
+        "id": "A06",
+        "x": 640,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A06  |  PARTIAL",
+          "Conversation streaming, Stop and",
+          "activity"
+        ],
+        "footer": "Needs: A01, A03, A08",
+        "scope": "required"
+      },
+      {
+        "id": "A08",
+        "x": 1210,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A08  |  PARTIAL",
+          "Owned GGUF runtime and model",
+          "switching"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "A13",
+        "x": 70,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A13  |  PARTIAL",
+          "Native one-shot approval authority"
+        ],
+        "footer": "Needs: A01, A11",
+        "scope": "required"
+      },
+      {
+        "id": "A14",
+        "x": 640,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A14  |  PARTIAL",
+          "Diffs, writes, change sets and",
+          "lifecycle"
+        ],
+        "footer": "Needs: A12, A13",
+        "scope": "required"
+      },
+      {
+        "id": "W02",
+        "x": 1210,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W02  |  NOT IMPLEMENTED",
+          "Durable workflow revisions and",
+          "sequential engine"
+        ],
+        "footer": "Needs: W01",
+        "scope": "required"
+      },
+      {
+        "id": "W05",
+        "x": 70,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W05  |  NOT IMPLEMENTED",
+          "Visual workflow builder and device",
+          "model advisor"
+        ],
+        "footer": "Needs: W01, W02, W03, W04, A10",
+        "scope": "required"
+      },
+      {
+        "id": "R21",
+        "x": 640,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R21  |  PARTIAL",
+          "Compiled source-deterrent MSIX",
+          "artifact"
+        ],
+        "footer": "Needs: R04, R19, R20",
+        "scope": "required"
+      },
+      {
+        "id": "R17",
+        "x": 1210,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "R17  |  NOT IMPLEMENTED",
+          "Product update Apply endpoint and",
+          "relaunch"
+        ],
+        "footer": "Needs: R16, R18",
+        "scope": "required"
+      },
+      {
+        "id": "R25",
+        "x": 70,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#d4efdf",
+        "lines": [
+          "R25  |  READY (bounded)",
+          "Owner-review feature-branch",
+          "collaboration policy"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "MA19",
+        "x": 640,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#e1e5ea",
+        "lines": [
+          "MA19  |  MOCK / DEMO",
+          "Synthetic demonstration transport and",
+          "provider fixtures"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "experimental"
+      }
+    ],
+    "edges": [
+      {
+        "source": "MA01",
+        "target": "MA02",
+        "x1": 590,
+        "y1": 233.0,
+        "x2": 640,
+        "y2": 233.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            233.0
+          ],
+          [
+            640,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "MA02",
+        "target": "MA05",
+        "x1": 1160,
+        "y1": 233.0,
+        "x2": 1210,
+        "y2": 233.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            233.0
+          ],
+          [
+            1210,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "MA05",
+        "target": "MA06",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "MA06",
+        "target": "MA12",
+        "x1": 590,
+        "y1": 443.0,
+        "x2": 640,
+        "y2": 443.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            443.0
+          ],
+          [
+            640,
+            443.0
+          ]
+        ]
+      },
+      {
+        "source": "MA12",
+        "target": "MA16",
+        "x1": 1160,
+        "y1": 443.0,
+        "x2": 1210,
+        "y2": 443.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            443.0
+          ],
+          [
+            1210,
+            443.0
+          ]
+        ]
+      },
+      {
+        "source": "A02",
+        "target": "A06",
+        "x1": 590,
+        "y1": 653.0,
+        "x2": 640,
+        "y2": 653.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            653.0
+          ],
+          [
+            640,
+            653.0
+          ]
+        ]
+      },
+      {
+        "source": "A08",
+        "target": "A06",
+        "x1": 1210,
+        "y1": 653.0,
+        "x2": 1160,
+        "y2": 653.0,
+        "dashed": false,
+        "points": [
+          [
+            1210,
+            653.0
+          ],
+          [
+            1160,
+            653.0
+          ]
+        ]
+      },
+      {
+        "source": "A13",
+        "target": "A14",
+        "x1": 590,
+        "y1": 863.0,
+        "x2": 640,
+        "y2": 863.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            863.0
+          ],
+          [
+            640,
+            863.0
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "W05",
+        "x1": 1470.0,
+        "y1": 946,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            946
+          ],
+          [
+            1470.0,
+            962
+          ],
+          [
+            29,
+            962
+          ],
+          [
+            29,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "R21",
+        "target": "R17",
+        "x1": 1160,
+        "y1": 1073.0,
+        "x2": 1210,
+        "y2": 1073.0,
+        "dashed": true,
+        "points": [
+          [
+            1160,
+            1073.0
+          ],
+          [
+            1210,
+            1073.0
+          ]
+        ]
+      },
+      {
+        "source": "R25",
+        "target": "R21",
+        "x1": 330.0,
+        "y1": 1366,
+        "x2": 900.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            1366
+          ],
+          [
+            330.0,
+            1382
+          ],
+          [
+            39,
+            1382
+          ],
+          [
+            39,
+            974
+          ],
+          [
+            900.0,
+            974
+          ],
+          [
+            900.0,
+            990
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "architecture-metrics",
+    "title": "Analytics and live metrics",
+    "width": 1800,
+    "height": 1678,
+    "cards": [
+      {
+        "id": "MA01",
+        "x": 70,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA01  |  PARTIAL",
+          "Consent, source onboarding and",
+          "privacy tier boundary"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "MA02",
+        "x": 640,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA02  |  PARTIAL",
+          "Codex documented App Server reader",
+          "and compatibility probe"
+        ],
+        "footer": "Needs: MA01",
+        "scope": "required"
+      },
+      {
+        "id": "MA03",
+        "x": 1210,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA03  |  PARTIAL",
+          "Claude opt-in hooks and content-free",
+          "telemetry ledger"
+        ],
+        "footer": "Needs: MA01",
+        "scope": "required"
+      },
+      {
+        "id": "MA04",
+        "x": 70,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA04  |  PARTIAL",
+          "Versioned Claude transcript",
+          "compatibility reader"
+        ],
+        "footer": "Needs: MA01",
+        "scope": "required"
+      },
+      {
+        "id": "MA05",
+        "x": 640,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA05  |  PARTIAL",
+          "Minimization, pseudonymous ingest and",
+          "ephemeral redaction preview"
+        ],
+        "footer": "Needs: MA02, MA03, MA04",
+        "scope": "required"
+      },
+      {
+        "id": "MA06",
+        "x": 1210,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#d4efdf",
+        "lines": [
+          "MA06  |  READY (bounded)",
+          "Explicit trusted metric dependency",
+          "graph"
+        ],
+        "footer": "Needs: MA05",
+        "scope": "required"
+      },
+      {
+        "id": "MA07",
+        "x": 70,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA07  |  PARTIAL",
+          "Canonical twenty-metric schema and",
+          "operability catalog"
+        ],
+        "footer": "Needs: MA06",
+        "scope": "required"
+      },
+      {
+        "id": "MA08",
+        "x": 640,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA08  |  PARTIAL",
+          "Reviewed lifecycle, task profile and",
+          "requirement evidence"
+        ],
+        "footer": "Needs: MA05, MA07",
+        "scope": "required"
+      },
+      {
+        "id": "MA09",
+        "x": 1210,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA09  |  PARTIAL",
+          "Claim census and observed-check link",
+          "proposals"
+        ],
+        "footer": "Needs: MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MA10",
+        "x": 70,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA10  |  PARTIAL",
+          "Experimental factor model adapters",
+          "and bounded serial workers"
+        ],
+        "footer": "Needs: MA05, MA07",
+        "scope": "experimental"
+      },
+      {
+        "id": "MA11",
+        "x": 640,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA11  |  PARTIAL",
+          "Experimental probability pooling and",
+          "calibration gates"
+        ],
+        "footer": "Needs: MA10",
+        "scope": "experimental"
+      },
+      {
+        "id": "MA12",
+        "x": 1210,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA12  |  PARTIAL",
+          "Sealed session analysis and",
+          "publication"
+        ],
+        "footer": "Needs: MA07, MA08, MA11",
+        "scope": "required"
+      },
+      {
+        "id": "MA13",
+        "x": 70,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA13  |  PARTIAL",
+          "Durable live watch, attempts,",
+          "retry/backoff and last valid head"
+        ],
+        "footer": "Needs: MA12",
+        "scope": "required"
+      },
+      {
+        "id": "MA14",
+        "x": 640,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#d4efdf",
+        "lines": [
+          "MA14  |  READY (bounded)",
+          "Engineering V1 session/project ratio",
+          "aggregation"
+        ],
+        "footer": "Needs: MA06",
+        "scope": "required"
+      },
+      {
+        "id": "MA15",
+        "x": 1210,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA15  |  PARTIAL",
+          "Metric storage, coverage/provenance",
+          "and read-only API"
+        ],
+        "footer": "Needs: MA12, MA14",
+        "scope": "required"
+      },
+      {
+        "id": "MA16",
+        "x": 70,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA16  |  PARTIAL",
+          "Live radar, metric workspace and",
+          "session selection UI"
+        ],
+        "footer": "Needs: MA13, MA15",
+        "scope": "required"
+      },
+      {
+        "id": "MA17",
+        "x": 640,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA17  |  PARTIAL",
+          "Calibration review, saved ratings and",
+          "reports"
+        ],
+        "footer": "Needs: MA15",
+        "scope": "experimental"
+      },
+      {
+        "id": "MA18",
+        "x": 1210,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA18  |  PARTIAL",
+          "Prompt check, optional rewrite and",
+          "Claude submit hook"
+        ],
+        "footer": "Needs: MA06",
+        "scope": "required"
+      },
+      {
+        "id": "MA19",
+        "x": 70,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#e1e5ea",
+        "lines": [
+          "MA19  |  MOCK / DEMO",
+          "Synthetic demonstration transport and",
+          "provider fixtures"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "experimental"
+      },
+      {
+        "id": "MA20",
+        "x": 640,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA20  |  PARTIAL",
+          "Historical V1 publication",
+          "compatibility preview"
+        ],
+        "footer": "Needs: MA07, MA15",
+        "scope": "experimental"
+      }
+    ],
+    "edges": [
+      {
+        "source": "MA01",
+        "target": "MA02",
+        "x1": 590,
+        "y1": 233.0,
+        "x2": 640,
+        "y2": 233.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            233.0
+          ],
+          [
+            640,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "MA01",
+        "target": "MA03",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 150,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            134
+          ],
+          [
+            1470.0,
+            134
+          ],
+          [
+            1470.0,
+            150
+          ]
+        ]
+      },
+      {
+        "source": "MA01",
+        "target": "MA04",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "MA02",
+        "target": "MA05",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            344
+          ],
+          [
+            900.0,
+            344
+          ],
+          [
+            900.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "MA03",
+        "target": "MA05",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            344
+          ],
+          [
+            900.0,
+            344
+          ],
+          [
+            900.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "MA04",
+        "target": "MA05",
+        "x1": 590,
+        "y1": 443.0,
+        "x2": 640,
+        "y2": 443.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            443.0
+          ],
+          [
+            640,
+            443.0
+          ]
+        ]
+      },
+      {
+        "source": "MA05",
+        "target": "MA06",
+        "x1": 1160,
+        "y1": 443.0,
+        "x2": 1210,
+        "y2": 443.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            443.0
+          ],
+          [
+            1210,
+            443.0
+          ]
+        ]
+      },
+      {
+        "source": "MA06",
+        "target": "MA07",
+        "x1": 1470.0,
+        "y1": 526,
+        "x2": 330.0,
+        "y2": 570,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            526
+          ],
+          [
+            1470.0,
+            542
+          ],
+          [
+            24,
+            542
+          ],
+          [
+            24,
+            554
+          ],
+          [
+            330.0,
+            554
+          ],
+          [
+            330.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "MA05",
+        "target": "MA08",
+        "x1": 900.0,
+        "y1": 526,
+        "x2": 900.0,
+        "y2": 570,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            526
+          ],
+          [
+            900.0,
+            542
+          ],
+          [
+            29,
+            542
+          ],
+          [
+            29,
+            554
+          ],
+          [
+            900.0,
+            554
+          ],
+          [
+            900.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MA08",
+        "x1": 590,
+        "y1": 653.0,
+        "x2": 640,
+        "y2": 653.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            653.0
+          ],
+          [
+            640,
+            653.0
+          ]
+        ]
+      },
+      {
+        "source": "MA08",
+        "target": "MA09",
+        "x1": 1160,
+        "y1": 653.0,
+        "x2": 1210,
+        "y2": 653.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            653.0
+          ],
+          [
+            1210,
+            653.0
+          ]
+        ]
+      },
+      {
+        "source": "MA05",
+        "target": "MA10",
+        "x1": 900.0,
+        "y1": 526,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            526
+          ],
+          [
+            900.0,
+            542
+          ],
+          [
+            44,
+            542
+          ],
+          [
+            44,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MA10",
+        "x1": 330.0,
+        "y1": 736,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            736
+          ],
+          [
+            330.0,
+            752
+          ],
+          [
+            49,
+            752
+          ],
+          [
+            49,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "MA10",
+        "target": "MA11",
+        "x1": 590,
+        "y1": 863.0,
+        "x2": 640,
+        "y2": 863.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            863.0
+          ],
+          [
+            640,
+            863.0
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MA12",
+        "x1": 330.0,
+        "y1": 736,
+        "x2": 1470.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            736
+          ],
+          [
+            330.0,
+            752
+          ],
+          [
+            24,
+            752
+          ],
+          [
+            24,
+            764
+          ],
+          [
+            1470.0,
+            764
+          ],
+          [
+            1470.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "MA08",
+        "target": "MA12",
+        "x1": 900.0,
+        "y1": 736,
+        "x2": 1470.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            736
+          ],
+          [
+            900.0,
+            752
+          ],
+          [
+            29,
+            752
+          ],
+          [
+            29,
+            764
+          ],
+          [
+            1470.0,
+            764
+          ],
+          [
+            1470.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "MA11",
+        "target": "MA12",
+        "x1": 1160,
+        "y1": 863.0,
+        "x2": 1210,
+        "y2": 863.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            863.0
+          ],
+          [
+            1210,
+            863.0
+          ]
+        ]
+      },
+      {
+        "source": "MA12",
+        "target": "MA13",
+        "x1": 1470.0,
+        "y1": 946,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            946
+          ],
+          [
+            1470.0,
+            962
+          ],
+          [
+            39,
+            962
+          ],
+          [
+            39,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "MA06",
+        "target": "MA14",
+        "x1": 1470.0,
+        "y1": 526,
+        "x2": 900.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            526
+          ],
+          [
+            1470.0,
+            542
+          ],
+          [
+            44,
+            542
+          ],
+          [
+            44,
+            974
+          ],
+          [
+            900.0,
+            974
+          ],
+          [
+            900.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "MA12",
+        "target": "MA15",
+        "x1": 1470.0,
+        "y1": 946,
+        "x2": 1470.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            946
+          ],
+          [
+            1470.0,
+            962
+          ],
+          [
+            49,
+            962
+          ],
+          [
+            49,
+            974
+          ],
+          [
+            1470.0,
+            974
+          ],
+          [
+            1470.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "MA14",
+        "target": "MA15",
+        "x1": 1160,
+        "y1": 1073.0,
+        "x2": 1210,
+        "y2": 1073.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            1073.0
+          ],
+          [
+            1210,
+            1073.0
+          ]
+        ]
+      },
+      {
+        "source": "MA13",
+        "target": "MA16",
+        "x1": 330.0,
+        "y1": 1156,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            1156
+          ],
+          [
+            330.0,
+            1172
+          ],
+          [
+            24,
+            1172
+          ],
+          [
+            24,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "MA15",
+        "target": "MA16",
+        "x1": 1470.0,
+        "y1": 1156,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1156
+          ],
+          [
+            1470.0,
+            1172
+          ],
+          [
+            29,
+            1172
+          ],
+          [
+            29,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "MA15",
+        "target": "MA17",
+        "x1": 1470.0,
+        "y1": 1156,
+        "x2": 900.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1156
+          ],
+          [
+            1470.0,
+            1172
+          ],
+          [
+            34,
+            1172
+          ],
+          [
+            34,
+            1184
+          ],
+          [
+            900.0,
+            1184
+          ],
+          [
+            900.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "MA06",
+        "target": "MA18",
+        "x1": 1470.0,
+        "y1": 526,
+        "x2": 1470.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            526
+          ],
+          [
+            1470.0,
+            542
+          ],
+          [
+            39,
+            542
+          ],
+          [
+            39,
+            1184
+          ],
+          [
+            1470.0,
+            1184
+          ],
+          [
+            1470.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MA20",
+        "x1": 330.0,
+        "y1": 736,
+        "x2": 900.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            736
+          ],
+          [
+            330.0,
+            752
+          ],
+          [
+            44,
+            752
+          ],
+          [
+            44,
+            1394
+          ],
+          [
+            900.0,
+            1394
+          ],
+          [
+            900.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "MA15",
+        "target": "MA20",
+        "x1": 1470.0,
+        "y1": 1156,
+        "x2": 900.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1156
+          ],
+          [
+            1470.0,
+            1172
+          ],
+          [
+            49,
+            1172
+          ],
+          [
+            49,
+            1394
+          ],
+          [
+            900.0,
+            1394
+          ],
+          [
+            900.0,
+            1410
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "architecture-contracts",
+    "title": "Twenty canonical metric contracts",
+    "width": 1800,
+    "height": 1678,
+    "cards": [
+      {
+        "id": "MA07",
+        "x": 70,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MA07  |  PARTIAL",
+          "Canonical twenty-metric schema and",
+          "operability catalog"
+        ],
+        "footer": "Needs: MA06",
+        "scope": "required"
+      },
+      {
+        "id": "MC01",
+        "x": 640,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC01  |  PARTIAL",
+          "prompt. task definition coverage"
+        ],
+        "footer": "Needs: MA07, MA06",
+        "scope": "required"
+      },
+      {
+        "id": "MC02",
+        "x": 1210,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC02  |  PARTIAL",
+          "prompt. problem evidence quality"
+        ],
+        "footer": "Needs: MA07, MA06",
+        "scope": "required"
+      },
+      {
+        "id": "MC03",
+        "x": 70,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC03  |  PARTIAL",
+          "prompt. context sufficiency"
+        ],
+        "footer": "Needs: MA07, MA06",
+        "scope": "required"
+      },
+      {
+        "id": "MC04",
+        "x": 640,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC04  |  PARTIAL",
+          "prompt. constraint precision"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC05",
+        "x": 1210,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC05  |  PARTIAL",
+          "prompt. acceptance testability"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC06",
+        "x": 70,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC06  |  PARTIAL",
+          "prompt. deliverable contract"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC07",
+        "x": 640,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC07  |  PARTIAL",
+          "collaboration. ambiguity resolution"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC08",
+        "x": 1210,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC08  |  PARTIAL",
+          "collaboration. clarification yield"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC09",
+        "x": 70,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC09  |  PARTIAL",
+          "collaboration. exploration conversion"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC10",
+        "x": 640,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC10  |  PARTIAL",
+          "collaboration. scope change",
+          "discipline"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC11",
+        "x": 1210,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC11  |  PARTIAL",
+          "collaboration. rework candidate rate"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC12",
+        "x": 70,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC12  |  PARTIAL",
+          "logic. decomposition coverage"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC13",
+        "x": 640,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "MC13  |  MEASURED ADAPTER ABSENT",
+          "logic. hypothesis test linkage",
+          "(measured adapter)"
+        ],
+        "footer": "Needs: MA07",
+        "scope": "required"
+      },
+      {
+        "id": "MC14",
+        "x": 1210,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC14  |  PARTIAL",
+          "logic. decision rationale coverage"
+        ],
+        "footer": "Needs: MA07, MA06",
+        "scope": "required"
+      },
+      {
+        "id": "MC15",
+        "x": 70,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC15  |  PARTIAL",
+          "logic. requirement action",
+          "traceability"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC16",
+        "x": 640,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC16  |  PARTIAL",
+          "logic. open loop closure"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC17",
+        "x": 1210,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "MC17  |  MEASURED ADAPTER ABSENT",
+          "outcome. agent claim grounding",
+          "(measured adapter)"
+        ],
+        "footer": "Needs: MA07, MA09",
+        "scope": "required"
+      },
+      {
+        "id": "MC18",
+        "x": 70,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC18  |  PARTIAL",
+          "outcome. verification strategy",
+          "adequacy"
+        ],
+        "footer": "Needs: MA07, MA06",
+        "scope": "required"
+      },
+      {
+        "id": "MC19",
+        "x": 640,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC19  |  PARTIAL",
+          "outcome. first pass verification"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      },
+      {
+        "id": "MC20",
+        "x": 1210,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "MC20  |  PARTIAL",
+          "outcome. verified requirement",
+          "coverage"
+        ],
+        "footer": "Needs: MA07, MA08",
+        "scope": "required"
+      }
+    ],
+    "edges": [
+      {
+        "source": "MA07",
+        "target": "MC01",
+        "x1": 590,
+        "y1": 233.0,
+        "x2": 640,
+        "y2": 233.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            233.0
+          ],
+          [
+            640,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC02",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 150,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            134
+          ],
+          [
+            1470.0,
+            134
+          ],
+          [
+            1470.0,
+            150
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC03",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC04",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            344
+          ],
+          [
+            900.0,
+            344
+          ],
+          [
+            900.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC05",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC06",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 570,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            554
+          ],
+          [
+            330.0,
+            554
+          ],
+          [
+            330.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC07",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 570,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            54,
+            332
+          ],
+          [
+            54,
+            554
+          ],
+          [
+            900.0,
+            554
+          ],
+          [
+            900.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC08",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 570,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            554
+          ],
+          [
+            1470.0,
+            554
+          ],
+          [
+            1470.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC09",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC10",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            764
+          ],
+          [
+            900.0,
+            764
+          ],
+          [
+            900.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC11",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            764
+          ],
+          [
+            1470.0,
+            764
+          ],
+          [
+            1470.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC12",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC13",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            974
+          ],
+          [
+            900.0,
+            974
+          ],
+          [
+            900.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC14",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            54,
+            332
+          ],
+          [
+            54,
+            974
+          ],
+          [
+            1470.0,
+            974
+          ],
+          [
+            1470.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC15",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC16",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            1184
+          ],
+          [
+            900.0,
+            1184
+          ],
+          [
+            900.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC17",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            1184
+          ],
+          [
+            1470.0,
+            1184
+          ],
+          [
+            1470.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC18",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            1394
+          ],
+          [
+            330.0,
+            1394
+          ],
+          [
+            330.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC19",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            1394
+          ],
+          [
+            900.0,
+            1394
+          ],
+          [
+            900.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "MA07",
+        "target": "MC20",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            1394
+          ],
+          [
+            1470.0,
+            1394
+          ],
+          [
+            1470.0,
+            1410
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "architecture-agent",
+    "title": "Agent chat, tools and MCP",
+    "width": 1800,
+    "height": 2098,
+    "cards": [
+      {
+        "id": "A01",
+        "x": 70,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#d4efdf",
+        "lines": [
+          "A01  |  READY (bounded)",
+          "Agent wire contracts"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "A02",
+        "x": 640,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A02  |  PARTIAL",
+          "Persistent Agent projects and chat",
+          "catalog"
+        ],
+        "footer": "Needs: A01",
+        "scope": "required"
+      },
+      {
+        "id": "A03",
+        "x": 1210,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A03  |  PARTIAL",
+          "Conversation retention and restart",
+          "recovery"
+        ],
+        "footer": "Needs: A02",
+        "scope": "required"
+      },
+      {
+        "id": "A04",
+        "x": 70,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A04  |  PARTIAL",
+          "Saved-message search, fork and export"
+        ],
+        "footer": "Needs: A02, A03",
+        "scope": "required"
+      },
+      {
+        "id": "A05",
+        "x": 640,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A05  |  PARTIAL",
+          "Chat composer, drafts and runtime",
+          "picker"
+        ],
+        "footer": "Needs: A02, A08, A09",
+        "scope": "required"
+      },
+      {
+        "id": "A06",
+        "x": 1210,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A06  |  PARTIAL",
+          "Conversation streaming, Stop and",
+          "activity"
+        ],
+        "footer": "Needs: A01, A03, A08",
+        "scope": "required"
+      },
+      {
+        "id": "A07",
+        "x": 70,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A07  |  PARTIAL",
+          "Safe Markdown, code and workspace",
+          "links"
+        ],
+        "footer": "Needs: A06",
+        "scope": "required"
+      },
+      {
+        "id": "A08",
+        "x": 640,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A08  |  PARTIAL",
+          "Owned GGUF runtime and model",
+          "switching"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "A09",
+        "x": 1210,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A09  |  PARTIAL",
+          "Exact chat context evidence"
+        ],
+        "footer": "Needs: A08",
+        "scope": "required"
+      },
+      {
+        "id": "A10",
+        "x": 70,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A10  |  PARTIAL",
+          "Model catalog, download and placement",
+          "advice"
+        ],
+        "footer": "Needs: A08",
+        "scope": "required"
+      },
+      {
+        "id": "A11",
+        "x": 640,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A11  |  PARTIAL",
+          "Native workspace folder selection"
+        ],
+        "footer": "Needs: A02",
+        "scope": "required"
+      },
+      {
+        "id": "A12",
+        "x": 1210,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A12  |  PARTIAL",
+          "Workspace discovery, reads and search"
+        ],
+        "footer": "Needs: A11",
+        "scope": "required"
+      },
+      {
+        "id": "A13",
+        "x": 70,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A13  |  PARTIAL",
+          "Native one-shot approval authority"
+        ],
+        "footer": "Needs: A01, A11",
+        "scope": "required"
+      },
+      {
+        "id": "A14",
+        "x": 640,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A14  |  PARTIAL",
+          "Diffs, writes, change sets and",
+          "lifecycle"
+        ],
+        "footer": "Needs: A12, A13",
+        "scope": "required"
+      },
+      {
+        "id": "A15",
+        "x": 1210,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A15  |  PARTIAL",
+          "Owned command execution"
+        ],
+        "footer": "Needs: A13",
+        "scope": "required"
+      },
+      {
+        "id": "A16",
+        "x": 70,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A16  |  PARTIAL",
+          "Governed web fetch capability"
+        ],
+        "footer": "Needs: A13",
+        "scope": "experimental"
+      },
+      {
+        "id": "A17",
+        "x": 640,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A17  |  PARTIAL",
+          "Verified artifact cards and lineage"
+        ],
+        "footer": "Needs: A14",
+        "scope": "required"
+      },
+      {
+        "id": "A18",
+        "x": 1210,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A18  |  PARTIAL",
+          "Bounded document and PDF handling"
+        ],
+        "footer": "Needs: A17",
+        "scope": "required"
+      },
+      {
+        "id": "A19",
+        "x": 70,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A19  |  PARTIAL",
+          "Image, WAV and document attachments"
+        ],
+        "footer": "Needs: A08, A03",
+        "scope": "experimental"
+      },
+      {
+        "id": "A20",
+        "x": 640,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A20  |  PARTIAL",
+          "Optional prompt check beside composer"
+        ],
+        "footer": "Needs: A05",
+        "scope": "required"
+      },
+      {
+        "id": "A21",
+        "x": 1210,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A21  |  PARTIAL",
+          "External Agent controller and CLI"
+        ],
+        "footer": "Needs: A01, A06, A13",
+        "scope": "required"
+      },
+      {
+        "id": "A22",
+        "x": 70,
+        "y": 1620,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A22  |  PARTIAL",
+          "Agent MCP server surface"
+        ],
+        "footer": "Needs: A21",
+        "scope": "required"
+      },
+      {
+        "id": "A23",
+        "x": 640,
+        "y": 1620,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A23  |  PARTIAL",
+          "MCP registry search and cache"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "A24",
+        "x": 1210,
+        "y": 1620,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A24  |  PARTIAL",
+          "MCP reviewed setup and local package",
+          "installation"
+        ],
+        "footer": "Needs: A13, A23",
+        "scope": "required"
+      },
+      {
+        "id": "A25",
+        "x": 70,
+        "y": 1830,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A25  |  PARTIAL",
+          "MCP host and one-shot tool invocation"
+        ],
+        "footer": "Needs: A13, A24",
+        "scope": "required"
+      },
+      {
+        "id": "A26",
+        "x": 640,
+        "y": 1830,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "A26  |  PARTIAL",
+          "MCP cleanup evidence and recovery"
+        ],
+        "footer": "Needs: A25",
+        "scope": "required"
+      },
+      {
+        "id": "A27",
+        "x": 1210,
+        "y": 1830,
+        "w": 520,
+        "h": 166,
+        "color": "#e1e5ea",
+        "lines": [
+          "A27  |  MOCK / DEMO",
+          "Synthetic preview transport"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "experimental"
+      }
+    ],
+    "edges": [
+      {
+        "source": "A01",
+        "target": "A02",
+        "x1": 590,
+        "y1": 233.0,
+        "x2": 640,
+        "y2": 233.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            233.0
+          ],
+          [
+            640,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "A02",
+        "target": "A03",
+        "x1": 1160,
+        "y1": 233.0,
+        "x2": 1210,
+        "y2": 233.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            233.0
+          ],
+          [
+            1210,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "A02",
+        "target": "A04",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "A03",
+        "target": "A04",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "A02",
+        "target": "A05",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            344
+          ],
+          [
+            900.0,
+            344
+          ],
+          [
+            900.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "A08",
+        "target": "A05",
+        "x1": 900.0,
+        "y1": 736,
+        "x2": 900.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            736
+          ],
+          [
+            900.0,
+            752
+          ],
+          [
+            49,
+            752
+          ],
+          [
+            49,
+            344
+          ],
+          [
+            900.0,
+            344
+          ],
+          [
+            900.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "A09",
+        "target": "A05",
+        "x1": 1470.0,
+        "y1": 736,
+        "x2": 900.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            736
+          ],
+          [
+            1470.0,
+            752
+          ],
+          [
+            54,
+            752
+          ],
+          [
+            54,
+            344
+          ],
+          [
+            900.0,
+            344
+          ],
+          [
+            900.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "A01",
+        "target": "A06",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "A03",
+        "target": "A06",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "A08",
+        "target": "A06",
+        "x1": 900.0,
+        "y1": 736,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            736
+          ],
+          [
+            900.0,
+            752
+          ],
+          [
+            34,
+            752
+          ],
+          [
+            34,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "A06",
+        "target": "A07",
+        "x1": 1470.0,
+        "y1": 526,
+        "x2": 330.0,
+        "y2": 570,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            526
+          ],
+          [
+            1470.0,
+            542
+          ],
+          [
+            39,
+            542
+          ],
+          [
+            39,
+            554
+          ],
+          [
+            330.0,
+            554
+          ],
+          [
+            330.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "A08",
+        "target": "A09",
+        "x1": 1160,
+        "y1": 653.0,
+        "x2": 1210,
+        "y2": 653.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            653.0
+          ],
+          [
+            1210,
+            653.0
+          ]
+        ]
+      },
+      {
+        "source": "A08",
+        "target": "A10",
+        "x1": 900.0,
+        "y1": 736,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            736
+          ],
+          [
+            900.0,
+            752
+          ],
+          [
+            49,
+            752
+          ],
+          [
+            49,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "A02",
+        "target": "A11",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            54,
+            332
+          ],
+          [
+            54,
+            764
+          ],
+          [
+            900.0,
+            764
+          ],
+          [
+            900.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "A11",
+        "target": "A12",
+        "x1": 1160,
+        "y1": 863.0,
+        "x2": 1210,
+        "y2": 863.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            863.0
+          ],
+          [
+            1210,
+            863.0
+          ]
+        ]
+      },
+      {
+        "source": "A01",
+        "target": "A13",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "A11",
+        "target": "A13",
+        "x1": 900.0,
+        "y1": 946,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            946
+          ],
+          [
+            900.0,
+            962
+          ],
+          [
+            34,
+            962
+          ],
+          [
+            34,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "A12",
+        "target": "A14",
+        "x1": 1470.0,
+        "y1": 946,
+        "x2": 900.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            946
+          ],
+          [
+            1470.0,
+            962
+          ],
+          [
+            39,
+            962
+          ],
+          [
+            39,
+            974
+          ],
+          [
+            900.0,
+            974
+          ],
+          [
+            900.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "A13",
+        "target": "A14",
+        "x1": 590,
+        "y1": 1073.0,
+        "x2": 640,
+        "y2": 1073.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            1073.0
+          ],
+          [
+            640,
+            1073.0
+          ]
+        ]
+      },
+      {
+        "source": "A13",
+        "target": "A15",
+        "x1": 330.0,
+        "y1": 1156,
+        "x2": 1470.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            1156
+          ],
+          [
+            330.0,
+            1172
+          ],
+          [
+            49,
+            1172
+          ],
+          [
+            49,
+            974
+          ],
+          [
+            1470.0,
+            974
+          ],
+          [
+            1470.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "A13",
+        "target": "A16",
+        "x1": 330.0,
+        "y1": 1156,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            1156
+          ],
+          [
+            330.0,
+            1172
+          ],
+          [
+            54,
+            1172
+          ],
+          [
+            54,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "A14",
+        "target": "A17",
+        "x1": 900.0,
+        "y1": 1156,
+        "x2": 900.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            1156
+          ],
+          [
+            900.0,
+            1172
+          ],
+          [
+            24,
+            1172
+          ],
+          [
+            24,
+            1184
+          ],
+          [
+            900.0,
+            1184
+          ],
+          [
+            900.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "A17",
+        "target": "A18",
+        "x1": 1160,
+        "y1": 1283.0,
+        "x2": 1210,
+        "y2": 1283.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            1283.0
+          ],
+          [
+            1210,
+            1283.0
+          ]
+        ]
+      },
+      {
+        "source": "A08",
+        "target": "A19",
+        "x1": 900.0,
+        "y1": 736,
+        "x2": 330.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            736
+          ],
+          [
+            900.0,
+            752
+          ],
+          [
+            34,
+            752
+          ],
+          [
+            34,
+            1394
+          ],
+          [
+            330.0,
+            1394
+          ],
+          [
+            330.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "A03",
+        "target": "A19",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            1394
+          ],
+          [
+            330.0,
+            1394
+          ],
+          [
+            330.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "A05",
+        "target": "A20",
+        "x1": 900.0,
+        "y1": 526,
+        "x2": 900.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            526
+          ],
+          [
+            900.0,
+            542
+          ],
+          [
+            44,
+            542
+          ],
+          [
+            44,
+            1394
+          ],
+          [
+            900.0,
+            1394
+          ],
+          [
+            900.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "A01",
+        "target": "A21",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            1394
+          ],
+          [
+            1470.0,
+            1394
+          ],
+          [
+            1470.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "A06",
+        "target": "A21",
+        "x1": 1470.0,
+        "y1": 526,
+        "x2": 1470.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            526
+          ],
+          [
+            1470.0,
+            542
+          ],
+          [
+            54,
+            542
+          ],
+          [
+            54,
+            1394
+          ],
+          [
+            1470.0,
+            1394
+          ],
+          [
+            1470.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "A13",
+        "target": "A21",
+        "x1": 330.0,
+        "y1": 1156,
+        "x2": 1470.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            1156
+          ],
+          [
+            330.0,
+            1172
+          ],
+          [
+            24,
+            1172
+          ],
+          [
+            24,
+            1394
+          ],
+          [
+            1470.0,
+            1394
+          ],
+          [
+            1470.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "A21",
+        "target": "A22",
+        "x1": 1470.0,
+        "y1": 1576,
+        "x2": 330.0,
+        "y2": 1620,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1576
+          ],
+          [
+            1470.0,
+            1592
+          ],
+          [
+            29,
+            1592
+          ],
+          [
+            29,
+            1604
+          ],
+          [
+            330.0,
+            1604
+          ],
+          [
+            330.0,
+            1620
+          ]
+        ]
+      },
+      {
+        "source": "A13",
+        "target": "A24",
+        "x1": 330.0,
+        "y1": 1156,
+        "x2": 1470.0,
+        "y2": 1620,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            1156
+          ],
+          [
+            330.0,
+            1172
+          ],
+          [
+            34,
+            1172
+          ],
+          [
+            34,
+            1604
+          ],
+          [
+            1470.0,
+            1604
+          ],
+          [
+            1470.0,
+            1620
+          ]
+        ]
+      },
+      {
+        "source": "A23",
+        "target": "A24",
+        "x1": 1160,
+        "y1": 1703.0,
+        "x2": 1210,
+        "y2": 1703.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            1703.0
+          ],
+          [
+            1210,
+            1703.0
+          ]
+        ]
+      },
+      {
+        "source": "A13",
+        "target": "A25",
+        "x1": 330.0,
+        "y1": 1156,
+        "x2": 330.0,
+        "y2": 1830,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            1156
+          ],
+          [
+            330.0,
+            1172
+          ],
+          [
+            44,
+            1172
+          ],
+          [
+            44,
+            1814
+          ],
+          [
+            330.0,
+            1814
+          ],
+          [
+            330.0,
+            1830
+          ]
+        ]
+      },
+      {
+        "source": "A24",
+        "target": "A25",
+        "x1": 1470.0,
+        "y1": 1786,
+        "x2": 330.0,
+        "y2": 1830,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1786
+          ],
+          [
+            1470.0,
+            1802
+          ],
+          [
+            49,
+            1802
+          ],
+          [
+            49,
+            1814
+          ],
+          [
+            330.0,
+            1814
+          ],
+          [
+            330.0,
+            1830
+          ]
+        ]
+      },
+      {
+        "source": "A25",
+        "target": "A26",
+        "x1": 590,
+        "y1": 1913.0,
+        "x2": 640,
+        "y2": 1913.0,
+        "dashed": false,
+        "points": [
+          [
+            590,
+            1913.0
+          ],
+          [
+            640,
+            1913.0
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "architecture-workflows",
+    "title": "Planned workflow engine and model families",
+    "width": 1800,
+    "height": 1468,
+    "cards": [
+      {
+        "id": "W00",
+        "x": 70,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W00  |  NOT IMPLEMENTED",
+          "Approved workflow profiles and",
+          "package feasibility"
+        ],
+        "footer": "Needs: A08, A10",
+        "scope": "required"
+      },
+      {
+        "id": "W01",
+        "x": 640,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W01  |  NOT IMPLEMENTED",
+          "Typed workflow graph and plan preview"
+        ],
+        "footer": "Needs: W00",
+        "scope": "required"
+      },
+      {
+        "id": "W02",
+        "x": 1210,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W02  |  NOT IMPLEMENTED",
+          "Durable workflow revisions and",
+          "sequential engine"
+        ],
+        "footer": "Needs: W01",
+        "scope": "required"
+      },
+      {
+        "id": "W03",
+        "x": 70,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W03  |  NOT IMPLEMENTED",
+          "Qualified production multimodal",
+          "workflow adapters"
+        ],
+        "footer": "Needs: W00, W01, W02, A19",
+        "scope": "required"
+      },
+      {
+        "id": "W04",
+        "x": 640,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W04  |  NOT IMPLEMENTED",
+          "Resource leases and actual parallel",
+          "inference"
+        ],
+        "footer": "Needs: W02, W03",
+        "scope": "required"
+      },
+      {
+        "id": "W05",
+        "x": 1210,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W05  |  NOT IMPLEMENTED",
+          "Visual workflow builder and device",
+          "model advisor"
+        ],
+        "footer": "Needs: W01, W02, W03, W04, A10",
+        "scope": "required"
+      },
+      {
+        "id": "W06",
+        "x": 70,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W06  |  NOT IMPLEMENTED",
+          "Installed headless workflow export",
+          "and import"
+        ],
+        "footer": "Needs: W02, W03, W04",
+        "scope": "required"
+      },
+      {
+        "id": "W07",
+        "x": 640,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W07  |  NOT IMPLEMENTED",
+          "Workflow matrix and real-model",
+          "qualification"
+        ],
+        "footer": "Needs: W01, W02, W03, W04, W05, W06",
+        "scope": "required"
+      },
+      {
+        "id": "W08",
+        "x": 1210,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W08  |  NOT IMPLEMENTED",
+          "Workflow beta and prompt-enhancement",
+          "integration"
+        ],
+        "footer": "Needs: W05, W06, W07, A20",
+        "scope": "required"
+      },
+      {
+        "id": "WF01",
+        "x": 70,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WF01  |  NOT IMPLEMENTED",
+          "Workflow text LLM"
+        ],
+        "footer": "Needs: W00, W01, W02",
+        "scope": "required"
+      },
+      {
+        "id": "WF02",
+        "x": 640,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WF02  |  NOT IMPLEMENTED",
+          "Workflow vision-language model"
+        ],
+        "footer": "Needs: W00, W01, W02",
+        "scope": "required"
+      },
+      {
+        "id": "WF03",
+        "x": 1210,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WF03  |  NOT IMPLEMENTED",
+          "Workflow text classifier"
+        ],
+        "footer": "Needs: W00, W01, W02",
+        "scope": "required"
+      },
+      {
+        "id": "WF04",
+        "x": 70,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WF04  |  NOT IMPLEMENTED",
+          "Workflow text embedding"
+        ],
+        "footer": "Needs: W00, W01, W02",
+        "scope": "required"
+      },
+      {
+        "id": "WF05",
+        "x": 640,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WF05  |  NOT IMPLEMENTED",
+          "Workflow image classifier"
+        ],
+        "footer": "Needs: W00, W01, W02",
+        "scope": "required"
+      },
+      {
+        "id": "WF06",
+        "x": 1210,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WF06  |  NOT IMPLEMENTED",
+          "Workflow object detector"
+        ],
+        "footer": "Needs: W00, W01, W02",
+        "scope": "required"
+      },
+      {
+        "id": "WF07",
+        "x": 70,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WF07  |  NOT IMPLEMENTED",
+          "Workflow speech recognition"
+        ],
+        "footer": "Needs: W00, W01, W02",
+        "scope": "required"
+      },
+      {
+        "id": "WF08",
+        "x": 640,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WF08  |  NOT IMPLEMENTED",
+          "Workflow audio classifier"
+        ],
+        "footer": "Needs: W00, W01, W02",
+        "scope": "required"
+      }
+    ],
+    "edges": [
+      {
+        "source": "W00",
+        "target": "W01",
+        "x1": 590,
+        "y1": 233.0,
+        "x2": 640,
+        "y2": 233.0,
+        "dashed": true,
+        "points": [
+          [
+            590,
+            233.0
+          ],
+          [
+            640,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "W02",
+        "x1": 1160,
+        "y1": 233.0,
+        "x2": 1210,
+        "y2": 233.0,
+        "dashed": true,
+        "points": [
+          [
+            1160,
+            233.0
+          ],
+          [
+            1210,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "W00",
+        "target": "W03",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "W03",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "W03",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "W04",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            344
+          ],
+          [
+            900.0,
+            344
+          ],
+          [
+            900.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W03",
+        "target": "W04",
+        "x1": 590,
+        "y1": 443.0,
+        "x2": 640,
+        "y2": 443.0,
+        "dashed": true,
+        "points": [
+          [
+            590,
+            443.0
+          ],
+          [
+            640,
+            443.0
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "W05",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "W05",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W03",
+        "target": "W05",
+        "x1": 330.0,
+        "y1": 526,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            526
+          ],
+          [
+            330.0,
+            542
+          ],
+          [
+            34,
+            542
+          ],
+          [
+            34,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W04",
+        "target": "W05",
+        "x1": 1160,
+        "y1": 443.0,
+        "x2": 1210,
+        "y2": 443.0,
+        "dashed": true,
+        "points": [
+          [
+            1160,
+            443.0
+          ],
+          [
+            1210,
+            443.0
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "W06",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            554
+          ],
+          [
+            330.0,
+            554
+          ],
+          [
+            330.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W03",
+        "target": "W06",
+        "x1": 330.0,
+        "y1": 526,
+        "x2": 330.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            526
+          ],
+          [
+            330.0,
+            542
+          ],
+          [
+            49,
+            542
+          ],
+          [
+            49,
+            554
+          ],
+          [
+            330.0,
+            554
+          ],
+          [
+            330.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W04",
+        "target": "W06",
+        "x1": 900.0,
+        "y1": 526,
+        "x2": 330.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            526
+          ],
+          [
+            900.0,
+            542
+          ],
+          [
+            54,
+            542
+          ],
+          [
+            54,
+            554
+          ],
+          [
+            330.0,
+            554
+          ],
+          [
+            330.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "W07",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            554
+          ],
+          [
+            900.0,
+            554
+          ],
+          [
+            900.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "W07",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            554
+          ],
+          [
+            900.0,
+            554
+          ],
+          [
+            900.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W03",
+        "target": "W07",
+        "x1": 330.0,
+        "y1": 526,
+        "x2": 900.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            526
+          ],
+          [
+            330.0,
+            542
+          ],
+          [
+            34,
+            542
+          ],
+          [
+            34,
+            554
+          ],
+          [
+            900.0,
+            554
+          ],
+          [
+            900.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W04",
+        "target": "W07",
+        "x1": 900.0,
+        "y1": 526,
+        "x2": 900.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            526
+          ],
+          [
+            900.0,
+            542
+          ],
+          [
+            39,
+            542
+          ],
+          [
+            39,
+            554
+          ],
+          [
+            900.0,
+            554
+          ],
+          [
+            900.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W05",
+        "target": "W07",
+        "x1": 1470.0,
+        "y1": 526,
+        "x2": 900.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            526
+          ],
+          [
+            1470.0,
+            542
+          ],
+          [
+            44,
+            542
+          ],
+          [
+            44,
+            554
+          ],
+          [
+            900.0,
+            554
+          ],
+          [
+            900.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W06",
+        "target": "W07",
+        "x1": 590,
+        "y1": 653.0,
+        "x2": 640,
+        "y2": 653.0,
+        "dashed": true,
+        "points": [
+          [
+            590,
+            653.0
+          ],
+          [
+            640,
+            653.0
+          ]
+        ]
+      },
+      {
+        "source": "W05",
+        "target": "W08",
+        "x1": 1470.0,
+        "y1": 526,
+        "x2": 1470.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            526
+          ],
+          [
+            1470.0,
+            542
+          ],
+          [
+            54,
+            542
+          ],
+          [
+            54,
+            554
+          ],
+          [
+            1470.0,
+            554
+          ],
+          [
+            1470.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W06",
+        "target": "W08",
+        "x1": 330.0,
+        "y1": 736,
+        "x2": 1470.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            736
+          ],
+          [
+            330.0,
+            752
+          ],
+          [
+            24,
+            752
+          ],
+          [
+            24,
+            554
+          ],
+          [
+            1470.0,
+            554
+          ],
+          [
+            1470.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W07",
+        "target": "W08",
+        "x1": 1160,
+        "y1": 653.0,
+        "x2": 1210,
+        "y2": 653.0,
+        "dashed": true,
+        "points": [
+          [
+            1160,
+            653.0
+          ],
+          [
+            1210,
+            653.0
+          ]
+        ]
+      },
+      {
+        "source": "W00",
+        "target": "WF01",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "WF01",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WF01",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W00",
+        "target": "WF02",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            764
+          ],
+          [
+            900.0,
+            764
+          ],
+          [
+            900.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "WF02",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            54,
+            332
+          ],
+          [
+            54,
+            764
+          ],
+          [
+            900.0,
+            764
+          ],
+          [
+            900.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WF02",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            764
+          ],
+          [
+            900.0,
+            764
+          ],
+          [
+            900.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W00",
+        "target": "WF03",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            764
+          ],
+          [
+            1470.0,
+            764
+          ],
+          [
+            1470.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "WF03",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            764
+          ],
+          [
+            1470.0,
+            764
+          ],
+          [
+            1470.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WF03",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            764
+          ],
+          [
+            1470.0,
+            764
+          ],
+          [
+            1470.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W00",
+        "target": "WF04",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "WF04",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WF04",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            54,
+            332
+          ],
+          [
+            54,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "W00",
+        "target": "WF05",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            974
+          ],
+          [
+            900.0,
+            974
+          ],
+          [
+            900.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "WF05",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            974
+          ],
+          [
+            900.0,
+            974
+          ],
+          [
+            900.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WF05",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            974
+          ],
+          [
+            900.0,
+            974
+          ],
+          [
+            900.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "W00",
+        "target": "WF06",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            974
+          ],
+          [
+            1470.0,
+            974
+          ],
+          [
+            1470.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "WF06",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            974
+          ],
+          [
+            1470.0,
+            974
+          ],
+          [
+            1470.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WF06",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 990,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            974
+          ],
+          [
+            1470.0,
+            974
+          ],
+          [
+            1470.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "W00",
+        "target": "WF07",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            54,
+            332
+          ],
+          [
+            54,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "WF07",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WF07",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "W00",
+        "target": "WF08",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            1184
+          ],
+          [
+            900.0,
+            1184
+          ],
+          [
+            900.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "W01",
+        "target": "WF08",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            1184
+          ],
+          [
+            900.0,
+            1184
+          ],
+          [
+            900.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WF08",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            1184
+          ],
+          [
+            900.0,
+            1184
+          ],
+          [
+            900.0,
+            1200
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "architecture-composer",
+    "title": "Planned workflow composer integration",
+    "width": 1800,
+    "height": 1048,
+    "cards": [
+      {
+        "id": "W02",
+        "x": 70,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W02  |  NOT IMPLEMENTED",
+          "Durable workflow revisions and",
+          "sequential engine"
+        ],
+        "footer": "Needs: W01",
+        "scope": "required"
+      },
+      {
+        "id": "W04",
+        "x": 640,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W04  |  NOT IMPLEMENTED",
+          "Resource leases and actual parallel",
+          "inference"
+        ],
+        "footer": "Needs: W02, W03",
+        "scope": "required"
+      },
+      {
+        "id": "W05",
+        "x": 1210,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "W05  |  NOT IMPLEMENTED",
+          "Visual workflow builder and device",
+          "model advisor"
+        ],
+        "footer": "Needs: W01, W02, W03, W04, A10",
+        "scope": "required"
+      },
+      {
+        "id": "WP01",
+        "x": 70,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WP01  |  NOT IMPLEMENTED",
+          "Typed draft input/output"
+        ],
+        "footer": "Needs: W01, W03",
+        "scope": "required"
+      },
+      {
+        "id": "WP02",
+        "x": 640,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WP02  |  NOT IMPLEMENTED",
+          "Review, apply and undo UI"
+        ],
+        "footer": "Needs: W05",
+        "scope": "required"
+      },
+      {
+        "id": "WP03",
+        "x": 1210,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WP03  |  NOT IMPLEMENTED",
+          "Exact draft/run binding"
+        ],
+        "footer": "Needs: W02, W05",
+        "scope": "required"
+      },
+      {
+        "id": "WP04",
+        "x": 70,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WP04  |  NOT IMPLEMENTED",
+          "Idempotent enhancement and send"
+        ],
+        "footer": "Needs: W02, W05",
+        "scope": "required"
+      },
+      {
+        "id": "WP05",
+        "x": 640,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WP05  |  NOT IMPLEMENTED",
+          "Enhancement failure recovery"
+        ],
+        "footer": "Needs: W02, W05",
+        "scope": "required"
+      },
+      {
+        "id": "WP06",
+        "x": 1210,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WP06  |  NOT IMPLEMENTED",
+          "Shared runtime resource budget"
+        ],
+        "footer": "Needs: W04, W05",
+        "scope": "required"
+      },
+      {
+        "id": "WP07",
+        "x": 70,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WP07  |  NOT IMPLEMENTED",
+          "Private retention and export"
+        ],
+        "footer": "Needs: W02, W06, W08",
+        "scope": "required"
+      },
+      {
+        "id": "WP08",
+        "x": 640,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "WP08  |  NOT IMPLEMENTED",
+          "Builder/composer/headless parity"
+        ],
+        "footer": "Needs: W05, W06, W07, W08",
+        "scope": "required"
+      }
+    ],
+    "edges": [
+      {
+        "source": "W02",
+        "target": "W04",
+        "x1": 590,
+        "y1": 233.0,
+        "x2": 640,
+        "y2": 233.0,
+        "dashed": true,
+        "points": [
+          [
+            590,
+            233.0
+          ],
+          [
+            640,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "W05",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 150,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            134
+          ],
+          [
+            1470.0,
+            134
+          ],
+          [
+            1470.0,
+            150
+          ]
+        ]
+      },
+      {
+        "source": "W04",
+        "target": "W05",
+        "x1": 1160,
+        "y1": 233.0,
+        "x2": 1210,
+        "y2": 233.0,
+        "dashed": true,
+        "points": [
+          [
+            1160,
+            233.0
+          ],
+          [
+            1210,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "W05",
+        "target": "WP02",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            344
+          ],
+          [
+            900.0,
+            344
+          ],
+          [
+            900.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WP03",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W05",
+        "target": "WP03",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WP04",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            54,
+            332
+          ],
+          [
+            54,
+            554
+          ],
+          [
+            330.0,
+            554
+          ],
+          [
+            330.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W05",
+        "target": "WP04",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            554
+          ],
+          [
+            330.0,
+            554
+          ],
+          [
+            330.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WP05",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            554
+          ],
+          [
+            900.0,
+            554
+          ],
+          [
+            900.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W05",
+        "target": "WP05",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            34,
+            332
+          ],
+          [
+            34,
+            554
+          ],
+          [
+            900.0,
+            554
+          ],
+          [
+            900.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W04",
+        "target": "WP06",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            39,
+            332
+          ],
+          [
+            39,
+            554
+          ],
+          [
+            1470.0,
+            554
+          ],
+          [
+            1470.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W05",
+        "target": "WP06",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 570,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            554
+          ],
+          [
+            1470.0,
+            554
+          ],
+          [
+            1470.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "W02",
+        "target": "WP07",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            49,
+            332
+          ],
+          [
+            49,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "W05",
+        "target": "WP08",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 780,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            54,
+            332
+          ],
+          [
+            54,
+            764
+          ],
+          [
+            900.0,
+            764
+          ],
+          [
+            900.0,
+            780
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "architecture-release",
+    "title": "Native lifecycle and release",
+    "width": 1800,
+    "height": 2308,
+    "cards": [
+      {
+        "id": "R01",
+        "x": 70,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R01  |  PARTIAL",
+          "Native desktop shell and window",
+          "ownership"
+        ],
+        "footer": "Needs: R02, R03, R04",
+        "scope": "required"
+      },
+      {
+        "id": "R02",
+        "x": 640,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R02  |  PARTIAL",
+          "Hidden owned process trees and",
+          "bounded I/O"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "R03",
+        "x": 1210,
+        "y": 150,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R03  |  PARTIAL",
+          "Runtime cleanup sequencing and",
+          "restart admission"
+        ],
+        "footer": "Needs: R02",
+        "scope": "required"
+      },
+      {
+        "id": "R04",
+        "x": 70,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R04  |  PARTIAL",
+          "App-local runtime bootstrap and",
+          "WebView prerequisites"
+        ],
+        "footer": "Needs: R02, R21",
+        "scope": "required"
+      },
+      {
+        "id": "R05",
+        "x": 640,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R05  |  PARTIAL",
+          "Loopback local authentication, origin",
+          "and CSRF boundary"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "R06",
+        "x": 1210,
+        "y": 360,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R06  |  PARTIAL",
+          "Native approval authority"
+        ],
+        "footer": "Needs: R01, R05",
+        "scope": "required"
+      },
+      {
+        "id": "R07",
+        "x": 70,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R07  |  PARTIAL",
+          "Application data path and retention",
+          "inventory"
+        ],
+        "footer": "Needs: R08",
+        "scope": "required"
+      },
+      {
+        "id": "R08",
+        "x": 640,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R08  |  PARTIAL",
+          "Filesystem reparse and private",
+          "staging checks"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "R09",
+        "x": 1210,
+        "y": 570,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R09  |  PARTIAL",
+          "SQLite migrations and schema",
+          "compatibility"
+        ],
+        "footer": "Needs: R07, R10",
+        "scope": "required"
+      },
+      {
+        "id": "R10",
+        "x": 70,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R10  |  PARTIAL",
+          "Consistent backup and restore",
+          "verification"
+        ],
+        "footer": "Needs: R07, R09",
+        "scope": "required"
+      },
+      {
+        "id": "R11",
+        "x": 640,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R11  |  PARTIAL",
+          "Signed update discovery and manifest",
+          "verification"
+        ],
+        "footer": "Needs: R22",
+        "scope": "required"
+      },
+      {
+        "id": "R12",
+        "x": 1210,
+        "y": 780,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R12  |  PARTIAL",
+          "Download, staging and package",
+          "verification"
+        ],
+        "footer": "Needs: R08, R11, R21",
+        "scope": "required"
+      },
+      {
+        "id": "R13",
+        "x": 70,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R13  |  PARTIAL",
+          "Update status and explicit",
+          "check/stage/retry UI actions"
+        ],
+        "footer": "Needs: R05, R11, R12, R17",
+        "scope": "required"
+      },
+      {
+        "id": "R14",
+        "x": 640,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R14  |  PARTIAL",
+          "Host quiescence and update admission"
+        ],
+        "footer": "Needs: R03, R06",
+        "scope": "required"
+      },
+      {
+        "id": "R15",
+        "x": 1210,
+        "y": 990,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R15  |  PARTIAL",
+          "Durable update operation journal"
+        ],
+        "footer": "Needs: R08",
+        "scope": "required"
+      },
+      {
+        "id": "R16",
+        "x": 70,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R16  |  PARTIAL",
+          "Native MSIX deployment transaction",
+          "primitive"
+        ],
+        "footer": "Needs: R06, R12, R14, R15",
+        "scope": "required"
+      },
+      {
+        "id": "R17",
+        "x": 640,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "R17  |  NOT IMPLEMENTED",
+          "Product update Apply endpoint and",
+          "relaunch"
+        ],
+        "footer": "Needs: R16, R18",
+        "scope": "required"
+      },
+      {
+        "id": "R18",
+        "x": 1210,
+        "y": 1200,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "R18  |  NOT IMPLEMENTED",
+          "Update rollback and package/data",
+          "recovery executor"
+        ],
+        "footer": "Needs: R09, R10, R15",
+        "scope": "required"
+      },
+      {
+        "id": "R19",
+        "x": 70,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R19  |  PARTIAL",
+          "Windows release assembly and pinned",
+          "dependency inputs"
+        ],
+        "footer": "Needs: R24, R20",
+        "scope": "required"
+      },
+      {
+        "id": "R20",
+        "x": 640,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R20  |  PARTIAL",
+          "Dependency provenance and third-party",
+          "notices"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "R21",
+        "x": 1210,
+        "y": 1410,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R21  |  PARTIAL",
+          "Compiled source-deterrent MSIX",
+          "artifact"
+        ],
+        "footer": "Needs: R04, R19, R20",
+        "scope": "required"
+      },
+      {
+        "id": "R22",
+        "x": 70,
+        "y": 1620,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "R22  |  NOT IMPLEMENTED",
+          "Signing identity and binary-only",
+          "release channel"
+        ],
+        "footer": "Needs: R21",
+        "scope": "required"
+      },
+      {
+        "id": "R23",
+        "x": 640,
+        "y": 1620,
+        "w": 520,
+        "h": 166,
+        "color": "#ffd8d8",
+        "lines": [
+          "R23  |  NOT IMPLEMENTED",
+          "Clean-machine install, uninstall and",
+          "update acceptance"
+        ],
+        "footer": "Needs: R17, R18, R21, R22",
+        "scope": "required"
+      },
+      {
+        "id": "R24",
+        "x": 1210,
+        "y": 1620,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R24  |  PARTIAL",
+          "Coherent private source custody and",
+          "main baseline"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "R25",
+        "x": 70,
+        "y": 1830,
+        "w": 520,
+        "h": 166,
+        "color": "#d4efdf",
+        "lines": [
+          "R25  |  READY (bounded)",
+          "Owner-review feature-branch",
+          "collaboration policy"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "required"
+      },
+      {
+        "id": "R26",
+        "x": 640,
+        "y": 1830,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R26  |  PARTIAL",
+          "Backend/frontend/privacy quality CI"
+        ],
+        "footer": "Needs: R24",
+        "scope": "required"
+      },
+      {
+        "id": "R27",
+        "x": 1210,
+        "y": 1830,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R27  |  PARTIAL",
+          "Agent deferred-loading and bundle",
+          "gate"
+        ],
+        "footer": "Needs: R24, R26",
+        "scope": "required"
+      },
+      {
+        "id": "R28",
+        "x": 70,
+        "y": 2040,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R28  |  PARTIAL",
+          "Release evidence consistency",
+          "evaluator"
+        ],
+        "footer": "Needs: R23, R26, R27",
+        "scope": "required"
+      },
+      {
+        "id": "R29",
+        "x": 640,
+        "y": 2040,
+        "w": 520,
+        "h": 166,
+        "color": "#e1e5ea",
+        "lines": [
+          "R29  |  MOCK / DEMO",
+          "Development update verifier fake"
+        ],
+        "footer": "Needs: entry / shared boundary",
+        "scope": "experimental"
+      },
+      {
+        "id": "R30",
+        "x": 1210,
+        "y": 2040,
+        "w": 520,
+        "h": 166,
+        "color": "#fff0b3",
+        "lines": [
+          "R30  |  PARTIAL",
+          "Deferred accounts, payments, teams",
+          "and social foundations"
+        ],
+        "footer": "Needs: R05",
+        "scope": "deferred"
+      }
+    ],
+    "edges": [
+      {
+        "source": "R02",
+        "target": "R01",
+        "x1": 640,
+        "y1": 233.0,
+        "x2": 590,
+        "y2": 233.0,
+        "dashed": false,
+        "points": [
+          [
+            640,
+            233.0
+          ],
+          [
+            590,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "R03",
+        "target": "R01",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 150,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            29,
+            332
+          ],
+          [
+            29,
+            134
+          ],
+          [
+            330.0,
+            134
+          ],
+          [
+            330.0,
+            150
+          ]
+        ]
+      },
+      {
+        "source": "R04",
+        "target": "R01",
+        "x1": 330.0,
+        "y1": 526,
+        "x2": 330.0,
+        "y2": 150,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            526
+          ],
+          [
+            330.0,
+            542
+          ],
+          [
+            34,
+            542
+          ],
+          [
+            34,
+            134
+          ],
+          [
+            330.0,
+            134
+          ],
+          [
+            330.0,
+            150
+          ]
+        ]
+      },
+      {
+        "source": "R02",
+        "target": "R03",
+        "x1": 1160,
+        "y1": 233.0,
+        "x2": 1210,
+        "y2": 233.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            233.0
+          ],
+          [
+            1210,
+            233.0
+          ]
+        ]
+      },
+      {
+        "source": "R02",
+        "target": "R04",
+        "x1": 900.0,
+        "y1": 316,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            316
+          ],
+          [
+            900.0,
+            332
+          ],
+          [
+            44,
+            332
+          ],
+          [
+            44,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "R21",
+        "target": "R04",
+        "x1": 1470.0,
+        "y1": 1576,
+        "x2": 330.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1576
+          ],
+          [
+            1470.0,
+            1592
+          ],
+          [
+            49,
+            1592
+          ],
+          [
+            49,
+            344
+          ],
+          [
+            330.0,
+            344
+          ],
+          [
+            330.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "R01",
+        "target": "R06",
+        "x1": 330.0,
+        "y1": 316,
+        "x2": 1470.0,
+        "y2": 360,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            316
+          ],
+          [
+            330.0,
+            332
+          ],
+          [
+            54,
+            332
+          ],
+          [
+            54,
+            344
+          ],
+          [
+            1470.0,
+            344
+          ],
+          [
+            1470.0,
+            360
+          ]
+        ]
+      },
+      {
+        "source": "R05",
+        "target": "R06",
+        "x1": 1160,
+        "y1": 443.0,
+        "x2": 1210,
+        "y2": 443.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            443.0
+          ],
+          [
+            1210,
+            443.0
+          ]
+        ]
+      },
+      {
+        "source": "R08",
+        "target": "R07",
+        "x1": 640,
+        "y1": 653.0,
+        "x2": 590,
+        "y2": 653.0,
+        "dashed": false,
+        "points": [
+          [
+            640,
+            653.0
+          ],
+          [
+            590,
+            653.0
+          ]
+        ]
+      },
+      {
+        "source": "R07",
+        "target": "R09",
+        "x1": 330.0,
+        "y1": 736,
+        "x2": 1470.0,
+        "y2": 570,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            736
+          ],
+          [
+            330.0,
+            752
+          ],
+          [
+            34,
+            752
+          ],
+          [
+            34,
+            554
+          ],
+          [
+            1470.0,
+            554
+          ],
+          [
+            1470.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "R10",
+        "target": "R09",
+        "x1": 330.0,
+        "y1": 946,
+        "x2": 1470.0,
+        "y2": 570,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            946
+          ],
+          [
+            330.0,
+            962
+          ],
+          [
+            39,
+            962
+          ],
+          [
+            39,
+            554
+          ],
+          [
+            1470.0,
+            554
+          ],
+          [
+            1470.0,
+            570
+          ]
+        ]
+      },
+      {
+        "source": "R07",
+        "target": "R10",
+        "x1": 330.0,
+        "y1": 736,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            736
+          ],
+          [
+            330.0,
+            752
+          ],
+          [
+            44,
+            752
+          ],
+          [
+            44,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "R09",
+        "target": "R10",
+        "x1": 1470.0,
+        "y1": 736,
+        "x2": 330.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            736
+          ],
+          [
+            1470.0,
+            752
+          ],
+          [
+            49,
+            752
+          ],
+          [
+            49,
+            764
+          ],
+          [
+            330.0,
+            764
+          ],
+          [
+            330.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "R22",
+        "target": "R11",
+        "x1": 330.0,
+        "y1": 1786,
+        "x2": 900.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            1786
+          ],
+          [
+            330.0,
+            1802
+          ],
+          [
+            54,
+            1802
+          ],
+          [
+            54,
+            764
+          ],
+          [
+            900.0,
+            764
+          ],
+          [
+            900.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "R08",
+        "target": "R12",
+        "x1": 900.0,
+        "y1": 736,
+        "x2": 1470.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            736
+          ],
+          [
+            900.0,
+            752
+          ],
+          [
+            24,
+            752
+          ],
+          [
+            24,
+            764
+          ],
+          [
+            1470.0,
+            764
+          ],
+          [
+            1470.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "R11",
+        "target": "R12",
+        "x1": 1160,
+        "y1": 863.0,
+        "x2": 1210,
+        "y2": 863.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            863.0
+          ],
+          [
+            1210,
+            863.0
+          ]
+        ]
+      },
+      {
+        "source": "R21",
+        "target": "R12",
+        "x1": 1470.0,
+        "y1": 1576,
+        "x2": 1470.0,
+        "y2": 780,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1576
+          ],
+          [
+            1470.0,
+            1592
+          ],
+          [
+            34,
+            1592
+          ],
+          [
+            34,
+            764
+          ],
+          [
+            1470.0,
+            764
+          ],
+          [
+            1470.0,
+            780
+          ]
+        ]
+      },
+      {
+        "source": "R05",
+        "target": "R13",
+        "x1": 900.0,
+        "y1": 526,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            526
+          ],
+          [
+            900.0,
+            542
+          ],
+          [
+            39,
+            542
+          ],
+          [
+            39,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "R11",
+        "target": "R13",
+        "x1": 900.0,
+        "y1": 946,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            946
+          ],
+          [
+            900.0,
+            962
+          ],
+          [
+            44,
+            962
+          ],
+          [
+            44,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "R12",
+        "target": "R13",
+        "x1": 1470.0,
+        "y1": 946,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            946
+          ],
+          [
+            1470.0,
+            962
+          ],
+          [
+            49,
+            962
+          ],
+          [
+            49,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "R17",
+        "target": "R13",
+        "x1": 900.0,
+        "y1": 1366,
+        "x2": 330.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            1366
+          ],
+          [
+            900.0,
+            1382
+          ],
+          [
+            54,
+            1382
+          ],
+          [
+            54,
+            974
+          ],
+          [
+            330.0,
+            974
+          ],
+          [
+            330.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "R03",
+        "target": "R14",
+        "x1": 1470.0,
+        "y1": 316,
+        "x2": 900.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            316
+          ],
+          [
+            1470.0,
+            332
+          ],
+          [
+            24,
+            332
+          ],
+          [
+            24,
+            974
+          ],
+          [
+            900.0,
+            974
+          ],
+          [
+            900.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "R06",
+        "target": "R14",
+        "x1": 1470.0,
+        "y1": 526,
+        "x2": 900.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            526
+          ],
+          [
+            1470.0,
+            542
+          ],
+          [
+            29,
+            542
+          ],
+          [
+            29,
+            974
+          ],
+          [
+            900.0,
+            974
+          ],
+          [
+            900.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "R08",
+        "target": "R15",
+        "x1": 900.0,
+        "y1": 736,
+        "x2": 1470.0,
+        "y2": 990,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            736
+          ],
+          [
+            900.0,
+            752
+          ],
+          [
+            34,
+            752
+          ],
+          [
+            34,
+            974
+          ],
+          [
+            1470.0,
+            974
+          ],
+          [
+            1470.0,
+            990
+          ]
+        ]
+      },
+      {
+        "source": "R06",
+        "target": "R16",
+        "x1": 1470.0,
+        "y1": 526,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            526
+          ],
+          [
+            1470.0,
+            542
+          ],
+          [
+            39,
+            542
+          ],
+          [
+            39,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "R12",
+        "target": "R16",
+        "x1": 1470.0,
+        "y1": 946,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            946
+          ],
+          [
+            1470.0,
+            962
+          ],
+          [
+            44,
+            962
+          ],
+          [
+            44,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "R14",
+        "target": "R16",
+        "x1": 900.0,
+        "y1": 1156,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            1156
+          ],
+          [
+            900.0,
+            1172
+          ],
+          [
+            49,
+            1172
+          ],
+          [
+            49,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "R15",
+        "target": "R16",
+        "x1": 1470.0,
+        "y1": 1156,
+        "x2": 330.0,
+        "y2": 1200,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1156
+          ],
+          [
+            1470.0,
+            1172
+          ],
+          [
+            54,
+            1172
+          ],
+          [
+            54,
+            1184
+          ],
+          [
+            330.0,
+            1184
+          ],
+          [
+            330.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "R16",
+        "target": "R17",
+        "x1": 590,
+        "y1": 1283.0,
+        "x2": 640,
+        "y2": 1283.0,
+        "dashed": true,
+        "points": [
+          [
+            590,
+            1283.0
+          ],
+          [
+            640,
+            1283.0
+          ]
+        ]
+      },
+      {
+        "source": "R18",
+        "target": "R17",
+        "x1": 1210,
+        "y1": 1283.0,
+        "x2": 1160,
+        "y2": 1283.0,
+        "dashed": true,
+        "points": [
+          [
+            1210,
+            1283.0
+          ],
+          [
+            1160,
+            1283.0
+          ]
+        ]
+      },
+      {
+        "source": "R09",
+        "target": "R18",
+        "x1": 1470.0,
+        "y1": 736,
+        "x2": 1470.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            736
+          ],
+          [
+            1470.0,
+            752
+          ],
+          [
+            34,
+            752
+          ],
+          [
+            34,
+            1184
+          ],
+          [
+            1470.0,
+            1184
+          ],
+          [
+            1470.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "R10",
+        "target": "R18",
+        "x1": 330.0,
+        "y1": 946,
+        "x2": 1470.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            330.0,
+            946
+          ],
+          [
+            330.0,
+            962
+          ],
+          [
+            39,
+            962
+          ],
+          [
+            39,
+            1184
+          ],
+          [
+            1470.0,
+            1184
+          ],
+          [
+            1470.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "R15",
+        "target": "R18",
+        "x1": 1470.0,
+        "y1": 1156,
+        "x2": 1470.0,
+        "y2": 1200,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            1156
+          ],
+          [
+            1470.0,
+            1172
+          ],
+          [
+            44,
+            1172
+          ],
+          [
+            44,
+            1184
+          ],
+          [
+            1470.0,
+            1184
+          ],
+          [
+            1470.0,
+            1200
+          ]
+        ]
+      },
+      {
+        "source": "R24",
+        "target": "R19",
+        "x1": 1470.0,
+        "y1": 1786,
+        "x2": 330.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1786
+          ],
+          [
+            1470.0,
+            1802
+          ],
+          [
+            49,
+            1802
+          ],
+          [
+            49,
+            1394
+          ],
+          [
+            330.0,
+            1394
+          ],
+          [
+            330.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "R20",
+        "target": "R19",
+        "x1": 640,
+        "y1": 1493.0,
+        "x2": 590,
+        "y2": 1493.0,
+        "dashed": false,
+        "points": [
+          [
+            640,
+            1493.0
+          ],
+          [
+            590,
+            1493.0
+          ]
+        ]
+      },
+      {
+        "source": "R04",
+        "target": "R21",
+        "x1": 330.0,
+        "y1": 526,
+        "x2": 1470.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            526
+          ],
+          [
+            330.0,
+            542
+          ],
+          [
+            24,
+            542
+          ],
+          [
+            24,
+            1394
+          ],
+          [
+            1470.0,
+            1394
+          ],
+          [
+            1470.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "R19",
+        "target": "R21",
+        "x1": 330.0,
+        "y1": 1576,
+        "x2": 1470.0,
+        "y2": 1410,
+        "dashed": false,
+        "points": [
+          [
+            330.0,
+            1576
+          ],
+          [
+            330.0,
+            1592
+          ],
+          [
+            29,
+            1592
+          ],
+          [
+            29,
+            1394
+          ],
+          [
+            1470.0,
+            1394
+          ],
+          [
+            1470.0,
+            1410
+          ]
+        ]
+      },
+      {
+        "source": "R20",
+        "target": "R21",
+        "x1": 1160,
+        "y1": 1493.0,
+        "x2": 1210,
+        "y2": 1493.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            1493.0
+          ],
+          [
+            1210,
+            1493.0
+          ]
+        ]
+      },
+      {
+        "source": "R21",
+        "target": "R22",
+        "x1": 1470.0,
+        "y1": 1576,
+        "x2": 330.0,
+        "y2": 1620,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            1576
+          ],
+          [
+            1470.0,
+            1592
+          ],
+          [
+            39,
+            1592
+          ],
+          [
+            39,
+            1604
+          ],
+          [
+            330.0,
+            1604
+          ],
+          [
+            330.0,
+            1620
+          ]
+        ]
+      },
+      {
+        "source": "R17",
+        "target": "R23",
+        "x1": 900.0,
+        "y1": 1366,
+        "x2": 900.0,
+        "y2": 1620,
+        "dashed": true,
+        "points": [
+          [
+            900.0,
+            1366
+          ],
+          [
+            900.0,
+            1382
+          ],
+          [
+            44,
+            1382
+          ],
+          [
+            44,
+            1604
+          ],
+          [
+            900.0,
+            1604
+          ],
+          [
+            900.0,
+            1620
+          ]
+        ]
+      },
+      {
+        "source": "R18",
+        "target": "R23",
+        "x1": 1470.0,
+        "y1": 1366,
+        "x2": 900.0,
+        "y2": 1620,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            1366
+          ],
+          [
+            1470.0,
+            1382
+          ],
+          [
+            49,
+            1382
+          ],
+          [
+            49,
+            1604
+          ],
+          [
+            900.0,
+            1604
+          ],
+          [
+            900.0,
+            1620
+          ]
+        ]
+      },
+      {
+        "source": "R21",
+        "target": "R23",
+        "x1": 1470.0,
+        "y1": 1576,
+        "x2": 900.0,
+        "y2": 1620,
+        "dashed": true,
+        "points": [
+          [
+            1470.0,
+            1576
+          ],
+          [
+            1470.0,
+            1592
+          ],
+          [
+            54,
+            1592
+          ],
+          [
+            54,
+            1604
+          ],
+          [
+            900.0,
+            1604
+          ],
+          [
+            900.0,
+            1620
+          ]
+        ]
+      },
+      {
+        "source": "R22",
+        "target": "R23",
+        "x1": 590,
+        "y1": 1703.0,
+        "x2": 640,
+        "y2": 1703.0,
+        "dashed": true,
+        "points": [
+          [
+            590,
+            1703.0
+          ],
+          [
+            640,
+            1703.0
+          ]
+        ]
+      },
+      {
+        "source": "R24",
+        "target": "R26",
+        "x1": 1470.0,
+        "y1": 1786,
+        "x2": 900.0,
+        "y2": 1830,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1786
+          ],
+          [
+            1470.0,
+            1802
+          ],
+          [
+            29,
+            1802
+          ],
+          [
+            29,
+            1814
+          ],
+          [
+            900.0,
+            1814
+          ],
+          [
+            900.0,
+            1830
+          ]
+        ]
+      },
+      {
+        "source": "R24",
+        "target": "R27",
+        "x1": 1470.0,
+        "y1": 1786,
+        "x2": 1470.0,
+        "y2": 1830,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1786
+          ],
+          [
+            1470.0,
+            1802
+          ],
+          [
+            34,
+            1802
+          ],
+          [
+            34,
+            1814
+          ],
+          [
+            1470.0,
+            1814
+          ],
+          [
+            1470.0,
+            1830
+          ]
+        ]
+      },
+      {
+        "source": "R26",
+        "target": "R27",
+        "x1": 1160,
+        "y1": 1913.0,
+        "x2": 1210,
+        "y2": 1913.0,
+        "dashed": false,
+        "points": [
+          [
+            1160,
+            1913.0
+          ],
+          [
+            1210,
+            1913.0
+          ]
+        ]
+      },
+      {
+        "source": "R23",
+        "target": "R28",
+        "x1": 900.0,
+        "y1": 1786,
+        "x2": 330.0,
+        "y2": 2040,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            1786
+          ],
+          [
+            900.0,
+            1802
+          ],
+          [
+            44,
+            1802
+          ],
+          [
+            44,
+            2024
+          ],
+          [
+            330.0,
+            2024
+          ],
+          [
+            330.0,
+            2040
+          ]
+        ]
+      },
+      {
+        "source": "R26",
+        "target": "R28",
+        "x1": 900.0,
+        "y1": 1996,
+        "x2": 330.0,
+        "y2": 2040,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            1996
+          ],
+          [
+            900.0,
+            2012
+          ],
+          [
+            49,
+            2012
+          ],
+          [
+            49,
+            2024
+          ],
+          [
+            330.0,
+            2024
+          ],
+          [
+            330.0,
+            2040
+          ]
+        ]
+      },
+      {
+        "source": "R27",
+        "target": "R28",
+        "x1": 1470.0,
+        "y1": 1996,
+        "x2": 330.0,
+        "y2": 2040,
+        "dashed": false,
+        "points": [
+          [
+            1470.0,
+            1996
+          ],
+          [
+            1470.0,
+            2012
+          ],
+          [
+            54,
+            2012
+          ],
+          [
+            54,
+            2024
+          ],
+          [
+            330.0,
+            2024
+          ],
+          [
+            330.0,
+            2040
+          ]
+        ]
+      },
+      {
+        "source": "R05",
+        "target": "R30",
+        "x1": 900.0,
+        "y1": 526,
+        "x2": 1470.0,
+        "y2": 2040,
+        "dashed": false,
+        "points": [
+          [
+            900.0,
+            526
+          ],
+          [
+            900.0,
+            542
+          ],
+          [
+            24,
+            542
+          ],
+          [
+            24,
+            2024
+          ],
+          [
+            1470.0,
+            2024
+          ],
+          [
+            1470.0,
+            2040
+          ]
+        ]
+      }
+    ]
+  }
+]

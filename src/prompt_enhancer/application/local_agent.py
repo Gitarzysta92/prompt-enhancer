@@ -197,6 +197,7 @@ from .mcp_managed_runtime import (
 )
 from .model_reply import model_json_object
 from .local_models import MAX_CHAT_BODY_BYTES, RuntimeCapabilities, RuntimeContextStatus
+from .inference import InferenceError
 from .runtime_cancellation import RuntimeCooperativeStop, runtime_request_scope
 
 
@@ -1005,6 +1006,7 @@ class LocalAgentService:
         *,
         chat: Callable[[str, bytes], tuple[int, bytes, str]],
         open_chat: Callable[[str, bytes], AgentChatUpstream] | None = None,
+        inference_review: Callable[[str, str, bytes], bytes] | None = None,
         active_model: Callable[[], str | None],
         model_ready: Callable[[str], bool] | None = None,
         allowed_roots: tuple[Path, ...] | None = None,
@@ -1023,6 +1025,7 @@ class LocalAgentService:
     ) -> None:
         self._chat = chat
         self._open_chat = open_chat
+        self._inference_review = inference_review
         self._active_model = active_model
         self._model_ready = model_ready
         self._allowed_roots = tuple(root.resolve() for root in allowed_roots) if allowed_roots else None
@@ -4790,6 +4793,8 @@ class LocalAgentService:
         """
 
         if self._open_chat is None:
+            if self._inference_review is not None:
+                body = self._inference_review(session.session_id, alias, body)
             status, payload, _ = self._chat(alias, body)
             return status, self._whole_model_reply(payload) if status == 200 else None
 
@@ -4797,7 +4802,10 @@ class LocalAgentService:
         request = json.loads(body.decode("utf-8"))
         request["stream"] = True
         request["stream_options"] = {"include_usage": True}
-        upstream = self._open_chat(alias, json.dumps(request).encode("utf-8"))
+        prepared = json.dumps(request).encode("utf-8")
+        if self._inference_review is not None:
+            prepared = self._inference_review(session.session_id, alias, prepared)
+        upstream = self._open_chat(alias, prepared)
         if upstream.status_code != 200:
             return upstream.status_code, None
         if upstream.lines is None:
@@ -5202,6 +5210,14 @@ class LocalAgentService:
                 try:
                     with runtime_request_scope(cancellation):
                         status, reply = self._stream_model_reply(session, alias, body)
+                except InferenceError as error:
+                    if error.code in {"model_error", "model_not_active", "inference_model_not_found"}:
+                        reason = "runtime_unreachable"
+                        self._emit(session, "error", text="The selected model is unavailable. Check the provider and retry.")
+                    else:
+                        reason = "inference_not_authorized"
+                        self._emit(session, "error", text="The model request was declined, expired, or could not be prepared for review. No unapproved text was sent.")
+                    break
                 except LocalAgentError as error:
                     if session.stop_requested:
                         termination, reason = "stopped", "stop_requested"

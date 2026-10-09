@@ -498,6 +498,7 @@ def create_app(
     calibration_rating_service=None,
     objective_overrides_provider=None,
     local_model_service=None,
+    inference_service=None,
     model_judge_service=None,
     calibration_sample_session_ids=None,
     all_session_ids=None,
@@ -1016,6 +1017,8 @@ def create_app(
             data_tier="metadata",
             network_inference=resolved_settings.prompt_check_litellm is not None,
             prompt_check_network_inference=resolved_settings.prompt_check_litellm is not None,
+            session_text_network_inference=inference_service is not None and resolved_settings.prompt_check_litellm is not None,
+            reviewed_inference=inference_service is not None,
             raw_transcripts=(
                 session_reader_service is not None and session_reader_service.enabled
             ),
@@ -1305,6 +1308,9 @@ def create_app(
         from .interfaces.http.local_model_routes import create_local_model_router
 
         app.include_router(create_local_model_router(require_local_token, local_model_service))
+    if inference_service is not None:
+        from .interfaces.http.inference_routes import create_inference_router
+        app.include_router(create_inference_router(require_local_token, inference_service))
     if prompt_check_service is not None:
         from .interfaces.http.prompt_check_routes import create_prompt_check_router
 
@@ -1479,7 +1485,7 @@ def create_app(
                 raise RuntimeError("model judge session catalog unavailable")
             return tuple(all_session_ids())
 
-        app.include_router(create_model_judge_router(require_local_token, model_judge_service, _sample_ids, _all_ids))
+        app.include_router(create_model_judge_router(require_local_token, model_judge_service, _sample_ids, _all_ids, inference=inference_service))
     if calibration_rating_service is not None:
         from .interfaces.http.calibration_routes import create_calibration_router
 

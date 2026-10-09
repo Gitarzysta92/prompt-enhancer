@@ -5,6 +5,19 @@ their evidence, their trade-offs, and the conditions that should cause them to b
 revisited. An accepted ADR describes the current default; it is not permission to
 weaken the repository's privacy or safety rules.
 
+For implementation status, use the [dated architecture atlas](../architecture/README.md)
+and authoritative readiness ledger. Historical accepted scope is not a release
+pass. ADR 0020 records the current private-source/native-host/workflow scope;
+ADR 0019 records owner review. Any collaborator may propose a new decision;
+only owner acceptance changes the default.
+
+| Current clarification | Review disposition |
+| --- | --- |
+| [0019 — Owner-reviewed architecture and contributions](0019-owner-reviewed-architecture-and-contributions.md) | Existing owner policy, documentation under PR review |
+| [0020 — Current product boundaries and beta scope](0020-current-product-boundaries-and-beta-scope.md) | Consolidates approved scope; does not confer implementation acceptance |
+| [0022 — Inference provider boundary](0022-inference-provider-boundary.md) | Proposed reviewed remote-inference exception; owner acceptance pending |
+| [0021 — Evidence-bound architecture atlas](0021-evidence-bound-architecture-atlas.md) | Proposed maintenance convention for owner review |
+
 | ADR | Status | Decision |
 |---|---|---|
 | [0001](0001-modular-monolith-hexagonal-metric-graph.md) | Accepted | Modular monolith with hexagonal boundaries and an explicit metric graph |
@@ -22,9 +35,9 @@ weaken the repository's privacy or safety rules.
 | [0012](0012-task-scoped-verification-evidence.md) | Accepted | Safe-event decoder 4: a reviewed (accepted) task revision is the only verification-task denominator; test/build runs with exit status are receipts; no revision or an ambiguous one declares no family, so first-pass verification is numeric only when someone asserted the task |
 | [0014](0014-read-only-agent-surface.md) | Accepted | Read-only, allowlisted agent surface served as MCP over stdio without an SDK: six bounded metadata/metric tools, no transcript text, paths or tokens, explicit context-egress acknowledgement before serving, configuration printed rather than written |
 | [0015](0015-prompt-check.md) | Accepted | Prompt check: validate a prompt in context before an agent acts - the coaching pack's prompt metrics with detected/missing cues, content-free context inference, local-model commentary with a reformulated prompt (visibly model output), via HTTP, the MCP tool `check_prompt` and an opt-in Claude Code hook; only metrics are stored |
-| [0016](0016-local-agent-workspace.md) | Accepted, streaming + editor slices | Local agent workspace: the chosen local model works inside one protected folder through tools; writes are revision-bound and browser-approved; the Agent page now has token streaming plus a strict UTF-8 tree/editor with server diff and single-use apply; sessions remain in memory and the runtime uses --jinja, flash attention and an 8-bit KV cache |
+| [0016](0016-local-agent-workspace.md) | Historical accepted slices; authority/history clarified by [0020](0020-current-product-boundaries-and-beta-scope.md) | Local workspace, streaming and editor rationale. Earlier browser-approval/in-memory descriptions are historical: current protected actions require native approval, and private durable chat history does not retain reusable authority. |
 | [0017](0017-remote-annotation-providers.md) | Accepted, both paths implemented locally | Annotation paths: after an allowance, any model the person drives (Codex, Claude Code, a local model) annotates through the app's `/v1/annotation/*` endpoint with a prepared metaprompt; a separate "annotate remotely" action submits redacted windows + pseudonymous ids to the central annotation server (`/central/v1/*`, embedded today, VPS beside login later), which annotates with its strongest model and keeps the submissions as the training dataset |
+| [0018](0018-shared-team-folders.md) | Accepted, first slice implemented | Shared team folders: a person explicitly shares one folder (token shown once, stored hashed); peers join it directly over `/p2p/v1/*` (no central server in the data path), pull it into a local copy that agents use as an ordinary workspace, and push edits back with last-synced-hash conflict detection - simultaneous edits survive as conflict copies. LAN listener and background sync deferred |
 
 Changes that reverse an accepted decision should add a superseding ADR rather
 than silently rewriting the original rationale.
-| [0018](0018-shared-team-folders.md) | Accepted, first slice implemented | Shared team folders: a person explicitly shares one folder (token shown once, stored hashed); peers join it directly over `/p2p/v1/*` (no central server in the data path), pull it into a local copy that agents use as an ordinary workspace, and push edits back with last-synced-hash conflict detection - simultaneous edits survive as conflict copies. LAN listener and background sync deferred |

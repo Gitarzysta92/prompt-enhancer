@@ -307,7 +307,25 @@ class LocalApplication:
             llama_server=lambda: detect_llama_server(app_home=home, models_root=models_root),
         )
 
-    def create_model_judge_service(self, local_model_service=None, calibration_service=None):
+    def create_inference_service(self, local_model_service=None):
+        """Compose inference adapters separately from owned runtime lifecycle."""
+        from pydantic import SecretStr
+        from .application.inference import InferenceRegistry
+        from .application.inference_review import ReviewedInference
+        from .infrastructure.local_inference import LocalInferenceProvider
+        from .infrastructure.litellm import LiteLLMProvider
+        from .infrastructure.redaction.deterministic import DeterministicLocalRedactor
+
+        runtime = local_model_service or self.create_local_model_service()
+        providers = [LocalInferenceProvider(runtime)]
+        if self.settings.prompt_check_litellm is not None:
+            providers.append(LiteLLMProvider(self.settings.prompt_check_litellm))
+        redactor = DeterministicLocalRedactor()
+        return ReviewedInference(InferenceRegistry(tuple(providers)),
+            redact=lambda value: redactor.redact(SecretStr(value)).text.get_secret_value(),
+            redactor_version=redactor.version)
+
+    def create_model_judge_service(self, local_model_service=None, calibration_service=None, inference=None):
         """Model-judge lane over the active local model (ADR 0013 section 4)."""
 
         from pathlib import Path
@@ -318,7 +336,17 @@ class LocalApplication:
         models = local_model_service or self.create_local_model_service()
         calibration = calibration_service or self.create_calibration_rating_service()
 
+        from .application.inference_review import current_inference_selection
+
         def active_model():
+            selection = current_inference_selection()
+            if inference is not None and selection is not None:
+                _, model = inference.registry.resolve(selection.model_id)
+                import json
+                return model.id, json.dumps({"provider": model.provider, "model": model.name,
+                    "revision": model.revision, "license": model.license,
+                    "adapter": model.adapter_version, "redactor": inference.redactor_version},
+                    sort_keys=True, separators=(",", ":"))
             overview = models.overview()
             for item in overview.models:
                 if item.runtime.state is RuntimeState.RUNNING:
@@ -326,18 +354,25 @@ class LocalApplication:
                     return item.record.alias, identity
             return None
 
+        def chat(alias, body):
+            selection = current_inference_selection()
+            if inference is not None and selection is not None:
+                return inference.complete(alias, body, selection.purpose,
+                    approval=selection.approval, preview=selection.preview)
+            return models.chat(alias, body)
+
         return ModelJudgeService(
             repository=self.database.model_judgment_repository(),
             ratings=self.database.calibration_rating_repository(),
             access=self.database,
             source_factory=self.create_text_analysis_source,
-            chat=models.chat,
+            chat=chat,
             active_model=active_model,
             session_lookup=self.database.get_session,
             metrics_lookup=self.database.get_session_metrics,
         ), calibration
 
-    def create_prompt_check_service(self, local_model_service=None):
+    def create_prompt_check_service(self, local_model_service=None, inference=None):
         """Prompt validation in context: deterministic cues + optional local-model commentary (ADR 0015)."""
 
         from pathlib import Path
@@ -347,12 +382,14 @@ class LocalApplication:
 
         remote = self.settings.prompt_check_litellm
         if remote is not None:
-            from .infrastructure.litellm import LiteLLMChat
+            gateway = inference or self.create_inference_service(local_model_service)
+            model = next(item for item in gateway.registry.catalog().models if item.remote)
+            provider, _ = gateway.registry.resolve(model.id)
 
             return PromptCheckService(
                 self.database.prompt_check_repository(),
                 pseudonymize=self.pseudonymizer.pseudonymize,
-                chat=LiteLLMChat(remote),
+                chat=lambda alias, body: provider.complete(model.id, body),
                 active_model=lambda: remote.model,
                 remote_model=remote.model,
                 remote_model_revision=remote.model_revision,
@@ -546,6 +583,7 @@ class LocalApplication:
         local_model_service=None,
         *,
         mcp_managed_runtime_service=None,
+        inference=None,
     ):
         """Local agent workspace (ADR 0016): one folder, tools with approval, the active local model."""
 
@@ -573,12 +611,18 @@ class LocalApplication:
             return aliases[0] if aliases else None
 
         def model_ready(alias: str) -> bool:
+            if inference is not None:
+                return inference.registry.available(alias)
             try:
                 return models.running_aliases() == (alias,)
             except Exception:
                 return False
 
         def runtime_capabilities(alias: str) -> RuntimeCapabilities:
+            if inference is not None and inference.registry.resolve(alias)[1].remote:
+                # Text inference may be requested; media/tool qualification is
+                # unknown until measured. No local runtime probe is fabricated.
+                return RuntimeCapabilities()
             try:
                 status = models.coordinator_status()
             except Exception:
@@ -588,6 +632,9 @@ class LocalApplication:
             return status.capabilities
 
         def context_preflight(alias: str, body: bytes, compacted_messages: int):
+            if inference is not None and inference.registry.resolve(alias)[1].remote:
+                from .application.local_models import RuntimeContextStatus, ContextAdmissionReason
+                return RuntimeContextStatus(reason_code=ContextAdmissionReason.INPUT_COUNTER_UNAVAILABLE)
             return models.preflight_chat(
                 alias,
                 body,
@@ -627,8 +674,9 @@ class LocalApplication:
             catalog,
         )
         return LocalAgentService(
-            chat=models.chat,
-            open_chat=models.open_chat,
+            chat=models.chat if inference is None else lambda alias, body: inference.registry.resolve(alias)[0].complete(alias, body),
+            open_chat=models.open_chat if inference is None else lambda alias, body: inference.registry.resolve(alias)[0].open_chat(alias, body),
+            inference_review=None if inference is None else inference.wait_for_agent_review,
             active_model=active_model,
             model_ready=model_ready,
             forbidden_roots=protected_roots,
@@ -1635,9 +1683,10 @@ class LocalApplication:
             )
 
         local_model_service = self.create_local_model_service()
+        inference_service = self.create_inference_service(local_model_service)
         calibration_rating_service = self.create_calibration_rating_service()
-        model_judge_service, _ = self.create_model_judge_service(local_model_service, calibration_rating_service)
-        prompt_check_service = self.create_prompt_check_service(local_model_service)
+        model_judge_service, _ = self.create_model_judge_service(local_model_service, calibration_rating_service, inference_service)
+        prompt_check_service = self.create_prompt_check_service(local_model_service, inference_service)
         agent_mcp_connection_service = (
             self.create_agent_mcp_connection_service(token)
         )
@@ -1664,6 +1713,7 @@ class LocalApplication:
         # effect of rebuilding an HTTP adapter.
         local_agent_service = self.create_local_agent_service(
             local_model_service,
+            inference=inference_service,
             mcp_managed_runtime_service=mcp_managed_runtime_service,
         )
         if workspace_folder_picker is None:
@@ -1756,6 +1806,7 @@ class LocalApplication:
             session_reader_service=self.create_session_reader_service(),
             calibration_rating_service=calibration_rating_service,
             local_model_service=local_model_service,
+            inference_service=inference_service,
             model_judge_service=model_judge_service,
             prompt_check_service=prompt_check_service,
             local_agent_service=local_agent_service,

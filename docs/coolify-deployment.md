@@ -146,14 +146,32 @@ status fields and the image revision. Cloudflare authenticates external health
 requests; other routes also require a verified Access assertion at the origin
 in Cloudflare mode, or the gateway login in Basic mode.
 
+## Explicit source preview deployment
+
+An owner-authorized preview can use Coolify's Dockerfile source build against a
+public branch pinned to an exact commit. Set the Dockerfile to `/Dockerfile`,
+the base directory to `/`, and `APP_REVISION` to the same commit as a build
+argument. Keep runtime credentials out of build arguments. Build that exact
+revision and run `scripts/smoke_hosted_container.py` before requesting deployment.
+The **Verify hosted candidate** pull-request workflow performs this image check
+against the proposed head commit with read-only permissions and no deployment
+secrets. It does not publish an image or deploy the application.
+The existing volume, single-replica policy, Cloudflare authentication and health
+command still apply. Verify both the running revision and real gateway behavior
+afterward; deployment acceptance alone does not establish success.
+
+This preview path does not merge the branch or mark the full production quality
+gate green. That workflow and its existing requirements remain unchanged.
+
 ## Hosted capabilities and limits
 
 Manual browser prompt checks and stored application views work against data in
 this container. The container cannot see prompts or provider sessions on a
 visitor's computer. Its provider reader is disabled, its provider home is empty,
-and models/desktop extras are absent. Model-assisted commentary stays unavailable
-until a separately reviewed runtime design exists. No automatic imports or
-provider hooks are configured by deployment.
+and models/desktop extras are absent. An explicitly configured LiteLLM gateway
+can power reviewed chat, prompt enhancement, supplied-text analysis and Agent
+model requests. Configure the runtime-only variables in the [gateway guide](litellm-prompt-check.md).
+No automatic imports or provider hooks are configured by deployment.
 
 The gateway strips API tokens and native-presence headers. Browser cookies and
 CSRF checks remain enforced; native approval stays unavailable. Protected Agent

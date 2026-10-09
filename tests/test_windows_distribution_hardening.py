@@ -925,7 +925,7 @@ def test_every_network_capable_source_module_is_egress_classified() -> None:
     # model runtime manager (free-port bind, health, chat proxy to its child),
     # the Claude Code prompt-check hook (posts to this app's loopback API), and
     # the no-proxy/no-redirect local Agent controller bridge.
-    # Explicit external requests include the reviewed Prompt Check gateway and the shared-folder client (ADR 0018)
+    # Explicit external requests include the reviewed inference gateway and the shared-folder client (ADR 0018)
     # dials exactly the URL the person typed when joining a teammate's folder;
     # MCP Store discovery uses the documented Official Registry; a guarded
     # compatibility check dials only the exact reviewed HTTPS origin after

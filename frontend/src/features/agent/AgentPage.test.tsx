@@ -6808,3 +6808,76 @@ describe("Agent managed MCP call timeline", () => {
     expect(screen.queryByRole("alertdialog", { name: "Approval needed" })).not.toBeInTheDocument();
   });
 });
+
+it("opens a reviewed gateway chat when the local model registry is unavailable", async () => {
+  const transport = {
+    ...workspaceMethods(),
+    listAgentSessions: vi.fn(async () => []),
+    createAgentSession: vi.fn(async (settings: AgentSettings) => view({ settings: { ...view().settings, ...settings }, model_alias: settings.model_alias })),
+    getAgentSession: vi.fn(), deleteAgentSession: vi.fn(), sendAgentMessage: vi.fn(),
+    getAgentEvents: vi.fn(async () => ({ contract_version: "local-agent.v9" as const, cleanup_unconfirmed: false, closing: false, stopping: false, session_id: SESSION, events: [], running: false, pending_approval_id: null, last_seq: 0, first_seq: 0 })),
+    decideAgentApproval: vi.fn(), stopAgentSession: vi.fn(),
+    getLocalModels: vi.fn(async () => { throw new Error("synthetic local catalog unavailable"); }),
+    activateLocalModel: vi.fn(),
+    getInferenceModels: vi.fn(async () => ({ contract_version: "inference.v1" as const, unavailable_providers: ["local"], models: [{
+      id: "example-gateway", name: "Example gateway", provider: "litellm" as const, remote: true, available: true,
+      availability: "configured" as const, adapter_version: "synthetic.v1", streaming: true,
+    }] })),
+  };
+  render(<AgentPage transport={transport} />);
+  await screen.findByRole("option", { name: "Example gateway · litellm" });
+  fireEvent.change(screen.getByLabelText("Workspace folder"), { target: { value: "D:\\example\\project" } });
+  fireEvent.change(screen.getByLabelText("Agent model"), { target: { value: "example-gateway" } });
+  fireEvent.click(screen.getByRole("button", { name: "Open chat with external model" }));
+  await waitFor(() => expect(transport.createAgentSession).toHaveBeenCalledOnce());
+  expect(transport.createAgentSession.mock.calls[0][0]).toMatchObject({ model_alias: "example-gateway", allow_writes: false, allow_commands: false });
+  expect(transport.activateLocalModel).not.toHaveBeenCalled();
+  expect(await screen.findByText(/Each outgoing model request requires review/)).toBeVisible();
+  fireEvent.change(screen.getByLabelText("Message to the agent"), { target: { value: "Explain the fictional calculator." } });
+  expect(screen.getByRole("button", { name: "Send" })).toBeEnabled();
+});
+
+it("reviews the Agent prompt-check request before sending it to the gateway", async () => {
+  const transport = {
+    ...sessionTransport(view()),
+    getPromptCheckConfiguration: vi.fn(async () => ({ remote: true, provider: "litellm" as const, model: "example-model" })),
+    previewPrompt: vi.fn(async () => ({ model: "example-model", provider: "litellm" as const,
+      messages: [{ role: "user", content: "Redacted fictional draft" }], approval: "example-invalid-review",
+      expires_in_seconds: 600, redactor_version: "synthetic.v1", prompt_version: "synthetic.v1" })),
+    checkPrompt: vi.fn(async (_request: PromptCheckRequest, _signal?: AbortSignal) => promptCheckResult()),
+  };
+  render(<AgentPage transport={transport} />);
+  const draft = await screen.findByLabelText("Message to the agent");
+  fireEvent.change(draft, { target: { value: "Explain example.ts" } });
+  fireEvent.click(screen.getByRole("button", { name: "Review prompt without sending" }));
+  await screen.findByRole("button", { name: "Send reviewed text to LiteLLM" });
+  expect(transport.checkPrompt).not.toHaveBeenCalled();
+  fireEvent.change(draft, { target: { value: "Explain the revised example.ts" } });
+  expect(screen.queryByRole("button", { name: "Send reviewed text to LiteLLM" })).toBeNull();
+  fireEvent.click(screen.getByRole("button", { name: "Review prompt without sending" }));
+  fireEvent.click(await screen.findByRole("button", { name: "Send reviewed text to LiteLLM" }));
+  await waitFor(() => expect(transport.checkPrompt).toHaveBeenCalledOnce());
+  expect(transport.checkPrompt.mock.calls[0][0]).toMatchObject({ prompt: "Explain the revised example.ts", remote_approval: "example-invalid-review" });
+  expect(transport.sendAgentMessage).not.toHaveBeenCalled();
+});
+
+it("keeps gateway inference review separate from Agent tool approval", async () => {
+  const model = { id: "example-gateway", name: "Example gateway", provider: "litellm" as const, remote: true,
+    available: true, availability: "configured" as const, adapter_version: "synthetic.v1", streaming: true };
+  const review = { id: "example-review", preview: { model, purpose: "agent:example", request: { messages: [{ role: "user", content: "Redacted fictional question" }] },
+    approval: "example-invalid-review", redactor_version: "synthetic.v1", expires_in_seconds: 600 } };
+  let decided = false;
+  const transport = { ...sessionTransport(view({ running: true, model_alias: model.id })),
+    getInferenceModels: vi.fn(async () => ({ contract_version: "inference.v1" as const, models: [model], unavailable_providers: [] })),
+    getAgentInferenceReviews: vi.fn(async () => decided ? [] : [review]),
+    decideAgentInferenceReview: vi.fn(async () => { decided = true; }),
+  };
+  transport.getAgentEvents.mockResolvedValue({ contract_version: "local-agent.v9", cleanup_unconfirmed: false, closing: false,
+    stopping: false, session_id: SESSION, events: [], running: true, pending_approval_id: null, last_seq: 0, first_seq: 0 });
+  render(<AgentPage transport={transport} />);
+  const sendReview = await screen.findByRole("button", { name: "Send reviewed request" });
+  expect(sendReview).toBeEnabled();
+  fireEvent.click(sendReview);
+  await waitFor(() => expect(transport.decideAgentInferenceReview).toHaveBeenCalledWith(SESSION, review.id, true, expect.any(AbortSignal)));
+  expect(transport.decideAgentApproval).not.toHaveBeenCalled();
+});

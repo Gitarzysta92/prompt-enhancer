@@ -45,7 +45,7 @@ TurnReason = Literal[
     "model_response_filtered", "model_completion_unrecognized", "model_stream_incomplete",
     "model_stream_failed", "model_reply_unusable", "model_reply_too_large",
     "model_answer_missing", "runtime_unreachable", "runtime_http_error", "turn_failed",
-    "command_cleanup_unconfirmed", "context_window_exceeded",
+    "command_cleanup_unconfirmed", "context_window_exceeded", "inference_not_authorized",
 ]
 
 

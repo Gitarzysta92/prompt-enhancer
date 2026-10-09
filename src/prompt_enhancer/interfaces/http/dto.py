@@ -78,7 +78,9 @@ class CapabilitiesDto(HttpDto):
     cost_mode: Literal["offline_only"]
     data_tier: Literal["metadata"]
     network_inference: bool
-    session_text_network_inference: Literal[False] = False
+    session_text_network_inference: bool = False
+    automatic_session_text_network_inference: Literal[False] = False
+    reviewed_inference: bool = False
     prompt_check_network_inference: bool = False
     # False unless the owner enabled the on-demand session reader (ADR 0011);
     # never true silently.

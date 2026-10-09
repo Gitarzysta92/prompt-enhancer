@@ -23,6 +23,8 @@ from pydantic import Field, ValidationError, ValidationInfo, field_validator
 
 from ...domain import DataTier, PSEUDONYM_PATTERN, Provider, StrictModel
 from ..estimators.calibration import AgreementObservation, EvaluationState, model_human_agreement
+from ..inference_review import InferenceReviewRequired
+from ..inference import InferenceError
 from ..model_reply import completed_chat_content, model_json_object
 from .calibration_ratings import CALIBRATION_METRIC_KEYS, CALIBRATION_RATING_VERSION, RatingLabel
 from .calibration_cases import (
@@ -91,7 +93,7 @@ class ModelJudgment(StrictModel):
     metric_key: str = Field(min_length=1, max_length=120)
     label: RatingLabel
     model_alias: str = Field(min_length=1, max_length=64)
-    model_identity: str = Field(min_length=1, max_length=200)
+    model_identity: str = Field(min_length=1, max_length=1000)
     prompt_version: str = Field(min_length=1, max_length=64)
     window_fingerprint: str = Field(pattern=PSEUDONYM_PATTERN.pattern)
     judged_at: datetime
@@ -149,6 +151,10 @@ class SessionInterpretation(StrictModel):
     reframed_prompt: str | None = None
     summary: str | None = None
     metrics_seen: int = Field(ge=0)
+    inference_provider: Literal["local", "litellm"] | None = None
+    model_revision: str | None = None
+    adapter_version: str | None = None
+    redactor_version: str | None = None
     caveat: str = (
         "Written by a local model from the session's metric states and the redacted window; it is an interpretation, "
         "not a measurement, and may be wrong. Unknown metrics were reported to it as unknown."
@@ -555,7 +561,7 @@ class ModelJudgeService:
             or len(active[0]) > 64
             or not isinstance(active[1], str)
             or not active[1]
-            or len(active[1]) > 200
+            or len(active[1]) > 1000
         ):
             raise ModelJudgeError(MODEL_JUDGE_CATALOG_UNAVAILABLE)
         return active
@@ -619,6 +625,8 @@ class ModelJudgeService:
         ).encode("utf-8")
         try:
             status, payload, _ = self._chat(alias, body)
+        except (InferenceReviewRequired, InferenceError):
+            raise
         except Exception as error:
             code = _public_adapter_failure_code(getattr(error, "code", None))
             raise ModelJudgeError(code.value) from None
@@ -833,6 +841,8 @@ class ModelJudgeService:
         ).encode("utf-8")
         try:
             status, payload, _ = self._chat(alias, body)
+        except (InferenceReviewRequired, InferenceError):
+            raise
         except Exception:
             raise ModelJudgeError("model_unreachable") from None
         if status != 200:
@@ -854,6 +864,7 @@ class ModelJudgeService:
             reframed_prompt=reading.reframed_prompt,
             summary=reading.summary,
             metrics_seen=len(lines),
+            inference_provider="local",
         )
 
     def judgments_for(self, session_id: str) -> SessionJudgments:

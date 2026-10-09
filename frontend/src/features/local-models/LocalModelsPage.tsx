@@ -13,6 +13,7 @@ import type {
 } from "../../shared/api/contracts";
 import { TransportError } from "../../shared/api/httpTransport";
 import { Icon } from "../../shared/ui/Icon";
+import { InferenceWorkbench } from "../inference/InferenceWorkbench";
 import { LocalModelChatPanel } from "./LocalModelChatPanel";
 import "./LocalModelsPage.css";
 
@@ -284,7 +285,7 @@ function LocalModelsHeader() {
  * runtime selection and the loopback endpoint each model gets. Adding a model from
  * Hugging Face shows file sizes first and downloads only after a confirmation.
  */
-export function LocalModelsPage({
+function LocalModelManagementPage({
   transport,
 }: {
   transport: Pick<
@@ -1095,4 +1096,8 @@ export function LocalModelsPage({
       <p className="local-models__message" aria-live="polite" role="status">{message}</p>
     </section>
   );
+}
+
+export function LocalModelsPage(props: Parameters<typeof LocalModelManagementPage>[0] & { transport: Partial<PromptEnhancerTransport> }) {
+  return <><InferenceWorkbench transport={props.transport} /><LocalModelManagementPage {...props} /></>;
 }

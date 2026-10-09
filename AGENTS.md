@@ -1,6 +1,6 @@
 # Repository instructions for coding agents
 
-This is a public, privacy-sensitive repository for local coding-agent analytics.
+This is a privacy-sensitive repository for local coding-agent analytics.
 
 ## Non-negotiable privacy rules
 
@@ -22,6 +22,23 @@ This is a public, privacy-sensitive repository for local coding-agent analytics.
 - Keep prompt, outcome, efficiency, affect, and safety dimensions separate. Do not create a developer ranking or universal “intelligence” score.
 - Pin model revisions and licenses; do not vendor model weights. Keep `trust_remote_code` disabled and prefer safetensors or ONNX.
 - New fixtures must pass secret/PII canary tests and contain only reserved example values.
+
+## Collaboration and architecture
+
+- Work on feature branches and propose changes through pull requests.
+- The repository owner is the final reviewer and merge authority. Contributors
+  and agents never self-merge or force-push the primary branch.
+- Agents and contributors never publish source or releases automatically.
+- Any collaborator may propose an architecture change; accepted decisions change
+  only after owner review and acceptance. Record a superseding ADR instead of
+  silently reversing the existing one.
+- Read `docs/architecture/README.md` and the relevant component catalog entries
+  before cross-component work. Check the approved baseline: unpublished local
+  implementation may be absent from `main`.
+- Use `.agents/skills/prompt-enhancer-development/SKILL.md` for component routing,
+  evidence gates and contribution flow.
+- Written policy and CI metadata checks are not GitHub permission enforcement.
+  Do not claim branch protection or release authority from these instructions.
 
 ## Before committing
 

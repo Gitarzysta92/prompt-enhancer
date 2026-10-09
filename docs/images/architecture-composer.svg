@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1048" viewBox="0 0 1800 1048">
+<rect width="100%" height="100%" fill="#f7f9fc"/>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#8493a5"/></marker></defs>
+<text x="70" y="48" font-family="Arial,sans-serif" font-size="30" fill="#172b46">Planned workflow composer integration</text>
+<text x="70" y="82" font-family="Arial,sans-serif" font-size="18" fill="#42556b">2026-10-08 | Development observation + published baseline comparison | See catalog for evidence</text>
+<rect x="70" y="104" width="20" height="20" fill="#d4efdf" stroke="#748398"/>
+<text x="100" y="120" font-family="Arial,sans-serif" font-size="17">READY (bounded)</text>
+<rect x="480" y="104" width="20" height="20" fill="#fff0b3" stroke="#748398"/>
+<text x="510" y="120" font-family="Arial,sans-serif" font-size="17">PARTIAL</text>
+<rect x="890" y="104" width="20" height="20" fill="#ffd8d8" stroke="#748398"/>
+<text x="920" y="120" font-family="Arial,sans-serif" font-size="17">NOT IMPLEMENTED</text>
+<rect x="1300" y="104" width="20" height="20" fill="#e1e5ea" stroke="#748398"/>
+<text x="1330" y="120" font-family="Arial,sans-serif" font-size="17">MOCK / DEMO</text>
+<polyline points="590,233.0 640,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 29,332 29,134 1470.0,134 1470.0,150" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1160,233.0 1210,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 39,332 39,344 900.0,344 900.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 44,332 44,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 49,332 49,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 54,332 54,554 330.0,554 330.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 24,332 24,554 330.0,554 330.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 29,332 29,554 900.0,554 900.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 34,332 34,554 900.0,554 900.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 39,332 39,554 1470.0,554 1470.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 44,332 44,554 1470.0,554 1470.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 49,332 49,764 330.0,764 330.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 54,332 54,764 900.0,764 900.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<a href="../architecture/feature-catalog.md#w02"><rect x="70" y="150" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W02  |  NOT IMPLEMENTED</text>
+<text x="88" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Durable workflow revisions and</text>
+<text x="88" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">sequential engine</text>
+<text x="88" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W01</text>
+</a>
+<a href="../architecture/feature-catalog.md#w04"><rect x="640" y="150" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W04  |  NOT IMPLEMENTED</text>
+<text x="658" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Resource leases and actual parallel</text>
+<text x="658" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">inference</text>
+<text x="658" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W02, W03</text>
+</a>
+<a href="../architecture/feature-catalog.md#w05"><rect x="1210" y="150" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W05  |  NOT IMPLEMENTED</text>
+<text x="1228" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Visual workflow builder and device</text>
+<text x="1228" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">model advisor</text>
+<text x="1228" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W01, W02, W03, W04, A10</text>
+</a>
+<a href="../architecture/feature-catalog.md#wp01"><rect x="70" y="360" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WP01  |  NOT IMPLEMENTED</text>
+<text x="88" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Typed draft input/output</text>
+<text x="88" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W01, W03</text>
+</a>
+<a href="../architecture/feature-catalog.md#wp02"><rect x="640" y="360" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WP02  |  NOT IMPLEMENTED</text>
+<text x="658" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Review, apply and undo UI</text>
+<text x="658" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W05</text>
+</a>
+<a href="../architecture/feature-catalog.md#wp03"><rect x="1210" y="360" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WP03  |  NOT IMPLEMENTED</text>
+<text x="1228" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Exact draft/run binding</text>
+<text x="1228" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W02, W05</text>
+</a>
+<a href="../architecture/feature-catalog.md#wp04"><rect x="70" y="570" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WP04  |  NOT IMPLEMENTED</text>
+<text x="88" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Idempotent enhancement and send</text>
+<text x="88" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W02, W05</text>
+</a>
+<a href="../architecture/feature-catalog.md#wp05"><rect x="640" y="570" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WP05  |  NOT IMPLEMENTED</text>
+<text x="658" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Enhancement failure recovery</text>
+<text x="658" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W02, W05</text>
+</a>
+<a href="../architecture/feature-catalog.md#wp06"><rect x="1210" y="570" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WP06  |  NOT IMPLEMENTED</text>
+<text x="1228" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Shared runtime resource budget</text>
+<text x="1228" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W04, W05</text>
+</a>
+<a href="../architecture/feature-catalog.md#wp07"><rect x="70" y="780" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WP07  |  NOT IMPLEMENTED</text>
+<text x="88" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Private retention and export</text>
+<text x="88" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W02, W06, W08</text>
+</a>
+<a href="../architecture/feature-catalog.md#wp08"><rect x="640" y="780" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WP08  |  NOT IMPLEMENTED</text>
+<text x="658" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Builder/composer/headless parity</text>
+<text x="658" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W05, W06, W07, W08</text>
+</a>
+<text x="70" y="1020" font-family="Arial,sans-serif" font-size="17" fill="#42556b">Arrows = dependencies / data flow. Dashed = planned. Cross-page dependencies use catalog IDs. Colors do not certify beta.</text>
+</svg>

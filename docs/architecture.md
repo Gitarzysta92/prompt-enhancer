@@ -1,4 +1,30 @@
-# Architecture proposal
+# Prompt Enhancer architecture
+
+Current architecture navigation and source audit: **2026-10-08**.
+
+Start with the [architecture atlas](architecture/README.md),
+[component catalog](architecture/feature-catalog.md),
+[change recipes](architecture/change-recipes.md) and
+[remaining work](architecture/remaining-work.md).
+
+![Current architecture status map](images/architecture-overview.png)
+
+The current product includes analytics and authored local Agent work, with
+required multimodel workflows still to implement. Source is private; the native
+host uses pywebview and the distribution direction is MSIX. Component colors
+describe bounded evidence, not a completed beta. See
+[ADR 0020](adr/0020-current-product-boundaries-and-beta-scope.md).
+
+## Historical proposal below
+
+The original proposal is preserved for rationale. Its public-source, Tauri,
+analytics-only and future-storage diagrams are historical or proposed statements,
+not current runtime/completeness claims. Current defaults and supersessions are
+listed in the [ADR index](adr/README.md).
+
+---
+
+# Original architecture proposal
 
 Status: discussion draft 0.1
 Reviewed against current provider documentation: 2026-08-06

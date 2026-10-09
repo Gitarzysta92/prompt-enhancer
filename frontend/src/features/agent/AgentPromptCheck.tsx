@@ -78,7 +78,7 @@ export function AgentPromptCheckResult({
       </div>
 
       <div className="agent-prompt-check__commentary" data-state={result.commentary.state}>
-        <h3>Local-model suggestions <small>· model output, not measured evidence</small></h3>
+        <h3>{result.commentary.inference_provider === "litellm" ? "Gateway model suggestions" : "Local-model suggestions"} <small>· model output, not measured evidence</small></h3>
         {result.commentary.state === "ok" ? (
           <>
             {result.commentary.findings.length > 0 && (

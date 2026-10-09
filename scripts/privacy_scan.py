@@ -103,6 +103,14 @@ _MAX_TEXT_BYTES = 2 * 1024 * 1024
 # scan time: public screenshots are binary and need a tighter boundary than
 # text fixtures.
 _APPROVED_SYNTHETIC_GALLERY_PNG_SHA256: dict[str, str] = {
+    # Source-derived architecture diagrams, visually reviewed 2026-10-08.
+    "docs/images/architecture-agent.png": "21ba293a01f8368aa9ebb6a856739b069960473a0689aa2d4de7ad3c0a3fb6ff",
+    "docs/images/architecture-composer.png": "29c3c3346ac80e6ac452497774758a753abd28d57fef03cb1095b78f6ea0aa91",
+    "docs/images/architecture-contracts.png": "13ce828818bbffbb3fab94c9f6a4781878fff55af298ed06dc7c33ce8a59b69e",
+    "docs/images/architecture-metrics.png": "afd4e45445efbdc93122c98357aae50ba2681da9dd5500517ee9dc94c944e226",
+    "docs/images/architecture-overview.png": "342993449025a6397f6965df9077a66c7402ccf5b157a129eaf9ed720fd96402",
+    "docs/images/architecture-release.png": "d2dff57c3e2bfb2d93abf696f4a3f5a6e4a2be0b9e1c429a3b1ac1be6eaa643f",
+    "docs/images/architecture-workflows.png": "d95b9f5d977d4fac397bcc7a18f45f8aa5c387a0787703c0511db15cb69db3f5",
     "docs/images/agent-chat.png": "c35e40ab326728e641ef20457d87705cb13fa3b094e9ba70bb226585ae69b80f",
     "docs/images/ensemble-overlay.png": "c0648beb8880308a043f95b76ad347f9204667b653326402ce74bbaad6ac7b9f",
     "docs/images/live-mini-window.png": "4703548a31a45dda9d0c95f6d84ff3a67bc88e4bcbe205006a9bf50db7219369",

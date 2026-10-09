@@ -2,6 +2,17 @@
 
 Thank you for helping build Prompt Enhancer. Privacy and measurement validity are part of correctness, not optional polish.
 
+Start with the [architecture atlas](docs/architecture/README.md),
+[change recipes](docs/architecture/change-recipes.md), and
+[collaboration workflow](docs/collaboration-workflow.md). Any collaborator may
+propose an architecture improvement through an ADR and PR; the repository owner
+is the final reviewer and merge authority. See [ADR 0019](docs/adr/0019-owner-reviewed-architecture-and-contributions.md).
+
+Check the task's approved baseline before editing: inspected unpublished source
+can differ from `main`. Component green means ready at its stated evidence level,
+not that the application or release has been accepted. Source-derived architecture
+PNGs use the same exact reviewed-hash gate as synthetic gallery images.
+
 ## Start here
 
 Work happens on your own feature branch and reaches `main` only through a pull
