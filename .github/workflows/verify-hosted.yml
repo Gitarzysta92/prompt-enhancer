@@ -1,0 +1,40 @@
+name: Verify hosted candidate
+
+# Build and exercise the exact proposed source without publishing or deploying.
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hosted-candidate-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Check repository privacy boundaries
+        run: python3 scripts/privacy_scan.py
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
+      - name: Build the candidate without publishing
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
+        with:
+          context: .
+          platforms: linux/amd64
+          load: true
+          push: false
+          tags: prompt-enhancer:candidate
+          build-args: APP_REVISION=${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Check the actual container boundary
+        env:
+          DEPLOY_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: python3 scripts/smoke_hosted_container.py

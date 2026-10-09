@@ -153,6 +153,9 @@ public branch pinned to an exact commit. Set the Dockerfile to `/Dockerfile`,
 the base directory to `/`, and `APP_REVISION` to the same commit as a build
 argument. Keep runtime credentials out of build arguments. Build that exact
 revision and run `scripts/smoke_hosted_container.py` before requesting deployment.
+The **Verify hosted candidate** pull-request workflow performs this image check
+against the proposed head commit with read-only permissions and no deployment
+secrets. It does not publish an image or deploy the application.
 The existing volume, single-replica policy, Cloudflare authentication and health
 command still apply. Verify both the running revision and real gateway behavior
 afterward; deployment acceptance alone does not establish success.
