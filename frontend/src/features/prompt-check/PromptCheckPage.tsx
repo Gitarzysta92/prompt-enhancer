@@ -10,6 +10,7 @@ import type {
 import { TransportError } from "../../shared/api/httpTransport";
 import type { AppRoute } from "../../shared/platform/platform";
 import { PromptMetricRadar, PromptMetricTrend, promptMetricQualityValue } from "./promptCheckPlots";
+import { PromptCheckReview } from "./PromptCheckReview";
 import "./PromptCheckPage.css";
 
 type Reading = PromptCheckResult["metrics"][number];
@@ -294,20 +295,7 @@ export function PromptCheckPage({
         </div>
         <span className="sr-only" id="prompt-check-submit-requirement">{busy ? "Wait for the current prompt check to finish." : "Enter a prompt before running the check."}</span>
       </form>
-      {preview && (
-        <section aria-label="Review before sending to LiteLLM" className="prompt-check__card">
-          <h2>Review before sending to LiteLLM</h2>
-          <p>This text will be sent to {preview.value.model} through your configured gateway. Redaction can miss sensitive details; review everything below. The preview expires after 10 minutes.</p>
-          {preview.value.messages.map((message, index) => (
-            <details key={index} open={message.role === "user"}>
-              <summary>{message.role === "system" ? "Model instructions" : "Redacted prompt, context and findings"}</summary>
-              <pre style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>{message.content}</pre>
-            </details>
-          ))}
-          <button className="button button--primary" disabled={busy} type="button" onClick={() => void run(preview)}>Send reviewed text to LiteLLM</button>
-          <button className="button button--ghost" disabled={busy} type="button" onClick={() => setPreview(null)}>Cancel</button>
-        </section>
-      )}
+      {preview && <PromptCheckReview preview={preview.value} busy={busy} onSend={() => void run(preview)} onCancel={() => setPreview(null)} />}
       {error && <p className="prompt-check__error" role="alert">{error}</p>}
 
       {result && (

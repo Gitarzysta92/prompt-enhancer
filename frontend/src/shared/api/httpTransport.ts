@@ -1,6 +1,7 @@
 import { readLocalModelChat } from "./localModelChatStream";
 import { parseLocalModelPlacement } from "./localModelPlacementContract";
 import type {
+  InferenceCatalog, InferencePreview, ManualAnalysisResult, PendingInferenceReview,
   AnalysisJobIdentity,
   AnalysisJobPage,
   AnalysisJobRecord,
@@ -1565,7 +1566,8 @@ export function parseSessionTextAnalysisCapability(
     value.session_text_content_persistence !== false ||
     typeof value.codex_local_source !== "boolean" ||
     !(value.network_inference === false || (value.network_inference === true &&
-      value.prompt_check_network_inference === true && value.session_text_network_inference === false)) ||
+      ((value.reviewed_inference === true && value.automatic_session_text_network_inference === false) ||
+       (value.prompt_check_network_inference === true && value.session_text_network_inference === false)))) ||
     typeof value.raw_transcripts !== "boolean"
   ) {
     throw new TransportError("Local analysis capability response was invalid", 200);
@@ -6570,6 +6572,62 @@ export function createHttpTransport(options: {
         signal,
       );
     },
+    async streamInferenceChat(payload, onDelta, signal) {
+      const target = assertSameOriginRelativePath(
+        "/v1/inference/chat",
+        origin,
+      );
+      const body = JSON.stringify(payload);
+      const started = Date.now();
+      let csrfToken = await ensureBrowserSession(signal);
+      const send = (csrf: string) =>
+        fetchRequest(target, {
+          method: "POST",
+          credentials: "include",
+          redirect: "error",
+          referrerPolicy: "no-referrer",
+          cache: "no-store",
+          signal,
+          headers: {
+            Accept: "text/event-stream, application/json",
+            "Content-Type": "application/json",
+            "X-Prompt-Enhancer-CSRF": csrf,
+          },
+          body,
+        });
+      let response = await send(csrfToken);
+      if (response.status === 401) {
+        if (sessionAuth?.csrfToken === csrfToken) sessionAuth = undefined;
+        csrfToken = await ensureBrowserSession(signal);
+        response = await send(csrfToken);
+      }
+      if (!response.ok) {
+        let reasonCode: SafeTransportReasonCode | null = null;
+        if (isJsonResponse(response)) {
+          try {
+            reasonCode = safeReasonFromErrorPayload(await response.json());
+          } catch {
+            // Upstream error bodies are deliberately not surfaced.
+          }
+        }
+        throw new TransportError(`Model chat failed (${response.status})`, response.status, reasonCode);
+      }
+      try {
+        return await readLocalModelChat(response, onDelta, signal, started);
+      } catch {
+        if (signal?.aborted) throw new DOMException("The model reply was cancelled.", "AbortError");
+        // No raw runtime payload, parse detail or reader exception leaves this boundary.
+        throw new TransportError("The model reply did not complete.", response.status);
+      }
+    },
+    getInferenceModels(signal) { return request<InferenceCatalog>("/v1/inference/models", { method: "GET" }, signal); },
+    previewInferenceChat(payload, signal) { return request<InferencePreview>("/v1/inference/chat/preview", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }, signal); },
+    previewManualAnalysis(payload, signal) { return request<InferencePreview>("/v1/inference/analysis/preview", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }, signal); },
+    runManualAnalysis(payload, signal) { return request<ManualAnalysisResult>("/v1/inference/analysis", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }, signal); },
+    getAgentInferenceReviews(sessionId, signal) { return request<PendingInferenceReview[]>(`/v1/inference/agent/${encodeURIComponent(sessionId)}/reviews`, { method: "GET" }, signal); },
+    async decideAgentInferenceReview(sessionId, reviewId, accepted, signal) { await request<unknown>(`/v1/inference/agent/${encodeURIComponent(sessionId)}/reviews/${encodeURIComponent(reviewId)}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accepted }) }, signal); },
+    previewSessionInference(sessionId, kind, modelId, signal) { return request<InferencePreview>(`/v1/model-judge/sessions/${encodeURIComponent(sessionId)}/preview`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, model_id: modelId }) }, signal); },
+    runSessionInference(sessionId, kind, modelId, approval, signal) { return request<JudgeOutcome | SessionInterpretation>(`/v1/model-judge/sessions/${encodeURIComponent(sessionId)}${kind === "interpret" ? "/interpret" : ""}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model_id: modelId, approval }) }, signal); },
     async streamLocalModelChat(alias, payload, onDelta, signal) {
       const target = assertSameOriginRelativePath(
         `/v1/local-models/${encodeURIComponent(alias)}/chat/completions`,

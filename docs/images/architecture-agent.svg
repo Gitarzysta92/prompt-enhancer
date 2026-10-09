@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2098" viewBox="0 0 1800 2098">
+<rect width="100%" height="100%" fill="#f7f9fc"/>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#8493a5"/></marker></defs>
+<text x="70" y="48" font-family="Arial,sans-serif" font-size="30" fill="#172b46">Agent chat, tools and MCP</text>
+<text x="70" y="82" font-family="Arial,sans-serif" font-size="18" fill="#42556b">2026-10-08 | Development observation + published baseline comparison | See catalog for evidence</text>
+<rect x="70" y="104" width="20" height="20" fill="#d4efdf" stroke="#748398"/>
+<text x="100" y="120" font-family="Arial,sans-serif" font-size="17">READY (bounded)</text>
+<rect x="480" y="104" width="20" height="20" fill="#fff0b3" stroke="#748398"/>
+<text x="510" y="120" font-family="Arial,sans-serif" font-size="17">PARTIAL</text>
+<rect x="890" y="104" width="20" height="20" fill="#ffd8d8" stroke="#748398"/>
+<text x="920" y="120" font-family="Arial,sans-serif" font-size="17">NOT IMPLEMENTED</text>
+<rect x="1300" y="104" width="20" height="20" fill="#e1e5ea" stroke="#748398"/>
+<text x="1330" y="120" font-family="Arial,sans-serif" font-size="17">MOCK / DEMO</text>
+<polyline points="590,233.0 640,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,233.0 1210,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,316 900.0,332 34,332 34,344 330.0,344 330.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,316 1470.0,332 39,332 39,344 330.0,344 330.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,316 900.0,332 44,332 44,344 900.0,344 900.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,736 900.0,752 49,752 49,344 900.0,344 900.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,736 1470.0,752 54,752 54,344 900.0,344 900.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 24,332 24,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,316 1470.0,332 29,332 29,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,736 900.0,752 34,752 34,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,526 1470.0,542 39,542 39,554 330.0,554 330.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,653.0 1210,653.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,736 900.0,752 49,752 49,764 330.0,764 330.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,316 900.0,332 54,332 54,764 900.0,764 900.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,863.0 1210,863.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 29,332 29,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,946 900.0,962 34,962 34,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,946 1470.0,962 39,962 39,974 900.0,974 900.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="590,1073.0 640,1073.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,1156 330.0,1172 49,1172 49,974 1470.0,974 1470.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,1156 330.0,1172 54,1172 54,1184 330.0,1184 330.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,1156 900.0,1172 24,1172 24,1184 900.0,1184 900.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,1283.0 1210,1283.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,736 900.0,752 34,752 34,1394 330.0,1394 330.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,316 1470.0,332 39,332 39,1394 330.0,1394 330.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,526 900.0,542 44,542 44,1394 900.0,1394 900.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 49,332 49,1394 1470.0,1394 1470.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,526 1470.0,542 54,542 54,1394 1470.0,1394 1470.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,1156 330.0,1172 24,1172 24,1394 1470.0,1394 1470.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,1576 1470.0,1592 29,1592 29,1604 330.0,1604 330.0,1620" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,1156 330.0,1172 34,1172 34,1604 1470.0,1604 1470.0,1620" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1160,1703.0 1210,1703.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,1156 330.0,1172 44,1172 44,1814 330.0,1814 330.0,1830" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1470.0,1786 1470.0,1802 49,1802 49,1814 330.0,1814 330.0,1830" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="590,1913.0 640,1913.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<a href="../architecture/feature-catalog.md#a01"><rect x="70" y="150" width="520" height="166" rx="12" fill="#d4efdf" stroke="#748398"/>
+<text x="88" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A01  |  READY (bounded)</text>
+<text x="88" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Agent wire contracts</text>
+<text x="88" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#a02"><rect x="640" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A02  |  PARTIAL</text>
+<text x="658" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Persistent Agent projects and chat</text>
+<text x="658" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">catalog</text>
+<text x="658" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A01</text>
+</a>
+<a href="../architecture/feature-catalog.md#a03"><rect x="1210" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A03  |  PARTIAL</text>
+<text x="1228" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Conversation retention and restart</text>
+<text x="1228" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">recovery</text>
+<text x="1228" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A02</text>
+</a>
+<a href="../architecture/feature-catalog.md#a04"><rect x="70" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A04  |  PARTIAL</text>
+<text x="88" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Saved-message search, fork and export</text>
+<text x="88" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A02, A03</text>
+</a>
+<a href="../architecture/feature-catalog.md#a05"><rect x="640" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A05  |  PARTIAL</text>
+<text x="658" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Chat composer, drafts and runtime</text>
+<text x="658" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">picker</text>
+<text x="658" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A02, A08, A09</text>
+</a>
+<a href="../architecture/feature-catalog.md#a06"><rect x="1210" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A06  |  PARTIAL</text>
+<text x="1228" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Conversation streaming, Stop and</text>
+<text x="1228" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">activity</text>
+<text x="1228" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A01, A03, A08</text>
+</a>
+<a href="../architecture/feature-catalog.md#a07"><rect x="70" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A07  |  PARTIAL</text>
+<text x="88" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Safe Markdown, code and workspace</text>
+<text x="88" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">links</text>
+<text x="88" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A06</text>
+</a>
+<a href="../architecture/feature-catalog.md#a08"><rect x="640" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A08  |  PARTIAL</text>
+<text x="658" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Owned GGUF runtime and model</text>
+<text x="658" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">switching</text>
+<text x="658" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#a09"><rect x="1210" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A09  |  PARTIAL</text>
+<text x="1228" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Exact chat context evidence</text>
+<text x="1228" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A08</text>
+</a>
+<a href="../architecture/feature-catalog.md#a10"><rect x="70" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A10  |  PARTIAL</text>
+<text x="88" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Model catalog, download and placement</text>
+<text x="88" y="864" font-family="Arial,sans-serif" font-size="23" fill="#172b46">advice</text>
+<text x="88" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A08</text>
+</a>
+<a href="../architecture/feature-catalog.md#a11"><rect x="640" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A11  |  PARTIAL</text>
+<text x="658" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Native workspace folder selection</text>
+<text x="658" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A02</text>
+</a>
+<a href="../architecture/feature-catalog.md#a12"><rect x="1210" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A12  |  PARTIAL</text>
+<text x="1228" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workspace discovery, reads and search</text>
+<text x="1228" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A11</text>
+</a>
+<a href="../architecture/feature-catalog.md#a13"><rect x="70" y="990" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A13  |  PARTIAL</text>
+<text x="88" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Native one-shot approval authority</text>
+<text x="88" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A01, A11</text>
+</a>
+<a href="../architecture/feature-catalog.md#a14"><rect x="640" y="990" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A14  |  PARTIAL</text>
+<text x="658" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Diffs, writes, change sets and</text>
+<text x="658" y="1074" font-family="Arial,sans-serif" font-size="23" fill="#172b46">lifecycle</text>
+<text x="658" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A12, A13</text>
+</a>
+<a href="../architecture/feature-catalog.md#a15"><rect x="1210" y="990" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A15  |  PARTIAL</text>
+<text x="1228" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Owned command execution</text>
+<text x="1228" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A13</text>
+</a>
+<a href="../architecture/feature-catalog.md#a16"><rect x="70" y="1200" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A16  |  PARTIAL</text>
+<text x="88" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Governed web fetch capability</text>
+<text x="88" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A13</text>
+</a>
+<a href="../architecture/feature-catalog.md#a17"><rect x="640" y="1200" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A17  |  PARTIAL</text>
+<text x="658" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Verified artifact cards and lineage</text>
+<text x="658" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A14</text>
+</a>
+<a href="../architecture/feature-catalog.md#a18"><rect x="1210" y="1200" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A18  |  PARTIAL</text>
+<text x="1228" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Bounded document and PDF handling</text>
+<text x="1228" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A17</text>
+</a>
+<a href="../architecture/feature-catalog.md#a19"><rect x="70" y="1410" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1436" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A19  |  PARTIAL</text>
+<text x="88" y="1465" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Image, WAV and document attachments</text>
+<text x="88" y="1555" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A08, A03</text>
+</a>
+<a href="../architecture/feature-catalog.md#a20"><rect x="640" y="1410" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1436" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A20  |  PARTIAL</text>
+<text x="658" y="1465" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Optional prompt check beside composer</text>
+<text x="658" y="1555" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A05</text>
+</a>
+<a href="../architecture/feature-catalog.md#a21"><rect x="1210" y="1410" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1436" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A21  |  PARTIAL</text>
+<text x="1228" y="1465" font-family="Arial,sans-serif" font-size="23" fill="#172b46">External Agent controller and CLI</text>
+<text x="1228" y="1555" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A01, A06, A13</text>
+</a>
+<a href="../architecture/feature-catalog.md#a22"><rect x="70" y="1620" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1646" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A22  |  PARTIAL</text>
+<text x="88" y="1675" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Agent MCP server surface</text>
+<text x="88" y="1765" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A21</text>
+</a>
+<a href="../architecture/feature-catalog.md#a23"><rect x="640" y="1620" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1646" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A23  |  PARTIAL</text>
+<text x="658" y="1675" font-family="Arial,sans-serif" font-size="23" fill="#172b46">MCP registry search and cache</text>
+<text x="658" y="1765" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<a href="../architecture/feature-catalog.md#a24"><rect x="1210" y="1620" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1646" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A24  |  PARTIAL</text>
+<text x="1228" y="1675" font-family="Arial,sans-serif" font-size="23" fill="#172b46">MCP reviewed setup and local package</text>
+<text x="1228" y="1704" font-family="Arial,sans-serif" font-size="23" fill="#172b46">installation</text>
+<text x="1228" y="1765" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A13, A23</text>
+</a>
+<a href="../architecture/feature-catalog.md#a25"><rect x="70" y="1830" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1856" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A25  |  PARTIAL</text>
+<text x="88" y="1885" font-family="Arial,sans-serif" font-size="23" fill="#172b46">MCP host and one-shot tool invocation</text>
+<text x="88" y="1975" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A13, A24</text>
+</a>
+<a href="../architecture/feature-catalog.md#a26"><rect x="640" y="1830" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1856" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A26  |  PARTIAL</text>
+<text x="658" y="1885" font-family="Arial,sans-serif" font-size="23" fill="#172b46">MCP cleanup evidence and recovery</text>
+<text x="658" y="1975" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A25</text>
+</a>
+<a href="../architecture/feature-catalog.md#a27"><rect x="1210" y="1830" width="520" height="166" rx="12" fill="#e1e5ea" stroke="#748398"/>
+<text x="1228" y="1856" font-family="Arial,sans-serif" font-size="16" fill="#172b46">A27  |  MOCK / DEMO</text>
+<text x="1228" y="1885" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Synthetic preview transport</text>
+<text x="1228" y="1975" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: entry / shared boundary</text>
+</a>
+<text x="70" y="2070" font-family="Arial,sans-serif" font-size="17" fill="#42556b">Arrows = dependencies / data flow. Dashed = planned. Cross-page dependencies use catalog IDs. Colors do not certify beta.</text>
+</svg>

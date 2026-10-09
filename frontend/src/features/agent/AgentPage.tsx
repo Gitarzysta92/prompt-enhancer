@@ -1,6 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
-import type { AgentArtifact, AgentArtifactLifecycleCounts, AgentArtifactListView, AgentAttachment, AgentCatalogSession, AgentEvent, AgentEvents, AgentMcpConnectionList, AgentSessionForkReceipt, AgentSessionView, AgentSettings, LocalModelStatus, LocalModelsOverview, LocalRuntimeCoordinatorStatus, PromptCheckResult, PromptEnhancerTransport } from "../../shared/api/contracts";
+import type { AgentArtifact, AgentArtifactLifecycleCounts, AgentArtifactListView, AgentAttachment, AgentCatalogSession, AgentEvent, AgentEvents, AgentMcpConnectionList, AgentSessionForkReceipt, AgentSessionView, AgentSettings, InferenceModel, PromptCheckPreview, PromptCheckRequest, LocalModelStatus, LocalModelsOverview, LocalRuntimeCoordinatorStatus, PromptCheckResult, PromptEnhancerTransport } from "../../shared/api/contracts";
 import { TransportError } from "../../shared/api/httpTransport";
 import { Dialog } from "../../shared/ui/Dialog";
 import { Icon } from "../../shared/ui/Icon";
@@ -15,10 +15,12 @@ import { AgentWorkspacePane, type AgentFileOpenRequest } from "./AgentWorkspaceP
 import { AgentSessionEffects } from "./AgentSessionEffects";
 import { AgentChangeSetPanel, type AgentChangeReviewRequest } from "./AgentChangeSetPanel";
 import type { AgentTurnRevisionMode } from "./AgentTurnDetails";
+import { PromptCheckReview } from "../prompt-check/PromptCheckReview";
 import { AgentPromptCheckResult, agentPromptContext } from "./AgentPromptCheck";
 import { AgentCatalogRail } from "./AgentCatalogRail";
 import type { AgentSavedMessageSearchHit } from "./AgentMessageSearchDialog";
 import { AgentDiffViewer } from "./AgentDiffViewer";
+import { AgentInferenceControl } from "../inference/AgentInferenceControl";
 import { AgentRuntimeControl } from "./AgentRuntimeControl";
 import { AgentArtifactsPanel, type AgentArtifactOpenRequest } from "./AgentArtifactsPanel";
 import { AgentComposerAttachments } from "./AgentComposerAttachments";
@@ -154,7 +156,7 @@ type AgentConfirmationPrompt = {
 type TransportSlice = Pick<
   PromptEnhancerTransport,
   "listAgentSessions" | "createAgentSession" | "getAgentSession" | "deleteAgentSession" | "sendAgentMessage" | "getAgentEvents" | "decideAgentApproval" | "stopAgentSession" | "getAgentWorkspaceTree" | "getAgentWorkspaceFile" | "previewAgentWorkspaceEdit" | "applyAgentWorkspaceEdit"
-> & Partial<Pick<PromptEnhancerTransport, "streamAgentEvents" | "getAgentChangeSet" | "getAgentChangeDiff" | "previewAgentChangeRestore" | "applyAgentChangeRestore" | "getAgentWorkspaceSearch" | "previewAgentWorkspaceTransaction" | "applyAgentWorkspaceTransaction" | "previewAgentWorkspaceCreate" | "applyAgentWorkspaceCreate" | "previewAgentWorkspaceDirectoryCreate" | "applyAgentWorkspaceDirectoryCreate" | "previewAgentWorkspaceDirectoryMove" | "applyAgentWorkspaceDirectoryMove" | "previewAgentWorkspaceMove" | "applyAgentWorkspaceMove" | "previewAgentWorkspaceFileTrash" | "applyAgentWorkspaceFileTrash" | "getLocalModels" | "activateLocalModel" | "deactivateLocalModel" | "getLocalRuntime" | "switchLocalRuntime" | "stopLocalRuntime" | "getAgentSessionContext" | "checkPrompt" | "getUserPresenceCapability" | "getWorkspaceFolderPickerCapability" | "chooseWorkspaceFolder" | "shareFolder" | "listSharedFolders" | "revokeSharedFolder" | "joinSharedFolder" | "listPeerLinks" | "leavePeerLink" | "pullPeerLink" | "pushPeerLink">>
+> & Partial<Pick<PromptEnhancerTransport, "previewPrompt" | "getPromptCheckConfiguration" | "getInferenceModels" | "getAgentInferenceReviews" | "decideAgentInferenceReview" | "streamAgentEvents" | "getAgentChangeSet" | "getAgentChangeDiff" | "previewAgentChangeRestore" | "applyAgentChangeRestore" | "getAgentWorkspaceSearch" | "previewAgentWorkspaceTransaction" | "applyAgentWorkspaceTransaction" | "previewAgentWorkspaceCreate" | "applyAgentWorkspaceCreate" | "previewAgentWorkspaceDirectoryCreate" | "applyAgentWorkspaceDirectoryCreate" | "previewAgentWorkspaceDirectoryMove" | "applyAgentWorkspaceDirectoryMove" | "previewAgentWorkspaceMove" | "applyAgentWorkspaceMove" | "previewAgentWorkspaceFileTrash" | "applyAgentWorkspaceFileTrash" | "getLocalModels" | "activateLocalModel" | "deactivateLocalModel" | "getLocalRuntime" | "switchLocalRuntime" | "stopLocalRuntime" | "getAgentSessionContext" | "checkPrompt" | "getUserPresenceCapability" | "getWorkspaceFolderPickerCapability" | "chooseWorkspaceFolder" | "shareFolder" | "listSharedFolders" | "revokeSharedFolder" | "joinSharedFolder" | "listPeerLinks" | "leavePeerLink" | "pullPeerLink" | "pushPeerLink">>
   & Partial<Pick<PromptEnhancerTransport, "getAgentOrchestration" | "getAgentHardening" | "listAgentMcpConnections" | "getAgentMcpClientSetup" | "listMcpRegistryCatalog" | "getMcpRegistryServerReview" | "listMcpManagedServers" | "getMcpManagedServer" | "getMcpManagedToolSnapshot" | "getMcpManagedHostStatus" | "getMcpManagedHostStartPreview" | "startMcpManagedHost" | "stopMcpManagedHost" | "getMcpManagedProjectRuntime" | "createMcpManagedServer" | "probeMcpManagedServer" | "getMcpManagedLifecyclePreview" | "getMcpManagedLocalConfigurationInspectionPreview" | "inspectMcpManagedLocalConfiguration" | "applyMcpManagedLifecycle" | "getMcpManagedLocalCleanupPreview" | "getMcpManagedLocalUpdatePreview" | "applyMcpManagedLocalUpdate" | "getMcpManagedLocalRollbackPreview" | "applyMcpManagedLocalRollback" | "getMcpManagedLocalRollbackCleanupPreview" | "cleanupMcpManagedLocalRollback" | "getMcpManagedLocalOperationRecoveryPreview" | "recoverMcpManagedLocalOperation" | "completeMcpManagedLocalCleanup" | "setMcpManagedProjectBinding" | "storeMcpManagedSecret" | "removeMcpManagedSecret" | "storeMcpManagedConfiguration" | "removeMcpManagedConfiguration" | "createAgentMcpConnection" | "rotateAgentMcpConnection" | "revokeAgentMcpConnection" | "releaseAgentControllerOwnership" | "beginAgentNativeAcceptance" | "listAgentProjects" | "pageAgentProjects" | "getAgentProject" | "createAgentProject" | "updateAgentProject" | "deleteAgentProject" | "listAgentCatalogSessions" | "pageAgentCatalogSessions" | "getAgentCatalogSession" | "updateAgentCatalogSession" | "deleteAgentCatalogSession" | "switchAgentSessionModel" | "getAgentPersistedEvents" | "forkAgentSession" | "resumeAgentSession" | "exportAgentHistory" | "revalidateAgentAuthority" | "listAgentArtifacts" | "pageAgentArtifacts" | "getAgentArtifact" | "exportAgentArtifact" | "updateAgentArtifact" | "removeAgentArtifact" | "previewAgentArtifactCapture" | "getAgentArtifactDocumentPreview" | "getAgentArtifactContent" | "captureAgentArtifact">>
   & Partial<Pick<PromptEnhancerTransport, "listAgentAttachments" | "stageAgentAttachment" | "deleteAgentAttachment" | "getAgentAttachmentContent">>
   & Partial<Pick<LocalRuntimeTransport, "getRuntimeHealth">>;
@@ -366,6 +368,14 @@ export function AgentPage({
     [events],
   );
   const [models, setModels] = useState<LocalModelsOverview | null>(null);
+  const [externalModels, setExternalModels] = useState<InferenceModel[]>([]);
+  useEffect(() => {
+    const controller = new AbortController(); setExternalModels([]);
+    void transport.getInferenceModels?.(controller.signal).then((catalog) => {
+      if (!controller.signal.aborted) setExternalModels(catalog.models.filter((item) => item.remote));
+    }).catch(() => { /* No external availability is claimed on failure. */ });
+    return () => controller.abort();
+  }, [transport]);
   const [modelCatalogState, setModelCatalogState] = useState<ModelCatalogState>(
     transport.getLocalModels === undefined ? "unavailable" : "loading",
   );
@@ -418,6 +428,7 @@ export function AgentPage({
   const [promptCheckBusy, setPromptCheckBusy] = useState(false);
   const [promptCheckError, setPromptCheckError] = useState("");
   const [promptCheckNotice, setPromptCheckNotice] = useState("");
+  const [promptCheckPreview, setPromptCheckPreview] = useState<{ value: PromptCheckPreview; request: PromptCheckRequest } | null>(null);
   const [promptCheckResult, setPromptCheckResult] = useState<PromptCheckResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [creatingSession, setCreatingSession] = useState(false);
@@ -753,6 +764,7 @@ export function AgentPage({
     setPromptCheckError("");
     setPromptCheckNotice(notice);
     setPromptCheckResult(null);
+    setPromptCheckPreview(null);
   }, []);
 
   const refreshSessions = useCallback(async (signal?: AbortSignal) => {
@@ -1589,6 +1601,8 @@ export function AgentPage({
     [models, newSessionModelAlias],
   );
   const currentModelAlias = current?.model_alias ?? current?.settings.model_alias ?? null;
+  const externalModel = externalModels.find((item) => item.id === currentModelAlias && item.available);
+  const selectedExternalModel = externalModels.find((item) => item.id === newSessionModelAlias && item.available);
   const currentModel = useMemo(() => {
     if (!current) return null;
     return currentModelAlias
@@ -1603,16 +1617,16 @@ export function AgentPage({
     || (Boolean(newSessionModelAlias) && (
       Boolean(modelActionAlias)
       || runtimeControlBusy
-      || modelCatalogState === "loading"
-      || (modelCatalogState === "ready" && selectedModel === null)
+      || (!selectedExternalModel && modelCatalogState === "loading")
+      || (modelCatalogState === "ready" && selectedModel === null && !selectedExternalModel)
       || (selectedModelNeedsActivation
         && (selectedModel?.runtime.state === "starting" || transport.activateLocalModel === undefined))
     ));
   const currentModelAction = modelActionAlias && modelActionAlias === (currentModel?.record.alias ?? currentModelAlias)
     ? modelActionKind : null;
-  const currentModelBlocked = commandCleanupBlocked || connectionDisconnected || currentModelAlias === null || currentModelAction !== null || modelCatalogState === "loading"
+  const currentModelBlocked = commandCleanupBlocked || connectionDisconnected || currentModelAlias === null || currentModelAction !== null || (!externalModel && modelCatalogState === "loading")
     || runtimeControlBusy
-    || (modelCatalogState === "ready" && currentModel?.runtime.state !== "running");
+    || (!externalModel && modelCatalogState === "ready" && currentModel?.runtime.state !== "running");
   const runtimeCoordinatorAvailable = transport.getLocalRuntime !== undefined
     && transport.switchLocalRuntime !== undefined
     && transport.stopLocalRuntime !== undefined;
@@ -1674,7 +1688,7 @@ export function AgentPage({
           : { detail: "Waiting for the next model or tool event.", label: "Working", tone: "working" }
       : currentModelAlias === null
         ? { detail: "Choose and start a model in Model & context before sending.", label: "No model", tone: "paused" }
-      : modelCatalogState === "loading"
+      : !externalModel && modelCatalogState === "loading"
         ? { detail: "Verifying the exact session model runtime.", label: "Checking model", tone: "paused" }
         : modelCatalogState === "error" || modelCatalogState === "unavailable"
           ? { detail: "The model will be verified again before the next turn.", label: "Model unverified", tone: "attention" }
@@ -1691,7 +1705,9 @@ export function AgentPage({
             : lastActivity?.kind === "error"
               ? { detail: "The last run needs attention before retrying.", label: "Needs attention", tone: "error" }
               : { detail: "Ready for your next request.", label: "Ready", tone: "ready" };
-  const sessionModelStatus = current === null ? "" : commandCleanupBlocked
+  const sessionModelStatus = current === null ? "" : externalModel && !commandCleanupBlocked && !connectionDisconnected && !current.closing
+    ? `${externalModel.name} · ${externalModel.provider} · external inference with reviewed requests`
+    : commandCleanupBlocked
     ? COMMAND_CLEANUP_MESSAGE
     : current.closing
       ? CLOSING_SESSION_MESSAGE
@@ -1726,7 +1742,7 @@ export function AgentPage({
     ? "starting"
     : currentModelAction === "stop"
       ? "stopping"
-      : currentModel?.runtime.state ?? modelCatalogState;
+      : externalModel ? "external" : currentModel?.runtime.state ?? modelCatalogState;
   const sessionModelNoticeVisible = current !== null && (
     !runtimeCoordinatorAvailable
     || commandCleanupBlocked
@@ -2954,7 +2970,7 @@ export function AgentPage({
     replaceComposerDraft(current.session_id, { text: draft, attachments });
   }
 
-  async function runPromptCheck() {
+  async function runPromptCheck(approved?: { value: PromptCheckPreview; request: PromptCheckRequest }) {
     const text = draft.trim();
     const checkPrompt = transport.checkPrompt;
     if (!current || current.closing || !checkPrompt || !text || busy || promptCheckBusy || current.running || responseStopping
@@ -2969,17 +2985,29 @@ export function AgentPage({
     setPromptCheckResult(null);
 
     try {
-      const result = await checkPrompt({
+      const request: PromptCheckRequest = approved?.request ?? {
         prompt: text,
         prior_messages: agentPromptContext(events),
         session_id: null,
         provider: "other",
         agent_model: current.model_alias,
         want_commentary: true,
-      }, controller.signal);
-      if (!controller.signal.aborted) setPromptCheckResult(result);
+      };
+      if (!approved) {
+        const configuration = await transport.getPromptCheckConfiguration?.(controller.signal);
+        if (controller.signal.aborted) return;
+        if (configuration?.remote) {
+          if (!transport.previewPrompt) throw new Error("Preview unavailable");
+          const value = await transport.previewPrompt(request, controller.signal);
+          if (!controller.signal.aborted) setPromptCheckPreview({ value, request });
+          return;
+        }
+      }
+      const result = await checkPrompt(approved ? { ...request, remote_approval: approved.value.approval } : request, controller.signal);
+      if (!controller.signal.aborted) { setPromptCheckResult(result); setPromptCheckPreview(null); }
     } catch (caught) {
       if (controller.signal.aborted) return;
+      setPromptCheckPreview(null);
       const status = caught instanceof TransportError ? caught.status : null;
       setPromptCheckError(status === 404
         ? "Prompt Check is not available in this runtime. Your draft was not changed."
@@ -3298,6 +3326,7 @@ export function AgentPage({
                     value={newSessionModelAlias}
                   >
                     <option value="">Choose later in chat · no model</option>
+                    {externalModels.map((model) => <option key={model.id} value={model.id} disabled={!model.available}>{model.name} · {model.provider}</option>)}
                     {(models?.models ?? []).map((model) => (
                       <option key={model.record.alias} value={model.record.alias}>
                         {model.record.display_name} · {runtimeStateLabel(model.runtime.state)}
@@ -3311,6 +3340,8 @@ export function AgentPage({
                       ? "Model status does not establish command cleanup. Agent work is paused."
                       : connectionDisconnected
                       ? "The local app is disconnected; cached model status is not usable."
+                      : selectedExternalModel
+                      ? `${selectedExternalModel.name} uses external inference; each outgoing request requires review.`
                       : modelCatalogState === "loading"
                       ? "Checking which local models are ready…"
                       : selectedModel === null && !newSessionModelAlias
@@ -3432,6 +3463,8 @@ export function AgentPage({
                     ? "Local app disconnected"
                     : !workspace.trim()
                       ? "Choose workspace to open chat"
+                    : selectedExternalModel
+                    ? "Open chat with external model"
                     : modelCatalogState === "loading" && Boolean(newSessionModelAlias)
                       ? "Checking model…"
                       : modelCatalogState === "ready" && selectedModel === null && newSessionModelAlias
@@ -4113,6 +4146,9 @@ export function AgentPage({
                   sessionId={current.session_id}
                   transport={transport}
                 />
+                <AgentInferenceControl key={current.session_id} current={current} models={externalModels}
+                  transport={transport} onSessionUpdated={acceptRuntimeSessionUpdate}
+                  disabled={commandCleanupBlocked || connectionDisconnected || current.closing || current.history_write_failed} />
                 <div className="agent__compose-footer">
                   <AgentRuntimeControl
                     current={current}
@@ -4157,6 +4193,7 @@ export function AgentPage({
                   {promptCheckError && <p className="agent__error" role="alert">{promptCheckError}</p>}
                   {promptCheckNotice && <p className="agent__status">{promptCheckNotice}</p>}
                 </div>
+                {promptCheckPreview && <PromptCheckReview preview={promptCheckPreview.value} busy={promptCheckBusy || busy || current.running} onSend={() => void runPromptCheck(promptCheckPreview)} onCancel={() => setPromptCheckPreview(null)} />}
                 {promptCheckResult && <AgentPromptCheckResult onUseRewrite={usePromptRewrite} result={promptCheckResult} />}
                 {conversationMessage && <p className="agent__error" id="agent-message-error" role="alert">{conversationMessage}</p>}
               </form>

@@ -9,7 +9,7 @@ artifacts. Tests remain subject to the suite-wide non-loopback socket guard.
 
 | Job | Platform | Required commands and evidence |
 | --- | --- | --- |
-| Repository integrity | Ubuntu | `python scripts/privacy_scan.py`; event-range `git diff --check` |
+| Repository integrity | Ubuntu | `python scripts/privacy_scan.py`; `python scripts/render_architecture_atlas.py --check`; event-range `git diff --check` |
 | Backend | Ubuntu and Windows | `uv lock --check`; `uv sync --frozen --extra dev`; frozen `uv run` compilation, platform security preflight, and full pytest |
 | Frontend | Ubuntu, Node.js 24 | `npm ci`; `npm test`; `npm run check:api`; `npm run build`; `npx playwright install --with-deps chromium`; `npm run test:e2e` |
 
@@ -39,6 +39,10 @@ This division ensures that a capability skip on one operating system does not
 silently remove the security contract from the checkpoint.
 
 ## Local parity
+
+The architecture check verifies the generated catalog, SVGs and layout data
+against the reviewed atlas. PNG bytes remain covered by exact privacy-scanner
+hash pins. It does not infer feature readiness or replace application tests.
 
 From the repository root, use a supported Python runtime and run:
 

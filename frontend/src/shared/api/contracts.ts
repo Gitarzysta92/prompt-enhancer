@@ -2,6 +2,14 @@ import type { components } from "./generated/openapi";
 
 type Schemas = components["schemas"];
 
+export type InferenceModel = Schemas["InferenceModel"];
+export type InferenceCatalog = Schemas["InferenceCatalog"];
+export type InferencePreview = Schemas["InferencePreview"];
+export type InferenceChatRequest = Schemas["InferenceChatRequest"];
+export type PendingInferenceReview = Schemas["PendingInferenceReview"];
+export type ManualAnalysisRequest = Schemas["ManualAnalysisRequest"];
+export type ManualAnalysisResult = Schemas["ManualAnalysisResult"];
+
 export type CandidateSignal = Schemas["CandidateSignalDto"];
 export type TaskCandidate = Schemas["TaskCandidateDto"];
 export type CandidateListItem = Schemas["CandidateListItemDto"];
@@ -2705,6 +2713,15 @@ export interface PromptEnhancerTransport {
   getSessionTimeline(sessionId: string, signal?: AbortSignal): Promise<SessionTimeline>;
   /** Sessions and reviewed task windows of one project over calendar time. */
   getProjectTimeline(projectId: string, signal?: AbortSignal): Promise<ProjectTimeline>;
+  getInferenceModels?(signal?: AbortSignal): Promise<InferenceCatalog>;
+  previewInferenceChat?(request: InferenceChatRequest, signal?: AbortSignal): Promise<InferencePreview>;
+  streamInferenceChat?(request: InferenceChatRequest, onDelta: (delta: LocalModelChatDelta) => void, signal?: AbortSignal): Promise<LocalModelChatResult>;
+  previewManualAnalysis?(request: ManualAnalysisRequest, signal?: AbortSignal): Promise<InferencePreview>;
+  runManualAnalysis?(request: ManualAnalysisRequest, signal?: AbortSignal): Promise<ManualAnalysisResult>;
+  getAgentInferenceReviews?(sessionId: string, signal?: AbortSignal): Promise<PendingInferenceReview[]>;
+  decideAgentInferenceReview?(sessionId: string, reviewId: string, accepted: boolean, signal?: AbortSignal): Promise<void>;
+  previewSessionInference?(sessionId: string, kind: "judge" | "interpret", modelId: string, signal?: AbortSignal): Promise<InferencePreview>;
+  runSessionInference?(sessionId: string, kind: "judge" | "interpret", modelId: string, approval: string, signal?: AbortSignal): Promise<JudgeOutcome | SessionInterpretation>;
   /** Local model runtimes (ADR 0013): registry, activation on cpu/gpu/split, per-model endpoint. */
   getLocalModels(signal?: AbortSignal): Promise<LocalModelsOverview>;
   /** Path-free exact-artifact identity and live executable compatibility receipts. */

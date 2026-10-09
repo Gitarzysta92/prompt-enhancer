@@ -1,5 +1,9 @@
 # ADR 0016: Local agent workspace - a local model working in one folder with approvals
 
+Current authority/history clarification: [ADR 0020](0020-current-product-boundaries-and-beta-scope.md).
+The original browser-approval/in-memory descriptions below record earlier slices;
+use the current atlas for native approval and durable private-history status.
+
 - Status: accepted (2026-08-20), streaming, manual-editor, discovery and failure-atomic transaction slices added
 - Owner direction: a separate window where the chosen local model works the
   way Codex or Claude Code work - with tools (files, terminal, web), usable

@@ -2,7 +2,44 @@
 
 Prompt Enhancer is a local-first workspace for understanding and improving coding-agent work. It brings consented, local signals from Codex and Claude Code together with an authored local Agent workspace, prompt checks, and evidence-aware analytics. It is designed to help people inspect work—not to rank developers or turn an assistant's claim into proof that a task is done.
 
-The repository is public and privacy-sensitive. Its fixtures, examples, and gallery use fictional data only.
+This public deployment copy is published with the source owner’s permission.
+It remains privacy-sensitive: fixtures and examples use fictional data only.
+Upstream architecture records describe their dated private-source baseline.
+The beta is not yet accepted or ready for general distribution.
+
+## Architecture and contributor map
+
+![Prompt Enhancer architecture with evidence-scoped status colors](docs/images/architecture-overview.png)
+
+Green means ready within the stated test scope; yellow means partial; red means
+the stated capability is absent; grey means an explicit mock/demo. These are
+dated component assessments, not a claim that every green dependency makes its
+whole user journey ready. No completion percentage is inferred from the colors.
+
+Explore the [fine-grained catalog](docs/architecture/feature-catalog.md),
+[domain graphs](docs/architecture/README.md),
+[remaining beta work](docs/architecture/remaining-work.md), and
+[source/validation evidence](docs/architecture/validation.md).
+The map distinguishes published `main` from inspected unpublished development
+work. This documentation update does not include all pending application code.
+
+| Contributor entry | Purpose |
+| --- | --- |
+| [Architecture atlas](docs/architecture/README.md) | System boundaries, dependencies, features and evidence |
+| [Change recipes](docs/architecture/change-recipes.md) | Where to edit and how to validate a vertical change |
+| [Design handoff](docs/architecture/design-handoff.md) | User journeys, unavailable/failure states and accessibility |
+| [ADRs](docs/adr/README.md) | Existing decisions and reviewable architecture proposals |
+| [Repository skill](.agents/skills/prompt-enhancer-development/SKILL.md) | Shared routing instructions for coding agents |
+| [Collaboration workflow](docs/collaboration-workflow.md) | Feature branches, PRs, task cards and owner-only merge |
+
+Any collaborator may propose changes and architecture improvements. The owner
+reviews and accepts them before merging. Written policy is distinct from GitHub
+permission enforcement.
+
+The largest remaining delivery groups are coherent source integration, qualified
+model/metric/native journeys, the multimodel workflow engine and editor, and
+signed installation/update/recovery. See the catalog for precise gaps instead
+of interpreting the product tour below as an acceptance checklist.
 
 ## Contents
 
@@ -170,7 +207,10 @@ This is an actively developed local vertical slice, not a general-purpose provid
 - The current application updater is verify-only (`can_apply: false`). Production signing, installation, relaunch, and rollback remain pending; pushing to `main` never updates an installed copy.
 - Windows-native desktop launchers and loopback ownership have dedicated contracts; other platforms and distribution paths have narrower current support.
 
-The feature/register and completion work are tracked in [the owner feature register](docs/prompt-enhancer-owner-feature-register-2026-08-31.md) and [the finish goal](docs/prompt-enhancer-finish-goal-2026-08-29.md).
+The [readiness matrix](docs/product-readiness-matrix-2026-09-12.md) is the acceptance
+ledger. The [owner feature register](docs/prompt-enhancer-owner-feature-register-2026-08-31.md)
+defines the finer behaviors; the [current task sequence](docs/architecture/remaining-work.md)
+organizes remaining work. Historical goal documents do not authorize autonomous continuation.
 
 ## Development and verification
 
@@ -199,6 +239,7 @@ The browser-install command is only needed for the end-to-end suite. See [the CI
 ## Documentation
 
 - [Private browser deployment with Coolify](docs/coolify-deployment.md)
+- [Reviewed LiteLLM inference](docs/litellm-prompt-check.md)
 - [Phase 1 local workflow](docs/phase-1.md)
 - [Live metric radar contract](docs/live-metric-radar-pipeline.md)
 - [Metrics catalog](docs/metrics-catalog.md)

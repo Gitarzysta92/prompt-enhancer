@@ -67,7 +67,7 @@ def is_loopback_host(host: str) -> bool:
 
 
 class LiteLLMSettings(BaseModel):
-    """Explicit opt-in for manually submitted Prompt Check text only."""
+    """Explicit opt-in for reviewed inference through an owner-managed gateway."""
 
     model_config = ConfigDict(extra="forbid", frozen=True, hide_input_in_errors=True)
     base_url: str = Field(repr=False)
@@ -111,6 +111,8 @@ class AppSettings(BaseModel):
         hide_input_in_errors=True,
     )
 
+    # Retain the original configuration key for existing installations. All
+    # inference features share this adapter; each owns its egress review.
     prompt_check_litellm: LiteLLMSettings | None = Field(default=None, repr=False)
     home: Path = Field(default_factory=default_app_home)
     host: str = "127.0.0.1"

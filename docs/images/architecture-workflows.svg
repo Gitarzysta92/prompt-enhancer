@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1468" viewBox="0 0 1800 1468">
+<rect width="100%" height="100%" fill="#f7f9fc"/>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#8493a5"/></marker></defs>
+<text x="70" y="48" font-family="Arial,sans-serif" font-size="30" fill="#172b46">Planned workflow engine and model families</text>
+<text x="70" y="82" font-family="Arial,sans-serif" font-size="18" fill="#42556b">2026-10-08 | Development observation + published baseline comparison | See catalog for evidence</text>
+<rect x="70" y="104" width="20" height="20" fill="#d4efdf" stroke="#748398"/>
+<text x="100" y="120" font-family="Arial,sans-serif" font-size="17">READY (bounded)</text>
+<rect x="480" y="104" width="20" height="20" fill="#fff0b3" stroke="#748398"/>
+<text x="510" y="120" font-family="Arial,sans-serif" font-size="17">PARTIAL</text>
+<rect x="890" y="104" width="20" height="20" fill="#ffd8d8" stroke="#748398"/>
+<text x="920" y="120" font-family="Arial,sans-serif" font-size="17">NOT IMPLEMENTED</text>
+<rect x="1300" y="104" width="20" height="20" fill="#e1e5ea" stroke="#748398"/>
+<text x="1330" y="120" font-family="Arial,sans-serif" font-size="17">MOCK / DEMO</text>
+<polyline points="590,233.0 640,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1160,233.0 1210,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 34,332 34,344 330.0,344 330.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 39,332 39,344 330.0,344 330.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 44,332 44,344 330.0,344 330.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 49,332 49,344 900.0,344 900.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="590,443.0 640,443.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 24,332 24,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 29,332 29,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,526 330.0,542 34,542 34,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1160,443.0 1210,443.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 44,332 44,554 330.0,554 330.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,526 330.0,542 49,542 49,554 330.0,554 330.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,526 900.0,542 54,542 54,554 330.0,554 330.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 24,332 24,554 900.0,554 900.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 29,332 29,554 900.0,554 900.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,526 330.0,542 34,542 34,554 900.0,554 900.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,526 900.0,542 39,542 39,554 900.0,554 900.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,526 1470.0,542 44,542 44,554 900.0,554 900.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="590,653.0 640,653.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,526 1470.0,542 54,542 54,554 1470.0,554 1470.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,736 330.0,752 24,752 24,554 1470.0,554 1470.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1160,653.0 1210,653.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 34,332 34,764 330.0,764 330.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 39,332 39,764 330.0,764 330.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 44,332 44,764 330.0,764 330.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 49,332 49,764 900.0,764 900.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 54,332 54,764 900.0,764 900.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 24,332 24,764 900.0,764 900.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 29,332 29,764 1470.0,764 1470.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 34,332 34,764 1470.0,764 1470.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 39,332 39,764 1470.0,764 1470.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 44,332 44,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 49,332 49,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 54,332 54,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 24,332 24,974 900.0,974 900.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 29,332 29,974 900.0,974 900.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 34,332 34,974 900.0,974 900.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 39,332 39,974 1470.0,974 1470.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 44,332 44,974 1470.0,974 1470.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 49,332 49,974 1470.0,974 1470.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 54,332 54,1184 330.0,1184 330.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 24,332 24,1184 330.0,1184 330.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 29,332 29,1184 330.0,1184 330.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 34,332 34,1184 900.0,1184 900.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="900.0,316 900.0,332 39,332 39,1184 900.0,1184 900.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="1470.0,316 1470.0,332 44,332 44,1184 900.0,1184 900.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<a href="../architecture/feature-catalog.md#w00"><rect x="70" y="150" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W00  |  NOT IMPLEMENTED</text>
+<text x="88" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Approved workflow profiles and</text>
+<text x="88" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">package feasibility</text>
+<text x="88" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: A08, A10</text>
+</a>
+<a href="../architecture/feature-catalog.md#w01"><rect x="640" y="150" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W01  |  NOT IMPLEMENTED</text>
+<text x="658" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Typed workflow graph and plan preview</text>
+<text x="658" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00</text>
+</a>
+<a href="../architecture/feature-catalog.md#w02"><rect x="1210" y="150" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W02  |  NOT IMPLEMENTED</text>
+<text x="1228" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Durable workflow revisions and</text>
+<text x="1228" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">sequential engine</text>
+<text x="1228" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W01</text>
+</a>
+<a href="../architecture/feature-catalog.md#w03"><rect x="70" y="360" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W03  |  NOT IMPLEMENTED</text>
+<text x="88" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Qualified production multimodal</text>
+<text x="88" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">workflow adapters</text>
+<text x="88" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00, W01, W02, A19</text>
+</a>
+<a href="../architecture/feature-catalog.md#w04"><rect x="640" y="360" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W04  |  NOT IMPLEMENTED</text>
+<text x="658" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Resource leases and actual parallel</text>
+<text x="658" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">inference</text>
+<text x="658" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W02, W03</text>
+</a>
+<a href="../architecture/feature-catalog.md#w05"><rect x="1210" y="360" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W05  |  NOT IMPLEMENTED</text>
+<text x="1228" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Visual workflow builder and device</text>
+<text x="1228" y="444" font-family="Arial,sans-serif" font-size="23" fill="#172b46">model advisor</text>
+<text x="1228" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W01, W02, W03, W04, A10</text>
+</a>
+<a href="../architecture/feature-catalog.md#w06"><rect x="70" y="570" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W06  |  NOT IMPLEMENTED</text>
+<text x="88" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Installed headless workflow export</text>
+<text x="88" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">and import</text>
+<text x="88" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W02, W03, W04</text>
+</a>
+<a href="../architecture/feature-catalog.md#w07"><rect x="640" y="570" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W07  |  NOT IMPLEMENTED</text>
+<text x="658" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow matrix and real-model</text>
+<text x="658" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">qualification</text>
+<text x="658" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W01, W02, W03, W04, W05, W06</text>
+</a>
+<a href="../architecture/feature-catalog.md#w08"><rect x="1210" y="570" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">W08  |  NOT IMPLEMENTED</text>
+<text x="1228" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow beta and prompt-enhancement</text>
+<text x="1228" y="654" font-family="Arial,sans-serif" font-size="23" fill="#172b46">integration</text>
+<text x="1228" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W05, W06, W07, A20</text>
+</a>
+<a href="../architecture/feature-catalog.md#wf01"><rect x="70" y="780" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WF01  |  NOT IMPLEMENTED</text>
+<text x="88" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow text LLM</text>
+<text x="88" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00, W01, W02</text>
+</a>
+<a href="../architecture/feature-catalog.md#wf02"><rect x="640" y="780" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WF02  |  NOT IMPLEMENTED</text>
+<text x="658" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow vision-language model</text>
+<text x="658" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00, W01, W02</text>
+</a>
+<a href="../architecture/feature-catalog.md#wf03"><rect x="1210" y="780" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WF03  |  NOT IMPLEMENTED</text>
+<text x="1228" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow text classifier</text>
+<text x="1228" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00, W01, W02</text>
+</a>
+<a href="../architecture/feature-catalog.md#wf04"><rect x="70" y="990" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WF04  |  NOT IMPLEMENTED</text>
+<text x="88" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow text embedding</text>
+<text x="88" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00, W01, W02</text>
+</a>
+<a href="../architecture/feature-catalog.md#wf05"><rect x="640" y="990" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WF05  |  NOT IMPLEMENTED</text>
+<text x="658" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow image classifier</text>
+<text x="658" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00, W01, W02</text>
+</a>
+<a href="../architecture/feature-catalog.md#wf06"><rect x="1210" y="990" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WF06  |  NOT IMPLEMENTED</text>
+<text x="1228" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow object detector</text>
+<text x="1228" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00, W01, W02</text>
+</a>
+<a href="../architecture/feature-catalog.md#wf07"><rect x="70" y="1200" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="88" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WF07  |  NOT IMPLEMENTED</text>
+<text x="88" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow speech recognition</text>
+<text x="88" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00, W01, W02</text>
+</a>
+<a href="../architecture/feature-catalog.md#wf08"><rect x="640" y="1200" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">WF08  |  NOT IMPLEMENTED</text>
+<text x="658" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Workflow audio classifier</text>
+<text x="658" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: W00, W01, W02</text>
+</a>
+<text x="70" y="1440" font-family="Arial,sans-serif" font-size="17" fill="#42556b">Arrows = dependencies / data flow. Dashed = planned. Cross-page dependencies use catalog IDs. Colors do not certify beta.</text>
+</svg>

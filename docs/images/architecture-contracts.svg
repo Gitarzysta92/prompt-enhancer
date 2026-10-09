@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1678" viewBox="0 0 1800 1678">
+<rect width="100%" height="100%" fill="#f7f9fc"/>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#8493a5"/></marker></defs>
+<text x="70" y="48" font-family="Arial,sans-serif" font-size="30" fill="#172b46">Twenty canonical metric contracts</text>
+<text x="70" y="82" font-family="Arial,sans-serif" font-size="18" fill="#42556b">2026-10-08 | Development observation + published baseline comparison | See catalog for evidence</text>
+<rect x="70" y="104" width="20" height="20" fill="#d4efdf" stroke="#748398"/>
+<text x="100" y="120" font-family="Arial,sans-serif" font-size="17">READY (bounded)</text>
+<rect x="480" y="104" width="20" height="20" fill="#fff0b3" stroke="#748398"/>
+<text x="510" y="120" font-family="Arial,sans-serif" font-size="17">PARTIAL</text>
+<rect x="890" y="104" width="20" height="20" fill="#ffd8d8" stroke="#748398"/>
+<text x="920" y="120" font-family="Arial,sans-serif" font-size="17">NOT IMPLEMENTED</text>
+<rect x="1300" y="104" width="20" height="20" fill="#e1e5ea" stroke="#748398"/>
+<text x="1330" y="120" font-family="Arial,sans-serif" font-size="17">MOCK / DEMO</text>
+<polyline points="590,233.0 640,233.0" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 29,332 29,134 1470.0,134 1470.0,150" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 34,332 34,344 330.0,344 330.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 39,332 39,344 900.0,344 900.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 44,332 44,344 1470.0,344 1470.0,360" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 49,332 49,554 330.0,554 330.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 54,332 54,554 900.0,554 900.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 24,332 24,554 1470.0,554 1470.0,570" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 29,332 29,764 330.0,764 330.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 34,332 34,764 900.0,764 900.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 39,332 39,764 1470.0,764 1470.0,780" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 44,332 44,974 330.0,974 330.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 49,332 49,974 900.0,974 900.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 54,332 54,974 1470.0,974 1470.0,990" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 24,332 24,1184 330.0,1184 330.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 29,332 29,1184 900.0,1184 900.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 34,332 34,1184 1470.0,1184 1470.0,1200" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="8 5"/>
+<polyline points="330.0,316 330.0,332 39,332 39,1394 330.0,1394 330.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 44,332 44,1394 900.0,1394 900.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="330.0,316 330.0,332 49,332 49,1394 1470.0,1394 1470.0,1410" fill="none" stroke="#8493a5" stroke-width="2" marker-end="url(#arrow)"/>
+<a href="../architecture/feature-catalog.md#ma07"><rect x="70" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MA07  |  PARTIAL</text>
+<text x="88" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">Canonical twenty-metric schema and</text>
+<text x="88" y="234" font-family="Arial,sans-serif" font-size="23" fill="#172b46">operability catalog</text>
+<text x="88" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA06</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc01"><rect x="640" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC01  |  PARTIAL</text>
+<text x="658" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">prompt. task definition coverage</text>
+<text x="658" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA06</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc02"><rect x="1210" y="150" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="176" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC02  |  PARTIAL</text>
+<text x="1228" y="205" font-family="Arial,sans-serif" font-size="23" fill="#172b46">prompt. problem evidence quality</text>
+<text x="1228" y="295" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA06</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc03"><rect x="70" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC03  |  PARTIAL</text>
+<text x="88" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">prompt. context sufficiency</text>
+<text x="88" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA06</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc04"><rect x="640" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC04  |  PARTIAL</text>
+<text x="658" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">prompt. constraint precision</text>
+<text x="658" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc05"><rect x="1210" y="360" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="386" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC05  |  PARTIAL</text>
+<text x="1228" y="415" font-family="Arial,sans-serif" font-size="23" fill="#172b46">prompt. acceptance testability</text>
+<text x="1228" y="505" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc06"><rect x="70" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC06  |  PARTIAL</text>
+<text x="88" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">prompt. deliverable contract</text>
+<text x="88" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc07"><rect x="640" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC07  |  PARTIAL</text>
+<text x="658" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">collaboration. ambiguity resolution</text>
+<text x="658" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc08"><rect x="1210" y="570" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="596" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC08  |  PARTIAL</text>
+<text x="1228" y="625" font-family="Arial,sans-serif" font-size="23" fill="#172b46">collaboration. clarification yield</text>
+<text x="1228" y="715" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc09"><rect x="70" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC09  |  PARTIAL</text>
+<text x="88" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">collaboration. exploration conversion</text>
+<text x="88" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc10"><rect x="640" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC10  |  PARTIAL</text>
+<text x="658" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">collaboration. scope change</text>
+<text x="658" y="864" font-family="Arial,sans-serif" font-size="23" fill="#172b46">discipline</text>
+<text x="658" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc11"><rect x="1210" y="780" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="806" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC11  |  PARTIAL</text>
+<text x="1228" y="835" font-family="Arial,sans-serif" font-size="23" fill="#172b46">collaboration. rework candidate rate</text>
+<text x="1228" y="925" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc12"><rect x="70" y="990" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC12  |  PARTIAL</text>
+<text x="88" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">logic. decomposition coverage</text>
+<text x="88" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc13"><rect x="640" y="990" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="658" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC13  |  MEASURED ADAPTER ABSENT</text>
+<text x="658" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">logic. hypothesis test linkage</text>
+<text x="658" y="1074" font-family="Arial,sans-serif" font-size="23" fill="#172b46">(measured adapter)</text>
+<text x="658" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc14"><rect x="1210" y="990" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1016" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC14  |  PARTIAL</text>
+<text x="1228" y="1045" font-family="Arial,sans-serif" font-size="23" fill="#172b46">logic. decision rationale coverage</text>
+<text x="1228" y="1135" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA06</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc15"><rect x="70" y="1200" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC15  |  PARTIAL</text>
+<text x="88" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">logic. requirement action</text>
+<text x="88" y="1284" font-family="Arial,sans-serif" font-size="23" fill="#172b46">traceability</text>
+<text x="88" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc16"><rect x="640" y="1200" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC16  |  PARTIAL</text>
+<text x="658" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">logic. open loop closure</text>
+<text x="658" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc17"><rect x="1210" y="1200" width="520" height="166" rx="12" fill="#ffd8d8" stroke="#748398"/>
+<text x="1228" y="1226" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC17  |  MEASURED ADAPTER ABSENT</text>
+<text x="1228" y="1255" font-family="Arial,sans-serif" font-size="23" fill="#172b46">outcome. agent claim grounding</text>
+<text x="1228" y="1284" font-family="Arial,sans-serif" font-size="23" fill="#172b46">(measured adapter)</text>
+<text x="1228" y="1345" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA09</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc18"><rect x="70" y="1410" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="88" y="1436" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC18  |  PARTIAL</text>
+<text x="88" y="1465" font-family="Arial,sans-serif" font-size="23" fill="#172b46">outcome. verification strategy</text>
+<text x="88" y="1494" font-family="Arial,sans-serif" font-size="23" fill="#172b46">adequacy</text>
+<text x="88" y="1555" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA06</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc19"><rect x="640" y="1410" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="658" y="1436" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC19  |  PARTIAL</text>
+<text x="658" y="1465" font-family="Arial,sans-serif" font-size="23" fill="#172b46">outcome. first pass verification</text>
+<text x="658" y="1555" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<a href="../architecture/feature-catalog.md#mc20"><rect x="1210" y="1410" width="520" height="166" rx="12" fill="#fff0b3" stroke="#748398"/>
+<text x="1228" y="1436" font-family="Arial,sans-serif" font-size="16" fill="#172b46">MC20  |  PARTIAL</text>
+<text x="1228" y="1465" font-family="Arial,sans-serif" font-size="23" fill="#172b46">outcome. verified requirement</text>
+<text x="1228" y="1494" font-family="Arial,sans-serif" font-size="23" fill="#172b46">coverage</text>
+<text x="1228" y="1555" font-family="Arial,sans-serif" font-size="12" fill="#42556b">Needs: MA07, MA08</text>
+</a>
+<text x="70" y="1650" font-family="Arial,sans-serif" font-size="17" fill="#42556b">Arrows = dependencies / data flow. Dashed = planned. Cross-page dependencies use catalog IDs. Colors do not certify beta.</text>
+</svg>

@@ -20,6 +20,21 @@ from ...application.analysis.model_judge import (
     SessionJudgments,
 )
 from ...domain import PSEUDONYM_PATTERN, StrictModel
+from pydantic import Field
+from ...application.inference import InferenceError
+from ...application.inference_review import (
+    InferencePreview, InferenceReviewRequired, InferenceSelection, inference_selection,
+)
+from .inference_routes import failure as inference_failure
+
+
+class SelectedJudgeModel(StrictModel):
+    model_id: str = Field(pattern=r"^[a-z0-9][a-z0-9._-]{0,63}$")
+    approval: str | None = Field(default=None, max_length=100, repr=False)
+
+
+class JudgePreviewRequest(SelectedJudgeModel):
+    kind: Literal["judge", "interpret"]
 
 
 class ModelJudgeFailureCode(StrEnum):
@@ -79,12 +94,39 @@ def create_model_judge_router(
     service: ModelJudgeService,
     sample_session_ids: Callable[[], tuple[str, ...]],
     all_session_ids: Callable[[], tuple[str, ...]] | None = None,
+    *, inference=None,
 ) -> APIRouter:
     router = APIRouter(
         prefix="/v1/model-judge",
         tags=["model-judge"],
         dependencies=[Depends(require_local_auth)],
     )
+
+    def selected_call(session_id, kind, payload, *, preview=False):
+        operation = service.interpret if kind == "interpret" else service.judge
+        if payload is None:
+            return operation(session_id)
+        if inference is None:
+            raise HTTPException(409, detail={"code": "inference_unavailable"})
+        with inference_selection(InferenceSelection(payload.model_id,
+                f"session-{kind}:{session_id}", payload.approval, preview)):
+            try:
+                return operation(session_id)
+            except InferenceError as error:
+                raise inference_failure(error) from None
+
+    @router.post("/sessions/{session_id}/preview", response_model=InferencePreview)
+    def preview_selected_model(
+        session_id: Annotated[str, Path(pattern=PSEUDONYM_PATTERN.pattern)],
+        payload: JudgePreviewRequest,
+    ):
+        try:
+            selected_call(session_id, payload.kind, payload, preview=True)
+        except InferenceReviewRequired as review:
+            return review.preview
+        except ModelJudgeError as error:
+            raise _failure(error.code) from None
+        raise HTTPException(409, detail={"code": "inference_preview_unavailable"})
 
     def session_ids(scope: Literal["sample", "all"]) -> tuple[str, ...]:
         if scope == "all":
@@ -139,9 +181,17 @@ def create_model_judge_router(
     )
     def interpret_session(
         session_id: Annotated[str, Path(pattern=PSEUDONYM_PATTERN.pattern)],
+        payload: SelectedJudgeModel | None = None,
     ) -> SessionInterpretation:
         try:
-            return service.interpret(session_id)
+            result = selected_call(session_id, "interpret", payload)
+            if payload is not None and inference is not None:
+                _, model = inference.registry.resolve(payload.model_id)
+                if model.remote:
+                    result = result.model_copy(update={"caveat": "Interpretation from the reviewed text and metrics via " + model.provider + "; not a measurement.",
+                        "inference_provider": model.provider, "model_revision": model.revision,
+                        "adapter_version": model.adapter_version, "redactor_version": inference.redactor_version})
+            return result
         except ModelJudgeError as error:
             failure_code = error.code
         raise _failure(failure_code)
@@ -156,9 +206,10 @@ def create_model_judge_router(
     )
     def judge_session(
         session_id: Annotated[str, Path(pattern=PSEUDONYM_PATTERN.pattern)],
+        payload: SelectedJudgeModel | None = None,
     ) -> JudgeOutcome:
         try:
-            return service.judge(session_id)
+            return selected_call(session_id, "judge", payload)
         except ModelJudgeError as error:
             failure_code = error.code
         raise _failure(failure_code)

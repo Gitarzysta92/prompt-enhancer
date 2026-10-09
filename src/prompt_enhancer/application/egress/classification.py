@@ -81,10 +81,11 @@ EGRESS_REGISTRY: tuple[EgressRegistration, ...] = (
     EgressRegistration(module="prompt_enhancer.infrastructure.updates.https_manifest_source", egress_class=EgressClass.SIGNED_UPDATE_ADVISORY, state=FutureEgressState.IMPLEMENTED_UNCOMPOSED, reason_code="signed_release_manifest_uncomposed"),
     EgressRegistration(module="prompt_enhancer.infrastructure.updates.https_artifact_source", egress_class=EgressClass.SIGNED_UPDATE_ADVISORY, state=FutureEgressState.IMPLEMENTED_UNCOMPOSED, reason_code="signed_release_artifact_uncomposed"),
     EgressRegistration(module="prompt_enhancer.infrastructure.estimator_runners.codex", egress_class=EgressClass.APPROVED_PROVIDER_REQUEST, state=FutureEgressState.IMPLEMENTED_UNCOMPOSED, reason_code="bounded_child_cli_runner_uncomposed"),
-    # Prompt Check only: a configured gateway receives the exact redacted
-    # model messages after a matching, short-lived preview approval. Provider
-    # session context is excluded; TLS and optional leaf pinning stay enabled.
-    EgressRegistration(module="prompt_enhancer.infrastructure.litellm", egress_class=EgressClass.APPROVED_PROVIDER_REQUEST, state=FutureEgressState.ACTIVE_EXPLICIT_APPROVAL, reason_code="reviewed_prompt_check_gateway_request"),
+    # A configured gateway receives exact reviewed, redacted requests. Manual
+    # chat/analysis and selected-session reviews use short-lived approvals;
+    # every Agent step pauses for its own review. No background transcript egress.
+    # TLS and optional leaf pinning remain enabled.
+    EgressRegistration(module="prompt_enhancer.infrastructure.litellm", egress_class=EgressClass.APPROVED_PROVIDER_REQUEST, state=FutureEgressState.ACTIVE_EXPLICIT_APPROVAL, reason_code="reviewed_inference_gateway_request"),
     # Shared team folders (ADR 0018): the peer client dials exactly the URL the
     # person typed when joining a teammate's folder; the share action on the
     # serving side is the consent to answer that token. No other destination.

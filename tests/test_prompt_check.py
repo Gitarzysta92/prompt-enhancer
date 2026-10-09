@@ -359,7 +359,9 @@ def test_remote_http_routes_authenticate_preview_and_require_approval(tmp_path):
     headers = {API_TOKEN_HEADER: settings.api_token_path.read_text().strip()}
     caps = client.get("/v1/capabilities", headers=headers).json()
     assert caps["network_inference"] and caps["prompt_check_network_inference"]
-    assert caps["session_text_network_inference"] is False
+    assert caps["session_text_network_inference"] is True
+    assert caps["automatic_session_text_network_inference"] is False
+    assert caps["reviewed_inference"] is True
     assert client.get("/v1/prompt-checks/configuration", headers=headers).json()["model"] == "example-qwen"
     payload = {"prompt": "Add a synthetic calculator test. Contact person@example.test."}
     assert client.post("/v1/prompt-checks/preview", json=payload).status_code == 401

@@ -584,6 +584,7 @@ def _build_schema_app(*, include_control_plane: bool):
         session_reader_service=_SchemaSessionReaderService(),  # type: ignore[arg-type]
         onboarding_service=_SchemaOnboardingService(),  # type: ignore[arg-type]
         calibration_rating_service=_SchemaCalibrationRatingService(),  # type: ignore[arg-type]
+        inference_service=object(),
         local_model_service=_SchemaLocalModelService(),  # type: ignore[arg-type]
         model_judge_service=_SchemaModelJudgeService(),  # type: ignore[arg-type]
         prompt_check_service=_SchemaPromptCheckService(),  # type: ignore[arg-type]
